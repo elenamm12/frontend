@@ -14,6 +14,7 @@ import { BuscarPorCategoriaComponent } from './components/menu/buscar-por-catego
 import { BuscarPorPalabrasComponent } from './components/menu/buscar-por-palabras/buscar-por-palabras.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -33,7 +34,9 @@ import { MaterialModule } from './material/material.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

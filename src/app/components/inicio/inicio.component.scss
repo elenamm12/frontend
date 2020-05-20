@@ -14,11 +14,11 @@ div.container{
 
 .btn{
     height: 52px;
-    font-family: Poiret One;
+    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     letter-spacing: 1.5px;
-    border: 0.8px solid #000000;
+    border: 0.8px solid #487a83;
     background: #5CBCC4;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
@@ -47,12 +47,12 @@ h1.titulo{
     text-align: center;
     background-color: #E2E7FF; 
     font-family: 'Roboto';
-    font-size: 500%;
-    font-weight: 200;
+    font-size: 600%;
+    font-weight: bold;
     
-    color: #FFFFFF;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #000000;
+    color: #5CBCC4;
+    -webkit-text-stroke-width: 0.01px;
+    -webkit-text-stroke-color: #487a83;
     
     
 }

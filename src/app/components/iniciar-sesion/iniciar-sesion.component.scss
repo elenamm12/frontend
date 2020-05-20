@@ -6,12 +6,64 @@
     background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #7BD7D9; 
 }
 
+.espacio{
+    height: 10%;
+}
+
 .logo{
     height: 26%;
     background-image: url(logo.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    margin-top: 19%;
+}
+.formulario{
+    padding-top: 15% ;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+mat-form-field{
+    width: 60%;
+    text-align: center;
+}
+
+mat-label{
+    font-family: 'Poiret One';
+    text-align: center;
+    font-weight: bolder;
+    letter-spacing: 3.5px;
+    color: #34839c;
+    font-size: large;
+    letter-spacing: 0.5px;
+}
+
+
+.btn{
+    height: 49px;  
+    width: 55%;      
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 3.5px;
+    border: 0.8px solid #487a83;
+    background: #5CBCC4;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+button{
+    margin-bottom: 6%;
+}
+
+.boton{
+    padding-top: 13% ;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    text-align: center;
+    font-family: Poiret One;
+    width: 60%;
 }
 

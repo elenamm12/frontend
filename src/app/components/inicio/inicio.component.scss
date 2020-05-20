@@ -12,14 +12,19 @@ div.container{
     color: black;
 }
 
-.square{
-    width: 37vw;
-    height: 11vw;
-    padding: 3px;
+.btn{
+    height: 52px;
     font-family: Poiret One;
     font-style: normal;
     font-weight: normal;
-    border-radius: 0.15rem;
+    letter-spacing: 1.5px;
+    border: 0.8px solid #000000;
+    background: #5CBCC4;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.segundo{
+    letter-spacing: 2.7px;
 }
 
 .contain {
@@ -27,11 +32,11 @@ div.container{
   justify-content: center;
   align-items: center;
   background-color: #E2E7FF;
-  padding-top: 15%;
+  padding-top: 14%;
 }
 
 .primero{
-    margin-right: 38px;
+    margin-right: 25px;
 }
 
 h1.titulo{
@@ -41,17 +46,23 @@ h1.titulo{
     margin: 0;
     text-align: center;
     background-color: #E2E7FF; 
-    font-family: 'Arima Madurai';
+    font-family: 'Roboto';
     font-size: 500%;
     font-weight: 200;
-    letter-spacing: 0.2em;
+    
     color: #FFFFFF;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rgb(89, 141, 146);
-    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    -webkit-text-stroke-color: #000000;
+    
+    
 }
 
-
+@media (max-width: 340px) {
+    .btn{
+        height: 40px;
+        font-size: 100%;
+    }
+  }
 
 
 

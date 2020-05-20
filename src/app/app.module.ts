@@ -12,6 +12,8 @@ import { PagoPremiumComponent } from './components/pago-premium/pago-premium.com
 import { RecuperarContrasenhaComponent } from './components/recuperar-contrasenha/recuperar-contrasenha.component';
 import { BuscarPorCategoriaComponent } from './components/menu/buscar-por-categoria/buscar-por-categoria.component';
 import { BuscarPorPalabrasComponent } from './components/menu/buscar-por-palabras/buscar-por-palabras.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { BuscarPorPalabrasComponent } from './components/menu/buscar-por-palabra
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

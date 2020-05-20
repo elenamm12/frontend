@@ -1,0 +1,59 @@
+div.container{
+    padding:0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #E2E7FF; 
+    background-image: url(olas1.png);
+    background-color: #E2E7FF;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    color: black;
+}
+
+.square{
+    width: 37vw;
+    height: 11vw;
+    padding: 3px;
+    font-family: Poiret One;
+    font-style: normal;
+    font-weight: normal;
+    border-radius: 0.15rem;
+}
+
+.contain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E2E7FF;
+  padding-top: 15%;
+}
+
+.primero{
+    margin-right: 38px;
+}
+
+h1.titulo{
+    padding: 0;
+    padding-top: 21%;
+    padding-bottom: 10%;
+    margin: 0;
+    text-align: center;
+    background-color: #E2E7FF; 
+    font-family: 'Arima Madurai';
+    font-size: 500%;
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    color: #FFFFFF;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(89, 141, 146);
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
+
+

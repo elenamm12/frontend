@@ -5,24 +5,45 @@
     <div class="logo">
 
     </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSaveForm()">
     <div class="formulario">
       <p>
         <mat-form-field appearance="standard">
           <mat-label>Introducir Usuario</mat-label>
-          <input matInput placeholder="Usuario">
-        </mat-form-field>
+          <input matInput formControlName="usuario" placeholder="Usuario">
+        </mat-form-field>   
       </p>
+      <div *ngIf="usuario.invalid && usuario.dirty">
+        <div *ngIf="usuario.errors.required">
+          Usuario es Requerido
+        </div>
+        <div *ngIf="usuario.errors.pattern">
+          Debe ser un correo valido
+        </div>    
+      </div>
+
+      <p>
       <mat-form-field appearance="standard">
-        <mat-label>Introducir Cntraseña</mat-label>
-        <input matInput placeholder="Contraseña">
-        
+        <mat-label>Introducir Contraseña</mat-label>
+        <input matInput formControlName="contra" placeholder="Contraseña">
       </mat-form-field>
+      </p>
+
+      <div *ngIf="contra.invalid && contra.dirty">
+        <div *ngIf="contra.errors.required">
+          Contraseña es Requerida
+        </div>
+        <div *ngIf="contra.errors.minlength">
+          Debe tener al menos 7 caracteres
+        </div>    
+      </div>
 
     </div>
     <div class="boton">
       <button class="btn btn-primary primero btn-lg" type="submit">continuar</button>
       <button class="btn btn-primary primero btn-lg" type="submit">regresar</button>
     </div>
+    </form>
 
 
 </div>

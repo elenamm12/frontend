@@ -7,12 +7,12 @@
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSaveForm()">
     <div class="formulario">
-      <p>
+      
         <mat-form-field appearance="standard">
           <mat-label>Introducir Usuario</mat-label>
           <input matInput formControlName="usuario" placeholder="Usuario">
         </mat-form-field>   
-      </p>
+      
       <div *ngIf="usuario.invalid && usuario.dirty">
         <div *ngIf="usuario.errors.required">
           Usuario es Requerido

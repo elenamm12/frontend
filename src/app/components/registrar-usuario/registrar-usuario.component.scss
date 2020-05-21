@@ -32,10 +32,11 @@ input{
     align-content: center;
     margin-left: auto;
     margin-right: auto;
+    width: 70%;
 }
 
 mat-form-field{
-    width: 60%;
+    width: 80%;
     text-align: center;
 }
 
@@ -84,6 +85,18 @@ button{
     width: 60%;
 }
 
+@media(min-width: 768px){
+    .fondo{
+        height: 100%;
+    }
+    .logo{
+        height: 14%;
+    }
+    .boton{
+        padding-top: 9%;
+    }
+}
+
 
 @media (max-width: 340px) {
     .btn{    
@@ -121,3 +134,9 @@ button{
     }
 
   }
+
+@media(height: 812px){
+    .fondo{
+        height: 125%;
+    }
+}

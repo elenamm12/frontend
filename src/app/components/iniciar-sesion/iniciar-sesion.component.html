@@ -22,12 +22,12 @@
         </div>    
       </div>
 
-      <p>
+
       <mat-form-field appearance="standard">
         <mat-label>Introducir Contraseña</mat-label>
         <input matInput formControlName="contra" placeholder="Contraseña">
       </mat-form-field>
-      </p>
+
 
       <div *ngIf="contra.invalid && contra.dirty">
         <div *ngIf="contra.errors.required">

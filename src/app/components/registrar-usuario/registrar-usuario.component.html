@@ -3,12 +3,50 @@
     </div>
 
     <div class="logo custom-file">
-        <img [src]="imageUrl" style="width: 50%;height: 100%;border-radius: 100%;" >
-        <input type="file" class="custom-file-input" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
-        
-        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+        <img [src]="imageUrl" style="width: 40%;height: 100%;border-radius: 100%;" >    
     </div>
 
+    <div class="formulario" >
+        <mat-label class="datos">Introduzca sus datos de usuario:</mat-label>
+        <mat-form-field appearance="standard">
+            <mat-label>Nombres</mat-label>
+            <input matInput placeholder="Nombre">
+        </mat-form-field> 
+        <mat-form-field appearance="standard">
+            <mat-label>Apellidos</mat-label>
+            <input matInput placeholder="Apellidos">
+        </mat-form-field> 
+        <mat-form-field class="example-full-width">
+            <mat-label>Fecha de cumpleaños</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Correo</mat-label>
+            <input matInput placeholder="Correo">
+        </mat-form-field> 
+        <mat-form-field appearance="standard">
+            <mat-label>Nombre de Usuario</mat-label>
+            <input matInput placeholder="Usuario">
+        </mat-form-field> 
+        <mat-form-field appearance="standard">
+            <mat-label>Contaseña</mat-label>
+            <input matInput placeholder="Contraseña">
+        </mat-form-field> 
+        <mat-form-field appearance="standard">
+            <mat-label>Repetir Contraseña</mat-label>
+            <input matInput placeholder="Repetir Contraseña">
+        </mat-form-field> 
+        <input type="file" class="imagen" #Image accept="image/*" (change)="handleFileInput($event.target.files)">        
 
+    </div>
+
+    <div class="boton">
+        <button class="btn btn-primary primero btn-lg" type="submit">continuar</button>
+        <button class="btn btn-primary primero btn-lg" type="submit">regresar</button>
+    </div>
 
 </div>

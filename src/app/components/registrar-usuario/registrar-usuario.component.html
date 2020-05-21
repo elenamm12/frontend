@@ -5,42 +5,69 @@
     <div class="logo custom-file">
         <img [src]="imageUrl" style="width: 40%;height: 100%;border-radius: 100%;" >    
     </div>
-
-    <div class="formulario" >
+    <form [formGroup]="registerForm" (ngSubmit)="onSaveForm()"> 
+    <div class="formulario">
         <mat-label class="datos">Introduzca sus datos de usuario:</mat-label>
         <mat-form-field appearance="standard">
             <mat-label>Nombres</mat-label>
-            <input matInput placeholder="Nombre">
-        </mat-form-field> 
+            <input matInput placeholder="Nombre" formControlName="nombres">
+        </mat-form-field>
+        <mat-error *ngIf="nombres.invalid && nombres.dirty">
+			Por favor introduzca sus nombres
+        </mat-error> 
         <mat-form-field appearance="standard">
             <mat-label>Apellidos</mat-label>
-            <input matInput placeholder="Apellidos">
-        </mat-form-field> 
+            <input matInput placeholder="Apellidos" formControlName="apellidos">
+        </mat-form-field>
+        <mat-error *ngIf="apellidos.invalid && apellidos.dirty">
+			Por favor introduzca sus apellidos
+        </mat-error> 
         <mat-form-field class="example-full-width">
             <mat-label>Fecha de cumpleaños</mat-label>
-            <input matInput [matDatepicker]="picker">
+            <input matInput [matDatepicker]="picker" formControlName="fecha">
             <mat-datepicker-toggle matSuffix [for]="picker">
               <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
             </mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+        <mat-error *ngIf="fecha.invalid && fecha.dirty">
+			Por favor elija su fecha de nacimiento
+        </mat-error>
         <mat-form-field appearance="standard">
             <mat-label>Correo</mat-label>
-            <input matInput placeholder="Correo">
-        </mat-form-field> 
+            <input matInput placeholder="Correo" formControlName="correo">
+        </mat-form-field>
+        <mat-error *ngIf="correo.invalid && correo.dirty && correo.errors.required">
+			Por favor introduzca tu correo
+        </mat-error> 
+        <mat-error *ngIf="correo.invalid && correo.dirty && correo.errors.pattern">
+			correo no es valido
+		</mat-error>
         <mat-form-field appearance="standard">
             <mat-label>Nombre de Usuario</mat-label>
-            <input matInput placeholder="Usuario">
-        </mat-form-field> 
+            <input matInput placeholder="Usuario" formControlName="usuario">
+        </mat-form-field>
+        <mat-error *ngIf="usuario.invalid && usuario.dirty">
+			Por favor introduzca un username
+		</mat-error> 
         <mat-form-field appearance="standard">
             <mat-label>Contaseña</mat-label>
-            <input matInput placeholder="Contraseña">
+            <input matInput placeholder="Contraseña" formControlName="contra">
         </mat-form-field> 
+        <mat-error *ngIf="contra.invalid && contra.dirty">
+			Introduzca su nueva contraseña
+        </mat-error>
+        <mat-error *ngIf="contra.invalid && contra.dirty && contra.errors.minLength">
+			7 caracteres minimo
+		</mat-error>
         <mat-form-field appearance="standard">
             <mat-label>Repetir Contraseña</mat-label>
-            <input matInput placeholder="Repetir Contraseña">
-        </mat-form-field> 
-        <input type="file" class="imagen" #Image accept="image/*" (change)="handleFileInput($event.target.files)">        
+            <input matInput placeholder="Repetir Contraseña" formControlName="validContra" [errorStateMatcher]="matcher">
+        </mat-form-field>
+        <mat-error *ngIf="registerForm.hasError('notSame') && validContra.dirty">
+			Contraseñas no coinciden
+		</mat-error>   
+        <input formControlName="image" type="file" class="imagen" #Image accept="image/*" (change)="handleFileInput($event.target.files)">        
 
     </div>
 
@@ -49,4 +76,5 @@
         <button class="btn btn-primary primero btn-lg" type="submit">regresar</button>
     </div>
 
+</form>
 </div>

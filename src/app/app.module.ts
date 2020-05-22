@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './routing/routing.module';
 import { AppComponent } from './app.component';
 import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesion.component';

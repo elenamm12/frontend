@@ -3,12 +3,15 @@ import { RegistrarUsuarioComponent } from './../components/registrar-usuario/reg
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IniciarSesionComponent } from '../components/iniciar-sesion/iniciar-sesion.component';
+import { NotFoundComponent } from '../components/not-found/not-found.component';
 
 
 const routes: Routes = [
-  { path: 'inicio', component: InicioComponent},
-  { path: 'iniciar-sesión', component: IniciarSesionComponent },
-  { path: 'registrar-usuario', component: RegistrarUsuarioComponent}
+  { path: 'inicio', component: InicioComponent },
+  { path: 'iniciar-sesion', component: IniciarSesionComponent },
+  { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
+  { path: "", redirectTo: "/inicio", pathMatch: "full" },
+  { path: "**", component: NotFoundComponent }
 ];
 
 @NgModule({

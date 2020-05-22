@@ -14,6 +14,7 @@ import { BuscarPorPalabrasComponent } from './components/menu/buscar-por-palabra
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     PagoPremiumComponent,
     RecuperarContrasenhaComponent,
     BuscarPorCategoriaComponent,
-    BuscarPorPalabrasComponent
+    BuscarPorPalabrasComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

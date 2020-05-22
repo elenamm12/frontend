@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms'
+import { WaveServiceService } from 'src/app/services/wave-service.service';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -11,6 +12,7 @@ export class IniciarSesionComponent implements OnInit {
   //expresion regular para validar email
 private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   //
+  user: any; 
 
   createFormGroup (){
     return new FormGroup({
@@ -28,25 +30,36 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
   loginForm: FormGroup;
 
 
-  constructor() { 
+  constructor(private waveService: WaveServiceService) { 
     this.loginForm = this.createFormGroup();
   }
 
 
-  ngOnInit(): void {
-  
+  ngOnInit() {
+   //this.waveService.getAll()
+   //.subscribe(users => this.users = users); 
   }
 
   onResetForm() {
     this.loginForm.reset();
   }
 
+  onLogIn(){
+    this.waveService.loginUser(this.loginForm.value.usuario, this.loginForm.value.contra)
+    .subscribe(data=>{ 
+      console.log(data);
+    },
+    error => console.log(error) 
+    )
+  }
+
   onSaveForm(){
     if(this.loginForm.valid){
     console.log(this.loginForm.value);
+    this.waveService.loginUserMock(this.loginForm.value.usuario, this.loginForm.value.contra);
     this.onResetForm();
     }else{
-      console.log('No Valido')
+      console.log('No Valido');
     }
   }
 

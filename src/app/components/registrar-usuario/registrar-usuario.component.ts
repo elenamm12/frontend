@@ -22,41 +22,6 @@ export class RegistrarUsuarioComponent implements OnInit{
 
   private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-
-  createFormGroup (){
-    return new FormGroup({
-    nombres: new FormControl('', [
-      Validators.required,
-      Validators.pattern('')  
-    ]),
-    apellidos: new FormControl('', [
-      Validators.required,
-      Validators.pattern('')  
-    ]),
-    fecha: new FormControl('', [
-      Validators.required,
-      Validators.pattern('')  
-    ]),
-    correo: new FormControl('', [
-      Validators.required,
-      Validators.pattern(this.emailPattern)  
-    ]),  
-    usuario: new FormControl('', [
-      Validators.required,
-      Validators.pattern('')  
-    ]),
-    contra: new FormControl('', [
-      Validators.required,
-      Validators.minLength(7)  
-    ]),
-    validContra: new FormControl('', [
-      Validators.required,
-      Validators.minLength(7),
-      this.checkPasswords
-    ])
-    })
-  }
-
   registerForm: FormGroup;
 
   matcher = new MyErrorStateMatcher();

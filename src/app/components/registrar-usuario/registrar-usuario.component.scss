@@ -2,7 +2,7 @@
     padding:0;
     margin: 0;
     width: 100%;
-    height: 144%;
+    height: 190%;
     background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #7BD7D9; 
 }
 
@@ -11,7 +11,7 @@
 }
 
 .logo{
-    height: 14%;
+    height: 9%;
     align-content: center;
     margin-left: auto;
     margin-right: auto;
@@ -58,6 +58,8 @@ mat-label{
 
 .imagen{
     padding-top: 5%;
+    padding-bottom: 8%;
+    width: 60.5%;
 }
 
 .btn{
@@ -85,15 +87,39 @@ button{
     width: 60%;
 }
 
+.top{
+    padding-top: 4%;
+}
+
+.radio{
+    font-family: 'Poiret One';
+    color:#1a5f6c;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.cuenta{
+    width: 60%;
+    padding-top: 7%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.categorias{
+    padding-top: 3%;
+}
+
+
+
 @media(min-width: 768px){
     .fondo{
-        height: 100%;
+        height: 153%;
     }
     .logo{
-        height: 14%;
+        height: 15%;
     }
     .boton{
-        padding-top: 9%;
+        padding-top: 10%;
     }
 }
 
@@ -130,13 +156,23 @@ button{
         margin-bottom: 2%;
     }
     .fondo{
-        height: 153%;
+        height: 229%;
+    }
+
+    .imagen{
+        width: 70%;
     }
 
   }
 
 @media(height: 812px){
     .fondo{
-        height: 125%;
+        height: 170%;
+    }
+}
+
+@media(width: 360px){
+    .fondo{
+        height: 209%;
     }
 }

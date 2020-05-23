@@ -66,9 +66,32 @@
         </mat-form-field>
         <mat-error *ngIf="registerForm.hasError('notSame') && validContra.dirty">
 			Contraseñas no coinciden
-		</mat-error>   
-        <input formControlName="image" type="file" class="imagen" #Image accept="image/*" (change)="handleFileInput($event.target.files)">        
+        </mat-error>  
+        <br>
 
+        <mat-label>Elige tu imagen de perfil:</mat-label> 
+        <br>
+        <input formControlName="image" type="file" class="imagen" #Image accept="image/*" (change)="handleFileInput($event.target.files)">        
+        
+        <div class="categorias">
+            <mat-label>Selecciona todas las categorías que te gusten: </mat-label>
+        
+            <div class="radio top">
+                <label><input type="radio" name="optradio" checked>Option 1</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="optradio">Option 2</label>
+            </div>
+        </div>
+
+        <div class="form-group cuenta">
+            <mat-label>Selecciona el tipo de cuenta que usaras: </mat-label>
+            <select class="form-control" id="sel1">
+              <option>Normal</option>
+              <option>Premium</option>
+            </select>
+        </div>
+          
     </div> 
 
     <div class="boton">

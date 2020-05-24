@@ -18,7 +18,7 @@
     background-position: center;
 }
 .formulario{
-    padding-top: 8% ;
+    padding-top: 3% ;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
@@ -58,7 +58,7 @@ button{
 }
 
 .boton{
-    padding-top: 13% ;
+    padding-top: 10% ;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
@@ -76,19 +76,18 @@ h1{
 }
 
 @media (max-width: 340px) {
-    .btn{
-        
+    .btn{        
         height: 35px;
         font-size: 95%;
     }
     .boton{
-        padding-top: 10%;
+        padding-top: 5%;
     }
     button{
-        padding-top: 8px;
+        padding-top: 5px;
     }
     .formulario{
-        padding-top: 13% ;
+        padding-top: 1% ;
         margin-left: auto;
         margin-right: auto;
         justify-content: center;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators, FormBuilder} from '@angular/forms'
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators, FormBuilder, FormArray} from '@angular/forms'
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
+
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -26,7 +28,7 @@ export class RegistrarUsuarioComponent implements OnInit{
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router  ) {
     this.registerForm = this.formBuilder.group({
       nombres: new FormControl('', [
         Validators.required 
@@ -51,12 +53,24 @@ export class RegistrarUsuarioComponent implements OnInit{
         Validators.minLength(7)  
       ]),
       validContra: new FormControl(''),
-      
+      categorias: this.formBuilder.array([]),
+      tipoCuenta: new FormControl('')
     }, { validator: this.checkPasswords });
 
    }
 
   ngOnInit(): void {
+  }
+
+  agregarCategoria(){
+    const categoriaFormGroup = this.formBuilder.group({
+      Categoria:'' 
+    });
+    this.categorias.push(categoriaFormGroup);
+  }
+
+  removerCategoria(indice){
+    this.categorias.removeAt(indice);
   }
 
   onResetForm() {
@@ -66,6 +80,7 @@ export class RegistrarUsuarioComponent implements OnInit{
   onSaveForm(){
     if(this.registerForm.valid){
       console.log(this.registerForm.value);
+      this.router.navigate(['']);
       this.onResetForm();
       }else{
         console.log('No Valido')
@@ -106,6 +121,10 @@ export class RegistrarUsuarioComponent implements OnInit{
   get validContra(){
     return this.registerForm.get('validContra')
   };
+
+  get categorias(){
+    return this.registerForm.get('categorias') as FormArray
+  }; 
 
 
   handleFileInput(file: FileList){

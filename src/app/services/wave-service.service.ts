@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AbstractJsEmitterVisitor } from '@angular/compiler/src/output/abstract_js_emitter';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable} from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, BehaviorSubject} from 'rxjs';
+import { map, tap } from 'rxjs/operators'; 
 import { isNullOrUndefined } from 'util'; 
 
 @Injectable({
@@ -14,6 +14,9 @@ export class WaveServiceService {
     "username": "aja@aja.com",
     "contraseña": "1234567"
   }
+
+  private token:string;
+  private authSubject= new BehaviorSubject(false);
   
 
   constructor(private http:HttpClient) { }  
@@ -25,10 +28,32 @@ export class WaveServiceService {
 loginUser(email: String, password:String): Observable<any>{
   
   console.log('servicio activo')
-  return this.http.post(this.url, {email, password},{headers: this.headers})
- .pipe(map(data=> data));
+  return this.http.post<any>(`${this.url}/user/login`, {email, password})
+  .pipe(tap(
+    (res:any)=>{
+      if(res){
+          this.saveToken(res.user.token)
+      }
+    })
+  );
+
  
-} 
+}
+
+private saveToken(token: string): void{
+  localStorage.setItem("currentToken", token);
+  
+  this.token = token;
+
+}
+
+private getToken(): string{
+  if(!this.token){
+  this.token = localStorage.getItem("currentToken");
+   }
+return this.token;   
+
+}
 
 
 loginUserMock(email: String, password:String){
@@ -41,6 +66,8 @@ loginUserMock(email: String, password:String){
 
 }
 
+
+
 setUser(user): void{
   let user_string = JSON.stringify(user);
   localStorage.setItem("currentUser", user_string);
@@ -50,9 +77,6 @@ setToken(token): void{
   localStorage.setItem("currentToken", token);
 }
 
-getToken(){
-  return localStorage.getItem("currentToken");
-}
   
 getAll(){
   return this.http.get<any[]>(this.url);
@@ -69,11 +93,10 @@ getCurrentUser(){
 }
 
 logOut(){
-  //let accessToken= localStorage.get("currentToken");
-  //let url = 'http://localhost/300  <== url del metodo 
+   
   localStorage.removeItem("currentUser");
   localStorage.removeItem("currentToken");
-  //return this.http.post(url,{headers: this.headers});
+  
 
 }
 

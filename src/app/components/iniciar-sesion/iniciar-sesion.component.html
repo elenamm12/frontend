@@ -10,8 +10,8 @@
     <div class="formulario">
       
         <mat-form-field appearance="standard">
-          <mat-label>Introducir Usuario</mat-label>
-          <input matInput formControlName="usuario" placeholder="Usuario">
+          <mat-label>Introducir Correo</mat-label>
+          <input matInput formControlName="usuario" placeholder="Correo">
         </mat-form-field>   
       
       <div *ngIf="usuario.invalid && usuario.dirty">
@@ -41,7 +41,7 @@
 
     </div>
     <div class="boton">
-      <a routerLink="/inicio"><button class="btn btn-primary primero btn-lg" type="submit">continuar</button></a>
+      <a routerLink="/home"><button class="btn btn-primary primero btn-lg" type="submit">continuar</button></a>
       <a routerLink="/inicio"><button class="btn btn-primary primero btn-lg" type="submit">regresar</button></a>
     </div>
     </form>

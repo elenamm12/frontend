@@ -12,14 +12,14 @@
             <mat-label>Nombres</mat-label>
             <input matInput placeholder="Nombre" formControlName="nombres">
         </mat-form-field>
-        <mat-error *ngIf="nombres.invalid && nombres.dirty">
+        <mat-error *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)">
 			Por favor introduzca sus nombres
         </mat-error> 
         <mat-form-field appearance="standard">
             <mat-label>Apellidos</mat-label>
             <input matInput placeholder="Apellidos" formControlName="apellidos">
         </mat-form-field>
-        <mat-error *ngIf="apellidos.invalid && apellidos.dirty">
+        <mat-error *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
 			Por favor introduzca sus apellidos
         </mat-error> 
         <mat-form-field class="example-full-width">
@@ -30,39 +30,41 @@
             </mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <mat-error *ngIf="fecha.invalid && fecha.dirty">
-			Por favor elija su fecha de nacimiento
+        <mat-error *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+			Por favor elige su fecha de nacimiento
         </mat-error>
         <mat-form-field appearance="standard">
             <mat-label>Correo</mat-label>
             <input matInput placeholder="Correo" formControlName="correo">
         </mat-form-field>
-        <mat-error *ngIf="correo.invalid && correo.dirty && correo.errors.required">
+        <mat-error *ngIf="correo.invalid && (correo.dirty || correo.touched) && correo.errors.required">
 			Por favor introduzca tu correo
         </mat-error> 
-        <mat-error *ngIf="correo.invalid && correo.dirty && correo.errors.pattern">
+        <mat-error *ngIf="correo.invalid && (correo.dirty || correo.touched) && correo.errors.pattern">
 			correo no es valido
 		</mat-error>
         <mat-form-field appearance="standard">
             <mat-label>Nombre de Usuario</mat-label>
             <input matInput placeholder="Usuario" formControlName="usuario">
         </mat-form-field>
-        <mat-error *ngIf="usuario.invalid && usuario.dirty">
+        <mat-error *ngIf="usuario.invalid && (usuario.dirty || usuario.touched)">
 			Por favor introduzca un username
 		</mat-error> 
         <mat-form-field appearance="standard">
             <mat-label>Contaseña</mat-label>
-            <input matInput placeholder="Contraseña" formControlName="contra">
+            <input type="password" matInput placeholder="Contraseña" formControlName="contra">
         </mat-form-field> 
-        <mat-error *ngIf="contra.invalid && contra.dirty">
+        <div *ngIf="contra.invalid && (contra.dirty || contra.touched)">
+        <mat-error *ngIf="contra.errors.required">
 			Introduzca su nueva contraseña
         </mat-error>
-        <mat-error *ngIf="contra.invalid && contra.dirty && contra.errors.minLength">
+        <mat-error *ngIf="contra.errors.minlength">
 			7 caracteres minimo
-		</mat-error>
+        </mat-error>
+        </div>
         <mat-form-field appearance="standard">
             <mat-label>Repetir Contraseña</mat-label>
-            <input matInput placeholder="Repetir Contraseña" formControlName="validContra" [errorStateMatcher]="matcher">
+            <input type="password" matInput placeholder="Repetir Contraseña" formControlName="validContra" [errorStateMatcher]="matcher">
         </mat-form-field>
         <mat-error *ngIf="registerForm.hasError('notSame') && validContra.dirty">
 			Contraseñas no coinciden
@@ -73,20 +75,33 @@
         <br>
         <input formControlName="image" type="file" class="imagen" #Image accept="image/*" (change)="handleFileInput($event.target.files)">        
         
-        <div class="categorias">
-            <mat-label>Selecciona todas las categorías que te gusten: </mat-label>
-        
-            <div class="radio top">
-                <label><input type="radio" name="optradio" checked>Option 1</label>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="optradio">Option 2</label>
+        <div class="form-group">
+        <a class="btn btn-primary" (click)="agregarCategoria()">Agregar Categorias favoritas</a>    
+        </div>
+
+        <div formArrayName="categorias" *ngFor="let categoria of categorias.controls; let i = index">
+            <div [formGroupName]= "i">
+                <div class="form-group row">
+                    <label [attr.for]="'Categoria' + i">Categoria</label>
+                    <div>
+                        <select type="text" [attr.id]="'Categoria' + i" class="form-control" formControlName="Categoria">
+                            <option>Peliculas</option>
+                            <option>Musica</option>
+                            <option>Juegos</option>
+                            <option>Tutoriales</option>
+                        </select>    
+                    </div>
+                    <div>
+                        <button class="btn btn-danger" (click)="removerCategoria(i)">X</button>
+                    </div>
+
+                </div>
             </div>
         </div>
 
         <div class="form-group cuenta">
             <mat-label>Selecciona el tipo de cuenta que usaras: </mat-label>
-            <select class="form-control" id="sel1">
+            <select formControlName="tipoCuenta" class="form-control" id="sel1">
               <option>Normal</option>
               <option>Premium</option>
             </select>
@@ -95,7 +110,7 @@
     </div> 
 
     <div class="boton">
-        <a routerLink="/inicio"><button class="btn btn-primary primero btn-lg" type="submit">continuar</button></a>
+        <a ><button class="btn btn-primary primero btn-lg" [disabled]="registerForm.invalid" type="submit">continuar</button></a>
         <a routerLink="/inicio"><button class="btn btn-primary primero btn-lg" type="submit">regresar</button></a>
     </div>
 

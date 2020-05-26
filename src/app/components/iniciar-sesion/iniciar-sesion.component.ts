@@ -56,7 +56,7 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
 
   onSaveForm(){
     if(this.loginForm.valid){
-    this.waveService.loginUserMock(this.loginForm.value.usuario, this.loginForm.value.contra);
+    this.onLogIn();
     this.onResetForm();
     this.router.navigate(['/home']); 
 

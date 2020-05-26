@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 import { WaveServiceService } from 'src/app/services/wave-service.service';
+import { User } from 'src/app/model/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -12,7 +14,7 @@ export class IniciarSesionComponent implements OnInit {
   //expresion regular para validar email
 private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   //
-  user: any; 
+  user: User; 
 
   createFormGroup (){
     return new FormGroup({
@@ -30,14 +32,13 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
   loginForm: FormGroup;
 
 
-  constructor(private waveService: WaveServiceService) { 
+  constructor(private waveService: WaveServiceService, private router: Router) { 
     this.loginForm = this.createFormGroup();
   }
 
 
   ngOnInit() {
-   //this.waveService.getAll()
-   //.subscribe(users => this.users = users); 
+  
   }
 
   onResetForm() {
@@ -55,9 +56,10 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
 
   onSaveForm(){
     if(this.loginForm.valid){
-    console.log(this.loginForm.value);
     this.waveService.loginUserMock(this.loginForm.value.usuario, this.loginForm.value.contra);
     this.onResetForm();
+    this.router.navigate(['/home']); 
+
     }else{
       console.log('No Valido');
     }

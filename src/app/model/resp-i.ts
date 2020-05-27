@@ -1,6 +1,7 @@
 export interface RespI {
     userData:{
-       tipoUsuario:string,
+       password:string,
+       email:string,
        accessToken:string 
     }
 }

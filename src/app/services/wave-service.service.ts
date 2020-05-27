@@ -43,8 +43,6 @@ export class WaveServiceService {
     "Content-Type": "aplication/json"
   });
 
-//metodo del servicio que hace http request y espera la respuesta de tipo RespI 
-//que es una interfaz hubicada en la carpeta model, en caso de existir la respuesta llama al metodo que guarda el token en localstorage    
 loginUser(email: String, password:String): Observable<any>{
 
   return this.http.post<RespI>('/user/login',{email, password})
@@ -52,7 +50,7 @@ loginUser(email: String, password:String): Observable<any>{
     (res:RespI)=>{
       if(res){
         console.log(res.userData);
-        this.saveToken(res.userData.accessToken);
+        //this.saveToken(res.userData.accessToken)
       }
       console.log("no hay respuesta")
     }),

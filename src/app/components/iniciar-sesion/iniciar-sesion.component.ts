@@ -45,22 +45,21 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
     this.loginForm.reset();
   }
 
- 
+ //metodo del submit que llama al del servicio pasandole el usuario y la contraseña
   onSaveForm(){
     if(this.loginForm.valid){
       this.waveService.loginUser(this.loginForm.value.usuario, this.loginForm.value.contra)
       .subscribe(data=>{ 
         console.log(data);
-        //
+        if((data.userData.tipoUsuario=='normal'||data.userData.tipoUsuario=='premium')){
         this.router.navigate(['/home']);
+        }
       },
       error => console.log(error) 
       )  
     this.onResetForm();
-     
-
     }else{
-      console.log('No Valido');
+      alert('No Valido');
     }
   }
 

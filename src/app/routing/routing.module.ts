@@ -5,11 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { IniciarSesionComponent } from '../components/iniciar-sesion/iniciar-sesion.component';
 import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { MenuComponent } from '../components/menu/menu.component';
+import { CambiarContrasenaComponent } from '../components/cambiar-contrasena/cambiar-contrasena.component';
 
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
+  { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
   { path: 'home', component: MenuComponent },
   { path: "", redirectTo: "/inicio", pathMatch: "full" },

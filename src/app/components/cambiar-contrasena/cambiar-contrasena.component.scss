@@ -1,0 +1,87 @@
+.fondo{
+    padding:0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    align-content:center;
+    text-align: center;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #1f6976; 
+}
+
+h1{
+    font-family: 'Poiret One';
+    text-align: center;
+    font-weight: bolder;
+    color: #1f6976;
+    font-size: 200%;
+    letter-spacing: 1.9px;
+    padding-top: 17%;
+}
+
+.formulario{
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    text-align: center;   
+}
+
+mat-form-field{
+    width: 60%;
+    text-align: center;
+}
+
+mat-label{
+    font-family: 'Poiret One';
+    text-align: center;
+    font-weight: bolder;
+    color: #34839c;
+    font-size: large;
+    letter-spacing: 0.5px;
+}
+
+
+.btn{ 
+    width: 70%;      
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 3.3px;
+    border: 0.8px solid #1a5f6c;
+    background: #5CBCC4;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.enviar{
+    width: 98%;
+}
+
+.boton{
+    padding-top: 3% ;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    text-align: center;
+    font-family: Poiret One;
+    width: 60%;
+}
+
+label.info{
+    width: 70%;
+    color: #34839c;
+    font-size: 100%;
+    letter-spacing: 2px;
+    padding-top: 5%;
+}
+
+@media(width: 320px){
+    h1{
+        font-size: 170%;
+        letter-spacing: 1.3px;
+    }
+    label.info{
+        width: 65%;
+        color: #34839c;
+        font-size: 90%;
+        letter-spacing: 2px;
+        padding-top: 5%;
+    }
+}

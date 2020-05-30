@@ -13,7 +13,6 @@ div.containe{
 }
 
 .btn{
-    height: 48px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -54,7 +53,6 @@ h1.titulo{
 
 @media (max-width: 340px) {
     .btn{
-        height: 40px;
         font-size: 100%;
     }
     h1.titulo{
@@ -65,12 +63,14 @@ h1.titulo{
 
 @media(min-width:768px){
     .contain {
-        padding-top: 6%;
+        padding-top: 0;
       }
     .btn{
-        height: 58px;
         font-size: 150%;
         letter-spacing: 2.9px;
+    }
+    h1.titulo{
+        padding-top: 10%;
     }
       
 }

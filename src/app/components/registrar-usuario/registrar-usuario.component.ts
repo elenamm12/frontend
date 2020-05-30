@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators, FormBuilder, FormArray} from '@angular/forms'
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 
+declare var paypal;
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
+
+
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
     const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
@@ -24,7 +27,13 @@ export class RegistrarUsuarioComponent implements OnInit{
 
   private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+  @ViewChild('paypal',{static:true}) paypalElement : ElementRef;
+  
   registerForm: FormGroup;
+
+  
+
+  paypal;
 
   matcher = new MyErrorStateMatcher();
 
@@ -60,6 +69,31 @@ export class RegistrarUsuarioComponent implements OnInit{
    }
 
   ngOnInit(): void {
+    paypal.
+      Buttons({
+      createOrder: (data, actions)=>{
+        return actions.order.create({
+          purchase_units:[{
+            description: "Pago Premium",
+            amount: {
+              currency_code: "USD",
+              value: 5
+          }
+        }
+      ]
+      })
+      },
+      onApproved: async(data, actions)=>{
+        const order= await actions.order.capture();
+        console.log(order);
+      },
+      onError: err=>{
+        console.log(err);
+      }
+      }).
+        render(this.paypalElement.nativeElement);
+
+    
   }
 
   agregarCategoria(){

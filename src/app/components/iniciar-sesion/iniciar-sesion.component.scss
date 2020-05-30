@@ -7,7 +7,7 @@
 }
 
 .espacio{
-    height: 8%;
+    height: 4%;
 }
 
 .logo{
@@ -18,12 +18,10 @@
     background-position: center;
 }
 .formulario{
-    padding-top: 3% ;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
-    text-align: center;
-    
+    text-align: center;   
 }
 
 mat-form-field{
@@ -35,15 +33,13 @@ mat-label{
     font-family: 'Poiret One';
     text-align: center;
     font-weight: bolder;
-    letter-spacing: 3.5px;
     color: #34839c;
     font-size: large;
     letter-spacing: 0.5px;
 }
 
 
-.btn{
-    height: 49px;  
+.btn{ 
     width: 70%;      
     font-style: normal;
     font-weight: bold;
@@ -58,7 +54,7 @@ button{
 }
 
 .boton{
-    padding-top: 10% ;
+    padding-top: 3% ;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
@@ -69,30 +65,32 @@ button{
 
 h1{
     text-align: center;
-    padding-top: 6%;
+    padding-top: 3%;
     font-family: 'Montserrat Alternates', sans-serif;
     font-size: 300%;   
     color: #1a5f6c; 
 }
 
 @media (max-width: 340px) {
-    .btn{        
-        height: 35px;
+    .btn{     
         font-size: 95%;
     }
     .boton{
-        padding-top: 5%;
+        padding-top: 1%;
     }
     button{
         padding-top: 5px;
     }
     .formulario{
-        padding-top: 1% ;
         margin-left: auto;
         margin-right: auto;
         justify-content: center;
         text-align: center;
         
+    }
+
+    h1{
+        margin: 0;
     }
   }
 

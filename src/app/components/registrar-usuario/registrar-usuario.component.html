@@ -76,15 +76,15 @@
         <input formControlName="image" type="file" class="imagen" #Image accept="image/*" (change)="handleFileInput($event.target.files)">        
         
         <div class="form-group">
-        <a class="btn btn-primary" (click)="agregarCategoria()">Agregar Categorias favoritas</a>    
+        <button class="btn btn-primary cat" (click)="agregarCategoria()">agregar categoría</button>    
         </div>
 
         <div formArrayName="categorias" *ngFor="let categoria of categorias.controls; let i = index">
             <div [formGroupName]= "i">
                 <div class="form-group row">
-                    <label [attr.for]="'Categoria' + i">Categoria</label>
+                    <label [attr.for]="'Categoria' + i"></label>
                     <div>
-                        <select type="text" [attr.id]="'Categoria' + i" class="form-control" formControlName="Categoria">
+                        <select type="text" [attr.id]="'Categoria' + i" class="form-control select" formControlName="Categoria">
                             <option>Peliculas</option>
                             <option>Musica</option>
                             <option>Juegos</option>
@@ -92,7 +92,7 @@
                         </select>    
                     </div>
                     <div>
-                        <button class="btn btn-danger" (click)="removerCategoria(i)">X</button>
+                        <button class="btn btn-danger cancelar" (click)="removerCategoria(i)">x</button>
                     </div>
 
                 </div>
@@ -101,7 +101,7 @@
 
         <div class="form-group cuentas">
             <mat-label>Selecciona el tipo de cuenta que usaras: </mat-label>
-            <select formControlName="tipoCuenta" class="form-control" id="sel1">
+            <select formControlName="tipoCuenta" class="form-control cuenta" id="sel1">
               <option>Normal</option>
               <option>Premium</option>
             </select>

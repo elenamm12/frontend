@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CambiarContrasenaComponent } from './components/cambiar-contrasena/cambiar-contrasena.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,9 @@ import { CambiarContrasenaComponent } from './components/cambiar-contrasena/camb
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -124,7 +124,12 @@ export class RegistrarUsuarioComponent implements OnInit{
 
   get categorias(){
     return this.registerForm.get('categorias') as FormArray
+  };
+  
+  get tipoCuenta(){
+    return this.registerForm.get('tipoCuenta') 
   }; 
+
 
 
   handleFileInput(file: FileList){

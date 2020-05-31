@@ -47,14 +47,14 @@ export class WaveServiceService {
 //que es una interfaz hubicada en la carpeta model, en caso de existir la respuesta llama al metodo que guarda el token en localstorage    
 loginUser(email: String, password:String): Observable<any>{
 
-  return this.http.post<RespI>('/user/login',{email, password})
+  return this.http.post<any>('/user/login',{email, password})
   .pipe(tap(
-    (res:RespI)=>{
+    (res:any)=>{
       if(res){
-        console.log(res.userData);
-        this.saveToken(res.userData.accessToken);
-      }
+        this.saveToken(res.accessToken);
+      }else{
       console.log("no hay respuesta")
+    }
     }),
     
   );
@@ -62,8 +62,28 @@ loginUser(email: String, password:String): Observable<any>{
  
 }
 
+registerUser(firstName: string, lastName: string, userName:string, email: string, password: string): Observable<any>{
+
+  return this.http.post<any>('/user/register',{firstName, lastName, userName, email, password})
+  .pipe(tap(
+    (res:any)=>{
+      if(res){
+        this.saveToken(res.accessToken);
+      }else{
+      console.log("no hay respuesta")
+    }
+    }),
+    
+  );
+
+ 
+}
+
+
+
 private saveToken(token: string): void{
   localStorage.setItem("currentToken", token);
+
   
   this.token = token;
 

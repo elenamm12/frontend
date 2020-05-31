@@ -51,7 +51,7 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
       this.waveService.loginUser(this.loginForm.value.usuario, this.loginForm.value.contra)
       .subscribe(data=>{ 
         console.log(data);
-        if((data.userData.tipoUsuario=='normal'||data.userData.tipoUsuario=='premium')){
+        if((data.user.role=='normal'||data.user.role=='premium')){
         this.router.navigate(['/home']);
         }
       },

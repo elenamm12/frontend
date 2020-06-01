@@ -59,7 +59,7 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
       )  
     this.onResetForm();
     }else{
-      alert('No Valido');
+      alert('Usuario no válido, vuela a intentar');
     }
   }
 

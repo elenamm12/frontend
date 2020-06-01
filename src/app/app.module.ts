@@ -14,7 +14,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CambiarContrasenaComponent } from './components/cambiar-contrasena/cambiar-contrasena.component';
 import { HomeComponent } from './components/home/home.component';
-import { CategoriaComponent } from './components/categoria/categoria.component';
+import { ForosComponent } from './components/foros/foros.component';
+import { ForoComponent } from './components/foros/foro/foro.component';
+import { CategoriasComponent } from './components/categorias/categorias.component';
+import { SubCategoriaComponent } from './components/categorias/sub-categoria/sub-categoria.component';
 
 
 
@@ -30,7 +33,11 @@ import { CategoriaComponent } from './components/categoria/categoria.component';
     NotFoundComponent,
     CambiarContrasenaComponent,
     HomeComponent,
-    CategoriaComponent
+    CategoriasComponent,
+    SubCategoriaComponent,
+    ForosComponent,
+    ForoComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule,

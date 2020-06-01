@@ -4,10 +4,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IniciarSesionComponent } from '../components/iniciar-sesion/iniciar-sesion.component';
 import { NotFoundComponent } from '../components/not-found/not-found.component';
-import { MenuComponent } from '../components/menu/menu.component';
 import { CambiarContrasenaComponent } from '../components/cambiar-contrasena/cambiar-contrasena.component';
 import { HomeComponent } from '../components/home/home.component';
-import { CategoriaComponent } from '../components/categoria/categoria.component';
+import { ForosComponent } from '../components/foros/foros.component';
+import { ForoComponent } from '../components/foros/foro/foro.component';
+import { SubCategoriaComponent } from '../components/categorias/sub-categoria/sub-categoria.component';
+import { CategoriasComponent } from '../components/categorias/categorias.component';
 
 
 const routes: Routes = [
@@ -16,7 +18,10 @@ const routes: Routes = [
   { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
   { path: 'home', component: HomeComponent },
-  { path: ':categoria', component: CategoriaComponent },
+  { path: 'categorias', component: CategoriasComponent },
+  { path: 'categorias/:id', component: SubCategoriaComponent },
+  { path: 'foros', component: ForosComponent },
+  { path: 'foros/:id', component: ForoComponent },
   { path: "", redirectTo: "/inicio", pathMatch: "full" },
   { path: "**", component: NotFoundComponent }
 ];

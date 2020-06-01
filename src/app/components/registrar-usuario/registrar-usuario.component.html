@@ -106,7 +106,7 @@
               <option>Premium</option>
             </select>
         </div>
-        <button class="btn btn-primary primero" data-toggle="modal" data-target="#exampleModal">pagar premium</button>
+        <a class="btn btn-primary primero" *ngIf="tipoCuenta.value=='Premium'"   data-toggle="modal" data-target="#exampleModal">pagar premium</a>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -119,14 +119,19 @@
                 <div class="modal-body">
                     <div #paypal>
                  </div>
+                 <input type="checkbox" formControlName="Pay" [value]="true">Confirmar Pago
+                 
                   
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary enviar" type="submit>" data-dismiss="modal">continuar</button>
+                  <button  type="button" class="btn btn-primary enviar" type="submit>" data-dismiss="modal">continuar</button>
                 </div>
               </div>
             </div>
           </div>
+          <mat-error *ngIf="registerForm.hasError('notPay') && tipoCuenta.value=='Premium'">
+			Pague
+        </mat-error> 
 
        
     </div> 

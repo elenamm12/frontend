@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators, FormBuilder, FormArray} from '@angular/forms'
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators, FormBuilder, FormArray, RequiredValidator} from '@angular/forms'
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { WaveServiceService } from 'src/app/services/wave-service.service';
 
 declare var paypal;
 
@@ -25,6 +26,8 @@ export class RegistrarUsuarioComponent implements OnInit{
   imageUrl : string = "../../../assets/icon/usuario.png";
   fileToUpload: File = null;
 
+  
+
   private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   @ViewChild('paypal',{static:true}) paypalElement : ElementRef;
@@ -37,7 +40,7 @@ export class RegistrarUsuarioComponent implements OnInit{
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private formBuilder: FormBuilder, private router: Router  ) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private waveService: WaveServiceService  ) {
     this.registerForm = this.formBuilder.group({
       nombres: new FormControl('', [
         Validators.required 
@@ -63,8 +66,12 @@ export class RegistrarUsuarioComponent implements OnInit{
       ]),
       validContra: new FormControl(''),
       categorias: this.formBuilder.array([]),
-      tipoCuenta: new FormControl('')
-    }, { validator: this.checkPasswords });
+      tipoCuenta: new FormControl('', Validators.required),
+      Pay: new FormControl(),
+    }, { validator: [
+    this.checkPasswords,
+    this.checkPay
+    ] });
 
    }
 
@@ -114,8 +121,15 @@ export class RegistrarUsuarioComponent implements OnInit{
   onSaveForm(){
     if(this.registerForm.valid){
       console.log(this.registerForm.value);
-      this.router.navigate(['']);
-      this.onResetForm();
+      this.waveService.registerUser(this.registerForm.value.nombres, 
+                                    this.registerForm.value.apellidos,
+                                    this.registerForm.value.usuario, 
+                                    this.registerForm.value.correo, 
+                                    this.registerForm.value.contra)
+      .subscribe(data=>{ 
+      console.log(data);
+      this.router.navigate(['/home']);
+      })
       }else{
         console.log('No Valido')
       }
@@ -126,6 +140,14 @@ export class RegistrarUsuarioComponent implements OnInit{
   let confirmPass = group.controls.validContra.value;
 
   return pass === confirmPass ? null : { notSame: true }     
+  }
+
+
+  checkPay(group: FormGroup){
+  let pay = group.controls.tipoCuenta.value;
+  let Pay= group.controls.Pay.value;
+   return (pay === 'Premium' && Pay===true) || pay=== 'Normal' ? null : { notPay: true } 
+  
   }
 
   get nombres(){
@@ -164,7 +186,9 @@ export class RegistrarUsuarioComponent implements OnInit{
     return this.registerForm.get('tipoCuenta') 
   }; 
 
-
+  get Pay(){
+    return this.registerForm.get('Pay')
+  };
 
   handleFileInput(file: FileList){
     this.fileToUpload = file.item(0);

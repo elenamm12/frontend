@@ -62,7 +62,8 @@ export class RegistrarUsuarioComponent implements OnInit{
       image:new FormControl(''),
       contra: new FormControl('', [
         Validators.required,
-        Validators.minLength(7)  
+        Validators.minLength(7),
+        Validators.maxLength(10)  
       ]),
       validContra: new FormControl(''),
       categorias: this.formBuilder.array([]),
@@ -125,7 +126,8 @@ export class RegistrarUsuarioComponent implements OnInit{
                                     this.registerForm.value.apellidos,
                                     this.registerForm.value.usuario, 
                                     this.registerForm.value.correo, 
-                                    this.registerForm.value.contra)
+                                    this.registerForm.value.contra,
+                                    this.registerForm.value.tipoCuenta)
       .subscribe(data=>{ 
       console.log(data);
       this.router.navigate(['/home']);

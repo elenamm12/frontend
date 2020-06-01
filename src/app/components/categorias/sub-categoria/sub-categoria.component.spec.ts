@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BuscarPorCategoriaComponent } from './buscar-por-categoria.component';
+import { SubCategoriaComponent } from './sub-categoria.component';
 
-describe('BuscarPorCategoriaComponent', () => {
-  let component: BuscarPorCategoriaComponent;
-  let fixture: ComponentFixture<BuscarPorCategoriaComponent>;
+describe('SubCategoriaComponent', () => {
+  let component: SubCategoriaComponent;
+  let fixture: ComponentFixture<SubCategoriaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BuscarPorCategoriaComponent ]
+      declarations: [ SubCategoriaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BuscarPorCategoriaComponent);
+    fixture = TestBed.createComponent(SubCategoriaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

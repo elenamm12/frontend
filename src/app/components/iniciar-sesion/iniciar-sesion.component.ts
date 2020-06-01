@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { User } from 'src/app/model/user';
 import { Router } from '@angular/router';
@@ -59,7 +59,7 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
       )  
     this.onResetForm();
     }else{
-      alert('No Valido');
+      alert('Usuario no válido, vuela a intentar');
     }
   }
 

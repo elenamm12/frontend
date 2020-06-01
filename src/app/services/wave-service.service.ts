@@ -11,6 +11,7 @@ import { RespI } from '../model/resp-i';
 })
 export class WaveServiceService {
   url ='http://localhost:3000';
+
   mockUser={
     "username": "aja@aja.com",
     "contraseña": "1234567"

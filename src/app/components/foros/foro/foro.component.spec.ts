@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BuscarPorPalabrasComponent } from './buscar-por-palabras.component';
+import { ForoComponent } from './foro.component';
 
-describe('BuscarPorPalabrasComponent', () => {
-  let component: BuscarPorPalabrasComponent;
-  let fixture: ComponentFixture<BuscarPorPalabrasComponent>;
+describe('ForoComponent', () => {
+  let component: ForoComponent;
+  let fixture: ComponentFixture<ForoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BuscarPorPalabrasComponent ]
+      declarations: [ ForoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BuscarPorPalabrasComponent);
+    fixture = TestBed.createComponent(ForoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

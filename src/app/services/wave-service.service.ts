@@ -10,7 +10,7 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root'
 })
 export class WaveServiceService {
-  url ="http://localhost:3000";
+  url ='http://localhost:3000';
 
   mockUser={
     "username": "aja@aja.com",

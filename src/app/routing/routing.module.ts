@@ -6,6 +6,8 @@ import { IniciarSesionComponent } from '../components/iniciar-sesion/iniciar-ses
 import { NotFoundComponent } from '../components/not-found/not-found.component';
 import { MenuComponent } from '../components/menu/menu.component';
 import { CambiarContrasenaComponent } from '../components/cambiar-contrasena/cambiar-contrasena.component';
+import { HomeComponent } from '../components/home/home.component';
+import { CategoriaComponent } from '../components/categoria/categoria.component';
 
 
 const routes: Routes = [
@@ -13,7 +15,8 @@ const routes: Routes = [
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
   { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
-  { path: 'home', component: MenuComponent },
+  { path: 'home', component: HomeComponent },
+  { path: ':categoria', component: CategoriaComponent },
   { path: "", redirectTo: "/inicio", pathMatch: "full" },
   { path: "**", component: NotFoundComponent }
 ];

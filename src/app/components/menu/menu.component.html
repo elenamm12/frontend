@@ -1,16 +1,16 @@
-<div class="fondo">
-    <a routerLink="/inicio"><button class="btn btn-primary primero btn-lg" type="submit">Salir</button></a>
 
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>more_vert</mat-icon>
-    </button>
-
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-            <mat-icon>dialpad</mat-icon>
-            <span>Redial</span>
-        </button>   
-    </mat-menu>
-
+<div>
+    <mat-toolbar >
+        <mat-toolbar-row class="menu">
+            <div class="titulo">
+                <span><strong>wave</strong></span>
+            </div>
+                   
+            <div class="iconos">
+                <mat-icon>search</mat-icon>
+                <mat-icon>exit_to_app</mat-icon>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
 </div>
 

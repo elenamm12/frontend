@@ -15,7 +15,7 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 
 
-declare var paypal;
+
 
 
 
@@ -83,10 +83,9 @@ export class RegistrarUsuarioComponent implements OnInit {
         ]),
         validContra: new FormControl(''),
         categorias: this.formBuilder.array([]),
-        tipoCuenta: new FormControl('', Validators.required),
-        Pay: new FormControl(),
+        tipoCuenta: new FormControl('', Validators.required)
       },
-      { validator: [this.checkPasswords, this.checkPay] }
+      { validator: [this.checkPasswords] }
     );
   }
 
@@ -162,30 +161,7 @@ export class RegistrarUsuarioComponent implements OnInit {
       },
     };
 
-    paypal
-      .Buttons({
-        createOrder: (data, actions) => {
-          return actions.order.create({
-            purchase_units: [
-              {
-                description: 'Pago Premium',
-                amount: {
-                  currency_code: 'USD',
-                  value: 5,
-                },
-              },
-            ],
-          });
-        },
-        onApproved: async (data, actions) => {
-          const order = await actions.order.capture();
-          console.log(order);
-        },
-        onError: (err) => {
-          console.log(err);
-        },
-      })
-      .render(this.paypalElement.nativeElement);
+    
   }
 
   agregarCategoria() {
@@ -215,6 +191,7 @@ export class RegistrarUsuarioComponent implements OnInit {
               this.registerForm.value.apellidos,
               this.registerForm.value.usuario,
               this.registerForm.value.correo,
+              this.registerForm.value.fecha,
               this.registerForm.value.contra,
               this.registerForm.value.tipoCuenta
             )
@@ -229,11 +206,12 @@ export class RegistrarUsuarioComponent implements OnInit {
         this.waveService
           .registerUser(
             this.registerForm.value.nombres,
-            this.registerForm.value.apellidos,
-            this.registerForm.value.usuario,
-            this.registerForm.value.correo,
-            this.registerForm.value.contra,
-            this.registerForm.value.tipoCuenta
+              this.registerForm.value.apellidos,
+              this.registerForm.value.usuario,
+              this.registerForm.value.correo,
+              this.registerForm.value.fecha,
+              this.registerForm.value.contra,
+              this.registerForm.value.tipoCuenta
           )
           .subscribe((data) => {
             console.log(data);
@@ -253,13 +231,6 @@ export class RegistrarUsuarioComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true };
   }
 
-  checkPay(group: FormGroup) {
-    let pay = group.controls.tipoCuenta.value;
-    let Pay = group.controls.Pay.value;
-    return (pay === 'Premium' && Pay === true) || pay === 'Normal'
-      ? null
-      : { notPay: true };
-  }
 
   get nombres() {
     return this.registerForm.get('nombres');
@@ -297,9 +268,7 @@ export class RegistrarUsuarioComponent implements OnInit {
     return this.registerForm.get('tipoCuenta');
   }
 
-  get Pay() {
-    return this.registerForm.get('Pay');
-  }
+  
 
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);

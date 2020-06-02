@@ -4,7 +4,10 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 
+
 declare var paypal;
+
+
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 
@@ -34,7 +37,8 @@ export class RegistrarUsuarioComponent implements OnInit{
   
   registerForm: FormGroup;
 
-  
+
+
 
   paypal;
 
@@ -100,7 +104,8 @@ export class RegistrarUsuarioComponent implements OnInit{
       }
       }).
         render(this.paypalElement.nativeElement);
-
+ 
+  
     
   }
 
@@ -118,6 +123,7 @@ export class RegistrarUsuarioComponent implements OnInit{
   onResetForm() {
     this.registerForm.reset();
   }
+  
 
   onSaveForm(){
     if(this.registerForm.valid){

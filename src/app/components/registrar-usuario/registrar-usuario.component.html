@@ -85,7 +85,7 @@
         <input formControlName="image" type="file" class="imagen" #Image accept="image/*" (change)="handleFileInput($event.target.files)">        
         
         <div class="form-group">
-        <button class="btn btn-primary cat" (click)="agregarCategoria()">agregar categoría</button>    
+        <a class="btn btn-primary cat" (click)="agregarCategoria()">agregar categoría</a>    
         </div>
 
         <div formArrayName="categorias" *ngFor="let categoria of categorias.controls; let i = index">

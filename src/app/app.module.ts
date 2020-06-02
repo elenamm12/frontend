@@ -9,7 +9,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { PagoPremiumComponent } from './components/pago-premium/pago-premium.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CambiarContrasenaComponent } from './components/cambiar-contrasena/cambiar-contrasena.component';
@@ -18,9 +18,7 @@ import { ForosComponent } from './components/foros/foros.component';
 import { ForoComponent } from './components/foros/foro/foro.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { SubCategoriaComponent } from './components/categorias/sub-categoria/sub-categoria.component';
-
-
-
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -37,7 +35,7 @@ import { SubCategoriaComponent } from './components/categorias/sub-categoria/sub
     SubCategoriaComponent,
     ForosComponent,
     ForoComponent,
-    CategoriasComponent
+    CategoriasComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,10 +45,9 @@ import { SubCategoriaComponent } from './components/categorias/sub-categoria/sub
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
-   
+    NgxPayPalModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

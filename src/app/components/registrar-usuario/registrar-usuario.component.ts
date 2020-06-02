@@ -44,6 +44,7 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   public payPalConfig?: IPayPalConfig;
   public total: number = 20;
+  public token: string;
 
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -144,7 +145,7 @@ export class RegistrarUsuarioComponent implements OnInit {
           'onClientAuthorization - you should probably inform your server about completed transaction at this point',
           data
         );
-
+        this.token = data.id;
         alert('Reservacion realizada con exito, su localizador es: ' + data.id);
       },
       onCancel: (data, actions) => {
@@ -202,20 +203,41 @@ export class RegistrarUsuarioComponent implements OnInit {
   onSaveForm() {
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
-      this.waveService
-        .registerUser(
-          this.registerForm.value.nombres,
-          this.registerForm.value.apellidos,
-          this.registerForm.value.usuario,
-          this.registerForm.value.correo,
-          this.registerForm.value.contra,
-          this.registerForm.value.tipoCuenta
-        )
-        .subscribe((data) => {
-          console.log(data);
-          this.router.navigate(['/home']);
-        });
+      if (this.registerForm.value.tipoCuenta == 'Premium') {
+        if (this.token) {
+          this.waveService
+            .registerUser(
+              this.registerForm.value.nombres,
+              this.registerForm.value.apellidos,
+              this.registerForm.value.usuario,
+              this.registerForm.value.correo,
+              this.registerForm.value.contra,
+              this.registerForm.value.tipoCuenta
+            )
+            .subscribe((data) => {
+              console.log(data);
+              this.router.navigate(['/home']);
+            });
+        } else {
+          alert('Debe pagar primero para obtener su cuenta Premium');
+        }
+      } else {
+        this.waveService
+          .registerUser(
+            this.registerForm.value.nombres,
+            this.registerForm.value.apellidos,
+            this.registerForm.value.usuario,
+            this.registerForm.value.correo,
+            this.registerForm.value.contra,
+            this.registerForm.value.tipoCuenta
+          )
+          .subscribe((data) => {
+            console.log(data);
+            this.router.navigate(['/home']);
+          });
+      }
     } else {
+      alert('Datos Erroneos');
       console.log('No Valido');
     }
   }

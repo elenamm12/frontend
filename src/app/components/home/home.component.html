@@ -1,6 +1,13 @@
-
+<app-menu></app-menu>
 <div class="fondo">
-    <app-menu></app-menu>
-    <mat-card style="background-color: rgb(5, 97, 104);" class="caja">música</mat-card>
-    <mat-card style="background-color:  rgb(5, 97, 104);" class="caja">libros</mat-card>
+    <div class="espacio">
+
+    </div>
+    <a routerLink="/categoria/{{categorias.id}}">
+        <mat-card class="example-card container">
+            <img mat-card-image [src]="categorias.imagen">
+            <div class="centered">{{categorias.text}}</div>
+        </mat-card>
+    </a>
+
 </div>

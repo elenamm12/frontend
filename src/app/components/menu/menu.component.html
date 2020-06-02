@@ -3,10 +3,11 @@
     <mat-toolbar >
         <mat-toolbar-row class="menu">
             <div class="titulo">
-                <span><strong>wave</strong></span>
+                <a routerLink="/home"><span><strong>wave</strong></span></a>
             </div>
                    
             <div class="iconos">
+                <mat-icon>search</mat-icon>
                 <a routerLink="/categorias"><mat-icon>list</mat-icon></a>
                <a (click)="logOut()" routerLink="/iniciar-sesion"> <mat-icon >exit_to_app</mat-icon> </a>
             </div>

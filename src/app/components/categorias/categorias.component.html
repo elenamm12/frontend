@@ -1,2 +1,13 @@
 <app-menu></app-menu>
-<p>WORKS</p>
+<div class="fondo">
+    <div class="espacio">
+
+    </div>
+    <a routerLink="/categoria/{{categorias.id}}">
+        <mat-card class="example-card container">
+            <img mat-card-image [src]="categorias.imagen">
+            <div class="centered">{{categorias.text}}</div>
+        </mat-card>
+    </a>
+
+</div>

@@ -19,6 +19,10 @@ import { ForoComponent } from './components/foros/foro/foro.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { SubCategoriaComponent } from './components/categorias/sub-categoria/sub-categoria.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { CategoriaComponent } from './components/categorias/categoria/categoria.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -36,6 +40,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     ForosComponent,
     ForoComponent,
     CategoriasComponent,
+    CategoriaComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,8 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
-logOut(){
-  this.wave.logOutUser();
-}
+  
+  logOut(){
+    this.wave.logOutUser();
+  }
 }

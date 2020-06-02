@@ -65,9 +65,9 @@ loginUser(email: String, password:String): Observable<any>{
  
 }
 
-registerUser(firstName: string, lastName: string, userName:string, email: string, birthday: Date, password: string): Observable<any>{
+registerUser(firstName: string, lastName: string, userName:string, email: string, birthday: Date, password: string, role:string): Observable<any>{
 
-  return this.http.post<any>(`${this.url}/user/register`,{firstName, lastName, userName, email, birthday, password})
+  return this.http.post<any>(`${this.url}/user/register`,{firstName, lastName, userName, email, birthday, password, role})
   .pipe(tap(
     (res:any)=>{
       if(res){

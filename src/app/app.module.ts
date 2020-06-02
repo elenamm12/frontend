@@ -18,6 +18,7 @@ import { ForosComponent } from './components/foros/foros.component';
 import { ForoComponent } from './components/foros/foro/foro.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { SubCategoriaComponent } from './components/categorias/sub-categoria/sub-categoria.component';
+import { CategoriaComponent } from './components/categorias/categoria/categoria.component';
 
 
 
@@ -37,7 +38,8 @@ import { SubCategoriaComponent } from './components/categorias/sub-categoria/sub
     SubCategoriaComponent,
     ForosComponent,
     ForoComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    CategoriaComponent
   ],
   imports: [
     BrowserModule,

@@ -48,7 +48,7 @@ export class WaveServiceService {
 //que es una interfaz hubicada en la carpeta model, en caso de existir la respuesta llama al metodo que guarda el token en localstorage    
 loginUser(email: String, password:String): Observable<any>{
 
-  return this.http.post<any>('/user/login',{email, password})
+  return this.http.post<any>('http://localhost:3000/user/login',{email, password})
   .pipe(tap(
     (res:any)=>{
       if(res){
@@ -65,7 +65,7 @@ loginUser(email: String, password:String): Observable<any>{
 
 registerUser(firstName: string, lastName: string, userName:string, email: string, password: string, role:string): Observable<any>{
 
-  return this.http.post<any>('/user/register',{firstName, lastName, userName, email, password, role})
+  return this.http.post<any>('http://localhost:3000/user/register',{firstName, lastName, userName, email, password, role})
   .pipe(tap(
     (res:any)=>{
       if(res){

@@ -1,0 +1,109 @@
+.head{
+    width: 90%;
+    height: 20%;
+    text-align: center;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: #ecf1f1;
+    font-size: 250%;    
+    text-align: center;    
+    font-weight: bolder;
+    color: #123a42;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+.encabezado{
+    width: 100%;
+    height: 100%;
+    margin:0;
+    opacity: 0.45;    
+    box-shadow: 0px 4px 4px black;
+}
+
+img.mat-card-image{
+    margin: 0;
+}
+
+.container{
+    margin-top:3%;
+    position: relative;
+}
+
+.centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 9px;
+}
+
+
+.p{
+    width: 90%;
+    margin-top:5%;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Poiret One';
+    font-weight: bold;
+    color: #34839c;
+    font-size: large;
+    letter-spacing: 1px;
+}
+
+h4{
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: normal;
+    text-align: center;
+    color: #1a5f6c
+}
+
+mat-card{
+    padding: 0;    
+    margin-top: 8px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.493);
+}
+
+
+.row {
+    width: 98%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5%;
+    padding-bottom: 9%;
+  }
+  
+  /* Create four equal columns that sits next to each other */
+  .column {
+    flex: 25%;
+    padding: 0 4px;
+  }
+  
+  .column img {
+    vertical-align: middle;
+  }
+
+  .reverse{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+p{
+    margin:0;
+    height:39px;
+    padding-top: 7px;
+    font-size: large;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: #1a5f6c
+}
+
+.mat-card-footer{
+    margin:0;
+    text-align: center;
+    height: 5%;
+    
+}

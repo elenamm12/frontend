@@ -1,3 +1,4 @@
+import { CategoriaComponent } from './../components/categorias/categoria/categoria.component';
 import { InicioComponent } from './../components/inicio/inicio.component';
 import { RegistrarUsuarioComponent } from './../components/registrar-usuario/registrar-usuario.component';
 import { NgModule } from '@angular/core';
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
   { path: 'home', component: HomeComponent },
   { path: 'categorias', component: CategoriasComponent },
-  { path: 'categorias/:id', component: SubCategoriaComponent },
+  { path: 'categoria/:id', component: CategoriaComponent },
+  { path: 'sub-categoria/:id', component: SubCategoriaComponent },
   { path: 'foros', component: ForosComponent },
   { path: 'foros/:id', component: ForoComponent },
   { path: "", redirectTo: "/inicio", pathMatch: "full" },

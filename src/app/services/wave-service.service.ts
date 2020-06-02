@@ -6,6 +6,8 @@ import { map, tap, catchError, retry } from 'rxjs/operators';
 import { isNullOrUndefined } from 'util'; 
 import { RespI } from '../model/resp-i';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +42,7 @@ export class WaveServiceService {
 
   constructor(private http:HttpClient) { }  
 
-  headers : HttpHeaders = new HttpHeaders({
+  headers : HttpHeaders = new HttpHeaders({ 
     "Content-Type": "aplication/json"
   });
 
@@ -48,7 +50,7 @@ export class WaveServiceService {
 //que es una interfaz hubicada en la carpeta model, en caso de existir la respuesta llama al metodo que guarda el token en localstorage    
 loginUser(email: String, password:String): Observable<any>{
 
-  return this.http.post<any>('http://localhost:3000/user/login',{email, password})
+  return this.http.post<any>(`${this.url}/user/login`,{email, password})
   .pipe(tap(
     (res:any)=>{
       if(res){
@@ -63,9 +65,9 @@ loginUser(email: String, password:String): Observable<any>{
  
 }
 
-registerUser(firstName: string, lastName: string, userName:string, email: string, password: string, role:string): Observable<any>{
+registerUser(firstName: string, lastName: string, userName:string, email: string, birthday: Date, password: string): Observable<any>{
 
-  return this.http.post<any>('http://localhost:3000/user/register',{firstName, lastName, userName, email, password, role})
+  return this.http.post<any>(`${this.url}/user/register`,{firstName, lastName, userName, email, birthday, password})
   .pipe(tap(
     (res:any)=>{
       if(res){
@@ -90,11 +92,16 @@ private saveToken(token: string): void{
 
 }
 
-private getToken(): string{
-  if(!this.token){
+logOutUser():void{
+ localStorage.removeItem("currentToken");
+ this.token=null;
+}
+
+ getToken(){
+  
   this.token = localStorage.getItem("currentToken");
-   }
-return this.token;   
+   
+  return this.token;   
 
 }
 
@@ -103,6 +110,8 @@ loginUserMock(email: String, password:String){
   console.log('servicio activo');
   if (email==this.mockUser.username && password==this.mockUser.contraseña){
     console.log("fake auth complete");
+    localStorage.setItem("currentToken", "fake");
+
   }else{
     alert('usuario no registrado');
   }

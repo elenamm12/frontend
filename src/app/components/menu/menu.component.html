@@ -9,7 +9,7 @@
             <div class="iconos">
                 <mat-icon>search</mat-icon>
                 <a routerLink="/categorias"><mat-icon>list</mat-icon></a>
-                <mat-icon>exit_to_app</mat-icon>
+               <a (click)="logOut()" routerLink="/iniciar-sesion"> <mat-icon >exit_to_app</mat-icon> </a>
             </div>
         </mat-toolbar-row>
     </mat-toolbar>

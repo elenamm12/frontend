@@ -11,10 +11,11 @@ import { ForosComponent } from '../components/foros/foros.component';
 import { ForoComponent } from '../components/foros/foro/foro.component';
 import { SubCategoriaComponent } from '../components/categorias/sub-categoria/sub-categoria.component';
 import { CategoriasComponent } from '../components/categorias/categorias.component';
+import { AuthGuard} from '../guards/auth.guard'
 
 
 const routes: Routes = [
-  { path: 'inicio', component: InicioComponent },
+  { path: 'inicio', component: InicioComponent},
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
   { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },

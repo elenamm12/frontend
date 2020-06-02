@@ -4,7 +4,10 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 
+
 declare var paypal;
+
+
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 
@@ -34,7 +37,8 @@ export class RegistrarUsuarioComponent implements OnInit{
   
   registerForm: FormGroup;
 
-  
+
+
 
   paypal;
 
@@ -100,7 +104,8 @@ export class RegistrarUsuarioComponent implements OnInit{
       }
       }).
         render(this.paypalElement.nativeElement);
-
+ 
+  
     
   }
 
@@ -118,6 +123,7 @@ export class RegistrarUsuarioComponent implements OnInit{
   onResetForm() {
     this.registerForm.reset();
   }
+  
 
   onSaveForm(){
     if(this.registerForm.valid){
@@ -125,9 +131,10 @@ export class RegistrarUsuarioComponent implements OnInit{
       this.waveService.registerUser(this.registerForm.value.nombres, 
                                     this.registerForm.value.apellidos,
                                     this.registerForm.value.usuario, 
-                                    this.registerForm.value.correo, 
-                                    this.registerForm.value.contra,
-                                    this.registerForm.value.tipoCuenta)
+                                    this.registerForm.value.correo,
+                                    this.registerForm.value.fecha, 
+                                    this.registerForm.value.contra
+                                    )
       .subscribe(data=>{ 
       console.log(data);
       this.router.navigate(['/home']);

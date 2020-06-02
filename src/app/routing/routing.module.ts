@@ -11,7 +11,7 @@ import { ForosComponent } from '../components/foros/foros.component';
 import { ForoComponent } from '../components/foros/foro/foro.component';
 import { SubCategoriaComponent } from '../components/categorias/sub-categoria/sub-categoria.component';
 import { CategoriasComponent } from '../components/categorias/categorias.component';
-import { AuthGuard} from '../guards/auth.guard'
+import { AuthGuard } from '../guards/auth.guard'
 
 
 const routes: Routes = [
@@ -19,12 +19,12 @@ const routes: Routes = [
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
   { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'categorias', component: CategoriasComponent },
-  { path: 'categoria/:id', component: CategoriaComponent },
-  { path: 'sub-categoria/:id', component: SubCategoriaComponent },
-  { path: 'foros', component: ForosComponent },
-  { path: 'foros/:id', component: ForoComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'categorias', component: CategoriasComponent, canActivate: [AuthGuard] },
+  { path: 'categoria/:id', component: CategoriaComponent, canActivate: [AuthGuard] },
+  { path: 'sub-categoria/:id', component: SubCategoriaComponent, canActivate: [AuthGuard] },
+  { path: 'foros', component: ForosComponent, canActivate: [AuthGuard] },
+  { path: 'foro/:id', component: ForoComponent, canActivate: [AuthGuard] },
   { path: "", redirectTo: "/inicio", pathMatch: "full" },
   { path: "**", component: NotFoundComponent }
 ];

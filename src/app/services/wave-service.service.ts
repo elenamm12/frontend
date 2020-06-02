@@ -63,9 +63,9 @@ loginUser(email: String, password:String): Observable<any>{
  
 }
 
-registerUser(firstName: string, lastName: string, userName:string, email: string, password: string, role:string): Observable<any>{
+registerUser(firstName: string, lastName: string, userName:string, email: string, birthday: string, password: string): Observable<any>{
 
-  return this.http.post<any>('/user/register',{firstName, lastName, userName, email, password, role})
+  return this.http.post<any>('/user/register',{firstName, lastName, userName, email, birthday, password})
   .pipe(tap(
     (res:any)=>{
       if(res){
@@ -90,7 +90,12 @@ private saveToken(token: string): void{
 
 }
 
-private getToken(): string{
+logOutUser():void{
+ localStorage.removeItem("currentToken");
+ this.token=null;
+}
+
+ getToken(){
   if(!this.token){
   this.token = localStorage.getItem("currentToken");
    }

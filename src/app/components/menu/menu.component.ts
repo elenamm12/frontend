@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WaveServiceService } from 'src/app/services/wave-service.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private wave: WaveServiceService) { }
 
   ngOnInit(): void {
   }
-
+logOut(){
+  this.wave.logOutUser();
+}
 }

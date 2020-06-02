@@ -125,9 +125,10 @@ export class RegistrarUsuarioComponent implements OnInit{
       this.waveService.registerUser(this.registerForm.value.nombres, 
                                     this.registerForm.value.apellidos,
                                     this.registerForm.value.usuario, 
-                                    this.registerForm.value.correo, 
-                                    this.registerForm.value.contra,
-                                    this.registerForm.value.tipoCuenta)
+                                    this.registerForm.value.correo,
+                                    this.registerForm.value.fecha, 
+                                    this.registerForm.value.contra
+                                    )
       .subscribe(data=>{ 
       console.log(data);
       this.router.navigate(['/home']);

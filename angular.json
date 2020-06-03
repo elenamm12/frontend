@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "front-wave"
+  "defaultProject": "front-wave",
+  "cli": {
+    "analytics": "828bc5a1-67ee-4a4c-ac69-33b64b5c2fbc"
+  }
 }

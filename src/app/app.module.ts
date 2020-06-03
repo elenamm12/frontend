@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CambiarContrasenaComponent } from './components/cambiar-contrasena/cambiar-contrasena.component';
 import { HomeComponent } from './components/home/home.component';
 import { ForosComponent } from './components/foros/foros.component';
@@ -20,9 +20,7 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
 import { SubCategoriaComponent } from './components/categorias/sub-categoria/sub-categoria.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { CategoriaComponent } from './components/categorias/categoria/categoria.component';
-
-
-
+import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,7 +38,7 @@ import { CategoriaComponent } from './components/categorias/categoria/categoria.
     ForosComponent,
     ForoComponent,
     CategoriasComponent,
-    CategoriaComponent
+    CategoriaComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +50,13 @@ import { CategoriaComponent } from './components/categorias/categoria/categoria.
     HttpClientModule,
     NgxPayPalModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

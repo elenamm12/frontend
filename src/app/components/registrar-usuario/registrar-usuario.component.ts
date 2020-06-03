@@ -10,14 +10,9 @@ import {
   RequiredValidator,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-
-
-
-
-
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -58,6 +53,7 @@ export class RegistrarUsuarioComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router,
     private waveService: WaveServiceService
@@ -83,7 +79,7 @@ export class RegistrarUsuarioComponent implements OnInit {
         ]),
         validContra: new FormControl(''),
         categorias: this.formBuilder.array([]),
-        tipoCuenta: new FormControl('', Validators.required)
+        tipoCuenta: new FormControl('', Validators.required),
       },
       { validator: [this.checkPasswords] }
     );
@@ -160,8 +156,6 @@ export class RegistrarUsuarioComponent implements OnInit {
         console.log('onClick', data, actions);
       },
     };
-
-    
   }
 
   agregarCategoria() {
@@ -178,7 +172,6 @@ export class RegistrarUsuarioComponent implements OnInit {
   onResetForm() {
     this.registerForm.reset();
   }
-  
 
   onSaveForm() {
     if (this.registerForm.valid) {
@@ -206,12 +199,12 @@ export class RegistrarUsuarioComponent implements OnInit {
         this.waveService
           .registerUser(
             this.registerForm.value.nombres,
-              this.registerForm.value.apellidos,
-              this.registerForm.value.usuario,
-              this.registerForm.value.correo,
-              this.registerForm.value.fecha,
-              this.registerForm.value.contra,
-              this.registerForm.value.tipoCuenta
+            this.registerForm.value.apellidos,
+            this.registerForm.value.usuario,
+            this.registerForm.value.correo,
+            this.registerForm.value.fecha,
+            this.registerForm.value.contra,
+            this.registerForm.value.tipoCuenta
           )
           .subscribe((data) => {
             console.log(data);
@@ -230,7 +223,6 @@ export class RegistrarUsuarioComponent implements OnInit {
 
     return pass === confirmPass ? null : { notSame: true };
   }
-
 
   get nombres() {
     return this.registerForm.get('nombres');
@@ -267,8 +259,6 @@ export class RegistrarUsuarioComponent implements OnInit {
   get tipoCuenta() {
     return this.registerForm.get('tipoCuenta');
   }
-
-  
 
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);

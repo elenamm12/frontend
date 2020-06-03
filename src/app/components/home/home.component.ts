@@ -10,12 +10,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   categories: any[] = [];
 
-  categorias = {
-    id: 897465,
-    text: 'música',
-    imagen:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcROmHpFb5PTjn16wuNq0A9PCmyvWCh_bE7ZD76--ridMeq-c5mU&usqp=CAU',
-  };
+  categorias = 
+  {
+    imagen:"https://i0.wp.com/lapalabra.gt/wp-content/uploads/2018/11/gravity-falls-diario-3-journal-3-entrega-inmediata-D_NQ_NP_808015-MLC25201571264_122016-O.jpg?fit=1042%2C663"
+  }
+  
+
+  
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,

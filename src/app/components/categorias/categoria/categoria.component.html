@@ -2,13 +2,13 @@
 
 <mat-card class="example-card container head">
     <img mat-card-image src="{{categorias.encabezado}}" class="encabezado">
-    <div class="centered">Libros de calidad</div>
+    <div class="centered">{{categoryById.name}}</div>
 </mat-card>
 
 <div class="p">
     <br>
     <h4>Recomendaciones wave</h4>
-    <h5>Aqui podras conseguir personas con quien compartir la maravillosa aventura de la lectura no olvides visitar la pagina y seguir nutriendo tu lectura</h5>
+    <h5>{{categoryById.name}}</h5>
     <br>
     <h4>Subcategorías</h4>
 </div>
@@ -18,7 +18,7 @@
 
     <div class="column">
         <div *ngFor="let sub of subcategories">
-            <a routerLink="/sub-categoria/{{sub.id}}">
+            <a routerLink="/sub-categoria/{{sub.id}}/categoria/{{categoryId}}">
                 <mat-card>
                 <img mat-card-image src="{{categorias.imagen}}" style="width:100%">
                 <mat-card-content>

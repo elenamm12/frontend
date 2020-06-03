@@ -20,9 +20,7 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
 import { SubCategoriaComponent } from './components/categorias/sub-categoria/sub-categoria.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { CategoriaComponent } from './components/categorias/categoria/categoria.component';
-
-
-
+import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,7 +38,7 @@ import { CategoriaComponent } from './components/categorias/categoria/categoria.
     ForosComponent,
     ForoComponent,
     CategoriasComponent,
-    CategoriaComponent
+    CategoriaComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +50,7 @@ import { CategoriaComponent } from './components/categorias/categoria/categoria.
     HttpClientModule,
     NgxPayPalModule,
   ],
-  providers: [],
+  providers: [AuthInterceptor],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

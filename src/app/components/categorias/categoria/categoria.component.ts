@@ -37,20 +37,17 @@ export class CategoriaComponent implements OnInit {
     this.waveService.getAllCategories().subscribe((response) => {
       this.categories = response.categories;
       console.log(this.categories);
+      this.categoryId = this.route.snapshot.params['id'];
+      this.categoryById = this.categories.filter(
+        (category) => category.id == this.categoryId
+      )[0];
+      console.log(this.categoryById);
+      this.waveService
+        .getSubcategoryByCategory(this.categoryId)
+        .subscribe((response) => {
+          this.subcategories = response.subCategories;
+          console.log(this.subcategories);
+        });
     });
-    this.categoryId = this.route.snapshot.params['id'];
-    this.getCategoryById(this.categoryId);
-    this.waveService
-      .getSubcategoryByCategory(this.categoryId)
-      .subscribe((response) => {
-        this.subcategories = response.subCategories;
-        console.log(this.subcategories);
-      });
-  }
-
-  getCategoryById(id: number) {
-    this.categoryById = this.categories.filter(
-      (category) => (category.id = id)
-    );
   }
 }

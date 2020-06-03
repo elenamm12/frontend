@@ -48,80 +48,76 @@ export class WaveServiceService {
 
 //metodo del servicio que hace http request y espera la respuesta de tipo RespI 
 //que es una interfaz hubicada en la carpeta model, en caso de existir la respuesta llama al metodo que guarda el token en localstorage    
-loginUser(email: String, password:String): Observable<any>{
+  loginUser(email: String, password:String): Observable<any>{
 
-  return this.http.post<any>(`${this.url}/user/login`,{email, password})
-  .pipe(tap(
-    (res:any)=>{
-      if(res){
-        this.saveToken(res.accessToken);
-      }else{
-      console.log("no hay respuesta")
-    }
-    }),
-    
-  );
-
- 
-}
-
-registerUser(firstName: string, lastName: string, userName:string, email: string, birthday: Date, password: string, role:string): Observable<any>{
-
-  return this.http.post<any>(`${this.url}/user/register`,{firstName, lastName, userName, email, birthday, password, role})
-  .pipe(tap(
-    (res:any)=>{
-      if(res){
-        this.saveToken(res.accessToken);
-      }else{
-      console.log("no hay respuesta")
-    }
-    }),
-    
-  );
-
- 
-}
-
-
-
-private saveToken(token: string): void{
-  localStorage.setItem("currentToken", token);
+    return this.http.post<any>(`${this.url}/user/login`,{email, password})
+    .pipe(tap(
+      (res:any)=>{
+        if(res){
+          this.saveToken(res.accessToken);
+        }else{
+        console.log("no hay respuesta")
+      }
+      }),
+      
+    );
 
   
-  this.token = token;
-
-}
-
-logOutUser():void{
- localStorage.removeItem("currentToken");
- this.token=null;
-}
-
- getToken(){
-  
-  this.token = localStorage.getItem("currentToken");
-   
-  return this.token;   
-
-}
-
-
-loginUserMock(email: String, password:String){
-  console.log('servicio activo');
-  if (email==this.mockUser.username && password==this.mockUser.contraseña){
-    console.log("fake auth complete");
-    localStorage.setItem("currentToken", "fake");
-
-  }else{
-    alert('usuario no registrado');
   }
 
-}
+  registerUser(firstName: string, lastName: string, userName:string, email: string, birthday: Date, password: string, role:string): Observable<any>{
+
+    return this.http.post<any>(`${this.url}/user/register`,{firstName, lastName, userName, email, birthday, password, role})
+    .pipe(tap(
+      (res:any)=>{
+        if(res){
+          this.saveToken(res.accessToken);
+        }else{
+        console.log("no hay respuesta")
+      }
+      }),
+      
+    );
+  
+  }
 
 
-logOut(){
-     localStorage.removeItem("currentToken");
-}
+
+  private saveToken(token: string): void{
+    localStorage.setItem("currentToken", token);  
+    this.token = token;
+  }
+
+  logOutUser():void{
+
+    localStorage.removeItem("currentToken");
+    this.token=null;
+  }
+
+  getToken(){
+    
+    this.token = localStorage.getItem("currentToken");    
+    return this.token;   
+  }
+
+
+  loginUserMock(email: String, password:String){
+
+    console.log('servicio activo');
+    if (email==this.mockUser.username && password==this.mockUser.contraseña){
+      console.log("fake auth complete");
+      localStorage.setItem("currentToken", "fake");
+
+    }else{
+      alert('usuario no registrado');
+    }
+  }
+
+
+  logOut(){
+    
+      localStorage.removeItem("currentToken");
+  }
 
 
 } 

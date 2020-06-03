@@ -37,9 +37,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./registrar-usuario.component.scss'],
 })
 export class RegistrarUsuarioComponent implements OnInit {
-  private forums: any[] = [];
-  private favoriteForums: any[] = [];
-  private subcategoryId: number;
   imageUrl: string = '../../../assets/icon/usuario.png';
   fileToUpload: File = null;
 
@@ -159,28 +156,6 @@ export class RegistrarUsuarioComponent implements OnInit {
         console.log('onClick', data, actions);
       },
     };
-
-    //this.waveService.getAllForums().subscribe((forums) => console.log(forums));
-
-    // Carga todos los Foros
-    this.waveService.getAllForums().subscribe((forums) => {
-      /*
-      forums.map((forum) => {
-        this.forums.push({ forum });
-      });
-      */
-      console.log(forums);
-    });
-    // Carga los Foros de una Subcategoria
-    this.subcategoryId = this.route.snapshot.params['id'];
-
-    this.waveService
-      .getForumsBySubcategory(this.subcategoryId)
-      .subscribe((forums) => {
-        forums.map((forum) => {
-          this.favoriteForums.push({ forum });
-        });
-      });
   }
 
   agregarCategoria() {

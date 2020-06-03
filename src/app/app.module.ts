@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CambiarContrasenaComponent } from './components/cambiar-contrasena/cambiar-contrasena.component';
 import { HomeComponent } from './components/home/home.component';
 import { ForosComponent } from './components/foros/foros.component';
@@ -50,7 +50,13 @@ import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
     HttpClientModule,
     NgxPayPalModule,
   ],
-  providers: [AuthInterceptor],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

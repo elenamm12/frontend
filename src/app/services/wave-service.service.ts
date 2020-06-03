@@ -126,15 +126,16 @@ export class WaveServiceService {
     localStorage.removeItem('currentToken');
   }
 
+  getSubcategoryByCategory(idCategory: number): Observable<any> {
+    return this.http.get(`${this.url}/subcategory/category/${idCategory}`);
+  }
+
   getAllForums(): Observable<any> {
     //let token = localStorage.getItem('currentToken');
-    return this.http.get(`/forum/all`);
+    return this.http.get(`${this.url}/forum/all`);
   }
 
   getForumsBySubcategory(idSubcategory: number): Observable<any> {
-    let token = localStorage.getItem('currentToken');
-    return this.http.get(
-      `/forum/subcategory/${idSubcategory}?access_token=${token}`
-    );
+    return this.http.get(`${this.url}/forum/subcategory/${idSubcategory}`);
   }
 }

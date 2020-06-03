@@ -126,8 +126,12 @@ export class WaveServiceService {
     localStorage.removeItem('currentToken');
   }
 
+  getAllCategories(): Observable<any> {
+    return this.http.get(`${this.url}/category/all`);
+  }
+
   getSubcategoryByCategory(idCategory: number): Observable<any> {
-    return this.http.get(`${this.url}/subcategory/category/${idCategory}`);
+    return this.http.get(`${this.url}/sub-category/category/${idCategory}`);
   }
 
   getAllForums(): Observable<any> {

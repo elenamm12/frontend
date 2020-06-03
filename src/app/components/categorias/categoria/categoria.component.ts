@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { WaveServiceService } from 'src/app/services/wave-service.service';
 
 @Component({
   selector: 'app-categoria',
@@ -7,7 +8,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./categoria.component.scss'],
 })
 export class CategoriaComponent implements OnInit {
-  private favoriteForums: any[] = [];
+  private subcategories: any[] = [];
+  private categoryId: number;
 
   private categoria: any;
   categorias = {
@@ -34,9 +36,20 @@ export class CategoriaComponent implements OnInit {
     },
   ];
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private waveService: WaveServiceService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.categoria = this.route.snapshot.params['id'];
+     // Carga las Subcategorias de una Categoria
+     this.categoryId = this.route.snapshot.params['id'];
+     this.waveService.getSubcategoryByCategory(this.categoryId).subscribe((response) => {
+       this.subcategories = response.forums;
+       console.log(this.subcategories);
+     });
+   }
   }
 }

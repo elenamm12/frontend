@@ -19,10 +19,11 @@ export class SubCategoriaComponent implements OnInit {
   ngOnInit(): void {
     // Carga los Foros de una Subcategoria
     this.subcategoryId = this.route.snapshot.params['id'];
-    //this.subcategoryId
-    this.waveService.getForumsBySubcategory(1).subscribe((response) => {
-      this.favoriteForums = response.forums;
-      console.log(this.favoriteForums);
-    });
+    this.waveService
+      .getForumsBySubcategory(this.subcategoryId)
+      .subscribe((response) => {
+        this.favoriteForums = response.forums;
+        console.log(this.favoriteForums);
+      });
   }
 }

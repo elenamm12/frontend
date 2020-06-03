@@ -8,7 +8,7 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
   styleUrls: ['./categoria.component.scss'],
 })
 export class CategoriaComponent implements OnInit {
-  categories: any[] = [];
+  private categories: any[] = [];
   private categoryById: {};
 
   subcategories: any[] = [];
@@ -48,6 +48,10 @@ export class CategoriaComponent implements OnInit {
   ngOnInit(): void {
     this.categoria = this.route.snapshot.params['id'];
     // Carga las Subcategorias de una Categoria
+    this.waveService.getAllCategories().subscribe((response) => {
+      this.categories = response.categories;
+      console.log(this.categories);
+    });
     this.categoryId = this.route.snapshot.params['id'];
     this.getCategoryById(this.categoryId);
     this.waveService

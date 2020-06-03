@@ -29,8 +29,6 @@ export class CategoriasComponent implements OnInit {
       this.categories = response.categories;
       console.log(this.categories);
     });
-
-    this.getCategoryById(1);
   }
 
   getCategoryById(id: number) {

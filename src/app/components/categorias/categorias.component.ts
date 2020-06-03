@@ -10,6 +10,8 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
 export class CategoriasComponent implements OnInit {
   categories: any[] = [];
 
+  private categoryById: {};
+
   categorias = {
     id: 897465,
     text: 'música',
@@ -27,5 +29,13 @@ export class CategoriasComponent implements OnInit {
       this.categories = response.categories;
       console.log(this.categories);
     });
+
+    this.getCategoryById(1);
+  }
+
+  getCategoryById(id: number) {
+    this.categoryById = this.categories.filter(
+      (category) => (category.id = id)
+    );
   }
 }

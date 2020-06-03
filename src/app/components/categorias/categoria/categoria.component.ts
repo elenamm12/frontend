@@ -8,6 +8,9 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
   styleUrls: ['./categoria.component.scss'],
 })
 export class CategoriaComponent implements OnInit {
+  categories: any[] = [];
+  private categoryById: {};
+
   subcategories: any[] = [];
   categoryId: number;
 
@@ -46,11 +49,18 @@ export class CategoriaComponent implements OnInit {
     this.categoria = this.route.snapshot.params['id'];
     // Carga las Subcategorias de una Categoria
     this.categoryId = this.route.snapshot.params['id'];
+    this.getCategoryById(this.categoryId);
     this.waveService
       .getSubcategoryByCategory(this.categoryId)
       .subscribe((response) => {
         this.subcategories = response.subCategories;
         console.log(this.subcategories);
       });
+  }
+
+  getCategoryById(id: number) {
+    this.categoryById = this.categories.filter(
+      (category) => (category.id = id)
+    );
   }
 }

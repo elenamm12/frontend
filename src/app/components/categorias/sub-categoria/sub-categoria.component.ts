@@ -8,8 +8,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./sub-categoria.component.scss'],
 })
 export class SubCategoriaComponent implements OnInit {
-  private favoriteForums: any[] = [];
-  private subcategoryId: number;
+  favoriteForums: any[] = [];
+  subcategoryId: number;
+  categoryId: number;
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
@@ -17,6 +18,7 @@ export class SubCategoriaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     // Carga los Foros de una Subcategoria
     this.subcategoryId = this.route.snapshot.params['id'];
     this.waveService

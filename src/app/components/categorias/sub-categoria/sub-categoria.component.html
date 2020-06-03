@@ -1,17 +1,24 @@
 <app-menu></app-menu>
 
 <mat-card class="example-card container head">
-    <img mat-card-image [src]="categoria.imagen" class="encabezado">
-    <div class="top">{{categoria.title}}</div>
-    <div class="centered">{{categoria.texto}}</div>
+    <img mat-card-image [src]="" class="encabezado">
+    <div class="top">titulo categoria</div>
+    <div class="centered">txt categoria</div>
 </mat-card>
 
 <br>
-<h4>Participa en los foros sobre {{categoria.title}}</h4>
+<h4>Participa en los foros sobre TITULO</h4>
 <br>
 
-<div class="card">
-    <mat-card>Simple card</mat-card>
+<div>
+
 </div>
+
+<div *ngFor="let foro of favoriteForums">
+    <div class="card">
+        <a routerLink="/foro/{{foro.id}}"><mat-card>{{foro.title}}</mat-card></a>
+    </div>
+</div>
+
 
 

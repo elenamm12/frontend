@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WaveServiceService } from 'src/app/services/wave-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-foro',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForoComponent implements OnInit {
 
-  constructor() { }
+  foro: string;
+
+  constructor(
+    private waveService: WaveServiceService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.foro = this.route.snapshot.params['id'];
   }
 
 }

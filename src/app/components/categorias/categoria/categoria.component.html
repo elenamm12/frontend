@@ -17,52 +17,27 @@
 <div class="row"> 
 
     <div class="column">
-        <a routerLink="/sub-categoria/788"><mat-card>
-            <img mat-card-image src="https://i.pinimg.com/originals/2c/59/5d/2c595d37e02a12c6333abe6d69a90a67.png" style="width:100%">
-            <mat-card-content>
-                <mat-card-footer><p>informacion</p></mat-card-footer>
-            </mat-card-content>        
-        </mat-card></a>
-
-        <mat-card>
-            <img mat-card-image src="https://i.pinimg.com/originals/26/01/d6/2601d6a94eff41ab0bc3c96b753b5707.jpg" style="width:100%">
-            <mat-card-content>
-                <mat-card-footer><p>informacion</p></mat-card-footer>
-            </mat-card-content>        
-        </mat-card>
-
-        <mat-card>
-            <img mat-card-image src="https://image.winudf.com/v2/image1/a2V5Ym9hcmQudGhlbWUubXVzaWMucG9wLmFydC5naXJsX3NjcmVlbl8xXzE1NTgwNjkxMzZfMDgx/screen-1.jpg?fakeurl=1&type=.jpg" style="width:100%">
-            <mat-card-content>
-                <mat-card-footer><p>informacion</p></mat-card-footer>
-            </mat-card-content>        
-        </mat-card>
-
+        <div *ngFor="let sub of subcategories">
+            <a routerLink="/sub-categoria/{{sub.id}}"><mat-card>
+                <img mat-card-image src="{{sub.contentSubcategories[0].imagen}}" style="width:100%">
+                <mat-card-content>
+                    <mat-card-footer><p>{{sub.name}}</p></mat-card-footer>
+                </mat-card-content>        
+            </mat-card></a>
+        </div>
     
 
 
    </div>
     
     <div class="column reverse">
-        <mat-card>
-            <img mat-card-image src="https://i.pinimg.com/originals/2c/59/5d/2c595d37e02a12c6333abe6d69a90a67.png" style="width:100%">
-            <mat-card-content>
-                <mat-card-footer><p>informacion</p></mat-card-footer>
-            </mat-card-content>        
-        </mat-card>
-
-        <mat-card>
-            <img mat-card-image src="https://i.pinimg.com/originals/26/01/d6/2601d6a94eff41ab0bc3c96b753b5707.jpg" style="width:100%">
-            <mat-card-content>
-                <mat-card-footer><p>informacion</p></mat-card-footer>
-            </mat-card-content>        
-        </mat-card>
-
-        <mat-card>
-            <img mat-card-image src="https://image.winudf.com/v2/image1/a2V5Ym9hcmQudGhlbWUubXVzaWMucG9wLmFydC5naXJsX3NjcmVlbl8xXzE1NTgwNjkxMzZfMDgx/screen-1.jpg?fakeurl=1&type=.jpg" style="width:100%">
-            <mat-card-content>
-                <mat-card-footer><p>informacion</p></mat-card-footer>
-            </mat-card-content>        
-        </mat-card>
+        <div *ngFor="let sub of subcategories">
+            <a routerLink="/sub-categoria/{{sub.id}}"><mat-card>
+                <img mat-card-image src="{{sub.contentSubcategories[0].imagen}}" style="width:100%">
+                <mat-card-content>
+                    <mat-card-footer><p>{{sub.name}}</p></mat-card-footer>
+                </mat-card-content>        
+            </mat-card></a>
+        </div>
     </div> 
 </div>

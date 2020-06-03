@@ -3,11 +3,17 @@
     <div class="espacio">
 
     </div>
-    <a routerLink="/categoria/{{categorias.id}}">
-        <mat-card class="example-card container">
-            <img mat-card-image [src]="categorias.imagen">
-            <div class="centered">{{categorias.text}}</div>
-        </mat-card>
-    </a>
+
+    
+    <div *ngFor="let cat of categories">
+        <a routerLink="/categoria/{{ cat.id }}">
+            <mat-card class="example-card container">
+
+                <img mat-card-image src="{{cat.contentCategories[0].imagen}}">
+                <div class="centered">{{ cat.name }}</div>
+
+            </mat-card>
+        </a>
+    </div>
 
 </div>

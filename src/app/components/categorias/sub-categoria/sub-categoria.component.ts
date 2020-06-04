@@ -19,6 +19,11 @@ export class SubCategoriaComponent implements OnInit {
     private router: Router
   ) {}
 
+  salvando = 
+  {
+    "imagen":"https://i.pinimg.com/originals/fc/30/a5/fc30a5269167b32e5cdab0aa8e438261.png"
+  };
+
   ngOnInit(): void {
     // Carga los Foros de una Subcategoria
     this.categoryId = this.route.snapshot.params['idCateg'];

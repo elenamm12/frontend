@@ -8,8 +8,8 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
   styleUrls: ['./categoria.component.scss'],
 })
 export class CategoriaComponent implements OnInit {
-  private categories: any[] = [];
-  private categoryById: {};
+   categories: any[] = [];
+   categoryById: {};
 
   categoria: any;
   subcategories: any[] = [];

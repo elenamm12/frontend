@@ -1,9 +1,8 @@
 <div class="fondo">
- 
   <form [formGroup]="registerForm" (ngSubmit)="onSaveForm()">
     <div class="formulario">
       <mat-label class="datos">Introduzca sus datos de usuario:</mat-label>
-    
+
       <mat-form-field appearance="outline">
         <mat-label>Nombres</mat-label>
         <input matInput placeholder="Nombre" formControlName="nombres" />

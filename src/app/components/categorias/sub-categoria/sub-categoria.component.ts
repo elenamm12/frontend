@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-sub-categoria',
@@ -13,6 +16,8 @@ export class SubCategoriaComponent implements OnInit {
   subcategory = {};
   subcategoryId: number;
   categoryId: number;
+  filteredForums: Observable<string[]>;
+  myControl = new FormControl();
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
@@ -25,24 +30,42 @@ export class SubCategoriaComponent implements OnInit {
   };
 
   ngOnInit(): void {
+
+   
+
+    this.filteredForums = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
     // Carga los Foros de una Subcategoria
     this.categoryId = this.route.snapshot.params['idCateg'];
     this.waveService
       .getSubcategoryByCategory(this.categoryId)
       .subscribe((response) => {
         this.subcategories = response.subCategories;
-        console.log(this.subcategories);
+        console.log('subcategorias',this.subcategories);
         this.subcategoryId = this.route.snapshot.params['id'];
         this.subcategory = this.subcategories.filter(
           (subcategory) => subcategory.id == this.subcategoryId
         )[0];
-        console.log(this.subcategory);
+        console.log('subcategoria', this.subcategory);
         this.waveService
           .getForumsBySubcategory(this.subcategoryId)
           .subscribe((response) => {
             this.favoriteForums = response.forums;
-            console.log(this.favoriteForums);
+            console.log('foro fav',this.favoriteForums);
           });
       });
+      
+     
   }
+
+  private _filter(value: string):string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.favoriteForums.filter(option => option.title.toLowerCase().includes(filterValue));
+  } 
+
+ 
 }

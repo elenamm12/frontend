@@ -3,7 +3,7 @@
     <div class="formulario">
       <mat-label class="datos">Introduzca sus datos de usuario:</mat-label>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="fill">
         <mat-label>Nombres</mat-label>
         <input matInput placeholder="Nombre" formControlName="nombres" />
       </mat-form-field>
@@ -94,7 +94,7 @@
       </mat-error>
       <br />
 
-      <mat-label>Elige tu imagen de perfil:</mat-label>
+      <mat-label class="datos">Elige tu imagen de perfil:</mat-label>
       <br />
       <input
         formControlName="image"
@@ -105,40 +105,10 @@
         (change)="handleFileInput($event.target.files)"
       />
 
-      <div
-        formArrayName="categorias"
-        *ngFor="let categoria of categorias.controls; let i = index"
-      >
-        <div [formGroupName]="i">
-          <div class="form-group row">
-            <label [attr.for]="'Categoria' + i"></label>
-            <div>
-              <select
-                type="text"
-                [attr.id]="'Categoria' + i"
-                class="form-control select"
-                formControlName="Categoria"
-              >
-                <option>Peliculas</option>
-                <option>Musica</option>
-                <option>Juegos</option>
-                <option>Tutoriales</option>
-              </select>
-            </div>
-            <div>
-              <button
-                class="btn btn-danger cancelar"
-                (click)="removerCategoria(i)"
-              >
-                x
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       <div class="form-group cuentas">
-        <mat-label>Selecciona el tipo de cuenta que usaras: </mat-label>
+        <mat-label class="datos">Selecciona el tipo de cuenta: </mat-label>
         <select
           formControlName="tipoCuenta"
           class="form-control cuenta"

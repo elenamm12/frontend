@@ -7,7 +7,7 @@
   position: relative;
   width: 100%;
   min-height: 103%;
-  background-image: url("/assets/img/back3.jpg");
+  background-image: url("/assets/img/back6.jpg");
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
@@ -72,7 +72,7 @@ input {
 }
 
 mat-form-field {
-  width: 95%;
+  width: 100%;
   margin-top: 1em;
   text-align: left;
 }
@@ -94,8 +94,7 @@ mat-label {
 }
 
 .btn {
-  max-width: 100%;
-  width: 30rem;
+  width: 100%;
   font-style: normal;
   font-family: "Poiret One";
   font-weight: bold;
@@ -116,7 +115,7 @@ button {
   justify-content: center;
   text-align: center;
   font-family: Poiret One;
-  max-width: 60%;
+  max-width: 70%;
   width: 30rem;
 }
 
@@ -125,8 +124,7 @@ button {
 }
 
 .cuenta {
-  max-width: 69%;
-  width: 30rem;
+  width: 100%;
   margin-top: 1rem;
   margin-left: auto;
   margin-right: auto;
@@ -158,12 +156,13 @@ button {
   margin-top: 1rem;
 }
 
-.datos {
+mat-label.datos {
   font-size: large;
   margin-bottom: 2%;
   font-family: "Montserrat Alternates", sans-serif;
   font-weight: bold;
-  line-height: 2em;
+  line-height: 1em;
+  color:#f4f4f4;
 }
 
 @media (max-width: 340px) {

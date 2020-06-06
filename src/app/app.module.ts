@@ -21,6 +21,7 @@ import { SubCategoriaComponent } from './components/categorias/sub-categoria/sub
 import { NgxPayPalModule } from 'ngx-paypal';
 import { CategoriaComponent } from './components/categorias/categoria/categoria.component';
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
+import { FavoritasComponent } from './components/favoritas/favoritas.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
     ForoComponent,
     CategoriasComponent,
     CategoriaComponent,
+    FavoritasComponent,
   ],
   imports: [
     BrowserModule,

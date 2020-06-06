@@ -142,4 +142,16 @@ export class WaveServiceService {
   getForumsBySubcategory(idSubcategory: number): Observable<any> {
     return this.http.get(`${this.url}/forum/subcategory/${idSubcategory}`);
   }
+
+  getForumsById(idForum: number): Observable<any> {
+    return this.http.get(`${this.url}/forum/${idForum}`);
+  }
+
+  getCategoryById(idCategory: number): Observable<any> {
+    return this.http.get(`${this.url}/category/${idCategory}`);
+  }
+
+  getSubCategoryById(idSubCategory: number): Observable<any> {
+    return this.http.get(`${this.url}/sub-category/${idSubCategory}`);
+  }
 }

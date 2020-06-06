@@ -5,23 +5,23 @@
             <div class="titulo">
                 <a routerLink="/home"><span><strong>wave</strong></span></a>
             </div>
-           
-                  <input type="text"
-                         placeholder="Foros"
+               
+                   
+            <div class="iconos">
+                <input type="text"
+                         
                          aria-label="Number"
                          matInput
                          [formControl]="myControl"
-                         [matAutocomplete]="auto">
+                         [matAutocomplete]="auto"
+                         >
                   <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let option of filteredForums | async" [value]="option.title">
                       {{option.title}}
                     </mat-option>
                   </mat-autocomplete>
-               
-                   
-            <div class="iconos">
-                <mat-icon>search</mat-icon>
-                <a routerLink="/categorias"><mat-icon>list</mat-icon></a>
+                
+                <mat-icon class="search">search</mat-icon>
                <a (click)="logOut()" routerLink="/iniciar-sesion"> <mat-icon >exit_to_app</mat-icon> </a>
             </div>
         </mat-toolbar-row>

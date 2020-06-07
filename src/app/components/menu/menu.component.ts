@@ -15,6 +15,9 @@ export class MenuComponent implements OnInit {
   filteredForums: Observable<string[]>;
   myControl = new FormControl();
 
+  show = false;
+  visibility = 'visible';
+
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
@@ -33,6 +36,10 @@ export class MenuComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value))
     );
+  }
+
+  visible() {
+    this.show = !this.show;
   }
 
   private _filter(value: string):string[] {

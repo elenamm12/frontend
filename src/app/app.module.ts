@@ -22,6 +22,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { CategoriaComponent } from './components/categorias/categoria/categoria.component';
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 import { FavoritasComponent } from './components/favoritas/favoritas.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { FavoritasComponent } from './components/favoritas/favoritas.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgxPayPalModule,
+    NgbModule,
   ],
   providers: [
     {

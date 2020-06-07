@@ -1,4 +1,6 @@
 
+
+
 .menu{
     background-color:#74b4bc;
     font-family: 'Montserrat Alternates', sans-serif;
@@ -15,11 +17,12 @@
 
 .iconos{
     width: 60%;
-    text-align: right;   
+    text-align: right; 
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 mat-icon{
-    margin-left: 4%;
     height: 100%;
     font-size: 0.7em;
 }
@@ -31,10 +34,35 @@ mat-icon{
 
 input{
     padding:0;
+    font-size: 100%;
+    font-family: 'Montserrat Alternates', sans-serif;
 }
 
 a{
     color: #f4f4f4;
+}
+
+button{
+    color:#f4f4f4;
+    background: transparent;
+    border: none;
+    width: 1em;
+    padding: 0;
+
+}
+
+button:focus{
+    outline:none;
+}
+
+button.opciones{
+    color: black;
+    padding-left: 10%;
+}
+
+
+.parent{
+    display:flex;
 }
 
 
@@ -45,3 +73,54 @@ a{
     border-radius: 10%;
     border-color: #f4f4f4;
 }
+
+a.opcion{
+    color:#484a4c;
+}
+
+::ng-deep.mat-menu-content:not(:empty) {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important; 
+}
+
+
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
+    border-radius: 4px 4px 0 0;
+    padding: 0 !important;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-infix {
+    padding: 0; 
+}
+
+::ng-depp.mat-form-field-infix{
+    width: 3em !important;
+}
+
+::ng-deep.mat-form-field-infix {
+    padding: .4em 0 !important;
+    width: 6.4em !important;
+    font-size: 60% !important;
+    border-top: 1.94em solid transparent !important;
+}   
+
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+    background-color: #f4f4f4 !important;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #f4f4f4 !important;
+    background: transparent;
+  }
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    color: #f4f4f4 !important;
+    background: transparent;
+  }
+  
+  //mat-input focused color
+  ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #f4f4f4 !important;
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #f4f4f4 !important;
+  }

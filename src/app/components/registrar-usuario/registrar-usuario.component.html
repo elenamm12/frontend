@@ -97,15 +97,13 @@
       <mat-label class="datos">Elige tu imagen de perfil:</mat-label>
       <br />
       <input
-        formControlName="image"
+        
         type="file"
         class="imagen"
         #Image
         accept="image/*"
         (change)="handleFileInput($event.target.files)"
       />
-
-
 
       <div class="form-group cuentas">
         <mat-label class="datos">Selecciona el tipo de cuenta: </mat-label>

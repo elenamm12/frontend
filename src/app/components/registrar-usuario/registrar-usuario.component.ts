@@ -30,6 +30,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return invalidCtrl || invalidParent;
   }
 }
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -71,7 +74,7 @@ export class RegistrarUsuarioComponent implements OnInit {
           Validators.required,
           Validators.pattern(''),
         ]),
-        image: new FormControl(''),
+        image: new FormControl('',[]), 
         contra: new FormControl('', [
           Validators.required,
           Validators.minLength(7),
@@ -178,6 +181,7 @@ export class RegistrarUsuarioComponent implements OnInit {
       console.log(this.registerForm.value);
       if (this.registerForm.value.tipoCuenta == 'Premium') {
         if (this.token) {
+          console.log(this.registerForm.value)
           this.waveService
             .registerUser(
               this.registerForm.value.nombres,
@@ -186,7 +190,8 @@ export class RegistrarUsuarioComponent implements OnInit {
               this.registerForm.value.correo,
               this.registerForm.value.fecha,
               this.registerForm.value.contra,
-              this.registerForm.value.tipoCuenta
+              this.registerForm.value.tipoCuenta,
+              this.fileToUpload
             )
             .subscribe((data) => {
               console.log(data);
@@ -196,6 +201,7 @@ export class RegistrarUsuarioComponent implements OnInit {
           alert('Debe pagar primero para obtener su cuenta Premium');
         }
       } else {
+        console.log(this.registerForm.value)
         this.waveService
           .registerUser(
             this.registerForm.value.nombres,
@@ -204,7 +210,8 @@ export class RegistrarUsuarioComponent implements OnInit {
             this.registerForm.value.correo,
             this.registerForm.value.fecha,
             this.registerForm.value.contra,
-            this.registerForm.value.tipoCuenta
+            this.registerForm.value.tipoCuenta,
+            this.fileToUpload
           )
           .subscribe((data) => {
             console.log(data);
@@ -260,13 +267,20 @@ export class RegistrarUsuarioComponent implements OnInit {
     return this.registerForm.get('tipoCuenta');
   }
 
+  get image(){
+    return this.registerForm.get('image');
+  }
+ 
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);
 
     var reader = new FileReader();
-    reader.onload = (event: any) => {
+    reader.onloadend = (event: any) => {
       this.imageUrl = event.target.result;
     };
     reader.readAsDataURL(this.fileToUpload);
   }
+
+  
+
 }

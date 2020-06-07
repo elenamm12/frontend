@@ -1,16 +1,20 @@
 <app-menu></app-menu>
-<div class="fondo">
-    <div class="espacio">
-
-        <div *ngFor="let cat of categories">
-            <a routerLink="/categoria/{{ cat.id }}">
-                <mat-card class="example-card container">
-    
-                    <img mat-card-image [src]="cat.contentCategories[0].imagen">
-                    <div class="centered">{{ cat.name }}</div>
-    
-                </mat-card>
-            </a>
+<div class="carousel">
+    <ngb-carousel
+  *ngIf="categories"
+  [showNavigationArrows]="showNavigationArrows"
+  [showNavigationIndicators]="showNavigationIndicators"
+>
+  <ng-template ngbSlide *ngFor="let cat of categories">
+    <div class="polaroid">
+        <img [src]="cat.contentCategories[0].imagen" alt="5 Terre" style="width:100%">
+        <div class="container">
+        <h4 class="categorias">{{cat.name}}</h4>
         </div>
-
+    </div>
+  </ng-template>
+</ngb-carousel>
 </div>
+
+
+

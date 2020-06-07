@@ -69,8 +69,12 @@ export class WaveServiceService {
     email: string,
     birthday: Date,
     password: string,
-    role: string
+    role: string,
+    image : File
   ): Observable<any> {
+    
+    let imag = image.slice().arrayBuffer();
+
     return this.http
       .post<any>(`${this.url}/user/register`, {
         firstName,
@@ -80,11 +84,13 @@ export class WaveServiceService {
         birthday,
         password,
         role,
+        imag
       })
       .pipe(
         tap((res: any) => {
           if (res) {
             this.saveToken(res.accessToken);
+            this.saveUser(res.userCreated)
           } else {
             console.log('no hay respuesta');
           }
@@ -98,6 +104,10 @@ export class WaveServiceService {
     this.token = token;
   }
 
+  private saveUser(user:any){
+    localStorage.setItem('currentUser', user);
+  }
+
   logOutUser(): void {
     localStorage.removeItem('currentToken');
     this.token = null;
@@ -107,6 +117,12 @@ export class WaveServiceService {
     this.token = localStorage.getItem('currentToken');
 
     return this.token;
+  }
+
+  getCurrentUser(){
+    let user;
+    user= localStorage.getItem('currentUser')
+    return user;
   }
 
   loginUserMock(email: String, password: String) {
@@ -124,6 +140,7 @@ export class WaveServiceService {
 
   logOut() {
     localStorage.removeItem('currentToken');
+    localStorage.removeItem('currentUser');
   }
 
   getAllCategories(): Observable<any> {
@@ -141,5 +158,21 @@ export class WaveServiceService {
 
   getForumsBySubcategory(idSubcategory: number): Observable<any> {
     return this.http.get(`${this.url}/forum/subcategory/${idSubcategory}`);
+  }
+
+  getForumsById(idForum: number): Observable<any> {
+    return this.http.get(`${this.url}/forum/${idForum}`);
+  }
+
+  getCategoryById(idCategory: number): Observable<any> {
+    return this.http.get(`${this.url}/category/${idCategory}`);
+  }
+
+  getSubCategoryById(idSubCategory: number): Observable<any> {
+    return this.http.get(`${this.url}/sub-category/${idSubCategory}`);
+  }
+
+  getFavoriteSubCategories(): Observable<any>{
+    return this.http.get(`${this.url}/category/favorites`);
   }
 }

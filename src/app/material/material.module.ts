@@ -9,7 +9,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
-import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete'
     MatNativeDateModule,
     MatToolbarModule,
     MatCardModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDividerModule,
+    MatChipsModule
       ],
   exports: [ 
     MatFormFieldModule,
@@ -37,7 +41,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete'
     MatNativeDateModule,
     MatToolbarModule,
     MatCardModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDividerModule,
+    MatChipsModule
   ]
 })
 export class MaterialModule { }

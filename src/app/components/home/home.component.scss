@@ -1,17 +1,17 @@
-.parent{
-    text-align: center;
+.fondo{
+    min-height: 100%;
+    margin-bottom: 3em;
 }
-
-mat-form-field{
-    width: 80%;
-}
-
 .carousel{
-    height: 13em;
-    max-height: 100%;
-    width: 98%;
+    width: 91%;
     margin: auto;
     margin-top:1em;
+}
+
+.categoria{
+    height: 2.5em;
+    padding-top:3%;
+    padding-left: 4%;
 }
 
 .picsum-img-wrapper{
@@ -19,10 +19,10 @@ mat-form-field{
 }
 
 img.cat{
-    height: 11em;
+    height: 30%;
+    height: 12em;
     max-height: 90%;
     width: 100%;
-    border-radius: 16px;
 }
 
 .container {
@@ -51,34 +51,58 @@ h4.categorias{
 }
 
 h4, .h4 {
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
 }
 
 h3,.h3 {
+    align-content: left;
+    text-align: left;
     margin-top: 1.2rem !important;
     margin-bottom: 1.7rem !important;
     margin-left: 7% !important;
+    margin-right: 7% !important;
     font-size:1.3rem !important;
     font-family: 'Montserrat Alternates', sans-serif;
 }
 
 h6,.h6 {
+    align-content: left;
+    text-align: left;
     margin-top: 1.2rem !important;
     margin-bottom: 0.9rem !important;
     margin-left: 7% !important;
+    margin-right: 7% !important;
     font-size:0.9rem !important;
     font-family: 'Montserrat Alternates', sans-serif;
 }
 
+.mat-card{
+    padding:0;
+    font-family: "Poiret One";
+    letter-spacing: 1.3px;
+    font-weight: bolder;
+}
 
+mat-card-content{
+    padding:13px;
+    text-align: justify;
+}
+
+mat-card-header{
+    padding-top: 10px;
+}
+
+a{
+    color:black;
+}
 
 div.polaroid {
     width: 95%;
     background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-bottom: 25px;
     margin:auto;
-    border-radius: 16px;
+    border-radius: 2px;
   }
   
   div.container {
@@ -102,3 +126,18 @@ div.polaroid {
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: #50d0fb !important;
   }
+
+::ng-deep .mat-card-image {
+  
+    margin: 0 !important; 
+}
+
+::ng-deep .mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: -1px 4px 8px 3px rgba(0, 0, 0, 0.171), 0px -1px 4px 0px rgba(0, 0, 0, 0.14), 1px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep .mat-chip-list-wrapper {
+    padding: 11px !important;
+    padding-top: 0 !important;
+}
+

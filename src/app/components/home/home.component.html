@@ -1,26 +1,47 @@
-<app-menu></app-menu>
+<div class="fondo">
+    <app-menu></app-menu>
 
-<h3><strong>¡Hola! Bienvenido de vuelta</strong></h3>
-
-<h6><strong>Tus categorias favoritas:</strong></h6>
-<div class="carousel">
-    <ngb-carousel
-  *ngIf="categories"
-  [showNavigationArrows]="showNavigationArrows"
-  [showNavigationIndicators]="showNavigationIndicators"
->
-  <ng-template ngbSlide *ngFor="let cat of categories">
-    <div class="polaroid container">
-        <img [src]="cat.contentCategories[0].imagen" alt="5 Terre" style="width:100%" class="cat">
-        <div class="container" class="centered">
-        <strong>{{cat.name}}</strong>
-        </div>
+    <h3><strong>¡Hola! Bienvenido de vuelta</strong></h3>
+    <h6>Accede rapido a tu contenido preferido</h6>
+    <div class="carousel">
+      <div *ngFor="let cat of favoriteCategories">
+        <mat-card class="example-card">
+          <a routerLink="/categoria/{{ cat.id }}"
+            ><img
+              mat-card-image
+              [src]="cat.contentCategories[0].imagen"
+              alt="5 Terre"
+              style="width: 100%;"
+              class="cat"
+            />
+            <mat-card-header>
+              <mat-card-title class="titulo">{{ cat.name }}</mat-card-title>
+              <mat-card-subtitle
+                >Recomendación Wave:
+                {{ cat.contentCategories[0].title }}</mat-card-subtitle
+              >
+            </mat-card-header>
+          </a>
+          <mat-divider></mat-divider>
+          <mat-card-header>
+            <mat-card-title
+              >Tu contenido favorito en {{ cat.name }}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-chip-list aria-label="Fish selection">
+            <div *ngFor="let sub of cat.subCategories">
+              <a
+                routerLink="/sub-categoria/{{
+                  cat.subCategories[0].id
+                }}/categoria/{{ cat.id }}"
+                ><mat-chip color="accent" selected>{{
+                  cat.subCategories[0].name
+                }}</mat-chip></a
+              >
+            </div>
+          </mat-chip-list>
+        </mat-card>
+      </div>
     </div>
-  </ng-template>
-</ngb-carousel>
+    
 </div>
-
-<h6><strong>Subcategorías:</strong></h6>
-
-
-

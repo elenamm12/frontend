@@ -9,20 +9,11 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
 })
 export class CategoriaComponent implements OnInit {
    categories: any[] = [];
-   categoryById: {};
+   categoryById: any;
 
   categoria: any;
   subcategories: any[] = [];
   categoryId: number;
-
-  categorias = {
-    encabezado: 
-      'https://i0.wp.com/lapalabra.gt/wp-content/uploads/2018/11/gravity-falls-diario-3-journal-3-entrega-inmediata-D_NQ_NP_808015-MLC25201571264_122016-O.jpg?fit=1042%2C663',
-    imagen:
-      'https://i.pinimg.com/originals/fc/30/a5/fc30a5269167b32e5cdab0aa8e438261.png',
-  };
-
-
 
 
   constructor(

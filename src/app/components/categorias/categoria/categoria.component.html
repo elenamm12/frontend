@@ -1,16 +1,19 @@
 <app-menu></app-menu>
 
 <mat-card class="example-card container head">
-    <img mat-card-image src="{{categorias.encabezado}}" class="encabezado">
-    <div class="centered">Libros</div>
+    <img mat-card-image src="{{categoryById.contentCategories[0].imagen}}" class="encabezado">
+    <div class="centered"><strong>{{categoryById.name}}</strong></div>
 </mat-card>
 
 <div class="p">
     <br>
-    <h4>Recomendaciones wave</h4>
-    <h5>Aqui podras conseguir personas con quien compartir la maravillosa aventura de la lectura no olvides visitar la pagina y seguir nutriendo tu lectura</h5>
+    <h4>Recomendaciones Wave</h4>
+    <h5>{{categoryById.contentCategories[0].text}}</h5>
     <br>
-    <h4>Subcategorías</h4>
+    <h5><strong>Consigue mas en:</strong> </h5>
+    <h5><a href="{{categoryById.contentCategories[0].link}}">{{categoryById.contentCategories[0].link}}</a></h5>
+    <br>
+    <h4>Podría interesarte</h4>
 </div>
 
 
@@ -20,7 +23,7 @@
         <div *ngFor="let sub of subcategories">
             <a routerLink="/sub-categoria/{{sub.id}}/categoria/{{categoryId}}">
                 <mat-card>
-                <img mat-card-image src="{{categorias.imagen}}" style="width:100%">
+                <img mat-card-image src="{{sub.contentSubcategories[0].imagen}}" style="width:100%">
                 <mat-card-content>
                     <mat-card-footer><p>{{sub.name}}</p></mat-card-footer>
                 </mat-card-content>        
@@ -34,7 +37,7 @@
     <div class="column reverse">
         <div *ngFor="let sub of subcategories">
             <a routerLink="/sub-categoria/{{sub.id}}"><mat-card>
-                <img mat-card-image src="{{categorias.imagen}}" style="width:100%">
+                <img mat-card-image src="{{sub.contentSubcategories[0].imagen}}" style="width:100%">
                 <mat-card-content>
                     <mat-card-footer><p>{{sub.name}}</p></mat-card-footer>
                 </mat-card-content>        

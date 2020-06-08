@@ -32,24 +32,19 @@ export class CategoriaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    
-    this.categoria = this.route.snapshot.params['id'];
-    // Carga las Subcategorias de una Categoria
-    this.waveService.getAllCategories().subscribe((response) => {
-      this.categories = response.categories;
-      console.log(this.categories);
       this.categoryId = this.route.snapshot.params['id'];
-      this.categoryById = this.categories.filter(
-        (category) => category.id == this.categoryId
-      )[0];
-      console.log(this.categoryById);
+      this.waveService.getCategoryById(this.categoryId)
+      .subscribe((response)=>{
+        console.log(response);
+      });
+      
       this.waveService
         .getSubcategoryByCategory(this.categoryId)
         .subscribe((response) => {
+          console.log(response);
           this.subcategories = response.subCategories;
           console.log(this.subcategories);
         });
-    });
-  }
+    };
 }
+

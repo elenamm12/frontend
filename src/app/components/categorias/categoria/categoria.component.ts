@@ -32,6 +32,8 @@ export class CategoriaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    
     this.categoria = this.route.snapshot.params['id'];
     // Carga las Subcategorias de una Categoria
     this.waveService.getAllCategories().subscribe((response) => {

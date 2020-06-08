@@ -26,7 +26,8 @@ export class CategoriaComponent implements OnInit {
       this.categoryId = this.route.snapshot.params['id'];
       this.waveService.getCategoryById(this.categoryId)
       .subscribe((response)=>{
-        console.log(response);
+        this.categoryById = response;
+       
       });
       
       this.waveService

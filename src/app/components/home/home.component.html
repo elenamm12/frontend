@@ -2,7 +2,7 @@
     <app-menu></app-menu>
 
     <h3><strong>¡Hola! Bienvenido de vuelta</strong></h3>
-    <h6>Accede rapido a tu contenido preferido</h6>
+    <h6>Accede rápido a tu contenido preferido</h6>
     <div class="carousel">
       <div *ngFor="let cat of favoriteCategories">
         <mat-card class="example-card">
@@ -15,17 +15,22 @@
               class="cat"
             />
             <mat-card-header>
-              <mat-card-title class="titulo">{{ cat.name }}</mat-card-title>
+              <mat-card-title class="titulo"><strong>{{ cat.name }}</strong></mat-card-title>
               <mat-card-subtitle
                 >Recomendación Wave:
                 {{ cat.contentCategories[0].title }}</mat-card-subtitle
               >
             </mat-card-header>
+            <mat-card-content>
+                <p>
+                    {{ cat.contentCategories[0].text }}
+                </p>
+            </mat-card-content>
           </a>
           <mat-divider></mat-divider>
           <mat-card-header>
             <mat-card-title
-              >Tu contenido favorito en {{ cat.name }}
+              ><strong>Tu contenido favorito en {{ cat.name }}</strong>
             </mat-card-title>
           </mat-card-header>
           <mat-chip-list aria-label="Fish selection">

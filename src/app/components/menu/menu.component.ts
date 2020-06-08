@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-menu',
@@ -14,9 +14,6 @@ export class MenuComponent implements OnInit {
   private forums: any[] = [];
   filteredForums: Observable<string[]>;
   myControl = new FormControl();
-
-  show = false;
-  visibility = 'visible';
 
   constructor(
     private waveService: WaveServiceService,
@@ -31,22 +28,19 @@ export class MenuComponent implements OnInit {
       console.log(this.forums);
     });
     //
-    this.filteredForums = this.myControl.valueChanges
-    .pipe(
+    this.filteredForums = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value))
+      map((value) => this._filter(value))
     );
   }
 
-  visible() {
-    this.show = !this.show;
-  }
-
-  private _filter(value: string):string[] {
+  private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.forums.filter(option => option.title.toLowerCase().includes(filterValue));
-  } 
+    return this.forums.filter((option) =>
+      option.title.toLowerCase().includes(filterValue)
+    );
+  }
 
   logOut() {
     this.waveService.logOutUser();

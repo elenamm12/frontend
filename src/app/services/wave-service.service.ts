@@ -175,4 +175,8 @@ export class WaveServiceService {
   getFavoriteSubCategories(): Observable<any>{
     return this.http.get(`${this.url}/category/favorites`);
   }
+
+  getFavoritesForums(idSubCategory: number): Observable<any>{
+    return this.http.get(`${this.url}/forum/favorites/sub-category/${idSubCategory}`);
+  }
 }

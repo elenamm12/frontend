@@ -9,8 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ForoComponent implements OnInit {
 
-  foro: string;
-
+  foroId: number;
+  Foro; any;
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
@@ -18,7 +18,9 @@ export class ForoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.foro = this.route.snapshot.params['id'];
+   this.foroId = this.route.snapshot.params['id'];
+   this.Foro = this.waveService.getForumsById(this.foroId);
+   console.log(this.Foro);
   }
 
 }

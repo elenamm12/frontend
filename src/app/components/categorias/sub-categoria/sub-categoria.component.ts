@@ -13,6 +13,7 @@ import {map, startWith} from 'rxjs/operators';
 export class SubCategoriaComponent implements OnInit {
   subcategories: any[] = [];
   favoriteForums: any[] = [];
+  subscribedForums: any[] = [];
   subcategory = {};
   subcategoryId: number;
   categoryId: number;
@@ -46,10 +47,17 @@ export class SubCategoriaComponent implements OnInit {
         this.subcategories = response.subCategories;
         console.log('subcategorias',this.subcategories);
         this.subcategoryId = this.route.snapshot.params['id'];
-        this.subcategory = this.subcategories.filter(
-          (subcategory) => subcategory.id == this.subcategoryId
-        )[0];
+       this.waveService.getSubCategoryById(this.subcategoryId)
+       .subscribe((response)=>{
+         this.subcategory=response;
+       })
         console.log('subcategoria', this.subcategory);
+        this.waveService
+          .getFavoritesForums(this.subcategoryId)
+          .subscribe((response) => {
+            console.log('suscribes', response.forums)
+            this.subscribedForums = response.forums;
+
         this.waveService
           .getForumsBySubcategory(this.subcategoryId)
           .subscribe((response) => {
@@ -57,7 +65,7 @@ export class SubCategoriaComponent implements OnInit {
             console.log('foro fav',this.favoriteForums);
           });
       });
-      
+    })  
      
   }
 

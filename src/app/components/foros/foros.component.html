@@ -24,6 +24,6 @@
   </div>
 
   <div *ngFor="let foro of forums">
-    <mat-card><img mat-card-avatar src="/assets/img/logo.png" alt="User Avatar"><strong>{{foro.title}}</strong></mat-card>
+    <a routerLink="/foro/{{foro.id}}"><mat-card><img mat-card-avatar src="/assets/img/logo.png" alt="User Avatar"><strong>{{foro.title}}</strong></mat-card></a>
 
   </div>

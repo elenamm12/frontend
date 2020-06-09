@@ -19,7 +19,7 @@ export class FavoritasComponent implements OnInit {
       console.log('favorite', this.favoriteCategories);
     });
     this.waveService.getCategoriesWSubcategories().subscribe((response)=>{
-      this.Categories=response;
+      this.Categories=response.categories;
       console.log('categorias', this.Categories);
     })
   }

@@ -70,9 +70,8 @@ export class WaveServiceService {
     birthday: Date,
     password: string,
     role: string,
-    image : File
+    image: File
   ): Observable<any> {
-    
     let imag = image.slice().arrayBuffer();
 
     return this.http
@@ -84,13 +83,13 @@ export class WaveServiceService {
         birthday,
         password,
         role,
-        imag
+        imag,
       })
       .pipe(
         tap((res: any) => {
           if (res) {
             this.saveToken(res.accessToken);
-            this.saveUser(res.userCreated)
+            this.saveUser(res.userCreated);
           } else {
             console.log('no hay respuesta');
           }
@@ -104,7 +103,7 @@ export class WaveServiceService {
     this.token = token;
   }
 
-  private saveUser(user:any){
+  private saveUser(user: any) {
     localStorage.setItem('currentUser', user);
   }
 
@@ -119,9 +118,9 @@ export class WaveServiceService {
     return this.token;
   }
 
-  getCurrentUser(){
+  getCurrentUser() {
     let user;
-    user= localStorage.getItem('currentUser')
+    user = localStorage.getItem('currentUser');
     return user;
   }
 
@@ -172,15 +171,23 @@ export class WaveServiceService {
     return this.http.get(`${this.url}/sub-category/${idSubCategory}`);
   }
 
-  getFavoriteSubCategories(): Observable<any>{
+  getFavoriteSubCategories(): Observable<any> {
     return this.http.get(`${this.url}/category/favorites`);
   }
 
-  getFavoritesForums(idSubCategory: number): Observable<any>{
-    return this.http.get(`${this.url}/forum/favorites/sub-category/${idSubCategory}`);
+  getFavoritesForums(idSubCategory: number): Observable<any> {
+    return this.http.get(
+      `${this.url}/forum/favorites/sub-category/${idSubCategory}`
+    );
   }
 
-  getCategoriesWSubcategories():Observable<any>{
+  getCategoriesWSubcategories(): Observable<any> {
     return this.http.get(`${this.url}/category/all-with-subcategories`);
+  }
+
+  saveFavoriteSubCategoria(subcategoryId: any) {
+    return this.http.patch(`${this.url}/sub-category/add/favorite`, [
+      { id: subcategoryId },
+    ]);
   }
 }

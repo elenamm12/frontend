@@ -195,7 +195,7 @@ export class RegistrarUsuarioComponent implements OnInit {
             )
             .subscribe((data) => {
               console.log(data);
-              this.router.navigate(['/home']);
+              this.router.navigate(['/favoritas']);
             });
         } else {
           alert('Debe pagar primero para obtener su cuenta Premium');
@@ -215,7 +215,7 @@ export class RegistrarUsuarioComponent implements OnInit {
           )
           .subscribe((data) => {
             console.log(data);
-            this.router.navigate(['/home']);
+            this.router.navigate(['/favoritas']);
           });
       }
     } else {

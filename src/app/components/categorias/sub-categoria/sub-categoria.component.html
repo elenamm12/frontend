@@ -1,46 +1,69 @@
 <app-menu></app-menu>
 
 <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Encuentra el foro que buscas</mat-label>
-      <input type="text"
-             placeholder="Busca un foro"
-             aria-label="Number"
-             matInput
-             [formControl]="myControl"
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredForums | async" [value]="option.title">
-          {{option.title}}
-        </mat-option>
-      </mat-autocomplete>
-      <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Encuentra el foro que buscas</mat-label>
+    <input
+      type="text"
+      placeholder="Busca un foro"
+      aria-label="Number"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let option of filteredForums | async"
+        [value]="option.title"
+      >
+        {{ option.title }}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
 </form>
 
 <mat-card class="example-card container head">
-    <img mat-card-image [src]="salvando.imagen" class="encabezado">
-    <div class="top">Libros de Misterio</div>
-    <mat-card-content>
-      <p>
-        Comparte con los demás usuarios el libro que te puso los pelos de punta
-      </p>
+  <img
+    mat-card-image
+    src="{{ subcategory.contentSubcategories[0].imagen }}"
+    class="encabezado"
+  />
+  <div class="top"><strong>{{ subcategory.name }}</strong></div>
+  <mat-card-content>
+    <mat-card-title style="justify-content: left;"
+      ><strong
+        >Recomendación Wave:
+        {{ subcategory.contentSubcategories[0].title }}</strong
+      ></mat-card-title
+    >
+    <p>
+      {{ subcategory.contentSubcategories[0].text }}
+    </p>
+    <br />
+    <p>
+      Consigue más en:
+      <a href="{{ subcategory.contentSubcategories[0].link }}"
+        >Contenido extra</a
+      >
+    </p>
   </mat-card-content>
 </mat-card>
 
-<br>
+<br />
 <h4>Participa en los foros sobre Misterio</h4>
-<br>
+<br />
 
-<div>
+<div></div>
 
+<div *ngFor="let foro of favoriteForums" class="foros">
+  <a routerLink="/foro/{{ foro.id }}"
+    ><mat-card
+      ><img
+        mat-card-avatar
+        src="/assets/img/logo.png"
+        alt="User Avatar"
+      /><strong>{{ foro.title }}</strong></mat-card
+    ></a
+  >
 </div>
-
-
-<div *ngFor="let foro of favoriteForums">
-  <a routerLink="/foro/{{foro.id}}"><mat-card><img mat-card-avatar src="/assets/img/logo.png" alt="User Avatar"><strong>{{foro.title}}</strong></mat-card></a>
-
-</div>
-
-
-

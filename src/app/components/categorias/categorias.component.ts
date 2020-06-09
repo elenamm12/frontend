@@ -9,14 +9,7 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
 })
 export class CategoriasComponent implements OnInit {
   categories: any[] = [];
-
-  private categoryById: {};
-
-  categorias = 
-  {
-    "imagen":"https://i0.wp.com/lapalabra.gt/wp-content/uploads/2018/11/gravity-falls-diario-3-journal-3-entrega-inmediata-D_NQ_NP_808015-MLC25201571264_122016-O.jpg?fit=1042%2C663"
-  };
-  
+ 
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
@@ -28,11 +21,5 @@ export class CategoriasComponent implements OnInit {
       this.categories = response.categories;
       console.log(this.categories);
     });
-  }
-
-  getCategoryById(id: number) {
-    this.categoryById = this.categories.filter(
-      (category) => (category.id = id)
-    );
   }
 }

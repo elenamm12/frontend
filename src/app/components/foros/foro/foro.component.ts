@@ -5,26 +5,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-foro',
   templateUrl: './foro.component.html',
-  styleUrls: ['./foro.component.scss']
+  styleUrls: ['./foro.component.scss'],
 })
 export class ForoComponent implements OnInit {
-
   foroId: number;
-  Foro: any;
+  Foro: any={};
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-   this.foroId = this.route.snapshot.params['id'];
-   this.waveService.getForumsById(this.foroId)
-   .subscribe((response)=>{
-   this.Foro = response.forums
-   console.log(this.Foro)
-   });
-   
+    this.foroId = this.route.snapshot.params['id'];
+    this.waveService.getForumsById(this.foroId).subscribe((response) => {
+      this.Foro = response.forums;
+      console.log(this.Foro);
+    });
   }
-
 }

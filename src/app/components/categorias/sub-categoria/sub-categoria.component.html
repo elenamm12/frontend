@@ -1,9 +1,10 @@
 <app-menu></app-menu>
 
 <form class="example-form">
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Encuentra el foro que buscas</mat-label>
       <input type="text"
-             placeholder="Foros"
+             placeholder="Busca un foro"
              aria-label="Number"
              matInput
              [formControl]="myControl"
@@ -13,13 +14,18 @@
           {{option.title}}
         </mat-option>
       </mat-autocomplete>
+      <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 </form>
 
 <mat-card class="example-card container head">
     <img mat-card-image [src]="salvando.imagen" class="encabezado">
     <div class="top">Libros de Misterio</div>
-    <div class="centered">Comparte con los demás usuarios el libro que te puso los pelos de punta</div>
+    <mat-card-content>
+      <p>
+        Comparte con los demás usuarios el libro que te puso los pelos de punta
+      </p>
+  </mat-card-content>
 </mat-card>
 
 <br>
@@ -30,10 +36,10 @@
 
 </div>
 
+
 <div *ngFor="let foro of favoriteForums">
-    <div class="card">
-        <a routerLink="/foro/{{foro.id}}"><mat-card>{{foro.title}}</mat-card></a>
-    </div>
+  <a routerLink="/foro/{{foro.id}}"><mat-card><img mat-card-avatar src="/assets/img/logo.png" alt="User Avatar"><strong>{{foro.title}}</strong></mat-card></a>
+
 </div>
 
 

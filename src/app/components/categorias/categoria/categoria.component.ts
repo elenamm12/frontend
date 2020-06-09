@@ -9,7 +9,7 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
 })
 export class CategoriaComponent implements OnInit {
    categories: any[] = [];
-   categoryById: any;
+   categoryById: any = {};
 
   categoria: any;
   subcategories: any[] = [];

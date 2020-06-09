@@ -23,6 +23,7 @@ import { CategoriaComponent } from './components/categorias/categoria/categoria.
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 import { FavoritasComponent } from './components/favoritas/favoritas.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ForoFilterPipe } from './pipes/foro-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CategoriasComponent,
     CategoriaComponent,
     FavoritasComponent,
+    ForoFilterPipe,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@
         placeholder="Busca un foro"
         [formControl]="myControl"
         [matAutocomplete]="auto"
+        [(ngModel)]="filterForum"
       />
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option
@@ -23,7 +24,7 @@
     </mat-form-field>
   </div>
 
-  <div *ngFor="let foro of forums">
+  <div *ngFor="let foro of forums | foroFilter:filterForum">
     <a routerLink="/foro/{{foro.id}}"><mat-card><img mat-card-avatar src="/assets/img/logo.png" alt="User Avatar"><strong>{{foro.title}}</strong></mat-card></a>
 
   </div>

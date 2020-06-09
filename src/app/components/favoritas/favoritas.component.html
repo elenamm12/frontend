@@ -1,5 +1,26 @@
 <div class="fondo">
-  <h5>Selecciona todos los temas que te interesan</h5>
+  <div *ngIf="favoriteCategories.length > 0">
+    <h5>Tu contenido favorito</h5>
+    <div *ngFor="let categoria of favoriteCategories">
+      <mat-card class="form">
+        <img mat-card-avatar src="{{categoria.contentCategories[0].imagen}}" alt="User Avatar" />
+        <strong>{{ categoria.name }}</strong>
+        <br />
+        <mat-divider></mat-divider>
+        <mat-card-content></mat-card-content>
+        <mat-chip-list multiple aria-label="Fish selection">
+          <div *ngFor="let sub of categoria.subCategories">
+            <mat-chip color="accent" selected>
+              {{ sub.name }}
+            </mat-chip>
+          </div>
+        </mat-chip-list>
+      </mat-card>
+    </div>
+
+  </div>
+
+  <h5>Selecciona todos los temas que te interesen</h5>
   <div *ngFor="let categoria of Categories">
     <mat-card class="form">
       <img mat-card-avatar src="{{categoria.contentCategories[0].imagen}}" alt="User Avatar" />
@@ -12,12 +33,21 @@
           <mat-chip color="accent" selected>
             {{ sub.name }}
           </mat-chip>
+          <button class="btn btn-primary primero" type="submit">
+            agregar
+          </button>
+        </div>
+        <div *ngFor="let sub of categoria.subCategories">
+          <mat-chip color="accent" selected>
+            {{ sub.name }}
+          </mat-chip>
+          <button class="btn btn-primary primero" type="submit">
+            agregar
+          </button>
         </div>
       </mat-chip-list>
       <mat-card-footer>
-        <button class="btn btn-primary primero" type="submit">
-          agregar
-        </button>
+
       </mat-card-footer>
     </mat-card>
   </div>

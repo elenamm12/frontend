@@ -2,8 +2,8 @@
   <h5>Selecciona todos los temas que te interesan</h5>
   <div *ngFor="let categoria of Categories">
     <mat-card class="form">
-      <img mat-card-avatar src="/assets/img/logo.png" alt="User Avatar" />
-      {{ categoria.name }}
+      <img mat-card-avatar src="{{categoria.contentCategories[0].imagen}}" alt="User Avatar" />
+      <strong>{{ categoria.name }}</strong>
       <br />
       <mat-divider></mat-divider>
       <mat-card-content></mat-card-content>

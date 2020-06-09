@@ -36,19 +36,13 @@ export class SubCategoriaComponent implements OnInit {
       map((value) => this._filter(value))
     );
     // Carga los Foros de una Subcategoria
-    this.categoryId = this.route.snapshot.params['idCateg'];
-    this.waveService
-      .getSubcategoryByCategory(this.categoryId)
-      .subscribe((response) => {
-        this.subcategories = response.subCategories;
-        console.log('subcategorias', this.subcategories);
-        this.subcategoryId = this.route.snapshot.params['id'];
-        this.waveService
-          .getSubCategoryById(this.subcategoryId)
-          .subscribe((response) => {
-            this.subcategory = response;
-          });
-        console.log('subcategoria', this.subcategory);
+    
+       this.subcategoryId = this.route.snapshot.params['id'];
+       this.waveService.getSubCategoryById(this.subcategoryId)
+       .subscribe((response)=>{
+         this.subcategory=response;
+         console.log('subcategoria', this.subcategory)
+       })
         this.waveService
           .getFavoritesForums(this.subcategoryId)
           .subscribe((response) => {
@@ -63,7 +57,7 @@ export class SubCategoriaComponent implements OnInit {
               });
           });
       });
-  }
+  
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();

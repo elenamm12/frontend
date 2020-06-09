@@ -13,6 +13,7 @@ import {map, startWith} from 'rxjs/operators';
 export class ForosComponent implements OnInit {
   forums: any[] = [];
   filteredForums: Observable<string[]>;
+  filterForum='';
   myControl = new FormControl();
 
   constructor(    private waveService: WaveServiceService,

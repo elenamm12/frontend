@@ -9,6 +9,7 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
 export class FavoritasComponent implements OnInit {
   //tiene las subcategorias favoritas;
   favoriteCategories : any[] = [];
+  Categories:any[] = [];
 
 
   constructor(private waveService : WaveServiceService) { }
@@ -19,6 +20,10 @@ export class FavoritasComponent implements OnInit {
       this.favoriteCategories = response.categories;
       console.log("favorite", this.favoriteCategories);
     });
+    this.waveService.getCategoriesWSubcategories().subscribe((response)=>{
+      this.Categories=response;
+      console.log('categorias', this.Categories);
+    })
   }
 
 }

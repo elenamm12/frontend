@@ -3,7 +3,11 @@
     <h5>Tu contenido favorito</h5>
     <div *ngFor="let categoria of favoriteCategories">
       <mat-card class="form">
-        <img mat-card-avatar src="{{categoria.contentCategories[0].imagen}}" alt="User Avatar" />
+        <img
+          mat-card-avatar
+          src="{{ categoria.contentCategories[0].imagen }}"
+          alt="User Avatar"
+        />
         <strong>{{ categoria.name }}</strong>
         <br />
         <mat-divider></mat-divider>
@@ -17,7 +21,6 @@
         </mat-chip-list>
       </mat-card>
     </div>
-
   </div>
 
   <h5>Selecciona todos los temas que te interesen</h5>
@@ -31,31 +34,29 @@
       <strong>{{ categoria.name }}</strong>
       <br />
       <mat-divider></mat-divider>
-      <mat-card-content></mat-card-content>
+      <mat-card-content> </mat-card-content>
       <mat-chip-list multiple aria-label="Fish selection">
         <div *ngFor="let sub of categoria.subCategories">
           <mat-chip color="accent" selected>
             {{ sub.name }}
-            <mat-icon matChipRemove (click)="agregarFavorito(sub.id)"
-              >favorite</mat-icon
+            <button
+              mat-icon-button
+              class="icono"
+              (click)="isClicked = !isClicked"
+              [class.myClass]="isClicked"
             >
+              <mat-icon matChipRemove (click)="agregarFavorito(sub.id)"
+                >favorite</mat-icon
+              >
+            </button>
           </mat-chip>
-          <button class="btn btn-primary primero" type="submit">
-            agregar
-          </button>
-        </div>
-        <div *ngFor="let sub of categoria.subCategories">
-          <mat-chip color="accent" selected>
-            {{ sub.name }}
-          </mat-chip>
-          <button class="btn btn-primary primero" type="submit">
-            agregar
-          </button>
         </div>
       </mat-chip-list>
-      <mat-card-footer>
-
-      </mat-card-footer>
     </mat-card>
   </div>
+  <a routerLink="/home"
+    ><button class="btn btn-primary primero btn-lg" type="submit">
+      continuar
+    </button></a
+  >
 </div>

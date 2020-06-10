@@ -10,6 +10,7 @@ export class FavoritasComponent implements OnInit {
   //tiene las subcategorias favoritas;
   favoriteCategories: any[] = [];
   Categories: any[] = [];
+  isClicked = false;
 
   constructor(private waveService: WaveServiceService) {}
 

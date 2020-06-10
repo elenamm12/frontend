@@ -1,19 +1,12 @@
 <app-menu></app-menu>
 <div class="fondo">
-    <div class="espacio">
 
-    </div>
-
-    
-    <div *ngFor="let cat of categories">
-        <a routerLink="/categoria/{{ cat.id }}">
-            <mat-card class="example-card container">
-
-                <img mat-card-image src="{{cat.contentCategories[0].imagen}}" >
-                <div class="centered">{{ cat.name }}</div>
-
-            </mat-card>
-        </a>
-    </div>
-
+  <div *ngFor="let cat of categories" class="contenido">
+    <a routerLink="/categoria/{{ cat.id }}">
+      <mat-card class="example-card container">
+        <img mat-card-image src="{{ cat.contentCategories[0].imagen }}" />
+        <div class="centered">{{ cat.name }}</div>
+      </mat-card>
+    </a>
+  </div>
 </div>

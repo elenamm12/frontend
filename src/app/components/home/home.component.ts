@@ -10,11 +10,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   categories: any[] = [];
   favoriteCategories : any[] = [];
-  categorias = 
-  {
-    imagen:"https://i0.wp.com/lapalabra.gt/wp-content/uploads/2018/11/gravity-falls-diario-3-journal-3-entrega-inmediata-D_NQ_NP_808015-MLC25201571264_122016-O.jpg?fit=1042%2C663"
-  }
-
 
   showNavigationArrows = true;
   showNavigationIndicators = false;

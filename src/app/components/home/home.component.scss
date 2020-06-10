@@ -1,150 +1,156 @@
-.fondo{
-    min-height: 100%;
-    margin-bottom: 3em;
+.fondo {
+  min-height: 100%;
+  margin-bottom: 3em;
 }
-.carousel{
-    width: 91%;
-    margin: auto;
-    margin-top:1em;
-}
-
-.categoria{
-    height: 2.5em;
-    padding-top:3%;
-    padding-left: 4%;
+.carousel {
+  width: 89%;
+  margin: auto;
+  margin-top: 1em;
 }
 
-.picsum-img-wrapper{
-    height: 100%;
+.categoria {
+  height: 2.5em;
+  padding-top: 3%;
+  padding-left: 4%;
 }
 
-img.cat{
-    height: 30%;
-    height: 12em;
-    max-height: 90%;
-    width: 100%;
+.picsum-img-wrapper {
+  height: 100%;
+}
+
+img.cat {
+  height: 30%;
+  height: 12em;
+  max-height: 90%;
+  width: 100%;
 }
 
 .container {
-    position: relative;
-    text-align: center;
-    color: white;
-  }
-
-  .centered {
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.6rem !important;
-    letter-spacing: 2px;
-  }
-
-h4.categorias{
-    font-family: 'Montserrat Alternates', sans-serif;
-    text-align: center;
-    font-weight: bolder;
-    color: #484a4c;
-    letter-spacing: 2px;
-    margin: auto;
-    text-transform: lowercase;
+  position: relative;
+  text-align: center;
+  color: white;
 }
 
-h4, .h4 {
-    font-size: 1.1rem !important;
+.centered {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.6rem !important;
+  letter-spacing: 2px;
 }
 
-h3,.h3 {
-    align-content: left;
-    text-align: left;
-    margin-top: 1.2rem !important;
-    margin-bottom: 1.7rem !important;
-    margin-left: 7% !important;
-    margin-right: 7% !important;
-    font-size:1.3rem !important;
-    font-family: 'Montserrat Alternates', sans-serif;
+h4.categorias {
+  font-family: "Montserrat Alternates", sans-serif;
+  text-align: center;
+  font-weight: bolder;
+  color: #484a4c;
+  letter-spacing: 2px;
+  margin: auto;
+  text-transform: lowercase;
 }
 
-h6,.h6 {
-    align-content: left;
-    text-align: left;
-    margin-top: 1.2rem !important;
-    margin-bottom: 0.9rem !important;
-    margin-left: 7% !important;
-    margin-right: 7% !important;
-    font-size:0.9rem !important;
-    font-family: 'Montserrat Alternates', sans-serif;
+h4,
+.h4 {
+  font-size: 1.1rem !important;
 }
 
-.mat-card{
-    padding:0;
-    font-family: "Poiret One";
-    letter-spacing: 1.3px;
-    font-weight: bolder;
-    margin-bottom: 1.5em;
+h3,
+.h3 {
+  align-content: left;
+  text-align: left;
+  margin-top: 1.2rem !important;
+  margin-bottom: 1.7rem !important;
+  margin-left: 7% !important;
+  margin-right: 7% !important;
+  font-size: 1.3rem !important;
+  font-family: "Montserrat Alternates", sans-serif;
 }
 
-mat-card-content{
-    padding:13px;
-    text-align: justify;
+h6,
+.h6 {
+  align-content: left;
+  text-align: left;
+  margin-top: 1.2rem !important;
+  margin-bottom: 0.9rem !important;
+  margin-left: 7% !important;
+  margin-right: 7% !important;
+  font-size: 0.9rem !important;
+  font-family: "Montserrat Alternates", sans-serif;
 }
 
-mat-card-header{
-    padding-top: 10px;
+.mat-card {
+  padding: 0;
+  font-family: "Poiret One";
+  letter-spacing: 1.3px;
+  font-weight: bolder;
+  margin-bottom: 1.5em;
 }
 
-a{
-    color:black;
+mat-card-content {
+  padding: 15px;
+  padding-bottom: 11;
+  padding-top:0;
+  text-align: justify;
+  margin-bottom: 0;
+}
+
+mat-card-header {
+  padding-top: 10px;
+}
+
+a {
+  color: black;
 }
 
 div.polaroid {
-    width: 95%;
-    background-color: white;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 25px;
-    margin:auto;
-    border-radius: 2px;
-  }
-  
-  div.container {
-    text-align: center;
-    padding: 0;
-  }
+  width: 95%;
+  background-color: white;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+  margin: auto;
+  border-radius: 2px;
+}
+
+div.container {
+  text-align: center;
+  padding: 0;
+}
 
 ::ng-deep .carousel-control-prev {
-    opacity: 0 !important;
+  opacity: 0 !important;
 }
 
 ::ng-deep .carousel-control-next {
-    opacity: 0 !important;
+  opacity: 0 !important;
 }
 
-::ng-deep .carousel-inner{
-    height: 100% !important;
-    padding: 3% !important;
+::ng-deep .carousel-inner {
+  height: 100% !important;
+  padding: 3% !important;
 }
 
-::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-    color: #50d0fb !important;
-  }
+::ng-deep
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline-thick {
+  color: #50d0fb !important;
+}
 
 ::ng-deep .mat-card-image {
-  
-    margin: 0 !important; 
+  margin: 0 !important;
 }
 
-::ng-deep .mat-card:not([class*=mat-elevation-z]) {
-    box-shadow: -1px 4px 8px 3px rgba(0, 0, 0, 0.171), 0px -1px 4px 0px rgba(0, 0, 0, 0.14), 1px 1px 3px 0px rgba(0, 0, 0, 0.12);
+::ng-deep .mat-card:not([class*="mat-elevation-z"]) {
+  box-shadow: -1px 4px 8px 3px rgba(0, 0, 0, 0.171),
+    0px -1px 4px 0px rgba(0, 0, 0, 0.14), 1px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
 ::ng-deep .mat-chip-list-wrapper {
-    padding: 11px !important;
-    padding-top: 0 !important;
+  padding: 11px !important;
+  padding-top: 0 !important;
 }
 
 ::ng-deep .mat-card .mat-divider-horizontal {
-
-    width: 90% !important;
-    margin-left: 5%;
+  width: 90% !important;
+  margin-left: 5%;
 }
-

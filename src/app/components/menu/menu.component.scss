@@ -77,3 +77,7 @@ a.opcion{
     color:#484a4c;
 }
 
+::ng-deep .mat-menu-content:not(:empty) {
+    width: 10em;
+}
+

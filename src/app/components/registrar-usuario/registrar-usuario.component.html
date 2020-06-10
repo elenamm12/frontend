@@ -3,14 +3,14 @@
     <div class="formulario">
       <mat-label class="datos">Introduzca sus datos de usuario:</mat-label>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline">
         <mat-label>Nombres</mat-label>
         <input matInput placeholder="Nombre" formControlName="nombres" />
       </mat-form-field>
       <mat-error *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)">
         Por favor introduzca sus nombres
       </mat-error>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline">
         <mat-label>Apellidos</mat-label>
         <input matInput placeholder="Apellidos" formControlName="apellidos" />
       </mat-form-field>
@@ -19,18 +19,18 @@
       >
         Por favor introduzca sus apellidos
       </mat-error>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Fecha de cumpleaños</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="fecha" />
-        <mat-datepicker-toggle matSuffix [for]="picker" appearance="fill">
+        <mat-datepicker-toggle matSuffix [for]="picker" appearance="outline">
           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
         </mat-datepicker-toggle>
-        <mat-datepicker #picker appearance="fill"></mat-datepicker>
+        <mat-datepicker #picker appearance="outline"></mat-datepicker>
       </mat-form-field>
       <mat-error *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
         Por favor elige su fecha de nacimiento
       </mat-error>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline">
         <mat-label>Correo</mat-label>
         <input matInput placeholder="Correo" formControlName="correo" />
       </mat-form-field>
@@ -52,14 +52,14 @@
       >
         correo no es valido
       </mat-error>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline">
         <mat-label>Nombre de Usuario</mat-label>
         <input matInput placeholder="Usuario" formControlName="usuario" />
       </mat-form-field>
       <mat-error *ngIf="usuario.invalid && (usuario.dirty || usuario.touched)">
         Por favor introduzca un username
       </mat-error>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline">
         <mat-label>Contaseña</mat-label>
         <input
           type="password"
@@ -79,7 +79,7 @@
           10 caracteres maximo
         </mat-error>
       </div>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline">
         <mat-label>Repetir Contraseña</mat-label>
         <input
           type="password"

@@ -1,0 +1,9 @@
+<mat-label class="datos">Elige tu imagen de perfil:</mat-label>
+      <br />
+      <input
+        
+        type="file"
+       (ngModel)="file"
+        (change)="handleFileInput($event.target.files)"
+      />
+      <button type="button" (click)="onUpload()">Subir</button>

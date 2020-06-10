@@ -21,7 +21,8 @@ export class WaveServiceService {
     contraseña: '1234567',
   };
 
-  private token: string;
+  public token: string;
+  public picture:string;
   private authSubject = new BehaviorSubject(false);
   //
   private handleError(error: HttpErrorResponse) {
@@ -97,6 +98,28 @@ export class WaveServiceService {
       );
   }
 
+  uploadPicture(picture:File):Observable<any>{
+
+    console.log(picture);
+    const fd= new FormData;
+    fd.append('picture', picture, picture.name);
+    const file=fd; 
+    return this.http.post(`${this.url}/user/profile/photo/upload`,file)
+    .pipe(
+      tap((res: any) => {
+        if (res) {
+          this.savePick(res.imageUrl);
+        } else {
+          console.log('no hay respuesta');
+        }
+      })
+    ); 
+  }
+ 
+  private savePick(url:string){
+    localStorage.setItem('ProfilePick', url);
+  }
+
   private saveToken(token: string): void {
     localStorage.setItem('currentToken', token);
 
@@ -118,7 +141,12 @@ export class WaveServiceService {
     return this.token;
   }
 
-  getCurrentUser() {
+  getPic(){
+    this.picture= localStorage.getItem('ProfilePick');
+    return this.picture
+  }
+
+  getCurrentUser(){
     let user;
     user = localStorage.getItem('currentUser');
     return user;

@@ -22,7 +22,7 @@ export class WaveServiceService {
   };
 
   public token: string;
-  public picture:string;
+  public picture: string;
   private authSubject = new BehaviorSubject(false);
   //
   private handleError(error: HttpErrorResponse) {
@@ -98,14 +98,11 @@ export class WaveServiceService {
       );
   }
 
-  uploadPicture(picture:File):Observable<any>{
-
-    console.log(picture);
-    const fd= new FormData;
-    fd.append('picture', picture, picture.name);
-    const file=fd; 
-    return this.http.post(`${this.url}/user/profile/photo/upload`,file)
-    .pipe(
+  uploadPicture(file: File): Observable<any> {
+    console.log(file);
+    const fd = new FormData();
+    fd.append('file', file, file.name);
+    return this.http.post(`${this.url}/user/profile/photo/upload`, fd).pipe(
       tap((res: any) => {
         if (res) {
           this.savePick(res.imageUrl);
@@ -113,10 +110,10 @@ export class WaveServiceService {
           console.log('no hay respuesta');
         }
       })
-    ); 
+    );
   }
- 
-  private savePick(url:string){
+
+  private savePick(url: string) {
     localStorage.setItem('ProfilePick', url);
   }
 
@@ -141,12 +138,12 @@ export class WaveServiceService {
     return this.token;
   }
 
-  getPic(){
-    this.picture= localStorage.getItem('ProfilePick');
-    return this.picture
+  getPic() {
+    this.picture = localStorage.getItem('ProfilePick');
+    return this.picture;
   }
 
-  getCurrentUser(){
+  getCurrentUser() {
     let user;
     user = localStorage.getItem('currentUser');
     return user;

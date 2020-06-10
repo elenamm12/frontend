@@ -24,6 +24,7 @@ import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 import { FavoritasComponent } from './components/favoritas/favoritas.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForoFilterPipe } from './pipes/foro-filter.pipe';
+import { PictureComponent } from './components/picture/picture.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ForoFilterPipe } from './pipes/foro-filter.pipe';
     CategoriaComponent,
     FavoritasComponent,
     ForoFilterPipe,
+    PictureComponent,
   ],
   imports: [
     BrowserModule,

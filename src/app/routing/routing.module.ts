@@ -13,6 +13,7 @@ import { SubCategoriaComponent } from '../components/categorias/sub-categoria/su
 import { CategoriasComponent } from '../components/categorias/categorias.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { FavoritasComponent } from '../components/favoritas/favoritas.component';
+import { PictureComponent } from '../components/picture/picture.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
   { path: 'favoritas', component: FavoritasComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'picture', component: PictureComponent, canActivate: [AuthGuard] },
   {
     path: 'categorias',
     component: CategoriasComponent,

@@ -273,7 +273,7 @@ export class RegistrarUsuarioComponent implements OnInit {
  
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);
-
+    console.log(this.fileToUpload)
     var reader = new FileReader();
     reader.onloadend = (event: any) => {
       this.imageUrl = event.target.result;

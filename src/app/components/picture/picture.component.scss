@@ -1,0 +1,46 @@
+.fondo {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  min-height: 103%;
+  background-image: url("/assets/img/back6.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+
+  .form {
+    position: relative;
+    z-index: 2;
+    width: 80%;
+    margin: auto;
+    color: #f4f4f4;
+    text-align: center;
+  }
+}
+
+input {
+  max-width: 70%;
+}
+.btn {
+  width: 80%;
+  margin-top: 1em;
+  font-style: normal;
+  font-family: "Poiret One";
+  font-weight: bold;
+  letter-spacing: 3px;
+  border: 0.8px solid white;
+  background: #74b4bc;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+button {
+  margin-bottom: 0.5rem;
+}

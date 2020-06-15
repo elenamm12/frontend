@@ -1,9 +1,16 @@
-<mat-label class="datos">Elige tu imagen de perfil:</mat-label>
-      <br />
-      <input
-        
-        type="file"
-       (ngModel)="file"
-        (change)="handleFileInput($event.target.files)"
-      />
-      <button type="button" (click)="onUpload()">Subir</button>
+<div class="fondo">
+  
+  <div class="form">
+    <mat-label class="datos">Elige tu imagen de perfil:</mat-label>
+    <br />
+    <input
+      
+      type="file"
+     (ngModel)="file"
+      (change)="handleFileInput($event.target.files)"
+    />
+    <button routerLink="/favoritas" type="button" (click)="onUpload()" class="btn">Subir</button>
+    <button routerLink="/favoritas" type="button"  class="btn">Continuar sin subir</button>
+
+  </div>
+</div>

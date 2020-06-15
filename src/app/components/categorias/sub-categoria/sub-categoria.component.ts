@@ -19,16 +19,12 @@ export class SubCategoriaComponent implements OnInit {
   categoryId: number;
   filteredForums: Observable<string[]>;
   myControl = new FormControl();
+  
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
-  salvando = {
-    imagen:
-      'https://i.pinimg.com/originals/fc/30/a5/fc30a5269167b32e5cdab0aa8e438261.png',
-  };
 
   ngOnInit(): void {
     this.filteredForums = this.myControl.valueChanges.pipe(

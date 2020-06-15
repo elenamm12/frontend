@@ -22,13 +22,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.waveService.getAllCategories().subscribe((response) => {
-      this.categories = response.categories;
-      console.log("all", this.categories);
-    });
-
-    this.waveService.getFavoriteSubCategories().subscribe((response)=>{
-     
+    this.waveService.getFavoriteSubCategories().subscribe((response)=>{     
       this.favoriteCategories = response.categories;
       console.log("favorite", this.favoriteCategories);
     })

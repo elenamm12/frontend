@@ -26,6 +26,7 @@ export class FavoritasComponent implements OnInit {
   }
 
   agregarFavorito(subcategoriaId) {
+    console.log(subcategoriaId)
     this.waveService
       .saveFavoriteSubCategoria(subcategoriaId)
       .subscribe((response) => console.log(response));

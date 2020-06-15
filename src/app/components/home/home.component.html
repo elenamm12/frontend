@@ -1,52 +1,48 @@
 <div class="fondo">
-    <app-menu></app-menu>
+  <app-menu></app-menu>
 
-    <h3><strong>¡Hola! Bienvenido de vuelta</strong></h3>
-    <h6>Accede rápido a tu contenido preferido</h6>
-    <div class="carousel">
-      <div *ngFor="let cat of favoriteCategories">
-        <mat-card class="example-card">
-          <a routerLink="/categoria/{{ cat.id }}"
-            ><img
-              mat-card-image
-              [src]="cat.contentCategories[0].imagen"
-              alt="5 Terre"
-              style="width: 100%;"
-              class="cat"
-            />
-            <mat-card-header>
-              <mat-card-title class="titulo"><strong>{{ cat.name }}</strong></mat-card-title>
-              <mat-card-subtitle
-                >Recomendación Wave:
-                {{ cat.contentCategories[0].title }}</mat-card-subtitle
-              >
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    {{ cat.contentCategories[0].text }}
-                </p>
-            </mat-card-content>
-          </a>
-          <mat-divider></mat-divider>
+  <h3><strong>¡Hola! Bienvenido de vuelta</strong></h3>
+  <h6>Accede rápido a tu contenido preferido</h6>
+  <div class="carousel">
+    <div *ngFor="let cat of favoriteCategories">
+      <mat-card class="example-card">
+        <a routerLink="/categoria/{{ cat.id }}"
+          ><img
+            mat-card-image
+            [src]="cat.contentCategories[0].imagen"
+            alt="5 Terre"
+            style="width: 100%;"
+            class="cat"
+          />
           <mat-card-header>
-            <mat-card-title
-              ><strong>Tu contenido favorito en {{ cat.name }}</strong>
-            </mat-card-title>
+            <mat-card-title class="titulo"
+              ><strong>{{ cat.name }}</strong></mat-card-title
+            >
+            <mat-card-subtitle
+              >Recomendación Wave:
+              {{ cat.contentCategories[0].title }}</mat-card-subtitle
+            >
           </mat-card-header>
-          <mat-chip-list aria-label="Fish selection">
-            <div *ngFor="let sub of cat.subCategories">
-              <a
-                routerLink="/sub-categoria/{{
-                  sub.id
-                }}/categoria/{{ cat.id }}"
-                ><mat-chip color="accent" selected>{{
-                  sub.name
-                }}</mat-chip></a
-              >
-            </div>
-          </mat-chip-list>
-        </mat-card>
-      </div>
+          <mat-card-content>
+            <p>
+              {{ cat.contentCategories[0].text }}
+            </p>
+          </mat-card-content>
+        </a>
+        <mat-divider></mat-divider>
+        <mat-card-header>
+          <mat-card-title
+            ><strong>Tu contenido favorito en {{ cat.name }}</strong>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-chip-list aria-label="Fish selection">
+          <div *ngFor="let sub of cat.subCategories">
+            <a routerLink="/sub-categoria/{{ sub.id }}/categoria/{{ cat.id }}"
+              ><mat-chip color="accent" selected>{{ sub.name }}</mat-chip></a
+            >
+          </div>
+        </mat-chip-list>
+      </mat-card>
     </div>
-    
+  </div>
 </div>

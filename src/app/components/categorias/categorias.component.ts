@@ -17,9 +17,16 @@ export class CategoriasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.waveService.getAllCategories().subscribe((response) => {
+    this.waveService.getCategoriesWSubcategories().subscribe((response) => {
       this.categories = response.categories;
-      console.log(this.categories);
+      console.log('categorias', this.categories);
     });
+  }
+
+  agregarFavorito(subcategoriaId) {
+    console.log(subcategoriaId)
+    this.waveService
+      .saveFavoriteSubCategoria(subcategoriaId)
+      .subscribe((response) => console.log(response));
   }
 }

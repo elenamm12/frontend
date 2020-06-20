@@ -1,5 +1,5 @@
 .head {
-  width: 90%;
+  width: 94%;
   text-align: center;
   font-size: 250%;
   font-family: Roboto, sans-serif;
@@ -38,20 +38,9 @@ img {
 }
 
 .top {
-  position: absolute;
-  top: 5em;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  letter-spacing: 3px;
-  font-size: 95%;
-  color: #f4f4f4;
   font-family: Roboto, sans-serif;
-  text-shadow: 2px 2px 8px rgb(54, 54, 54), 2px 2px 8px #363636;
 }
 
-.foros {
-  margin-bottom: 2em;
-}
 
 h4 {
   font-family: Roboto, sans-serif;
@@ -84,9 +73,10 @@ h4 {
 }
 
 .mat-card {
-  width: 89%;
+  width: 95%;
   margin: auto;
   margin-top: 1em;
+  padding-top: 10px;
   font-family: "Poiret One";
   letter-spacing: 0.5px;
 }
@@ -108,11 +98,15 @@ input {
 }
 
 h4 {
-  font-family: "Montserrat Alternates", sans-serif;
-  font-weight: bold;
   text-align: left;
   color: black;
   font-family: Roboto, sans-serif;
+}
+
+
+.foros1 {
+  margin-bottom: 2em;
+  font-family: Roboto, sans-serif !important;
 }
 
 ::ng-deep.mat-menu-content:not(:empty) {

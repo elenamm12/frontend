@@ -24,19 +24,19 @@
 </form>
 
 <mat-card class="example-card container head">
+  <mat-card-title class="top">{{ subcategory.name }}</mat-card-title>
   <img
     mat-card-image
     src="{{ subcategory.contentSubcategories[0].imagen }}"
     class="encabezado"
   />
-  <div class="top">
-    {{ subcategory.name }}
-  </div>
+
   <strong>
   <mat-card-content>
     <mat-card-title style="justify-content: left;"
       ><strong
         >Recomendación Wave:
+        <br />
         {{ subcategory.contentSubcategories[0].title }}</strong
       ></mat-card-title
     >
@@ -63,12 +63,12 @@
 
   <div *ngFor="let foro of subscribedForums" class="foros">
     <a routerLink="/foro/{{ foro.id }}"
-      ><mat-card
+      ><mat-card class="foros1"
         ><img
           mat-card-avatar
           src="/assets/img/logo.png"
           alt="User Avatar"
-        /><strong>{{ foro.title }}</strong></mat-card
+        />{{ foro.title }}</mat-card
       ></a
     >
   </div>
@@ -82,12 +82,12 @@
 
 <div *ngFor="let foro of favoriteForums" class="foros">
   <a routerLink="/foro/{{ foro.id }}"
-    ><mat-card
+    ><mat-card class="foros1"
       ><img
         mat-card-avatar
         src="/assets/img/logo.png"
         alt="User Avatar"
-      /><strong>{{ foro.title }}</strong></mat-card
+      />{{ foro.title }}</mat-card
     ></a
   >
 </div>

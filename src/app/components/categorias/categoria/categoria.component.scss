@@ -32,10 +32,10 @@ img.mat-card-image{
     left: 50%;
     transform: translate(-50%, -50%);
     letter-spacing: 2.5px;
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: Roboto, sans-serif;
+    letter-spacing: 1.5px;
     font-size: 100%;    
-    text-align: center;    
-    font-weight: bolder;
+    text-align: center;  
     color: #f4f4f4;   
     text-shadow: 2px 2px 8px rgb(54, 54, 54),2px 2px 8px #363636;
 }
@@ -53,7 +53,7 @@ img.mat-card-image{
 }
 
 h4{
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: Roboto, sans-serif;
     text-align: left;
     color: black;
     padding-top: 5%;

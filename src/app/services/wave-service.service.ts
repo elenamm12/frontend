@@ -14,7 +14,8 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root',
 })
 export class WaveServiceService {
-  url = 'http://localhost:3000';
+  //url = 'http://localhost:3000';
+  url = 'https://wave-service.herokuapp.com';
 
   mockUser = {
     username: 'aja@aja.com',
@@ -214,5 +215,14 @@ export class WaveServiceService {
     return this.http.patch(`${this.url}/sub-category/add/favorite`, [
       { id: subcategoryId },
     ]);
+  }
+
+  // Servicios de los Posts
+  getPostByForumId(idForum: number): Observable<any> {
+    return this.http.get(`${this.url}/post/all/forum/${idForum}`);
+  }
+
+  getLatestPosts(idPost: number): Observable<any> {
+    return this.http.get(`${this.url}/post/latest/${idPost}`);
   }
 }

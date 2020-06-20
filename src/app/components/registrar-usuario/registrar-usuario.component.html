@@ -94,17 +94,6 @@
       </mat-error>
       <br />
 
-      <mat-label class="datos">Elige tu imagen de perfil:</mat-label>
-      <br />
-      <input
-        
-        type="file"
-        class="imagen"
-        #Image
-        accept="image/*"
-        (change)="handleFileInput($event.target.files)"
-      />
-
       <div class="form-group cuentas">
         <mat-label class="datos">Selecciona el tipo de cuenta: </mat-label>
         <select
@@ -172,7 +161,7 @@
     <div class="boton">
       <a
         ><button
-          class="btn btn-primary primero btn-lg"
+          class="btn btn-primary primero"
           [disabled]="registerForm.invalid"
           type="submit"
         >
@@ -180,7 +169,7 @@
         </button></a
       >
       <a routerLink="/inicio"
-        ><button class="btn btn-primary primero btn-lg" type="submit">
+        ><button class="btn btn-primary primero" type="submit">
           regresar
         </button></a
       >

@@ -30,8 +30,9 @@
     class="encabezado"
   />
   <div class="top">
-    <strong>{{ subcategory.name }}</strong>
+    {{ subcategory.name }}
   </div>
+  <strong>
   <mat-card-content>
     <mat-card-title style="justify-content: left;"
       ><strong
@@ -50,10 +51,31 @@
       >
     </p>
   </mat-card-content>
+</strong>
 </mat-card>
 
+<div *ngIf="subscribedForums?.length > 0">
+  <br />
+  <h4>Foros en los que has participado sobre {{ subcategory.name }}</h4>
+  <br />
+
+  <div></div>
+
+  <div *ngFor="let foro of subscribedForums" class="foros">
+    <a routerLink="/foro/{{ foro.id }}"
+      ><mat-card
+        ><img
+          mat-card-avatar
+          src="/assets/img/logo.png"
+          alt="User Avatar"
+        /><strong>{{ foro.title }}</strong></mat-card
+      ></a
+    >
+  </div>
+</div>
+
 <br />
-<h4>Participa en los foros sobre Misterio</h4>
+<h4>También puedes participar en estos foros</h4>
 <br />
 
 <div></div>

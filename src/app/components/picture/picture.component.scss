@@ -6,7 +6,7 @@
   overflow: hidden;
   position: relative;
   width: 100%;
-  min-height: 103%;
+  min-height: 100%;
   background-image: url("/assets/img/back6.jpg");
   background-size: cover;
   background-position: center center;
@@ -19,7 +19,6 @@
   .form {
     position: relative;
     z-index: 2;
-    width: 80%;
     margin: auto;
     color: #f4f4f4;
     text-align: center;

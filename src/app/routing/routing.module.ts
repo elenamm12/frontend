@@ -14,6 +14,7 @@ import { CategoriasComponent } from '../components/categorias/categorias.compone
 import { AuthGuard } from '../guards/auth.guard';
 import { FavoritasComponent } from '../components/favoritas/favoritas.component';
 import { PictureComponent } from '../components/picture/picture.component';
+import { UsuarioComponent } from '../components/usuario/usuario.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -23,6 +24,11 @@ const routes: Routes = [
   { path: 'favoritas', component: FavoritasComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'picture', component: PictureComponent, canActivate: [AuthGuard] },
+  {
+    path: 'perfil-usuario',
+    component: UsuarioComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'categorias',
     component: CategoriasComponent,

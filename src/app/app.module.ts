@@ -25,6 +25,7 @@ import { FavoritasComponent } from './components/favoritas/favoritas.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForoFilterPipe } from './pipes/foro-filter.pipe';
 import { PictureComponent } from './components/picture/picture.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { PictureComponent } from './components/picture/picture.component';
     FavoritasComponent,
     ForoFilterPipe,
     PictureComponent,
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule,

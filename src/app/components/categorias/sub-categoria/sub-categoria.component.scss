@@ -1,10 +1,9 @@
 .head {
   width: 90%;
   text-align: center;
-  font-family: "Montserrat Alternates", sans-serif;
   font-size: 250%;
-
-  font-weight: bolder;
+  font-family: Roboto, sans-serif;
+  
 
   margin-left: auto;
   margin-right: auto;
@@ -46,6 +45,7 @@ img {
   letter-spacing: 3px;
   font-size: 95%;
   color: #f4f4f4;
+  font-family: Roboto, sans-serif;
   text-shadow: 2px 2px 8px rgb(54, 54, 54), 2px 2px 8px #363636;
 }
 
@@ -54,7 +54,7 @@ img {
 }
 
 h4 {
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: Roboto, sans-serif;
   text-align: left;
   color: black;
   padding-top: 5%;
@@ -112,6 +112,7 @@ h4 {
   font-weight: bold;
   text-align: left;
   color: black;
+  font-family: Roboto, sans-serif;
 }
 
 ::ng-deep.mat-menu-content:not(:empty) {
@@ -179,4 +180,5 @@ h4 {
 ::ng-deep .mat-card-avatar {
   margin-right: 15px !important;
   margin-left: 5px !important;
+  margin-bottom: 5px !important;
 }

@@ -1,8 +1,62 @@
-h1{
+h2{
 
-        font-family: 'Montserrat Alternates', sans-serif;
-        font-weight: normal;
+        font-family: Roboto, sans-serif;
         text-align: center;
-        color: #1a5f6c
+        color: black;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0.9em;
+        margin-bottom: 0.6em;
+        font-weight: normal;
 
 }
+
+.content{
+        width: 91%;
+        margin:auto;
+        text-align: justify;
+        font-family: 'Poiret One';
+        font-weight: bold;
+}
+
+img{ 
+        width: 150px;
+        height: 185px;
+        margin-left: 15px !important;
+        margin-top: 10px !important;
+}
+
+h4{
+        font-family: Roboto, sans-serif;
+        text-align: left;
+        color: black;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+.comentario{
+        width: 91%;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+textarea{
+        width: 100%;
+}
+
+h6,
+.h6 {
+  align-content: left;
+  text-align: left;
+  margin-top: 1.2rem !important;
+  margin-bottom: 0.9rem !important;
+  margin-left: 7% !important;
+  margin-right: 7% !important;
+  font-size: 0.9rem !important;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+

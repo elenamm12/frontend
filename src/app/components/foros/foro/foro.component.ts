@@ -15,6 +15,7 @@ export class ForoComponent implements OnInit {
   latestPosts: any[] = [];
   areThereNewPosts: boolean = false; // Cuando esta variable sea true tienes que mostrarle un pop-up al usuario para cargar los posts nuevos
   intervalControl: any;
+
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
@@ -28,6 +29,7 @@ export class ForoComponent implements OnInit {
       console.log(this.Foro);
       this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
         this.posts = response.posts;
+        console.log(this.posts);
         this.postId = this.posts[this.posts.length - 1].id;
         this.intervalControl = setInterval(this.intervalPostCheck, 10000);
       });

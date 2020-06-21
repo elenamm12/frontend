@@ -57,6 +57,7 @@ export class WaveServiceService {
         tap((res: any) => {
           if (res) {
             this.saveToken(res.accessToken);
+            this.saveUser(res.user);
           } else {
             console.log('no hay respuesta');
           }
@@ -72,10 +73,8 @@ export class WaveServiceService {
     birthday: Date,
     password: string,
     role: string,
-    image: File
   ): Observable<any> {
-    let imag = image.slice().arrayBuffer();
-
+    
     return this.http
       .post<any>(`${this.url}/user/register`, {
         firstName,
@@ -84,8 +83,7 @@ export class WaveServiceService {
         email,
         birthday,
         password,
-        role,
-        imag,
+        role
       })
       .pipe(
         tap((res: any) => {
@@ -126,6 +124,7 @@ export class WaveServiceService {
 
   private saveUser(user: any) {
     localStorage.setItem('currentUser', user);
+
   }
 
   logOutUser(): void {

@@ -56,6 +56,7 @@ export class WaveServiceService {
       .pipe(
         tap((res: any) => {
           if (res) {
+            console.log(res);
             this.saveToken(res.accessToken);
             this.saveUser(res.user);
           } else {
@@ -88,6 +89,7 @@ export class WaveServiceService {
       .pipe(
         tap((res: any) => {
           if (res) {
+            console.log(res);
             this.saveToken(res.accessToken);
             this.saveUser(res.userCreated);
           } else {
@@ -98,7 +100,6 @@ export class WaveServiceService {
   }
 
   uploadPicture(file: File): Observable<any> {
-    console.log(file);
     const fd = new FormData();
     fd.append('file', file, file.name);
     return this.http.post(`${this.url}/user/profile/photo/upload`, fd).pipe(

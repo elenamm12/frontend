@@ -1,3 +1,28 @@
+.fondo {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        min-height: 100%;
+        background-color: white;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        box-sizing: border-box;
+        padding-bottom: 2rem;
+      
+        button.abajo{
+                position: fixed;
+                bottom: 15px;
+                right: 15px;
+                z-index: 2;   
+        }
+      }
+
 h2{
 
         font-family: Roboto, sans-serif;
@@ -7,7 +32,7 @@ h2{
         margin-left: auto;
         margin-right: auto;
         margin-top: 0.9em;
-        margin-bottom: 0.6em;
+        margin-bottom: 0.9em;
         font-weight: normal;
 
 }
@@ -16,8 +41,7 @@ h2{
         width: 91%;
         margin:auto;
         text-align: justify;
-        font-family: 'Poiret One';
-        font-weight: bold;
+        font-family: Roboto, sans-serif;
 }
 
 img{ 
@@ -32,7 +56,7 @@ h4{
         text-align: left;
         color: black;
         padding-top: 5%;
-        padding-bottom: 5%;
+        
         width: 85%;
         margin-left: auto;
         margin-right: auto;
@@ -46,6 +70,7 @@ h4{
 
 textarea{
         width: 100%;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
 h6,
@@ -53,10 +78,90 @@ h6,
   align-content: left;
   text-align: left;
   margin-top: 1.2rem !important;
-  margin-bottom: 0.9rem !important;
   margin-left: 7% !important;
   margin-right: 7% !important;
   font-size: 0.9rem !important;
   font-family: "Montserrat Alternates", sans-serif;
 }
+
+.btn {
+        width: 30%;
+        margin-left: 70%;
+        font-style: normal;
+        font-family: "Poiret One";
+        letter-spacing: 3px;
+        border: 0.8px solid white;
+        background: #74b4bc;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+      }
+      
+      button {
+        margin-top: 0.3rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .boton {
+        padding-top: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        text-align: center;
+        font-family: Poiret One;
+        max-width: 70%;
+        width: 30rem;
+      }
+button.primero{
+        width: 40%;
+        margin-left: 30%;
+        background-color: #74b4bc;
+        color: white;
+        border-color:white;
+        font-weight: bold;
+        padding:0;
+        border-radius: 60px;
+        padding-top: 3.5px;
+        padding-bottom: 3.5px;
+        margin-bottom: 17px;
+}
+
+button.abajo{
+        width: 12%;
+        border-radius: 100px;
+        padding-top: 9.5px;       
+        background-color: #74b4bc;
+        color: white;
+        border-color:white;
+}
+
+.media-list{
+        padding: 0 !important;
+}
+
+.comment-wrapper .panel-body {
+    overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border-radius: 50px;
+    border:2px solid #e5e7e8;
+    margin-right: 15px !important;
+    margin-left: 0px !important;
+    margin-bottom: 10px !important;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}
+
+p{
+        text-align: justify;
+}
+
+.snippets{
+        font-family: Roboto, sans-serif;
+}
+
 

@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatCardModule,
     MatAutocompleteModule,
     MatDividerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule
       ],
   exports: [ 
     MatFormFieldModule,
@@ -43,7 +45,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatCardModule,
     MatAutocompleteModule,
     MatDividerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }

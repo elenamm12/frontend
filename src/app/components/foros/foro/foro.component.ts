@@ -15,6 +15,8 @@ export class ForoComponent implements OnInit {
   latestPosts: any[] = [];
   areThereNewPosts: boolean = false; // Cuando esta variable sea true tienes que mostrarle un pop-up al usuario para cargar los posts nuevos
   intervalControl: any;
+  comment = "";
+  postComment = [];
 
   constructor(
     private waveService: WaveServiceService,
@@ -34,6 +36,11 @@ export class ForoComponent implements OnInit {
         this.intervalControl = setInterval(this.intervalPostCheck, 10000);
       });
     });
+  }
+
+  post() {
+    this.postComment.push(this.comment);
+    this.comment = "";
   }
 
   refreshPost() {

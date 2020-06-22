@@ -58,4 +58,8 @@ export class ForoComponent implements OnInit {
       }
     });
   };
+
+  putLikePost(id: number){
+    this.waveService.likePost(id);
+  }
 }

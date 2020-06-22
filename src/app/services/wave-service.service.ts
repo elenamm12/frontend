@@ -225,4 +225,16 @@ export class WaveServiceService {
   getLatestPosts(idPost: number): Observable<any> {
     return this.http.get(`${this.url}/post/latest/${idPost}`);
   }
+  
+  likePost(idPost: number): Observable<any> {
+    return this.http.patch(`${this.url}/post/like/${idPost}`, []);
+  }
+
+  likeForum(idForum: number): Observable<any> {
+    return this.http.patch(`${this.url}/forum/like/${idForum}`, []);
+  }
+
+  dislikeForum(idForum: number): Observable<any> {
+    return this.http.patch(`${this.url}/forum/dislike/${idForum}`, []);
+  }
 }

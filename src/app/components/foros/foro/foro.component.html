@@ -1,3 +1,164 @@
-<app-menu></app-menu>
+<div class="fondo">
+  <app-menu></app-menu>
 
-<h1>{{ Foro.title }}</h1>
+  <h2>{{ Foro.title }}</h2>
+
+  <h6>¡Comentarios!</h6>
+
+  <div class="comentario">
+    <hr />
+    <div>
+      <button class="btn btn-primary primero" type="submit">
+      nuevos post 
+      </button>
+    </div>
+
+    <div *ngFor="let com of postComment">
+      <div class="row flex-row-reverse bootstrap snippets">
+        <div class="col-md-12 col-md-offset-2 col-sm-12">
+          <div class="comment-wrapper">
+            <div class="panel panel-info">
+              <div class="panel-body">
+                <div class="clearfix"></div>
+
+                <ul class="media-list">
+                  <li class="media">
+                    <img
+                      src="https://bootdey.com/img/Content/user_2.jpg"
+                      alt=""
+                      class="img-circle"
+                    />
+
+                    <div class="media-body">
+                      <strong class="text-success">Paola Outeda</strong>
+                      <p>
+                        {{ com }}
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="row bootstrap snippets">
+        <div class="col-md-12 col-md-offset-2 col-sm-12">
+          <div class="comment-wrapper">
+            <div class="panel panel-info">
+              <div class="panel-body">
+                <div class="clearfix"></div>
+
+                <ul class="media-list">
+                  <li class="media">
+                    <a href="#" class="pull-left">
+                      <img
+                        src="https://bootdey.com/img/Content/user_1.jpg"
+                        alt=""
+                        class="img-circle"
+                      />
+                    </a>
+                    <div class="media-body">
+                      <strong class="text-success">@MartinoMont</strong>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor sit amet,
+                        <a href="#">#consecteturadipiscing </a>.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="media">
+                    <a href="#" class="pull-left">
+                      <img
+                        src="https://bootdey.com/img/Content/user_2.jpg"
+                        alt=""
+                        class="img-circle"
+                      />
+                    </a>
+                    <div class="media-body">
+                      <strong class="text-success">@LaurenceCorreil</strong>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing
+                        elit.
+                      </p>
+                    </div>
+                  </li>
+                  <li class="media">
+                    <a href="#" class="pull-left">
+                      <img
+                        src="https://bootdey.com/img/Content/user_3.jpg"
+                        alt=""
+                        class="img-circle"
+                      />
+                    </a>
+                    <div class="media-body">
+                      <strong class="text-success">@JohnNida</strong>
+                      <p>
+                        Lorem ipsum dolor <a href="#">#sitamet</a> sit amet,
+                        consectetur adipiscing elit.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <strong>¡Agrega tu comentario!</strong>
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <textarea
+            [(ngModel)]="comment"
+            placeholder="¡Escribe tu comentario aquí!"
+            class="form-control"
+          ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button
+            (click)="post()"
+            type="button"
+            class="btn btn-primary enviar"
+            type="submit>"
+            data-dismiss="modal"
+          >
+            publicar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    class="btn btn-primary abajo"
+    data-toggle="modal"
+    data-target="#exampleModal"
+  >
+  <mat-icon> create </mat-icon>
+  </button>
+</div>

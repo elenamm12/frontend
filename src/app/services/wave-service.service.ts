@@ -14,8 +14,8 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root',
 })
 export class WaveServiceService {
-  //url = 'http://localhost:3000';
-  url = 'https://wave-service.herokuapp.com';
+  url = 'http://localhost:3000';
+  //url = 'https://wave-service.herokuapp.com';
 
   mockUser = {
     username: 'aja@aja.com',
@@ -24,6 +24,7 @@ export class WaveServiceService {
 
   public token: string;
   public picture: string;
+  public user: any;
   private authSubject = new BehaviorSubject(false);
   //
   private handleError(error: HttpErrorResponse) {
@@ -124,7 +125,8 @@ export class WaveServiceService {
   }
 
   private saveUser(user: any) {
-    localStorage.setItem('currentUser', user);
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.user= user;
 
   }
 
@@ -236,5 +238,9 @@ export class WaveServiceService {
 
   dislikeForum(idForum: number): Observable<any> {
     return this.http.patch(`${this.url}/forum/dislike/${idForum}`, []);
+  }
+
+  postComment(text:string, isReported:boolean, forum:number, user:string){
+    return this.http.post(`${this.url}/post/publish`, {text, isReported, forum, user})
   }
 }

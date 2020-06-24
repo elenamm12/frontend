@@ -68,7 +68,7 @@ export class ForoComponent implements OnInit {
   }
 
   postCom(){
-    this.waveService.postComment(this.comment, false, this.foroId, this.user.email).subscribe((response) =>{
+    this.waveService.postComment(this.comment, this.foroId,).subscribe((response) =>{
       if(response){
         console.log("aja ", response)
       }

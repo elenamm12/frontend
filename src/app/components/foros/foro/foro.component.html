@@ -24,13 +24,13 @@
                 <ul class="media-list">
                   <li class="media">
                     <img
-                      src="https://bootdey.com/img/Content/user_2.jpg"
+                      src="{{ com.user.image }}"
                       alt=""
                       class="img-circle"
                     />
 
                     <div class="media-body">
-                      <strong class="text-success">Paola Outeda</strong><mat-icon [inline]="true" class="like"> thumb_up </mat-icon><mat-icon [inline]="true" class="dislike"> thumb_down </mat-icon>
+                      <strong class="text-success">{{ com.user.userName }}</strong><mat-icon [inline]="true" class="like"> thumb_up </mat-icon><mat-icon [inline]="true" class="dislike"> thumb_down </mat-icon>
                       <p>
                         {{ com.text }}
                       </p>

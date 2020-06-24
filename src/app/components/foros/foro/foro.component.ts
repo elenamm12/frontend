@@ -81,6 +81,15 @@ export class ForoComponent implements OnInit {
     })
   }
 
+  putDislikePost(id: number){
+    this.waveService.dislikePost(id).subscribe((res)=>{
+      if(res){
+        console.log(res)
+      }
+    })
+  }
+
+
   postCom(){
     this.waveService.postComment(this.comment, this.foroId,).subscribe((response) =>{
       if(response){

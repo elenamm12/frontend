@@ -14,8 +14,8 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root',
 })
 export class WaveServiceService {
-  //url = 'http://localhost:3000';
-  url = 'https://wave-service.herokuapp.com';
+  url = 'http://localhost:3000';
+  //url = 'https://wave-service.herokuapp.com';
 
   mockUser = {
     username: 'aja@aja.com',
@@ -240,7 +240,7 @@ export class WaveServiceService {
     return this.http.patch(`${this.url}/forum/dislike/${idForum}`, []);
   }
 
-  postComment(text:string, isReported:boolean, forum:number, user:string){
-    return this.http.post(`${this.url}/post/publish`, {text, isReported, forum, user})
+  postComment(text:string, idForum:number){
+    return this.http.post(`${this.url}/post/publish/${idForum}`, {text})
   }
 }

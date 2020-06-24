@@ -59,7 +59,7 @@ export class SubCategoriaComponent implements OnInit {
             this.subscribedForums = response.forums;
 
             this.waveService
-              .getForumsBySubcategory(this.subcategoryId)
+              .getFavoritesForums(this.subcategoryId)
               .subscribe((response) => {
                 this.favoriteForums = response.forums;
                 console.log('foro fav', this.favoriteForums);

@@ -3,7 +3,7 @@
 
   <div class="parent">
     <mat-form-field appearance="outline">
-      <mat-label>Encuentra el foro que buscas</mat-label>
+      <mat-label><strong>Encuentra el foro que buscas</strong></mat-label>
       <input
         type="search"
         aria-label="Number"
@@ -25,7 +25,10 @@
     </mat-form-field>
   </div>
   
-  <div *ngFor="let foro of forums | foroFilter: filterForum">
+  <div *ngFor="let foro of forums | foroFilter: filterForum" class="contenedor">
+    <mat-icon class="agregar" mat-raised-button
+    matTooltip="Info about the action"
+    matTooltipClass="example-tooltip-red" >thumb_up</mat-icon><mat-icon class="agregar">thumb_down</mat-icon>
     <a routerLink="/foro/{{ foro.id }}"
       ><mat-card
         ><img

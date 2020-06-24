@@ -1,14 +1,23 @@
 div.containe {
   padding: 0;
   margin: 0;
+  overflow: hidden;
+  position: relative;
   background-image: url(olas1.png);
   width: 100%;
   min-height: 100%;
   background-color: white;
   background-size: contain;
+  background-position: center center;
+  background-attachment: fixed;
   background-repeat: no-repeat;
+  box-sizing: border-box;
   background-position: bottom;
   color: black;
+  .contain{
+    position: relative;
+    z-index: 2;
+  }
 }
 
 .btn {
@@ -70,6 +79,14 @@ h1.titulo {
   }
   h1.titulo {
     padding-top: 10%;
+  }
+}
+
+@media(min-width:1100px){
+  div.containe {
+
+    background-image:none;
+
   }
 }
 

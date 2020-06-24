@@ -26,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForoFilterPipe } from './pipes/foro-filter.pipe';
 import { PictureComponent } from './components/picture/picture.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { CrearForoComponent } from './components/foros/crear-foro/crear-foro.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
     ForoFilterPipe,
     PictureComponent,
     UsuarioComponent,
+    CrearForoComponent,
   ],
   imports: [
     BrowserModule,

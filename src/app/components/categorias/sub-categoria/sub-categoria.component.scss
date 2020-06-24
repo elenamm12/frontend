@@ -3,8 +3,6 @@
   text-align: center;
   font-size: 250%;
   font-family: Roboto, sans-serif;
-  
-
   margin-left: auto;
   margin-right: auto;
   padding: 0;
@@ -40,7 +38,6 @@ img {
 .top {
   font-family: Roboto, sans-serif;
 }
-
 
 h4 {
   font-family: Roboto, sans-serif;
@@ -103,10 +100,15 @@ h4 {
   font-family: Roboto, sans-serif;
 }
 
-
 .foros1 {
   margin-bottom: 2em;
   font-family: Roboto, sans-serif !important;
+}
+
+@media (min-width: 768px) {
+  .encabezado {
+    height: 14em;
+  }
 }
 
 ::ng-deep.mat-menu-content:not(:empty) {

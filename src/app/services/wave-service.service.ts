@@ -219,6 +219,12 @@ export class WaveServiceService {
     ]);
   }
 
+  dislikeSubcategorie(id:number){
+
+    return this.http.patch(`${this.url}/sub-category/dislike/${id}`, [])
+
+  }
+
   // Servicios de los Posts
   getPostByForumId(idForum: number): Observable<any> {
     return this.http.get(`${this.url}/post/all/forum/${idForum}`);
@@ -232,6 +238,13 @@ export class WaveServiceService {
     return this.http.patch(`${this.url}/post/like/${idPost}`, []);
   }
 
+  postComment(text:string, idForum:number){
+    return this.http.post(`${this.url}/post/publish/${idForum}`, {text})
+  }
+
+
+  // Servicios de los Forums
+
   likeForum(idForum: number): Observable<any> {
     return this.http.patch(`${this.url}/forum/like/${idForum}`, []);
   }
@@ -240,7 +253,8 @@ export class WaveServiceService {
     return this.http.patch(`${this.url}/forum/dislike/${idForum}`, []);
   }
 
-  postComment(text:string, idForum:number){
-    return this.http.post(`${this.url}/post/publish/${idForum}`, {text})
+  createForum(idSub: number, title: string){
+    return this.http.post(`${this.url}/forum/create/${idSub}`, {title});
+
   }
 }

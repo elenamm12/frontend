@@ -64,7 +64,11 @@ export class ForoComponent implements OnInit {
   };
 
   putLikePost(id: number){
-    this.waveService.likePost(id);
+    this.waveService.likePost(id).subscribe((res)=>{
+      if(res){
+        console.log(res)
+      }
+    })
   }
 
   postCom(){
@@ -72,6 +76,20 @@ export class ForoComponent implements OnInit {
       if(response){
         console.log("aja ", response)
       }
+    });
+  }
+
+  likeForo(id: number){
+    this.waveService.likeForum(id).subscribe((res)=>{
+      if (res){
+        console.log(res)}
+    });
+  }
+
+  dislikeForo(id: number){
+    this.waveService.dislikeForum(id).subscribe((res)=>{
+      if (res){
+        console.log(res)}
     });
   }
 

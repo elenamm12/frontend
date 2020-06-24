@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ForoComponent implements OnInit {
   foroId: number;
   Foro: any = {};
+  forosFav = [];
   posts: any[] = [];
   postId: number;
   latestPosts: any[] = [];
@@ -39,7 +40,16 @@ export class ForoComponent implements OnInit {
         this.postId = this.posts[this.posts.length - 1].id;
         this.intervalControl = setInterval(this.intervalPostCheck, 10000);
       });
+      this.waveService.getFavoritesForums(this.Foro.subCategory.id).subscribe((res)=>{
+        if(res){
+          console.log(res);
+          this.forosFav=res.forums;
+          console.log(this.forosFav);
+        }
+      });
     });
+    
+
   }
 
   post() {
@@ -64,7 +74,11 @@ export class ForoComponent implements OnInit {
   };
 
   putLikePost(id: number){
-    this.waveService.likePost(id);
+    this.waveService.likePost(id).subscribe((res)=>{
+      if(res){
+        console.log(res)
+      }
+    })
   }
 
   postCom(){
@@ -72,6 +86,20 @@ export class ForoComponent implements OnInit {
       if(response){
         console.log("aja ", response)
       }
+    });
+  }
+
+  likeForo(id: number){
+    this.waveService.likeForum(id).subscribe((res)=>{
+      if (res){
+        console.log(res)}
+    });
+  }
+
+  dislikeForo(id: number){
+    this.waveService.dislikeForum(id).subscribe((res)=>{
+      if (res){
+        console.log(res)}
     });
   }
 

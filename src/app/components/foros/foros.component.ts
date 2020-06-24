@@ -40,4 +40,18 @@ export class ForosComponent implements OnInit {
     return this.forums.filter(option => option.title.toLowerCase().includes(filterValue));
   } 
 
+  likeForo(id: number){
+    this.waveService.likeForum(id).subscribe((res)=>{
+      if (res){
+        console.log(res)}
+    });
+  }
+
+  dislikeForo(id: number){
+    this.waveService.dislikeForum(id).subscribe((res)=>{
+      if (res){
+        console.log(res)}
+    });
+  }
+
 }

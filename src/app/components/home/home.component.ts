@@ -28,5 +28,14 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  dislikesubC(id: number){
+    this.waveService.dislikeSubcategorie(id).subscribe((res)=>{
+      if(res){
+        console.log(res);
+      }
+    })
+
+  }
+
 }
 

@@ -26,6 +26,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForoFilterPipe } from './pipes/foro-filter.pipe';
 import { PictureComponent } from './components/picture/picture.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
     HttpClientModule,
     NgxPayPalModule,
     NgbModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     {

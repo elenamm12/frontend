@@ -26,16 +26,21 @@
   </div>
   
   <div *ngFor="let foro of forums | foroFilter: filterForum" class="contenedor">
-    <mat-icon class="agregar" mat-raised-button
-    matTooltip="Info about the action"
-    matTooltipClass="example-tooltip-red" >thumb_up</mat-icon><mat-icon class="agregar">thumb_down</mat-icon>
     <a routerLink="/foro/{{ foro.id }}"
       ><mat-card
         ><img
           mat-card-avatar
           src="/assets/img/logo.png"
           alt="User Avatar"
-        /><strong>{{ foro.title }}</strong></mat-card
+        />{{ foro.title }}
+        <mat-card-actions> 
+          ¡Suscríbete!
+          <mat-icon class="agregar" [inline]="true" mat-raised-button
+          matTooltip="Info about the action"
+          matTooltipClass="example-tooltip-red" >thumb_up</mat-icon>
+          
+          
+        </mat-card-actions></mat-card
       ></a
     >
   </div>

@@ -69,11 +69,17 @@ input{
     padding-bottom: 0 !important; 
 }
 
-.agregar{
-  color: #00acee;
-  margin-left: 5px;
-  font-size: 1rem;
+mat-card-actions {
+  text-align: right;
+  padding-right:  1em;
+  font-size: 0.8rem;
 }
+
+.agregar{
+  color: orange;
+}
+
+
 ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
     border-radius: 4px 4px 0 0;
     padding: 0 !important;

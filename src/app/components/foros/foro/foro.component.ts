@@ -17,6 +17,7 @@ export class ForoComponent implements OnInit {
   intervalControl: any;
   comment = "";
   postComment = [];
+  user:any;
 
   constructor(
     private waveService: WaveServiceService,
@@ -25,9 +26,12 @@ export class ForoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.user=this.waveService.getCurrentUser();
+    console.log(this.user);
     this.foroId = this.route.snapshot.params['id'];
     this.waveService.getForumsById(this.foroId).subscribe((response) => {
-      this.Foro = response.forums;
+      console.log(response);
+      this.Foro = response.forum;
       console.log(this.Foro);
       this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
         this.posts = response.posts;
@@ -58,4 +62,23 @@ export class ForoComponent implements OnInit {
       }
     });
   };
+
+  putLikePost(id: number){
+    this.waveService.likePost(id);
+  }
+
+  postCom(){
+    this.waveService.postComment(this.comment, false, this.foroId, this.user.email).subscribe((response) =>{
+      if(response){
+        console.log("aja ", response)
+      }
+    });
+  }
+
+  actualizar(){
+    
+    location.reload();
+    this.areThereNewPosts=false;
+
+  }
 }

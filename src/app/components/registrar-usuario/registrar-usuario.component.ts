@@ -74,7 +74,6 @@ export class RegistrarUsuarioComponent implements OnInit {
           Validators.required,
           Validators.pattern(''),
         ]),
-        image: new FormControl('',[]), 
         contra: new FormControl('', [
           Validators.required,
           Validators.minLength(7),
@@ -190,8 +189,7 @@ export class RegistrarUsuarioComponent implements OnInit {
               this.registerForm.value.correo,
               this.registerForm.value.fecha,
               this.registerForm.value.contra,
-              this.registerForm.value.tipoCuenta,
-              this.fileToUpload
+              this.registerForm.value.tipoCuenta
             )
             .subscribe((data) => {
               console.log(data);
@@ -210,8 +208,7 @@ export class RegistrarUsuarioComponent implements OnInit {
             this.registerForm.value.correo,
             this.registerForm.value.fecha,
             this.registerForm.value.contra,
-            this.registerForm.value.tipoCuenta,
-            this.fileToUpload
+            this.registerForm.value.tipoCuenta
           )
           .subscribe((data) => {
             console.log(data);
@@ -265,10 +262,6 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   get tipoCuenta() {
     return this.registerForm.get('tipoCuenta');
-  }
-
-  get image(){
-    return this.registerForm.get('image');
   }
  
   handleFileInput(file: FileList) {

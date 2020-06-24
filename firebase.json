@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/front-wave",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

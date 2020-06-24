@@ -14,8 +14,8 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root',
 })
 export class WaveServiceService {
-  //url = 'http://localhost:3000';
-  url = 'https://wave-service.herokuapp.com';
+  url = 'http://localhost:3000';
+  //url = 'https://wave-service.herokuapp.com';
 
   mockUser = {
     username: 'aja@aja.com',
@@ -24,6 +24,7 @@ export class WaveServiceService {
 
   public token: string;
   public picture: string;
+  public user: any;
   private authSubject = new BehaviorSubject(false);
   //
   private handleError(error: HttpErrorResponse) {
@@ -56,7 +57,9 @@ export class WaveServiceService {
       .pipe(
         tap((res: any) => {
           if (res) {
+            console.log(res);
             this.saveToken(res.accessToken);
+            this.saveUser(res.user);
           } else {
             console.log('no hay respuesta');
           }
@@ -72,10 +75,8 @@ export class WaveServiceService {
     birthday: Date,
     password: string,
     role: string,
-    image: File
   ): Observable<any> {
-    let imag = image.slice().arrayBuffer();
-
+    
     return this.http
       .post<any>(`${this.url}/user/register`, {
         firstName,
@@ -84,12 +85,12 @@ export class WaveServiceService {
         email,
         birthday,
         password,
-        role,
-        imag,
+        role
       })
       .pipe(
         tap((res: any) => {
           if (res) {
+            console.log(res);
             this.saveToken(res.accessToken);
             this.saveUser(res.userCreated);
           } else {
@@ -100,7 +101,6 @@ export class WaveServiceService {
   }
 
   uploadPicture(file: File): Observable<any> {
-    console.log(file);
     const fd = new FormData();
     fd.append('file', file, file.name);
     return this.http.post(`${this.url}/user/profile/photo/upload`, fd).pipe(
@@ -125,7 +125,9 @@ export class WaveServiceService {
   }
 
   private saveUser(user: any) {
-    localStorage.setItem('currentUser', user);
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.user= user;
+
   }
 
   logOutUser(): void {
@@ -224,5 +226,21 @@ export class WaveServiceService {
 
   getLatestPosts(idPost: number): Observable<any> {
     return this.http.get(`${this.url}/post/latest/${idPost}`);
+  }
+  
+  likePost(idPost: number): Observable<any> {
+    return this.http.patch(`${this.url}/post/like/${idPost}`, []);
+  }
+
+  likeForum(idForum: number): Observable<any> {
+    return this.http.patch(`${this.url}/forum/like/${idForum}`, []);
+  }
+
+  dislikeForum(idForum: number): Observable<any> {
+    return this.http.patch(`${this.url}/forum/dislike/${idForum}`, []);
+  }
+
+  postComment(text:string, isReported:boolean, forum:number, user:string){
+    return this.http.post(`${this.url}/post/publish`, {text, isReported, forum, user})
   }
 }

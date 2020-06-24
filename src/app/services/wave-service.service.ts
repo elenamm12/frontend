@@ -239,7 +239,7 @@ export class WaveServiceService {
   }
 
   postComment(text:string, idForum:number){
-    return this.http.post(`${this.url}/post/publish/${idForum}`, {text})
+    return this.http.post(`${this.url}/post/publish/foro/${idForum}`, {text})
   }
 
 

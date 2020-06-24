@@ -21,14 +21,22 @@
     }
   }
 
-.mat-card{
+  .contenedor{
     width: 89%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: right;
+  }
+
+.mat-card{
+    width: 100%;
     margin: auto;
-    margin-top: 1em;
-    font-family: 'Poiret One';
+    margin-bottom: 1.9em;
+    font-family: 'Montserrat Alternates', sans-serif;
     letter-spacing: 0.5px;
     justify-content: center;
     border-radius: 6px;
+    text-align: left;
 }
 
 .parent{
@@ -55,12 +63,17 @@ input{
     color:black;
 }
 
+
 ::ng-deep.mat-menu-content:not(:empty) {
     padding-top: 0 !important;
     padding-bottom: 0 !important; 
 }
 
-
+.agregar{
+  color: #00acee;
+  margin-left: 5px;
+  font-size: 1rem;
+}
 ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
     border-radius: 4px 4px 0 0;
     padding: 0 !important;

@@ -13,6 +13,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatAutocompleteModule,
     MatDividerModule,
     MatChipsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
       ],
   exports: [ 
     MatFormFieldModule,
@@ -46,7 +48,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatAutocompleteModule,
     MatDividerModule,
     MatChipsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule { }

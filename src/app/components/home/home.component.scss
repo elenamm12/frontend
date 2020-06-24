@@ -118,6 +118,13 @@ div.container {
   padding: 0;
 }
 
+@media(min-width: 768px){
+  img.cat {
+    height: 30%;
+    height: 17em;
+  }
+}
+
 ::ng-deep .carousel-control-prev {
   opacity: 0 !important;
 }

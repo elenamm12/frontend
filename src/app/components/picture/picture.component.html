@@ -3,23 +3,24 @@
     <br />
     <mat-label class="datos">Seleccione su imagen de perfil</mat-label>
     <br />
-    <br />
-    <input
+    <span><input
       appearance="outline"
       type="file"
       (ngModel)="(file)"
       (change)="handleFileInput($event.target.files)"
-    />
+    /></span>
+    <label for="mi-archivo"><mat-icon  class="cargar">cloud_download</mat-icon></label>
+    <br />
     <button
       routerLink="/categorias"
       type="button"
       (click)="onUpload()"
       class="btn"
     >
-      Subir
+      subir
     </button>
     <button routerLink="/categorias" type="button" class="btn">
-      Continuar sin subir
+      continuar sin subir
     </button>
     <br />
   </div>

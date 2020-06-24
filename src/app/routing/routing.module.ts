@@ -1,3 +1,4 @@
+import { CrearForoComponent } from './../components/foros/crear-foro/crear-foro.component';
 import { CategoriaComponent } from './../components/categorias/categoria/categoria.component';
 import { InicioComponent } from './../components/inicio/inicio.component';
 import { RegistrarUsuarioComponent } from './../components/registrar-usuario/registrar-usuario.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'favoritas', component: FavoritasComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'picture', component: PictureComponent, canActivate: [AuthGuard] },
+  { path: 'crear-foro', component: CrearForoComponent, canActivate: [AuthGuard] },
   {
     path: 'perfil-usuario',
     component: UsuarioComponent,

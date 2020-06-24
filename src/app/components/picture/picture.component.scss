@@ -7,7 +7,7 @@
   position: relative;
   width: 100%;
   min-height: 100%;
-  background-image: url("/assets/img/back6.jpg");
+  background-image: url("/assets/img/back8.jpg");
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
@@ -20,8 +20,16 @@
     position: relative;
     z-index: 2;
     margin: auto;
-    color: #f4f4f4;
+    color: black;
     text-align: center;
+    background-color: white;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding-bottom: 4%;
+    padding-top: 2%;
+    border-style: solid;
+    border-color: #50d0fb;
+    border-width: thin;
   }
 }
 
@@ -42,4 +50,100 @@ input {
 
 button {
   margin-bottom: 0.5rem;
+}
+mat-label.datos {
+  font-size: large;
+  margin-bottom: 3em;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: bold;
+  line-height: 1em;
+  color:#484a4c;
+}
+
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  &,
+  &:hover,
+  &:focus,
+  &:active {
+    transition: all 5000s ease-in-out 0s;
+    transition-property: background-color, color !important;
+  }
+}
+
+
+::ng-deep mat-label{
+  margin-bottom: 2em !important;
+}
+/* input color class */
+::ng-deep input.mat-input-element {
+  color: #484a4c;
+}
+
+/* Change label color on focused */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #50d0fb !important;
+}
+
+/* underline border color on focused */
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  background-color: #50d0fb !important;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #50d0fb !important;
+  background: white;
+  border-radius: 5px;
+}
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  color: #50d0fb !important;
+  background: white;
+  border-radius: 4px;
+}
+
+//mat-input focused color
+::ng-deep
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline-thick {
+  color: #50d0fb !important;
+}
+
+// mat-input error outline color
+::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
+  .mat-form-field-outline-thick {
+  color: red !important;
+  opacity: 0.8 !important;
+}
+
+// mat-input carent color
+::ng-deep .mat-input-element {
+  caret-color: red !important;
+}
+
+// mat-input error carent color
+::ng-deep .mat-form-field-invalid .mat-input-element,
+.mat-warn .mat-input-element {
+  caret-color: red !important;
+}
+
+// mat-label normal state style
+::ng-deep .mat-form-field-label {
+  color: rgba(0, 0, 0, 0.6) !important;
+  // color: $mainColor!important;
+}
+
+// mat-label focused style
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: red !important;
+}
+
+// mat-label error style
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: red !important;
+}
+
+::ng-deep .mat-input-wrapper {
+  background: blue !important;
 }

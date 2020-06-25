@@ -50,8 +50,8 @@ export class ForoComponent implements OnInit {
             this.forosFav = res.forums;
             console.log(this.forosFav);
 
-            var bool = this.forosFav.find((ob) => ob.id === this.foroId);
-            console.log(bool);
+            let bool = this.forosFav.find((ob) => ob.id === this.foroId);
+            console.log(this.foroId);
 
           }
         });

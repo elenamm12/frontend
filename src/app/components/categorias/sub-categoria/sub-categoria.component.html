@@ -69,6 +69,26 @@
 </div>
 
 
+<div *ngIf="subscribedForums.length > 0">
+  <br />
+  <h4>Ya estas suscrito en estos foros</h4>
+  <br />
+  
+  <div></div>
+  
+  <div *ngFor="let foro of subscribedForums" class="foros">
+    <a routerLink="/foro/{{ foro.id }}"
+      ><mat-card class="foros1"
+        ><img
+          mat-card-avatar
+          [src]="foro.image"
+          alt="User Avatar"
+        />{{ foro.title }}</mat-card
+      ></a
+    >
+  </div>
+</div>
+
 
 <br />
 <h4>También puedes participar en estos foros</h4>
@@ -81,7 +101,7 @@
     ><mat-card class="foros1"
       ><img
         mat-card-avatar
-        src="/assets/img/logo.png"
+        [src]="foro.image"
         alt="User Avatar"
       />{{ foro.title }}</mat-card
     ></a

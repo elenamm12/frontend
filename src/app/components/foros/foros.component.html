@@ -3,7 +3,7 @@
 
   <div class="parent">
     <mat-form-field appearance="outline">
-      <mat-label><strong>Encuentra el foro que buscas</strong></mat-label>
+      <mat-label>Encuentra el foro que buscas</mat-label>
       <input
         type="search"
         aria-label="Number"
@@ -21,18 +21,16 @@
           {{ option.title }}
         </mat-option>
       </mat-autocomplete>
-      <mat-icon matSuffix>search</mat-icon>
+      <mat-icon matSuffix style="color:white">search</mat-icon>
     </mat-form-field>
   </div>
-  <button class="btn btn-primary primero" type="submit" routerLink="/crear-foro">
-    crear foro
-  </button>
+
   <div *ngFor="let foro of forums | foroFilter: filterForum" class="contenedor">
     <a routerLink="/foro/{{ foro.id }}"
       ><mat-card
         ><img
           mat-card-avatar
-          src="/assets/img/logo.png"
+          [src]="foro.image"
           alt="User Avatar"
         />{{ foro.title }}
         <mat-card-actions> 

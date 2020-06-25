@@ -2,7 +2,7 @@
 <div class="fondo">
 
   <div *ngIf="suscrito; else suscribete">
-    <button class="btn btn-primary dislike">
+    <button class="btn btn-primary dislike" onclick="likeForo(foroId)">
       Dejar de estar suscrito
       </button>
   </div>
@@ -44,7 +44,7 @@
                     />
 
                     <div class="media-body">
-                      <strong class="text-success">{{ com.user.userName }}</strong><mat-icon [inline]="true" class="like"> thumb_up </mat-icon><mat-icon [inline]="true" class="dislike"> thumb_down </mat-icon>
+                      <strong class="text-success">{{ com.user.userName }}</strong><mat-icon (click)="putLikePost(com.id)" [inline]="true" class="like"> thumb_up </mat-icon><mat-icon [inline]="true" class="dislike"> thumb_down </mat-icon>
                       <p>
                         {{ com.text }}
                       </p>

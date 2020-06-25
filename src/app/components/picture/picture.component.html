@@ -1,16 +1,27 @@
 <div class="fondo">
-  
   <div class="form">
-    <mat-label appearance="outline" class="datos">Elige tu imagen de perfil:</mat-label>
     <br />
-    <input
-    appearance="outline"
+    <mat-label class="datos">Seleccione su imagen de perfil</mat-label>
+    <br />
+    <span><input
+      appearance="outline"
       type="file"
-     (ngModel)="file"
+      (ngModel)="(file)"
       (change)="handleFileInput($event.target.files)"
-    />
-    <button routerLink="/categorias" type="button" (click)="onUpload()" class="btn">Subir</button>
-    <button routerLink="/categorias" type="button"  class="btn">Continuar sin subir</button>
-
+    /></span>
+    <label for="mi-archivo"><mat-icon  class="cargar">cloud_download</mat-icon></label>
+    <br />
+    <button
+      routerLink="/categorias"
+      type="button"
+      (click)="onUpload()"
+      class="btn"
+    >
+      subir
+    </button>
+    <button routerLink="/categorias" type="button" class="btn">
+      continuar sin subir
+    </button>
+    <br />
   </div>
 </div>

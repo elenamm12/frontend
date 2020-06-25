@@ -27,36 +27,55 @@
       </button>
     </div>
 
-    <div *ngFor="let com of posts">
-      <div class="row flex-row-reverse bootstrap snippets">
-        <div class="col-md-12 col-md-offset-2 col-sm-12">
-          <div class="comment-wrapper">
-            <div class="panel panel-info">
-              <div class="panel-body">
-                <div class="clearfix"></div>
-
-                <ul class="media-list">
-                  <li class="media">
-                    <img
-                      src="{{ com.user.image }}"
+    <div *ngIf="posts.length > 0">
+      <div *ngFor="let com of posts">
+        <div class="row flex-row-reverse bootstrap snippets">
+          <div class="col-md-12 col-md-offset-2 col-sm-12">
+            <div class="comment-wrapper">
+              <div class="panel panel-info">
+                <div class="panel-body">
+                  <div class="clearfix"></div>
+  
+                  <ul class="media-list">
+                    <li class="media">
+                      <div *ngIf="com.user.image != null; else sinFoto">
+  
+                      
+                      <img
+                        src="{{ com.user.image }}"
+                        alt=""
+                        class="img-circle"
+                      />
+  
+  
+                    </div>
+  
+                    <ng-template #sinFoto>
+                      <img
+                      src="https://iestpdesaguadero.edu.pe/wp-content/uploads/2016/11/78-786420_icono-usuario-joven-transparent-user-png-png-download.png"
                       alt=""
                       class="img-circle"
-                    />
-
-                    <div class="media-body">
-                      <strong class="text-success">{{ com.user.userName }}</strong><mat-icon (click)="putLikePost(com.id)" [inline]="true" class="like"> thumb_up </mat-icon><mat-icon [inline]="true" class="dislike"> thumb_down </mat-icon>
-                      <p>
-                        {{ com.text }}
-                      </p>
-                    </div>
-                  </li>
-                </ul>
+                      />
+                  
+                    </ng-template>
+  
+                      <div class="media-body">
+                        <strong class="text-success">{{ com.user.userName }}</strong><mat-icon (click)="putLikePost(com.id)" [inline]="true" class="like"> thumb_up </mat-icon><mat-icon [inline]="true" class="dislike"> thumb_down </mat-icon>
+                        <p>
+                          {{ com.text }}
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
+    
     
   </div>
   <div

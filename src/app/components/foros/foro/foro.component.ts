@@ -50,8 +50,11 @@ export class ForoComponent implements OnInit {
             this.forosFav = res.forums;
             console.log(this.forosFav);
 
-            let bool = this.forosFav.find((ob) => ob.id === this.foroId);
-            console.log(this.foroId);
+            let bool = this.forosFav.find((ob) => ob.id == this.foroId);
+            console.log(bool);
+            if(bool != null){
+              this.suscrito=true;
+            }
 
           }
         });
@@ -93,6 +96,7 @@ export class ForoComponent implements OnInit {
       .subscribe((response) => {
         if (response) {
           console.log('aja ', response);
+          location.reload();
         }
       });
   }
@@ -100,8 +104,8 @@ export class ForoComponent implements OnInit {
   likeForo(id: number) {
     this.waveService.likeForum(id).subscribe((res) => {
       if (res) {
+        this.suscrito=true;
         console.log(res);
-        location.reload();
       }
     });
   }
@@ -109,6 +113,7 @@ export class ForoComponent implements OnInit {
   dislikeForo(id: number) {
     this.waveService.dislikeForum(id).subscribe((res) => {
       if (res) {
+        this.suscrito=false;
         console.log(res);
         location.reload();
       }

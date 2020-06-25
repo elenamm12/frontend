@@ -19,6 +19,7 @@ export class ForoComponent implements OnInit {
   comment = "";
   postComment = [];
   user:any;
+  suscrito = false;
 
   constructor(
     private waveService: WaveServiceService,
@@ -45,6 +46,10 @@ export class ForoComponent implements OnInit {
           console.log(res);
           this.forosFav=res.forums;
           console.log(this.forosFav);
+          let bool = this.forosFav.find(ob => ob.id === this.foroId);
+          if(bool != null){
+            this.suscrito = true;
+          }
         }
       });
     });

@@ -19,6 +19,30 @@ export class SubCategoriaComponent implements OnInit {
   categoryId: number;
   filteredForums: Observable<string[]>;
   myControl = new FormControl();
+  fileToUpload = null;
+  imageUrl=null;
+  file:any;
+  favorite = false;
+  CatWFavoriteSubcat: [];
+
+  handleFileInput(file: FileList) {
+    console.log(file);
+    this.fileToUpload = file.item(0);
+    console.log(this.fileToUpload)
+
+    var reader = new FileReader();
+    reader.onloadend = (event: any) => {
+      this.imageUrl = event.target.result;
+    };
+    reader.readAsDataURL(this.fileToUpload);
+    console.log(reader.result);
+  }
+
+  onUpload(){
+   this.waveService.uploadPicture(this.fileToUpload).subscribe(res=>{
+     console.log(res)
+   })
+  }
   
   constructor(
     private waveService: WaveServiceService,
@@ -27,6 +51,11 @@ export class SubCategoriaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.waveService.getFavoriteSubCategories().subscribe((response)=>{     
+      this.CatWFavoriteSubcat = response.categories;
+      console.log("hola", this.CatWFavoriteSubcat);
+    });   
+
     this.filteredForums = this.myControl.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value))
@@ -66,6 +95,12 @@ export class SubCategoriaComponent implements OnInit {
               });
           });
       });
+
+      //let bool = this.CatWFavoriteSubcat.find(ob => ob.id === this.categoryId ); ??
+      //if(bool != null){
+      //  this.favorite = true;
+      //}
+    
   }
 
   private _filter(value: string): string[] {

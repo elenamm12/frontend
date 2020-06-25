@@ -13,6 +13,7 @@ export class CrearForoComponent implements OnInit {
   ngOnInit(): void {
     this.service.getFavoriteSubCategories().subscribe((res)=>{
       this.CatWFavoriteSubcat = res.categories;
+      console.log(this.CatWFavoriteSubcat);
     })
   }
 

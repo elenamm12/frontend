@@ -58,6 +58,17 @@
 </strong>
 </mat-card>
 
+<div *ngIf="favorite">
+  <button
+  class="btn btn-primary abajo"
+  data-toggle="modal"
+  data-target="#exampleModal"
+  >
+  crear foro
+  </button>
+</div>
+
+
 
 <br />
 <h4>También puedes participar en estos foros</h4>
@@ -76,3 +87,60 @@
     ></a
   >
 </div>
+
+<div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <strong>¡Crea un foro!</strong>
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <mat-form-field >
+            <mat-label>Nombre del foro</mat-label>
+            <input matInput placeholder="Nombre" />
+          </mat-form-field>
+          <mat-label class="datos">Ponle una foro:</mat-label>
+          <span><input
+            appearance="outline"
+            type="file"
+            (ngModel)="(file)"
+            (change)="handleFileInput($event.target.files)"
+          /></span>
+          <label for="mi-archivo"><mat-icon  class="cargar">cloud_download</mat-icon></label>
+          <br />
+
+
+        </div>
+        <div class="modal-footer">
+          <button
+            routerLink="/categorias"
+            type="button"
+            (click)="onUpload()"
+            class="btn"
+          >
+            subir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

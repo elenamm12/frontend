@@ -30,7 +30,7 @@ h2 {
   width: 85%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 3.5em;
+  margin-top: 1em;
   margin-bottom: 0.9em;
   font-weight: normal;
 }
@@ -108,6 +108,37 @@ button {
   max-width: 70%;
   width: 30rem;
 }
+
+button.suscribir {
+  width: 40%;
+  margin-left: 55%;
+  background-color: orange;
+  color: white;
+  border-color: white;
+  padding: 0;
+  padding-top: 3.5px;
+  margin-top: 5em;
+  border-radius: 4px;
+  padding-bottom: 3.5px;
+  margin-bottom: 17px;
+  transition: all 0.5s;
+}
+
+button.dislike {
+  width: 74%;
+  margin-left: 21%;
+  background-color: grey;
+  color: white;
+  border-color: white;
+  padding: 0;
+  padding-top: 3.5px;
+  margin-top: 5em;
+  border-radius: 4px;
+  padding-bottom: 3.5px;
+  margin-bottom: 17px;
+  transition: all 0.5s;
+}
+
 button.primero {
   width: 40%;
   margin-left: 30%;
@@ -172,4 +203,16 @@ p {
 
 .snippets {
   font-family: Roboto, sans-serif;
+}
+
+@media (max-width: 340px) {
+  button.primero {
+    width: 45%;
+  }
+  button.abajo {
+    width: 15%;
+  }
+  h2 {
+    margin-top: 1em;
+  }
 }

@@ -1,7 +1,21 @@
 <app-menu></app-menu>
 <div class="fondo">
 
+  <div *ngIf="suscrito; else suscribete">
+    <button class="btn btn-primary dislike">
+      Dejar de estar suscrito
+      </button>
+  </div>
+
+  <ng-template #suscribete>
+    <button class="btn btn-primary suscribir">
+      ¡Suscríbite!
+      </button>
+
+  </ng-template>
+
   <h2>{{ Foro.title }}</h2>
+
 
   <h6>¡Comentarios!</h6>
 
@@ -96,4 +110,5 @@
   >
   <mat-icon> create </mat-icon>
   </button>
+
 </div>

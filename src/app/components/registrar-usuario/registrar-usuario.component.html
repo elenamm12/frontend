@@ -60,7 +60,7 @@
         Por favor introduzca un username
       </mat-error>
       <mat-form-field appearance="outline">
-        <mat-label>Contaseña</mat-label>
+        <mat-label>Contraseña</mat-label>
         <input
           type="password"
           matInput
@@ -78,6 +78,9 @@
         <mat-error *ngIf="contra.errors.maxlength">
           10 caracteres maximo
         </mat-error>
+        <mat-error *ngIf="contra.errors.pattern">
+        Debe tener al menos una Mayuscula, una Minuscula y al menos un digito
+      </mat-error>
       </div>
       <mat-form-field appearance="outline">
         <mat-label>Repetir Contraseña</mat-label>

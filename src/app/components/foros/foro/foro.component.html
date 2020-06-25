@@ -2,13 +2,13 @@
 <div class="fondo">
 
   <div *ngIf="suscrito; else suscribete">
-    <button class="btn btn-primary dislike" onclick="likeForo(foroId)">
+    <button (click)="dislikeForo(foroId)" class="btn btn-primary dislike">
       Dejar de estar suscrito
       </button>
   </div>
 
   <ng-template #suscribete>
-    <button class="btn btn-primary suscribir">
+    <button (click)="likeForo(foroId)" class="btn btn-primary suscribir">
       ¡Suscríbite!
       </button>
 

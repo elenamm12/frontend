@@ -36,10 +36,12 @@
         </mat-card-header>
         <mat-chip-list aria-label="Fish selection">
           <div *ngFor="let sub of cat.subCategories">
-            <mat-chip color="accent" selected
+            <a 
+              ><mat-chip color="accent" selected routerLink="/sub-categoria/{{ sub.id }}/categoria/{{ cat.id }}"
                 >{{ sub.name }}
-                <mat-icon matChipRemove (clic)="dislikesubC(sub.id)">thumb_down</mat-icon></mat-chip
-              >
+                <mat-icon (click)="dislikesubC(sub.id)" routerLink="/home"  matChipRemove>thumb_down</mat-icon></mat-chip
+              ></a
+            >
           </div>
         </mat-chip-list>
       </mat-card>

@@ -48,6 +48,7 @@ export class RegistrarUsuarioComponent implements OnInit {
   public token: string;
 
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  private passwordPattern: any = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])/;
 
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
 
@@ -68,7 +69,7 @@ export class RegistrarUsuarioComponent implements OnInit {
         fecha: new FormControl('', [Validators.required]),
         correo: new FormControl('', [
           Validators.required,
-          Validators.pattern(this.emailPattern),
+          Validators.pattern(this.emailPattern)
         ]),
         usuario: new FormControl('', [
           Validators.required,
@@ -78,6 +79,7 @@ export class RegistrarUsuarioComponent implements OnInit {
           Validators.required,
           Validators.minLength(7),
           Validators.maxLength(10),
+          Validators.pattern(this.passwordPattern)
         ]),
         validContra: new FormControl(''),
         categorias: this.formBuilder.array([]),

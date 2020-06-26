@@ -98,6 +98,13 @@ export class ForoComponent implements OnInit {
           location.reload();
         }
       });
+    }
+  putDislikePost(id: number){
+    this.waveService.dislikePost(id).subscribe((res)=>{
+      if(res){
+        console.log(res)
+      }
+    })
   }
 
   likeForo(id: number) {

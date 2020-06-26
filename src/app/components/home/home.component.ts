@@ -27,12 +27,13 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
-  dislikesubC(Id) {
-    console.log(Id)
-    this.waveService
-      .dislikeSubcategorie(Id)
-      .subscribe((response) => console.log(response));
-  }
+  dislikesubC(id: number){
+    this.waveService.dislikeSubcategorie(id).subscribe((res)=>{
+      if(res){
+        console.log(res);
+      };
+      location.reload();
+    });
+    
 }
 

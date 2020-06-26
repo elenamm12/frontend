@@ -51,6 +51,22 @@ export class SubCategoriaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.waveService.getFavoriteSubCategories().subscribe((response)=>{     
+      this.CatWFavoriteSubcat = response.categories;
+      console.log("hola", this.CatWFavoriteSubcat);
+      console.log(response);
+     let categoryId:number = this.route.snapshot.params['idCateg'];
+      let aja : [] = response;
+      let bool = this.CatWFavoriteSubcat.find(id => id === categoryId );
+      console.log(bool);
+      //  if(bool != undefined){
+      //  let bool2= bool.find(ob => ob.id === this.subcategoryId);
+      //     if(bool2 != null){
+      //     this.favorite = true;
+      //     }
+     // }
+  }
+    );   
 
 
     this.categoryId = this.route.snapshot.params['idCateg'];
@@ -94,19 +110,6 @@ export class SubCategoriaComponent implements OnInit {
               
           });
           
-      });
-      this.waveService.getFavoriteSubCategories().subscribe((response) => {
-        //console.log(response)
-        this.CatWFavoriteSubcat = response.categories;
-        console.log('hola', this.CatWFavoriteSubcat);
-        
-        
-        //let bool = this.CatWFavoriteSubcat.find((ob) => ob.id == this.foroId);
-        //console.log("BOOL", bool);
-        //if (bool != null) {
-          //this.favorite = true;
-        //}
-      
       });
 
   }

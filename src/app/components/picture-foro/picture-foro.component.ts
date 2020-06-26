@@ -37,7 +37,7 @@ export class PictureForoComponent implements OnInit {
   onUpload(){
     this.wave.uploadPictureForo(this.fileToUpload, this.id).subscribe(res=>{
       console.log(res);
-      this.router.navigate([`/foro/${this.id}`]);
+      this.router.navigate(["/foros"]);
       
     })
    }

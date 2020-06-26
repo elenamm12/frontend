@@ -146,14 +146,14 @@
       </div>
 
       <div class="modal-body">
-        <form>
+        <form [formGroup]="forumForm">
           <mat-form-field>
             <mat-label>Nombre del foro</mat-label>
             <input
+              formControlName="text"
               matInput
-              [(ngModel)]="text"
               name="text"
-              placeholder="Nombre"
+              placeholder="Nombre"  
             />
           </mat-form-field>
         </form>
@@ -161,9 +161,14 @@
 
       <div class="modal-footer">
 
-        <button (click)="onSaveForm()" class="btn" data-dismiss="modal">
+        <button class="btn" data-dismiss="modal">
+          cancelar
+        </button>
+        
+        <button [disabled]="forumForm.invalid" (click)="onSaveForm()" class="btn" data-dismiss="modal">
           continuar
         </button>
+        
       </div>
     </div>
   </div>

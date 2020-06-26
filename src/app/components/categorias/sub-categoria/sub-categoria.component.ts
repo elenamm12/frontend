@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-sub-categoria',
@@ -24,9 +25,17 @@ export class SubCategoriaComponent implements OnInit {
   file: any;
   favorite = true;
   CatWFavoriteSubcat: [];
-  text: any;
   forums: any;
   id: number;
+  forumForm: FormGroup;
+
+  createFormGroup (){
+    return new FormGroup({
+    text: new FormControl('', [
+      Validators.required,  
+    ]),
+    })
+  }
 
   handleFileInput(file: FileList) {
     console.log(file);
@@ -51,7 +60,9 @@ export class SubCategoriaComponent implements OnInit {
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+  this.forumForm= this.createFormGroup();
+  }
 
   ngOnInit(): void {
     this.waveService.getAllForums().subscribe((response) => {
@@ -123,8 +134,12 @@ export class SubCategoriaComponent implements OnInit {
   }
 
   onSaveForm(){
-  this.crearForo(this.subcategoryId, this.text);
+  this.crearForo(this.subcategoryId, this.forumForm.value.text);
   }
+
+  get text(){
+    return this.forumForm.get('text')
+  };
 
   
 

@@ -22,8 +22,10 @@ export class SubCategoriaComponent implements OnInit {
   fileToUpload = null;
   imageUrl = null;
   file: any;
-  favorite = false;
+  favorite = true;
   CatWFavoriteSubcat: [];
+  seleccionado: any;
+  text: any;
 
   handleFileInput(file: FileList) {
     console.log(file);
@@ -51,23 +53,15 @@ export class SubCategoriaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.waveService.getFavoriteSubCategories().subscribe((response)=>{     
+    this.waveService.getFavoriteSubCategories().subscribe((response) => {
       this.CatWFavoriteSubcat = response.categories;
-      console.log("hola", this.CatWFavoriteSubcat);
+      console.log('hola', this.CatWFavoriteSubcat);
       console.log(response);
-     let categoryId:number = this.route.snapshot.params['idCateg'];
-      let aja : [] = response;
-      let bool = this.CatWFavoriteSubcat.find(id => id === categoryId );
-      console.log(bool);
-      //  if(bool != undefined){
-      //  let bool2= bool.find(ob => ob.id === this.subcategoryId);
-      //     if(bool2 != null){
-      //     this.favorite = true;
-      //     }
-     // }
-  }
-    );   
-
+      let categoryId: number = this.route.snapshot.params['idCateg'];
+      let aja: [] = response;
+      //let bool = this.CatWFavoriteSubcat.find(id => id == categoryId );
+      //console.log(bool);
+    });
 
     this.categoryId = this.route.snapshot.params['idCateg'];
     this.filteredForums = this.myControl.valueChanges.pipe(
@@ -107,11 +101,20 @@ export class SubCategoriaComponent implements OnInit {
                 this.favoriteForums = response.forums;
                 console.log('foro fav', this.favoriteForums);
               });
-              
           });
-          
       });
+  }
 
+  crearForo(idSubcategory: number, title: string){
+    this.waveService.createForum(idSubcategory, title).subscribe((response)=>{
+      if(response){
+        console.log("foro creado")
+      }
+    })
+  }
+
+  onSaveForm(){
+  this.crearForo(this.subcategoryId, this.text);
   }
 
   private _filter(value: string): string[] {

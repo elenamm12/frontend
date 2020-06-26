@@ -28,6 +28,8 @@ import { PictureComponent } from './components/picture/picture.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CrearForoComponent } from './components/foros/crear-foro/crear-foro.component';
+import { PictureForoComponent } from './components/picture-foro/picture-foro.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { environment } from '../environments/environment';
     FavoritasComponent,
     ForoFilterPipe,
     PictureComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    CrearForoComponent,
+    PictureForoComponent
   ],
   imports: [
     BrowserModule,

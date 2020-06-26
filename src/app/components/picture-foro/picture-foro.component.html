@@ -1,0 +1,27 @@
+<div class="fondo">
+  <div class="form">
+    <br />
+    <mat-label class="datos">Seleccione una imagen para su foro</mat-label>
+    <br />
+    <span
+      ><input
+        appearance="outline"
+        type="file"
+        (ngModel)="(file)"
+        (change)="handleFileInput($event.target.files)"
+    /></span>
+    <label for="mi-archivo"
+      ><mat-icon class="cargar">cloud_download</mat-icon></label
+    >
+    <br />
+    <button
+      routerLink="/categorias"
+      type="button"
+      (click)="onUpload()"
+      class="btn"
+    >
+      subir
+    </button>
+    <br />
+  </div>
+</div>

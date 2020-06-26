@@ -98,19 +98,20 @@ export class ForoComponent implements OnInit {
           location.reload();
         }
       });
-    }
-  putDislikePost(id: number){
-    this.waveService.dislikePost(id).subscribe((res)=>{
-      if(res){
-        console.log(res)
+  }
+  
+  putDislikePost(id: number) {
+    this.waveService.dislikePost(id).subscribe((res) => {
+      if (res) {
+        console.log(res);
       }
-    })
+    });
   }
 
   likeForo(id: number) {
     this.waveService.likeForum(id).subscribe((res) => {
       if (res) {
-        this.suscrito=true;
+        this.suscrito = true;
         console.log(res);
       }
     });
@@ -119,7 +120,7 @@ export class ForoComponent implements OnInit {
   dislikeForo(id: number) {
     this.waveService.dislikeForum(id).subscribe((res) => {
       if (res) {
-        this.suscrito=false;
+        this.suscrito = false;
         console.log(res);
         location.reload();
       }

@@ -14,8 +14,8 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root',
 })
 export class WaveServiceService {
-  url = 'http://localhost:3000';
-  //url = 'https://wave-service.herokuapp.com';
+  //url = 'http://localhost:3000';
+  url = 'https://wave-service.herokuapp.com';
 
   mockUser = {
     username: 'aja@aja.com',

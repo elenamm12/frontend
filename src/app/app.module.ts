@@ -29,6 +29,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CrearForoComponent } from './components/foros/crear-foro/crear-foro.component';
+import { PictureForoComponent } from './components/picture-foro/picture-foro.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { CrearForoComponent } from './components/foros/crear-foro/crear-foro.com
     PictureComponent,
     UsuarioComponent,
     CrearForoComponent,
+    PictureForoComponent
   ],
   imports: [
     BrowserModule,

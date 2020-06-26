@@ -32,7 +32,7 @@
   width: 100%;
   margin: auto;
   margin-bottom: 1.9em;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: "Roboto", sans-serif;
   letter-spacing: 0.5px;
   justify-content: center;
   border-radius: 6px;
@@ -59,7 +59,7 @@ mat-form-field {
 input {
   padding: 0;
   font-size: 100%;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: "Roboto", sans-serif;
   color: black;
 }
 
@@ -148,4 +148,12 @@ mat-card-actions {
 ::ng-deep .mat-form-field-wrapper {
   padding-bottom: 0;
   border-radius: 4px;
+}
+
+::ng-deep mat-label{
+  color:white;
+}
+
+::ng-deep input[type="search"]{
+  color:white
 }

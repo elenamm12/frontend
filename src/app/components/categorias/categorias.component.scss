@@ -1,77 +1,88 @@
-
-.fondo{
-    padding:0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
+.fondo {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
 }
 
-.espacio{
-    height: 1.5em;
+.espacio {
+  height: 1.5em;
 }
 
-.contenido{
-    margin-bottom: 1.5em;
+.contenido {
+  margin-bottom: 1.5em;
 }
 
+mat-card {
+  width: 95%;
+  max-height: 20%;
+  text-align: center;
 
-mat-card{
-    width: 95%;
-    max-height: 20%;
-    text-align: center;
-    font-family: 'Montserrat Alternates', sans-serif;
-    font-size: 220%;    
-    text-align: center;  
-    line-height: initial;
-    color: #f4f4f4;
-    text-shadow: 2px 2px 8px rgb(54, 54, 54),2px 2px 8px #363636;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0;
-    margin-top: 7%;
-    padding-bottom: 10px;
+  font-family: "Poiret One";
+  font-size: 220%;
+  text-align: center;
+  line-height: initial;
+  color: #f4f4f4;
+  text-shadow: 2px 2px 8px rgb(54, 54, 54), 2px 2px 8px #363636;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  margin-top: 7%;
+  padding-bottom: 10px;
 }
 
-img{
-    width: 100%;
-    margin:0;
-    opacity: 0.9;
+img {
+  width: 100%;
+  margin: 0;
+  opacity: 0.9;
 }
 
-img.mat-card-image{
-    margin: 0;
-    height: 5em;
+img.mat-card-image {
+  margin: 0;
+  height: 5.2em;
 }
 
-.container{
-    position: relative;
+.container {
+  position: relative;
 }
 
-.centered{
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    letter-spacing: 1px;
-    font-family: Roboto, sans-serif;
-    font-weight: none;
+.centered {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  letter-spacing: 1px;
+  font-family: Roboto, sans-serif;
+  font-weight: none;
 }
 
-mat-card-content{
-    text-shadow: none;
-    margin:10px;
+mat-card-content {
+  text-shadow: none;
+  margin: 10px;
 }
 
-.sepaador{
-    height: 4.7em;
+.sepaador {
+  height: 4.7em;
 }
 
-::ng-deep .mat-card:not([class*=mat-elevation-z]) {
-    box-shadow: -1px 4px 8px 3px rgba(0, 0, 0, 0.171), 0px -1px 4px 0px rgba(0, 0, 0, 0.14), 1px 1px 3px 0px rgba(0, 0, 0, 0.12);
+::ng-deep .mat-card:not([class*="mat-elevation-z"]) {
+  box-shadow: -1px 4px 8px 3px rgba(0, 0, 0, 0.171),
+    0px -1px 4px 0px rgba(0, 0, 0, 0.14), 1px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
 ::ng-deep.mat-chip.mat-standard-chip.mat-chip-selected.mat-accent {
-    background-color: orange;
-    color: #fff;
+  background-color: orange;
+  color: #fff;
+  letter-spacing: 1.1px;
+}
+
+@media(min-width:740px){
+    img.mat-card-image {
+        height: 11em;
+      }
+
+    .centered{
+        top: 150px;
+    }
 }

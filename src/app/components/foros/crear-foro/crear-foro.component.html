@@ -4,18 +4,21 @@
     <div class="form">
       <mat-label class="datos">Introduzca el nombre del foro:</mat-label>
 
-      <div appearance="outline">
-        <mat-label>Nombre</mat-label>
-        <input [(ngModel)]="text" name="text" matInput placeholder="Nombre"  />
+      <div >
+        <mat-form-field appearance="outline">
+        <input matInput [(ngModel)]="text" name="text"  placeholder="Nombre" />
+      </mat-form-field>
       </div>
 
       <div class="form-group cuentas">
-        <mat-label class="datos">Selecciona la Subcategoria </mat-label>
-        <div *ngFor = "let aja of CatWFavoriteSubcat"> {{aja.name}}: 
+        <mat-label class="datos">Entre tus categorías favortias, ¿dónde crearás el foro? </mat-label>
+        <div *ngFor = "let aja of CatWFavoriteSubcat"> 
+          <mat-label class="datos">{{aja.name}}: </mat-label>
         <select [(ngModel)]="seleccionado"
           class="form-control cuenta"
           id="sel1"
           name="first"
+          aria-placeholder="aja.name"
         > 
                <option *ngFor = "let ok of aja.subCategories" value="{{ok.id}}">{{ok.name}}</option>
           
@@ -26,7 +29,7 @@
       </div>
 
       <div>
-        <button type="submit">continuar</button>
+        <button type="submit" class="btn btn-primary primero">continuar</button>
       </div>
       
       

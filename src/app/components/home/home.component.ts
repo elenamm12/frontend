@@ -5,16 +5,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   categories: any[] = [];
-  favoriteCategories : any[] = [];
+  favoriteCategories: any[] = [];
 
   showNavigationArrows = true;
   showNavigationIndicators = false;
-  
-  
+
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
@@ -22,10 +21,10 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.waveService.getFavoriteSubCategories().subscribe((response)=>{     
+    this.waveService.getFavoriteSubCategories().subscribe((response) => {
       this.favoriteCategories = response.categories;
-      console.log("favorite", this.favoriteCategories);
-    })
+      console.log('favorite', this.favoriteCategories);
+    });
   }
 
   dislikesubC(id: number){
@@ -35,9 +34,7 @@ export class HomeComponent implements OnInit {
       };
       location.reload();
     });
-    
-
   }
-
+    
 }
 

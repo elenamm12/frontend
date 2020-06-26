@@ -160,7 +160,7 @@ mat-form-field {
 input {
   padding: 0;
   font-size: 100%;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 h4 {
@@ -176,9 +176,20 @@ h4 {
 
 div.modal-body{
   text-align: center;
+  form{
+    padding-top:0;
+  }
   mat-form-field{
     width: 90%;
     margin-left: 0;
+  }
+}
+
+div.modal-footer{
+  text-align: right;
+  .btn{
+    margin-left: 1%;
+    width: 47%;
   }
 }
 
@@ -254,4 +265,8 @@ div.modal-body{
   margin-right: 15px !important;
   margin-left: 5px !important;
   margin-bottom: 5px !important;
+}
+
+::ng-deep .mat-card-content {
+  margin-bottom: 2em !important;
 }

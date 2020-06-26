@@ -128,20 +128,20 @@
       </div>
 
       <div class="modal-body">
-        <form (ngSubmit)="onSaveForm()">
+        <form>
           <mat-form-field>
             <mat-label>Nombre del foro</mat-label>
-            <input matInput [(ngModel)]="text" name="text" placeholder="Nombre" />
+            <input  matInput [(ngModel)]="text" name="text" placeholder="Nombre" />
           </mat-form-field>
         </form>
       </div>
 
       <div class="modal-footer">
-        <button type="submit" class="btn" data-dismiss="modal" routerLink="/picture-foro">
+        <button disabled type="submit" class="btn" data-dismiss="modal" routerLink="/picture-foro">
           elegir foto
         </button>
-        <button type="submit" class="btn" data-dismiss="modal">
-          subir sin foro
+        <button (click)="onSaveForm()" class="btn" data-dismiss="modal">
+          crear sin foto
         </button>
       </div>
 

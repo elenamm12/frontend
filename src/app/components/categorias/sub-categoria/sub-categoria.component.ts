@@ -109,6 +109,7 @@ export class SubCategoriaComponent implements OnInit {
     this.waveService.createForum(idSubcategory, title).subscribe((response)=>{
       if(response){
         console.log("foro creado")
+        this.router.navigate(['/foros']);
       }
     })
   }

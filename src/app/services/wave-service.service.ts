@@ -14,8 +14,8 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root',
 })
 export class WaveServiceService {
-  //url = 'http://localhost:3000';
-  url = 'https://wave-service.herokuapp.com';
+  url = 'http://localhost:3000';
+  //url = 'https://wave-service.herokuapp.com';
 
   mockUser = {
     username: 'aja@aja.com',
@@ -107,6 +107,20 @@ export class WaveServiceService {
       tap((res: any) => {
         if (res) {
           this.savePick(res.imageUrl);
+        } else {
+          console.log('no hay respuesta');
+        }
+      })
+    );
+  }
+
+  uploadPictureForo(file: File, idForum:number): Observable<any> {
+    const fd = new FormData();
+    fd.append('file', file, file.name);
+    return this.http.post(`${this.url}/forum/photo/upload/${idForum}`, fd).pipe(
+      tap((res: any) => {
+        if (res) {
+          console.log('listo')
         } else {
           console.log('no hay respuesta');
         }

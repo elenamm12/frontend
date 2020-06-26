@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-crear-foro',
@@ -10,7 +11,8 @@ export class CrearForoComponent implements OnInit {
   CatWFavoriteSubcat: [];
   seleccionado;
   text;
-  constructor(private service :WaveServiceService) { }
+
+  constructor(private service :WaveServiceService, private router: Router) { }
 
   ngOnInit(): void {
     this.service.getFavoriteSubCategories().subscribe((res)=>{
@@ -23,6 +25,7 @@ export class CrearForoComponent implements OnInit {
     this.service.createForum(idSubcategory, title).subscribe((response)=>{
       if(response){
         alert("foro creado")
+        this.router.navigate(['/foros']);
       }
     })
   }

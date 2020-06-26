@@ -24,8 +24,9 @@ export class SubCategoriaComponent implements OnInit {
   file: any;
   favorite = true;
   CatWFavoriteSubcat: [];
-  seleccionado: any;
   text: any;
+  forums: any;
+  id: number;
 
   handleFileInput(file: FileList) {
     console.log(file);
@@ -53,6 +54,13 @@ export class SubCategoriaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.waveService.getAllForums().subscribe((response) => {
+      this.forums = response.forums;
+      console.log(this.forums);
+      this.id = this.forums.length +1;
+      console.log("NUMERO DE FOROS", this.id);
+    });
+    
     this.waveService.getFavoriteSubCategories().subscribe((response) => {
       this.CatWFavoriteSubcat = response.categories;
       console.log('hola', this.CatWFavoriteSubcat);

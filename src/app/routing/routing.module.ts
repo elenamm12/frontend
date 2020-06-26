@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'picture', component: PictureComponent, canActivate: [AuthGuard] },
   { path: 'crear-foro', component: CrearForoComponent, canActivate: [AuthGuard] },
-  { path: 'picture-foro', component: PictureForoComponent, canActivate: [AuthGuard] },
+  { path: 'picture-foro/:id', component: PictureForoComponent, canActivate: [AuthGuard] },
   {
     path: 'perfil-usuario',
     component: UsuarioComponent,

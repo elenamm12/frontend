@@ -21,26 +21,28 @@
           {{ option.title }}
         </mat-option>
       </mat-autocomplete>
-      <mat-icon matSuffix style="color:white">search</mat-icon>
+      <mat-icon matSuffix style="color: white;">search</mat-icon>
     </mat-form-field>
   </div>
 
   <div *ngFor="let foro of forums | foroFilter: filterForum" class="contenedor">
     <mat-card
-        ><a routerLink="/foro/{{ foro.id }}"
-        ><img
-          mat-card-avatar
-          [src]="foro.image"
-          alt="User Avatar"
-        /></a
-        >{{ foro.title }}
-        <mat-card-actions> 
-          ¡Suscríbete!
-          <mat-icon (click)="likeForo(foro.id)" class="agregar" [inline]="true" >thumb_up</mat-icon>
-          
-          
-        </mat-card-actions></mat-card
-      >
+      ><div *ngIf="foro.image != null && foro.image != undefined; else sinFoto">
+        <a routerLink="/foro/{{ foro.id }}"
+          ><img mat-card-avatar [src]="foro.image" alt="User Avatar" />
+        </a>{{ foro.title }}
+      </div>
+      <ng-template #sinFoto>
+        <a routerLink="/foro/{{ foro.id }}"
+        ><img mat-card-avatar src="https://www.liberaldictionary.com/wp-content/uploads/2019/02/f-8273.jpg" alt="User Avatar" />
+      </a>{{ foro.title }}
+      </ng-template>
+      <mat-card-actions>
+        ¡Suscríbete!
+        <mat-icon (click)="likeForo(foro.id)" class="agregar" [inline]="true"
+          >thumb_up</mat-icon
+        >
+      </mat-card-actions></mat-card
+    >
   </div>
-  
 </div>

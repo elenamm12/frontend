@@ -117,7 +117,7 @@ export class SubCategoriaComponent implements OnInit {
     this.waveService.createForum(idSubcategory, title).subscribe((response)=>{
       if(response){
         console.log("foro creado")
-        this.router.navigate(['/foros']);
+        this.router.navigate([`/picture-foro/${this.id}`]);
       }
     })
   }
@@ -125,6 +125,8 @@ export class SubCategoriaComponent implements OnInit {
   onSaveForm(){
   this.crearForo(this.subcategoryId, this.text);
   }
+
+  
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();

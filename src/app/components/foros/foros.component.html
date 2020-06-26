@@ -28,9 +28,9 @@
     crear foro
   </button>
   <div *ngFor="let foro of forums | foroFilter: filterForum" class="contenedor">
-    <a routerLink="/foro/{{ foro.id }}"
-      ><mat-card
-        ><img
+    <a 
+      ><mat-card 
+        ><img routerLink="/foro/{{ foro.id }}"
           mat-card-avatar
           src="/assets/img/logo.png"
           alt="User Avatar"
@@ -39,7 +39,7 @@
           ¡Suscríbete!
           <mat-icon class="agregar" [inline]="true" mat-raised-button
           matTooltip="Info about the action"
-          matTooltipClass="example-tooltip-red" >thumb_up</mat-icon>
+          matTooltipClass="example-tooltip-red" (click)="likeForo(foro.id)" >thumb_up</mat-icon>
           
           
         </mat-card-actions></mat-card

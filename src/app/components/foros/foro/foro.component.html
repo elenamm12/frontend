@@ -27,7 +27,7 @@
       </button>
     </div>
 
-    <div *ngIf="posts.length > 0">
+    <div *ngIf="posts.length > 0; else sinPost">
       <div *ngFor="let com of posts">
         <div class="row flex-row-reverse bootstrap snippets">
           <div class="col-md-12 col-md-offset-2 col-sm-12">
@@ -75,7 +75,9 @@
       </div>
 
     </div>
-    
+    <ng-template #sinPost>
+      <h6>Publica el primer comentario</h6>
+    </ng-template>
     
   </div>
   <div

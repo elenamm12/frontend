@@ -68,7 +68,7 @@ export class SubCategoriaComponent implements OnInit {
     this.waveService.getAllForums().subscribe((response) => {
       this.forums = response.forums;
       console.log(this.forums);
-      this.id = this.forums.length +1;
+      this.id = this.forums.length +2;
       console.log("NUMERO DE FOROS", this.id);
     });
     
@@ -77,7 +77,7 @@ export class SubCategoriaComponent implements OnInit {
       console.log('hola', this.CatWFavoriteSubcat);
       console.log(response);
       let categoryId: number = this.route.snapshot.params['idCateg'];
-      let aja: [] = response;
+      //let aja: [] = response;
       //let bool = this.CatWFavoriteSubcat.find(id => id == categoryId );
       //console.log(bool);
     });

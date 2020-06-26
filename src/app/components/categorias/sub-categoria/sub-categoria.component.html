@@ -76,11 +76,22 @@
 
   <div *ngFor="let foro of subscribedForums" class="foros">
     <a routerLink="/foro/{{ foro.id }}"
-      ><mat-card class="foros1"
-        ><img mat-card-avatar [src]="foro.image" alt="User Avatar" />{{
-          foro.title
-        }}</mat-card
-      ></a
+      ><mat-card class="foros1">
+        <div
+          *ngIf="foro.image != null && foro.image != undefined; else sinFoto"
+        >
+          <img mat-card-avatar [src]="foro.image" alt="User Avatar" />
+          {{ foro.title }}
+        </div>
+        <ng-template #sinFoto>
+          <img
+            mat-card-avatar
+            src="https://mustdonewzealand.co.nz/wp-content/uploads/2013/08/white-300x225.jpg"
+            alt="User Avatar"
+          />
+          {{ foro.title }}
+        </ng-template>
+      </mat-card></a
     >
   </div>
 </div>
@@ -94,14 +105,21 @@
 <div *ngFor="let foro of favoriteForums" class="foros">
   <a routerLink="/foro/{{ foro.id }}"
     ><mat-card class="foros1"
-      ><img mat-card-avatar [src]="foro.image" alt="User Avatar" />{{
-        foro.title
-      }}</mat-card
-    ></a
+      ><div *ngIf="foro.image != null && foro.image != undefined; else sinFoto">
+        <img mat-card-avatar [src]="foro.image" alt="User Avatar" />{{
+          foro.title
+        }}
+      </div>
+      <ng-template #sinFoto>
+        <img
+          mat-card-avatar
+          src="https://www.liberaldictionary.com/wp-content/uploads/2019/02/f-8273.jpg"
+          alt="User Avatar"
+        />{{ foro.title }}
+      </ng-template>
+    </mat-card></a
   >
 </div>
-
-
 
 <div
   class="modal fade"
@@ -131,20 +149,29 @@
         <form (ngSubmit)="onSaveForm()">
           <mat-form-field>
             <mat-label>Nombre del foro</mat-label>
-            <input matInput [(ngModel)]="text" name="text" placeholder="Nombre" />
+            <input
+              matInput
+              [(ngModel)]="text"
+              name="text"
+              placeholder="Nombre"
+            />
           </mat-form-field>
         </form>
       </div>
 
       <div class="modal-footer">
-        <button type="submit" class="btn" data-dismiss="modal" routerLink="/picture-foro">
+        <button
+          type="submit"
+          class="btn"
+          data-dismiss="modal"
+          routerLink="/picture-foro"
+        >
           elegir foto
         </button>
         <button type="submit" class="btn" data-dismiss="modal">
           subir sin foro
         </button>
       </div>
-
     </div>
   </div>
 </div>

@@ -32,8 +32,10 @@ export class HomeComponent implements OnInit {
     this.waveService.dislikeSubcategorie(id).subscribe((res)=>{
       if(res){
         console.log(res);
-      }
-    })
+      };
+      location.reload();
+    });
+    
 
   }
 

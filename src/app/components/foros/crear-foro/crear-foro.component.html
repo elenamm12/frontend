@@ -1,17 +1,34 @@
 <app-menu></app-menu>
 <div class="fondo">
-  <form>
+  <form (ngSubmit)="onSaveForm()">
     <div class="form">
       <mat-label class="datos">Introduzca el nombre del foro:</mat-label>
 
-      <mat-form-field appearance="outline">
+      <div appearance="outline">
         <mat-label>Nombre</mat-label>
-        <input matInput placeholder="Nombre"  />
-      </mat-form-field>
-      <div class="form-group cuentas">
-        <mat-label class="datos">Ponle una imagen:  </mat-label>
-        <br />
+        <input [(ngModel)]="text" name="text" matInput placeholder="Nombre"  />
       </div>
+
+      <div class="form-group cuentas">
+        <mat-label class="datos">Selecciona la Subcategoria </mat-label>
+        <div *ngFor = "let aja of CatWFavoriteSubcat"> {{aja.name}}: 
+        <select [(ngModel)]="seleccionado"
+          class="form-control cuenta"
+          id="sel1"
+          name="first"
+        > 
+               <option *ngFor = "let ok of aja.subCategories" value="{{ok.id}}">{{ok.name}}</option>
+          
+          
+         
+        </select>
+      </div>
+      </div>
+
+      <div>
+        <button type="submit">continuar</button>
+      </div>
+      
       
     </div>
   </form>

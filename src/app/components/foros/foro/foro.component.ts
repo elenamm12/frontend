@@ -120,7 +120,6 @@ export class ForoComponent implements OnInit {
   actualizar(){
     
     location.reload();
-    this.areThereNewPosts=false;
-
+  
   }
 }

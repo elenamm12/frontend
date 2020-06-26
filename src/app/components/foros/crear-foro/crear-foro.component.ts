@@ -8,6 +8,8 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
 })
 export class CrearForoComponent implements OnInit {
   CatWFavoriteSubcat: [];
+  seleccionado;
+  text;
   constructor(private service :WaveServiceService) { }
 
   ngOnInit(): void {
@@ -19,7 +21,13 @@ export class CrearForoComponent implements OnInit {
 
   crearForo(idSubcategory, title){
     this.service.createForum(idSubcategory, title).subscribe((response)=>{
-      console.log(response);
+      if(response){
+        alert("foro creado")
+      }
     })
+  }
+
+  onSaveForm(){
+  this.crearForo(this.seleccionado, this.text);
   }
 }

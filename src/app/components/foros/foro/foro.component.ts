@@ -52,10 +52,9 @@ export class ForoComponent implements OnInit {
 
             let bool = this.forosFav.find((ob) => ob.id == this.foroId);
             console.log(bool);
-            if(bool != null){
-              this.suscrito=true;
+            if (bool != null) {
+              this.suscrito = true;
             }
-
           }
         });
     });

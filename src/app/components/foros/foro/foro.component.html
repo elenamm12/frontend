@@ -1,29 +1,26 @@
 <app-menu></app-menu>
 <div class="fondo">
-
   <div *ngIf="suscrito; else suscribete">
     <button (click)="dislikeForo(foroId)" class="btn btn-primary dislike">
       Dejar de estar suscrito
-      </button>
+    </button>
   </div>
 
   <ng-template #suscribete>
     <button (click)="likeForo(foroId)" class="btn btn-primary suscribir">
       ¡Suscríbite!
-      </button>
-
+    </button>
   </ng-template>
 
   <h2>{{ Foro.title }}</h2>
-
 
   <h6>¡Comentarios!</h6>
 
   <div class="comentario">
     <hr />
     <div *ngIf="areThereNewPosts">
-      <button class="btn btn-primary primero" (click)="actualizar()">
-      nuevos post 
+      <button class="btn btn-primary primero" (click)="refreshPost()">
+        nuevos post
       </button>
     </div>
 
@@ -35,32 +32,42 @@
               <div class="panel panel-info">
                 <div class="panel-body">
                   <div class="clearfix"></div>
-  
+
                   <ul class="media-list">
                     <li class="media">
                       <div *ngIf="com.user.image != null; else sinFoto">
-  
-                      
-                      <img
-                        src="{{ com.user.image }}"
-                        alt=""
-                        class="img-circle"
-                      />
-  
-  
-                    </div>
-  
-                    <ng-template #sinFoto>
-                      <img
-                      src="https://iestpdesaguadero.edu.pe/wp-content/uploads/2016/11/78-786420_icono-usuario-joven-transparent-user-png-png-download.png"
-                      alt=""
-                      class="img-circle"
-                      />
-                  
-                    </ng-template>
-  
+                        <img
+                          src="{{ com.user.image }}"
+                          alt=""
+                          class="img-circle"
+                        />
+                      </div>
+
+                      <ng-template #sinFoto>
+                        <img
+                          src="https://iestpdesaguadero.edu.pe/wp-content/uploads/2016/11/78-786420_icono-usuario-joven-transparent-user-png-png-download.png"
+                          alt=""
+                          class="img-circle"
+                        />
+                      </ng-template>
+
                       <div class="media-body">
-                        <strong class="text-success">{{ com.user.userName }}</strong><mat-icon (click)="putLikePost(com.id)" [inline]="true" class="like"> thumb_up </mat-icon><mat-icon (click)="putDislikePost(com.id)" [inline]="true" class="dislike"> thumb_down </mat-icon>
+                        <strong class="text-success">{{
+                          com.user.userName
+                        }}</strong
+                        ><mat-icon
+                          (click)="putLikePost(com.id)"
+                          [inline]="true"
+                          class="like"
+                        >
+                          thumb_up </mat-icon
+                        ><mat-icon
+                          (click)="putDislikePost(com.id)"
+                          [inline]="true"
+                          class="dislike"
+                        >
+                          thumb_down
+                        </mat-icon>
                         <p>
                           {{ com.text }}
                         </p>
@@ -73,12 +80,10 @@
           </div>
         </div>
       </div>
-
     </div>
     <ng-template #sinPost>
       <h6>Publica el primer comentario</h6>
     </ng-template>
-    
   </div>
   <div
     class="modal fade"
@@ -112,7 +117,7 @@
         </div>
         <div class="modal-footer">
           <button
-           (click)="postCom()"
+            (click)="postCom()"
             type="button"
             class="btn btn-primary enviar"
             type="submit>"
@@ -129,7 +134,6 @@
     data-toggle="modal"
     data-target="#exampleModal"
   >
-  <mat-icon> create </mat-icon>
+    <mat-icon> create </mat-icon>
   </button>
-
 </div>

@@ -32,7 +32,10 @@ import { CrearForoComponent } from './components/foros/crear-foro/crear-foro.com
 import { PictureForoComponent } from './components/picture-foro/picture-foro.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = {
+  url: 'https://wave-service.herokuapp.com',
+  options: {},
+};
 @NgModule({
   declarations: [
     AppComponent,

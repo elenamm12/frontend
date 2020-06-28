@@ -123,11 +123,9 @@ export class SubCategoriaComponent implements OnInit {
 
 
   onSaveForm(){
-    this.waveService.createForum(this.subcategoryId, this.forumForm.value.text).subscribe((response)=>{
-      if(response){
+    this.waveService.createForum(this.subcategoryId, this.forumForm.value.text).subscribe((response)=>{   
         console.log("foro creado")
-        this.router.navigate([`/picture-foro/${this.id}`]);
-      }
+        this.router.navigate([`picture-foro/${this.id}`]);
     })
   }
 

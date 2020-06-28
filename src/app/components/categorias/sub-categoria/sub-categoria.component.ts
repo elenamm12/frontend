@@ -124,17 +124,14 @@ export class SubCategoriaComponent implements OnInit {
       });
   }
 
-  crearForo(idSubcategory: number, title: string){
-    this.waveService.createForum(idSubcategory, title).subscribe((response)=>{
+
+  onSaveForm(){
+    this.waveService.createForum(this.subcategoryId, this.forumForm.value.text).subscribe((response)=>{
       if(response){
         console.log("foro creado")
         this.router.navigate([`/picture-foro/${this.id}`]);
       }
     })
-  }
-
-  onSaveForm(){
-  this.crearForo(this.subcategoryId, this.forumForm.value.text);
   }
 
   get text(){

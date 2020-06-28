@@ -74,9 +74,8 @@ export class WaveServiceService {
     email: string,
     birthday: Date,
     password: string,
-    role: string,
+    role: string
   ): Observable<any> {
-    
     return this.http
       .post<any>(`${this.url}/user/register`, {
         firstName,
@@ -85,7 +84,7 @@ export class WaveServiceService {
         email,
         birthday,
         password,
-        role
+        role,
       })
       .pipe(
         tap((res: any) => {
@@ -114,13 +113,13 @@ export class WaveServiceService {
     );
   }
 
-  uploadPictureForo(file: File, idForum:number): Observable<any> {
+  uploadPictureForo(file: File, idForum: number): Observable<any> {
     const fd = new FormData();
     fd.append('file', file, file.name);
     return this.http.post(`${this.url}/forum/photo/upload/${idForum}`, fd).pipe(
       tap((res: any) => {
         if (res) {
-          console.log('listo')
+          console.log('listo');
         } else {
           console.log('no hay respuesta');
         }
@@ -140,8 +139,7 @@ export class WaveServiceService {
 
   private saveUser(user: any) {
     localStorage.setItem('currentUser', JSON.stringify(user));
-    this.user= user;
-
+    this.user = user;
   }
 
   logOutUser(): void {
@@ -192,9 +190,9 @@ export class WaveServiceService {
     return this.http.get(`${this.url}/sub-category/category/${idCategory}`);
   }
 
-  getAllForums(): Observable<any> {
+  getAllForums(currentPage: number = 1): Observable<any> {
     //let token = localStorage.getItem('currentToken');
-    return this.http.get(`${this.url}/forum/all`);
+    return this.http.get(`${this.url}/forum/all?page=${currentPage}`);
   }
 
   getForumsBySubcategory(idSubcategory: number): Observable<any> {
@@ -233,21 +231,21 @@ export class WaveServiceService {
     ]);
   }
 
-  dislikeSubcategorie(id:number){
-
-    return this.http.patch(`${this.url}/sub-category/dislike/${id}`, [])
-
+  dislikeSubcategorie(id: number) {
+    return this.http.patch(`${this.url}/sub-category/dislike/${id}`, []);
   }
 
   // Servicios de los Posts
-  getPostByForumId(idForum: number): Observable<any> {
-    return this.http.get(`${this.url}/post/all/forum/${idForum}`);
+  getPostByForumId(idForum: number, currentPage: number = 1): Observable<any> {
+    return this.http.get(
+      `${this.url}/post/all/forum/${idForum}?page=${currentPage}`
+    );
   }
 
   getLatestPosts(idPost: number): Observable<any> {
     return this.http.get(`${this.url}/post/latest/${idPost}`);
   }
-  
+
   likePost(idPost: number): Observable<any> {
     return this.http.patch(`${this.url}/post/like/${idPost}`, []);
   }
@@ -256,10 +254,11 @@ export class WaveServiceService {
     return this.http.patch(`${this.url}/post/dislike/${idPost}`, []);
   }
 
-  postComment(text:string, idForum:number){
-    return this.http.post(`${this.url}/post/publish/forum/${idForum}`, {text})
+  postComment(text: string, idForum: number) {
+    return this.http.post(`${this.url}/post/publish/forum/${idForum}`, {
+      text,
+    });
   }
-
 
   // Servicios de los Forums
 
@@ -271,8 +270,7 @@ export class WaveServiceService {
     return this.http.patch(`${this.url}/forum/dislike/${idForum}`, []);
   }
 
-  createForum(idSub: number, title: string){
-    return this.http.post(`${this.url}/forum/create/${idSub}`, {title});
-
+  createForum(idSub: number, title: string) {
+    return this.http.post(`${this.url}/forum/create/${idSub}`, { title });
   }
 }

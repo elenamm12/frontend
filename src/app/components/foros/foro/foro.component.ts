@@ -39,32 +39,31 @@ export class ForoComponent implements OnInit {
         this.areThereNewPosts = true;
         this.latestPosts.push(message);
       }
-    });
-    this.waveService.getForumsById(this.foroId).subscribe((response) => {
-      // console.log(response);
-      this.Foro = response.forum;
-      // console.log(this.Foro);
-      this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
-        this.posts = response.posts;
-        // console.log(this.posts);
-        this.postId = this.posts[this.posts.length - 1].id;
-      });
+      this.waveService.getForumsById(this.foroId).subscribe((response) => {
+        // console.log(response);
+        this.Foro = response.forum;
+        // console.log(this.Foro);
+        this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
+          this.posts = response.posts;
+          // console.log(this.posts);
+          this.postId = this.posts[this.posts.length - 1].id;
+          this.waveService
+            .getFavoritesForums(this.Foro.subCategory.id)
+            .subscribe((res) => {
+              if (res) {
+                // console.log(res);
+                this.forosFav = res.forums;
+                // console.log(this.forosFav);
 
-      this.waveService
-        .getFavoritesForums(this.Foro.subCategory.id)
-        .subscribe((res) => {
-          if (res) {
-            // console.log(res);
-            this.forosFav = res.forums;
-            // console.log(this.forosFav);
-
-            let bool = this.forosFav.find((ob) => ob.id == this.foroId);
-            // console.log(bool);
-            if (bool != null) {
-              this.suscrito = true;
-            }
-          }
+                let bool = this.forosFav.find((ob) => ob.id == this.foroId);
+                // console.log(bool);
+                if (bool != null) {
+                  this.suscrito = true;
+                }
+              }
+            });
         });
+      });
     });
   }
 

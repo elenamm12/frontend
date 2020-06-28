@@ -62,60 +62,54 @@ export class SubCategoriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.waveService.getAllForums().subscribe((response) => {
-      this.forums = response.forums;
-      console.log(this.forums);
-      this.id = this.forums.length + 2;
-      console.log('NUMERO DE FOROS', this.id);
-    });
-
-    this.waveService.getFavoriteSubCategories().subscribe((response) => {
-      this.CatWFavoriteSubcat = response.categories;
-      console.log('hola', this.CatWFavoriteSubcat);
-      console.log(response);
-      let categoryId: number = this.route.snapshot.params['idCateg'];
-      //let aja: [] = response;
-      //let bool = this.CatWFavoriteSubcat.find(id => id == categoryId );
-      //console.log(bool);
-    });
-
-    this.categoryId = this.route.snapshot.params['idCateg'];
-    this.filteredForums = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value))
-    );
-    // Carga los Foros de una Subcategoria
-
+    
+    //this.waveService.getFavoriteSubCategories().subscribe((response) => {
+    // this.CatWFavoriteSubcat = response.categories;
+    //console.log('hola', this.CatWFavoriteSubcat);
+    //console.log(response);
+    //let aja: [] = response;
+    //let bool = this.CatWFavoriteSubcat.find(id => id.id == categoryId );
+    //console.log(bool);
+    this.subcategoryId = this.route.snapshot.params['id'];
     this.waveService
-      .getSubcategoryByCategory(this.categoryId)
+      .getSubCategoryById(this.subcategoryId)
       .subscribe((response) => {
-        this.subcategories = response.subCategories;
-        console.log('subcategorias', this.subcategories);
-        this.subcategoryId = this.route.snapshot.params['id'];
-        this.waveService
-          .getSubCategoryById(this.subcategoryId)
-          .subscribe((response) => {
-            this.subcategory = response;
-          });
+        this.subcategory = response;
 
-        this.subcategoryId = this.route.snapshot.params['id'];
-        this.waveService
-          .getSubCategoryById(this.subcategoryId)
-          .subscribe((response) => {
-            this.subcategory = response;
-            console.log('subcategoria', this.subcategory);
-          });
-        this.waveService
-          .getFavoritesForums(this.subcategoryId)
-          .subscribe((response) => {
-            console.log('suscribes', response.forums);
-            this.subscribedForums = response.forums;
-
+            this.categoryId = this.route.snapshot.params['idCateg'];
             this.waveService
-              .getForumsBySubcategory(this.subcategoryId)
+              .getSubcategoryByCategory(this.categoryId)
               .subscribe((response) => {
-                this.favoriteForums = response.forums;
-                console.log('foro fav', this.favoriteForums);
+                this.subcategories = response.subCategories;
+                console.log('subcategorias', this.subcategories);
+                this.filteredForums = this.myControl.valueChanges.pipe(
+                  startWith(''),
+                  map((value) => this._filter(value))
+                );
+
+                this.waveService
+                  .getForumsBySubcategory(this.subcategoryId)
+                  .subscribe((response) => {
+                    this.favoriteForums = response.forums;
+                    console.log('foro fav', this.favoriteForums);
+
+
+                    this.waveService
+                      .getFavoritesForums(this.subcategoryId)
+                      .subscribe((response) => {
+                        console.log('suscribes', response.forums);
+                        this.subscribedForums = response.forums;
+                        this.waveService.getAllForums().subscribe((response) => {
+                          this.forums = response.forums;
+                          console.log(this.forums);
+                          this.id = this.forums.length + 2;
+                          console.log('NUMERO DE FOROS', this.id);
+
+
+                          //});
+                        //});
+                      });
+                  });
               });
           });
       });
@@ -129,7 +123,7 @@ export class SubCategoriaComponent implements OnInit {
           console.log('foro creado');
           this.router.navigate([`/picture-foro/${response.forum.id}`]);
         }
-      }); 
+      });
   }
 
   onSaveForm() {

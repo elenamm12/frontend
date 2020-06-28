@@ -129,7 +129,7 @@ export class SubCategoriaComponent implements OnInit {
           console.log('foro creado');
           this.router.navigate([`/picture-foro/${response.forum.id}`]);
         }
-      });
+      }); 
   }
 
   onSaveForm() {

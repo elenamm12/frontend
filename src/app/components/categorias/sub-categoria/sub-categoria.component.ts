@@ -5,7 +5,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-
 @Component({
   selector: 'app-sub-categoria',
   templateUrl: './sub-categoria.component.html',
@@ -29,12 +28,10 @@ export class SubCategoriaComponent implements OnInit {
   id: number;
   forumForm: FormGroup;
 
-  createFormGroup (){
+  createFormGroup() {
     return new FormGroup({
-    text: new FormControl('', [
-      Validators.required,  
-    ]),
-    })
+      text: new FormControl('', [Validators.required]),
+    });
   }
 
   handleFileInput(file: FileList) {
@@ -61,17 +58,17 @@ export class SubCategoriaComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-  this.forumForm= this.createFormGroup();
+    this.forumForm = this.createFormGroup();
   }
 
   ngOnInit(): void {
     this.waveService.getAllForums().subscribe((response) => {
       this.forums = response.forums;
       console.log(this.forums);
-      this.id = this.forums.length +2;
-      console.log("NUMERO DE FOROS", this.id);
+      this.id = this.forums.length + 2;
+      console.log('NUMERO DE FOROS', this.id);
     });
-    
+
     this.waveService.getFavoriteSubCategories().subscribe((response) => {
       this.CatWFavoriteSubcat = response.categories;
       console.log('hola', this.CatWFavoriteSubcat);

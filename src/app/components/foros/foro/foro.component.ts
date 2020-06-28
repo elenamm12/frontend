@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Postservice } from 'src/app/services/post.socket.service';
 
 @Component({
   selector: 'app-foro',
@@ -23,35 +24,42 @@ export class ForoComponent implements OnInit {
 
   constructor(
     private waveService: WaveServiceService,
+    private postService: Postservice,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.user = this.waveService.getCurrentUser();
+    this.user = JSON.parse(this.waveService.getCurrentUser());
     console.log(this.user);
     this.foroId = this.route.snapshot.params['id'];
+    this.postService.receivePosts(this.foroId).subscribe((message: any) => {
+      if (message.user.email === this.user.email) this.posts.push(message);
+      else {
+        this.areThereNewPosts = true;
+        this.latestPosts.push(message);
+      }
+    });
     this.waveService.getForumsById(this.foroId).subscribe((response) => {
-      console.log(response);
+      // console.log(response);
       this.Foro = response.forum;
-      console.log(this.Foro);
+      // console.log(this.Foro);
       this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
         this.posts = response.posts;
-        console.log(this.posts);
+        // console.log(this.posts);
         this.postId = this.posts[this.posts.length - 1].id;
-        this.intervalControl = setInterval(this.intervalPostCheck, 10000);
       });
 
       this.waveService
         .getFavoritesForums(this.Foro.subCategory.id)
         .subscribe((res) => {
           if (res) {
-            console.log(res);
+            // console.log(res);
             this.forosFav = res.forums;
-            console.log(this.forosFav);
+            // console.log(this.forosFav);
 
             let bool = this.forosFav.find((ob) => ob.id == this.foroId);
-            console.log(bool);
+            // console.log(bool);
             if (bool != null) {
               this.suscrito = true;
             }
@@ -60,50 +68,32 @@ export class ForoComponent implements OnInit {
     });
   }
 
-  post() {
-    this.postComment.push(this.comment);
-    this.comment = '';
-  }
-
   refreshPost() {
     this.posts = this.posts.concat(this.latestPosts);
     this.areThereNewPosts = false;
-    this.intervalControl = setInterval(this.intervalPostCheck, 10000);
+    this.latestPosts = [];
   }
-
-  intervalPostCheck = () => {
-    this.waveService.getLatestPosts(this.postId).subscribe((response) => {
-      if (response.posts && response.posts.length > 0) {
-        this.latestPosts = response.posts;
-        this.areThereNewPosts = true;
-        clearInterval(this.intervalControl);
-      }
-    });
-  };
 
   putLikePost(id: number) {
     this.waveService.likePost(id).subscribe((res) => {
       if (res) {
-        console.log(res);
+        // console.log(res);
       }
     });
   }
 
   postCom() {
-    this.waveService
-      .postComment(this.comment, this.foroId)
-      .subscribe((response) => {
-        if (response) {
-          console.log('aja ', response);
-          location.reload();
-        }
-      });
+    this.postService.sendPost({
+      text: this.comment,
+      foroId: this.foroId,
+      email: this.user.email,
+    });
   }
-  
+
   putDislikePost(id: number) {
     this.waveService.dislikePost(id).subscribe((res) => {
       if (res) {
-        console.log(res);
+        // console.log(res);
       }
     });
   }
@@ -112,7 +102,7 @@ export class ForoComponent implements OnInit {
     this.waveService.likeForum(id).subscribe((res) => {
       if (res) {
         this.suscrito = true;
-        console.log(res);
+        // console.log(res);
       }
     });
   }
@@ -121,14 +111,9 @@ export class ForoComponent implements OnInit {
     this.waveService.dislikeForum(id).subscribe((res) => {
       if (res) {
         this.suscrito = false;
-        console.log(res);
+        // console.log(res);
         location.reload();
       }
     });
-  }
-
-  actualizar() {
-    location.reload();
-    this.areThereNewPosts = false;
   }
 }

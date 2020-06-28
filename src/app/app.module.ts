@@ -30,7 +30,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CrearForoComponent } from './components/foros/crear-foro/crear-foro.component';
 import { PictureForoComponent } from './components/picture-foro/picture-foro.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+const config: SocketIoConfig = {
+  url: 'https://wave-service.herokuapp.com',
+  options: {},
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +58,7 @@ import { PictureForoComponent } from './components/picture-foro/picture-foro.com
     PictureComponent,
     UsuarioComponent,
     CrearForoComponent,
-    PictureForoComponent
+    PictureForoComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,10 @@ import { PictureForoComponent } from './components/picture-foro/picture-foro.com
     HttpClientModule,
     NgxPayPalModule,
     NgbModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
+    SocketIoModule.forRoot(config),
   ],
   providers: [
     {

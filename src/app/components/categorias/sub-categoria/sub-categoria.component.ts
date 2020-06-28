@@ -27,6 +27,8 @@ export class SubCategoriaComponent implements OnInit {
   forums: any;
   id: number;
   forumForm: FormGroup;
+  currentPage: number = 1;
+  nextPage: boolean = false;
 
   createFormGroup() {
     return new FormGroup({
@@ -114,10 +116,23 @@ export class SubCategoriaComponent implements OnInit {
             this.waveService
               .getForumsBySubcategory(this.subcategoryId)
               .subscribe((response) => {
-                this.favoriteForums = response.forums;
+                this.favoriteForums = response.items;
+                this.currentPage = parseInt(response.meta.currentPage);
+                this.nextPage =
+                  this.currentPage !== parseInt(response.meta.totalPages);
                 console.log('foro fav', this.favoriteForums);
               });
           });
+      });
+  }
+
+  traerMasForos() {
+    this.waveService
+      .getForumsBySubcategory(this.subcategoryId, this.currentPage + 1)
+      .subscribe((response) => {
+        this.favoriteForums = this.favoriteForums.concat(response.items);
+        this.currentPage = parseInt(response.meta.currentPage);
+        this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
       });
   }
 
@@ -129,7 +144,7 @@ export class SubCategoriaComponent implements OnInit {
           console.log('foro creado');
           this.router.navigate([`/picture-foro/${response.forum.id}`]);
         }
-      }); 
+      });
   }
 
   onSaveForm() {

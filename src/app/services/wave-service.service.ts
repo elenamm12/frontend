@@ -195,8 +195,13 @@ export class WaveServiceService {
     return this.http.get(`${this.url}/forum/all?page=${currentPage}`);
   }
 
-  getForumsBySubcategory(idSubcategory: number): Observable<any> {
-    return this.http.get(`${this.url}/forum/subcategory/${idSubcategory}`);
+  getForumsBySubcategory(
+    idSubcategory: number,
+    currentPage: number = 1
+  ): Observable<any> {
+    return this.http.get(
+      `${this.url}/forum/subcategory/${idSubcategory}?page=${currentPage}`
+    );
   }
 
   getForumsById(idForum: number): Observable<any> {

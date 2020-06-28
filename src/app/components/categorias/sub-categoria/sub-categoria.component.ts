@@ -121,9 +121,9 @@ export class SubCategoriaComponent implements OnInit {
       });
   }
 
-  crearForo(idSubcategory: number, title: string) {
+  crearForo() {
     this.waveService
-      .createForum(idSubcategory, title)
+      .createForum(this.subcategoryId, this.forumForm.value.text)
       .subscribe((response: any) => {
         if (response) {
           console.log('foro creado');

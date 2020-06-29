@@ -21,7 +21,7 @@ export class ForoComponent implements OnInit {
   user: any;
   suscrito = false;
   currentPage: number = 1;
-  nextPage: boolean = false;
+  nextPage: boolean;
   latestPosts: any;
 
   constructor(
@@ -71,11 +71,14 @@ export class ForoComponent implements OnInit {
               console.log(bool);
               if (bool != null) {
                 this.suscrito = true;
+              }else{
+                this.suscrito = false;
               }
             }
           });
       });
     });
+
   }
 
   refreshPost() {

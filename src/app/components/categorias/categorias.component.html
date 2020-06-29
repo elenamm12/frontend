@@ -2,8 +2,9 @@
 <div class="fondo">
   <div class="sepaador"></div>
 
+  <div class="carousel">
   <div *ngFor="let cat of categories" class="contenido">
-    <mat-card class="example-card container">
+    <mat-card class="example-card container para-sobrevivir">
       <a routerLink="/categoria/{{ cat.id }}">
         <img mat-card-image src="{{ cat.contentCategories[0].imagen }}" />
       </a>
@@ -24,4 +25,5 @@
       >
     </mat-card>
   </div>
+</div>
 </div>

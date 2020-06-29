@@ -112,7 +112,7 @@ button {
 button.suscribir {
   width: 40%;
   margin-left: 55%;
-  background-color: orange;
+  background-color: #ff4081;
   color: white;
   border-color: white;
   padding: 0;
@@ -158,6 +158,14 @@ button.abajo {
   background-color: #74b4bc;
   color: white;
   border-color: white;
+}
+
+button.btn-mas{
+    width: 70%;
+    margin-left: 15%;
+    background: orange;
+    font-weight: bold;
+
 }
 
 .media-list {

@@ -8,13 +8,12 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
   styleUrls: ['./categoria.component.scss'],
 })
 export class CategoriaComponent implements OnInit {
-   categories: any[] = [];
-   categoryById: any = {};
+  categories: any[] = [];
+  categoryById: any = [];
 
   categoria: any;
   subcategories: any[] = [];
   categoryId: number;
-
 
   constructor(
     private waveService: WaveServiceService,
@@ -23,13 +22,12 @@ export class CategoriaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.categoryId = this.route.snapshot.params['id'];
-      this.waveService.getCategoryById(this.categoryId)
-      .subscribe((response)=>{
-        console.log(response);
-        this.categoryById = response;
-      });
-      
+    this.categoryId = this.route.snapshot.params['id'];
+    this.waveService.getCategoryById(this.categoryId).subscribe((response) => {
+      console.log(response);
+      this.categoryById = response;
+      console.log("categoria", this.categoryById);
+
       this.waveService
         .getSubcategoryByCategory(this.categoryId)
         .subscribe((response) => {
@@ -37,6 +35,7 @@ export class CategoriaComponent implements OnInit {
           this.subcategories = response.subCategories;
           console.log(this.subcategories);
         });
-    };
+    });
+  }
 }
 

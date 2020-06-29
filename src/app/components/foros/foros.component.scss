@@ -44,10 +44,20 @@
   padding-top:5em;
 }
 
+.ordenar{
+  display: flex;  
+}
+p{
+  text-align: justify;
+  margin-bottom: 0;
+}
 img {
-  margin-left: 9px;
   margin-right: 15px;
-  margin-bottom: 5px;
+}
+
+.mat-card-avatar {
+  height: 3.5em;
+  width: 3.5em;
 }
 
 mat-form-field {

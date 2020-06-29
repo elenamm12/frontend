@@ -25,8 +25,8 @@ export class SubCategoriaComponent implements OnInit {
   favorite = true;
   CatWFavoriteSubcat: [];
   forums: any;
-  id: number;
   forumForm: FormGroup;
+  subcaregoryContent: any = {};
 
   createFormGroup() {
     return new FormGroup({
@@ -62,53 +62,53 @@ export class SubCategoriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    //this.waveService.getFavoriteSubCategories().subscribe((response) => {
-    // this.CatWFavoriteSubcat = response.categories;
-    //console.log('hola', this.CatWFavoriteSubcat);
-    //console.log(response);
-    //let aja: [] = response;
-    //let bool = this.CatWFavoriteSubcat.find(id => id.id == categoryId );
-    //console.log(bool);
     this.subcategoryId = this.route.snapshot.params['id'];
     this.waveService
       .getSubCategoryById(this.subcategoryId)
       .subscribe((response) => {
         this.subcategory = response;
+        console.log('content', this.subcategory);
 
-            this.categoryId = this.route.snapshot.params['idCateg'];
+        this.categoryId = this.route.snapshot.params['idCateg'];
+        this.waveService
+          .getSubcategoryByCategory(this.categoryId)
+          .subscribe((response) => {
+            this.subcategories = response.subCategories;
+            console.log('subcategorias', this.subcategories);
+            this.filteredForums = this.myControl.valueChanges.pipe(
+              startWith(''),
+              map((value) => this._filter(value))
+            );
+
             this.waveService
-              .getSubcategoryByCategory(this.categoryId)
+              .getForumsBySubcategory(this.subcategoryId)
               .subscribe((response) => {
-                this.subcategories = response.subCategories;
-                console.log('subcategorias', this.subcategories);
-                this.filteredForums = this.myControl.valueChanges.pipe(
-                  startWith(''),
-                  map((value) => this._filter(value))
-                );
+                this.favoriteForums = response.forums;
+                console.log('foro fav', this.favoriteForums);
 
                 this.waveService
-                  .getForumsBySubcategory(this.subcategoryId)
+                  .getFavoritesForums(this.subcategoryId)
                   .subscribe((response) => {
-                    this.favoriteForums = response.forums;
-                    console.log('foro fav', this.favoriteForums);
+                    console.log('suscribes', response.forums);
+                    this.subscribedForums = response.forums;
+                    this.waveService.getAllForums().subscribe((response) => {
+                      this.forums = response.forums;
+                      console.log(this.forums);
 
-
-                    this.waveService
-                      .getFavoritesForums(this.subcategoryId)
-                      .subscribe((response) => {
-                        console.log('suscribes', response.forums);
-                        this.subscribedForums = response.forums;
-                        this.waveService.getAllForums().subscribe((response) => {
-                          this.forums = response.forums;
-                          console.log(this.forums);
-                          this.id = this.forums.length + 2;
-                          console.log('NUMERO DE FOROS', this.id);
-
-
-                          //});
-                        //});
-                      });
+                      this.waveService
+                        .getFavoriteSubCategories()
+                        .subscribe((response) => {
+                          this.CatWFavoriteSubcat = response.categories;
+                          console.log('hola', this.CatWFavoriteSubcat);
+                          console.log(response);
+                          //let aja: [] = response;
+                          //let bool = this.CatWFavoriteSubcat.find(
+                            //(id) => id.id == this.categoryId
+                          //);
+                          //console.log(bool);
+                        });
+                      //});
+                    });
                   });
               });
           });

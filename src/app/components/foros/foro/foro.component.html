@@ -52,22 +52,33 @@
                       </ng-template>
 
                       <div class="media-body">
-                        <strong class="text-success">{{
-                          com.user.userName
-                        }}</strong
-                        ><mat-icon
-                          (click)="putLikePost(com.id)"
-                          [inline]="true"
-                          class="like"
-                        >
-                          thumb_up </mat-icon
-                        ><mat-icon
-                          (click)="putDislikePost(com.id)"
-                          [inline]="true"
-                          class="dislike"
-                        >
-                          thumb_down
-                        </mat-icon>
+                        <div class="ordenar">
+                          <div style="display: inline;">
+                            <strong class="text-success"
+                              >{{ com.user.userName }}
+                            </strong>
+                            <time class="ml-3" class="text-success"
+                              >- 1 hours ago</time
+                            >
+                          </div>
+
+                          <div style="display: inline; margin-right: 7px;">
+                            <mat-icon
+                              (click)="putLikePost(com.id)"
+                              [inline]="true"
+                              class="like"
+                            >
+                              thumb_up </mat-icon
+                            ><mat-icon
+                              (click)="putDislikePost(com.id)"
+                              [inline]="true"
+                              class="dislike"
+                            >
+                              thumb_down
+                            </mat-icon>
+                          </div>
+                        </div>
+
                         <p>
                           {{ com.text }}
                         </p>
@@ -129,11 +140,13 @@
       </div>
     </div>
   </div>
-  <button
-    class="btn btn-primary abajo"
-    data-toggle="modal"
-    data-target="#exampleModal"
-  >
-    <mat-icon> create </mat-icon>
-  </button>
+  <div *ngIf="suscrito">
+    <button
+      class="btn btn-primary abajo"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      <mat-icon> create </mat-icon>
+    </button>
+  </div>
 </div>

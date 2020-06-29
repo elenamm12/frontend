@@ -1,35 +1,32 @@
 <app-menu></app-menu>
-<div class="separador">
-  
+<div class="separador"></div>
+<div *ngFor="let cont of categoryById.contentCategories">
+  <mat-card class="example-card container head">
+    <img mat-card-image [src]="cont.imagen" class="encabezado" />
+    <div class="centered">
+      {{ categoryById.name }}
+    </div>
+
+    <mat-card-content>
+      <mat-card-title style="justify-content: left;"
+        ><strong
+          >Recomendación Wave:
+          {{ categoryById.contentCategories[0].title }}</strong
+        ></mat-card-title
+      >
+      <p>
+        {{ categoryById.contentCategories[0].text }}
+      </p>
+      <br />
+      <p>
+        Consigue más en:
+        <a href="{{ categoryById.contentCategories[0].link }}"
+          >Contenido extra</a
+        >
+      </p>
+    </mat-card-content>
+  </mat-card>
 </div>
-
-<mat-card class="example-card container head">
-  <img
-    mat-card-image
-    src="{{ categoryById.contentCategories[0].imagen }}"
-    class="encabezado"
-  />
-  <div class="centered">
-    {{ categoryById.name }}
-  </div>
-
-  <mat-card-content>
-    <mat-card-title style="justify-content: left;"
-      ><strong
-        >Recomendación Wave:
-        {{ categoryById.contentCategories[0].title }}</strong
-      ></mat-card-title
-    >
-    <p>
-      {{ categoryById.contentCategories[0].text }}
-    </p>
-    <br />
-    <p>
-      Consigue más en:
-      <a href="{{ categoryById.contentCategories[0].link }}">Contenido extra</a>
-    </p>
-  </mat-card-content>
-</mat-card>
 <br />
 <h4>Podría interesarte</h4>
 

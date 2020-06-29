@@ -33,37 +33,37 @@ export class ForoComponent implements OnInit {
     this.user = JSON.parse(this.waveService.getCurrentUser());
     console.log(this.user);
     this.foroId = this.route.snapshot.params['id'];
+    this.waveService.getForumsById(this.foroId).subscribe((response) => {
+      // console.log(response);
+      this.Foro = response.forum;
+      console.log(this.Foro);
+      this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
+        this.posts = response.posts;
+        // console.log(this.posts);
+        //this.postId = this.posts[this.posts.length - 1].id;
+        this.waveService
+          .getFavoritesForums(this.Foro.subCategory.id)
+          .subscribe((res) => {
+            if (res) {
+              // console.log(res);
+              this.forosFav = res.forums;
+              // console.log(this.forosFav);
+
+              let bool = this.forosFav.find((ob) => ob.id == this.foroId);
+              console.log(bool);
+              if (bool != null) {
+                this.suscrito = true;
+              }
+            }
+          });
+      });
+    });
     this.postService.receivePosts(this.foroId).subscribe((message: any) => {
       if (message.user.email === this.user.email) this.posts.push(message);
       else {
         this.areThereNewPosts = true;
         this.latestPosts.push(message);
       }
-      this.waveService.getForumsById(this.foroId).subscribe((response) => {
-        // console.log(response);
-        this.Foro = response.forum;
-        // console.log(this.Foro);
-        this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
-          this.posts = response.posts;
-          // console.log(this.posts);
-          this.postId = this.posts[this.posts.length - 1].id;
-          this.waveService
-            .getFavoritesForums(this.Foro.subCategory.id)
-            .subscribe((res) => {
-              if (res) {
-                // console.log(res);
-                this.forosFav = res.forums;
-                // console.log(this.forosFav);
-
-                let bool = this.forosFav.find((ob) => ob.id == this.foroId);
-                // console.log(bool);
-                if (bool != null) {
-                  this.suscrito = true;
-                }
-              }
-            });
-        });
-      });
     });
   }
 
@@ -97,7 +97,15 @@ export class ForoComponent implements OnInit {
     });
   }
 
+  agregarFavorito(subcategoriaId) {
+    console.log(subcategoriaId)
+    this.waveService
+      .saveFavoriteSubCategoria(subcategoriaId)
+      .subscribe((response) => console.log(response));
+  }
+
   likeForo(id: number) {
+    this.agregarFavorito(this.Foro.subCategory.id);
     this.waveService.likeForum(id).subscribe((res) => {
       if (res) {
         this.suscrito = true;
@@ -106,12 +114,13 @@ export class ForoComponent implements OnInit {
     });
   }
 
+
   dislikeForo(id: number) {
     this.waveService.dislikeForum(id).subscribe((res) => {
       if (res) {
         this.suscrito = false;
         // console.log(res);
-        location.reload();
+
       }
     });
   }

@@ -174,13 +174,14 @@ button.abajo {
   border-radius: 50px;
   border: 2px solid #e5e7e8;
   margin-right: 15px !important;
-  margin-left: 0px !important;
+  margin-left: 7px !important;
   margin-bottom: 10px !important;
 }
 
 .comment-wrapper .media-list .media {
   border-bottom: 1px dashed #efefef;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
 }
 
 mat-icon.like {
@@ -195,10 +196,25 @@ mat-icon.dislike {
 
 p {
   text-align: justify;
+  margin-right: 7px;
 }
 
 .snippets {
   font-family: Roboto, sans-serif;
+}
+
+time{
+  color: grey !important;
+  font-size: 0.7rem;
+}
+
+.ordenar{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: stretch;
 }
 
 @media (max-width: 340px) {

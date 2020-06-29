@@ -26,17 +26,20 @@
   </div>
 
   <div *ngFor="let foro of forums | foroFilter: filterForum" class="contenedor">
-    <mat-card
-      ><div *ngIf="foro.image != null && foro.image != undefined; else sinFoto">
-        <a routerLink="/foro/{{ foro.id }}"
+    <mat-card>
+
+      <div *ngIf="foro.image != null && foro.image != undefined; else sinFoto" class="ordenar"  >
+        <a routerLink="/foro/{{ foro.id }}" 
           ><img mat-card-avatar [src]="foro.image" alt="User Avatar" />
-        </a>{{ foro.title }}
+        </a>
+        <p style="align-self: center">{{ foro.title }}</p>
       </div>
       <ng-template #sinFoto>
         <a routerLink="/foro/{{ foro.id }}"
         ><img mat-card-avatar src="https://www.liberaldictionary.com/wp-content/uploads/2019/02/f-8273.jpg" alt="User Avatar" />
       </a>{{ foro.title }}
       </ng-template>
+
       <mat-card-actions>
         ¡Suscríbete!
         <mat-icon (click)="likeForo(foro.id)" class="agregar" [inline]="true"

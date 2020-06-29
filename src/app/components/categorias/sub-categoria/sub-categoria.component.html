@@ -58,13 +58,13 @@
 <div *ngFor="let cat of CatWFavoriteSubcat">
   <div *ngFor="let sub of cat.subCategories">
     <div *ngIf="sub.id == subcategoryId">
-      <button
+      <a
         class="btn btn-primary abajo"
         data-toggle="modal"
         data-target="#exampleModal"
       >
         crear foro
-      </button>
+    </a>
     </div>
   </div>
 </div>

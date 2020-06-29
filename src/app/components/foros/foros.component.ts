@@ -15,6 +15,8 @@ export class ForosComponent implements OnInit {
   filteredForums: Observable<string[]>;
   filterForum = '';
   myControl = new FormControl();
+  currentPage: number = 1;
+  nextPage: boolean = false;
 
   constructor(
     private waveService: WaveServiceService,
@@ -25,14 +27,25 @@ export class ForosComponent implements OnInit {
   ngOnInit(): void {
     // Carga todos los Foros
     this.waveService.getAllForums().subscribe((response) => {
-      this.forums = response.forums;
-      console.log(this.forums);
+      this.forums = response.items;
+      this.currentPage = parseInt(response.meta.currentPage);
+      this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
     });
 
     this.filteredForums = this.myControl.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value))
     );
+  }
+
+  traerMasForos() {
+    this.waveService
+      .getAllForums(this.currentPage + 1)
+      .subscribe((response) => {
+        this.forums = this.forums.concat(response.items);
+        this.currentPage = parseInt(response.meta.currentPage);
+        this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
+      });
   }
 
   private _filter(value: string): string[] {

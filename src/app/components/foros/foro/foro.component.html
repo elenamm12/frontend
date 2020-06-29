@@ -91,6 +91,9 @@
           </div>
         </div>
       </div>
+      <button *ngIf="nextPage" (click)="traerMasComentarios()" type="button">
+        Mas Comentarios
+      </button>
     </div>
     <ng-template #sinPost>
       <h6>Publica el primer comentario</h6>

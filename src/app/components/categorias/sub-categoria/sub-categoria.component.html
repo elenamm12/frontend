@@ -129,59 +129,60 @@
     </mat-card></a
   >
 </div>
+<button *ngIf="nextPage" (click)="traerMasForos()" type="button">
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <strong>¡Crea un foro!</strong>
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          <strong>¡Crea un foro!</strong>
-        </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+        <div class="modal-body">
+          <form [formGroup]="forumForm">
+            <mat-form-field>
+              <mat-label>Nombre del foro</mat-label>
+              <input
+                formControlName="text"
+                matInput
+                name="text"
+                placeholder="Nombre"
+              />
+            </mat-form-field>
+          </form>
+        </div>
 
-      <div class="modal-body">
-        <form [formGroup]="forumForm">
-          <mat-form-field>
-            <mat-label>Nombre del foro</mat-label>
-            <input
-              formControlName="text"
-              matInput
-              name="text"
-              placeholder="Nombre"
-            />
-          </mat-form-field>
-        </form>
-      </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal">
+            cancelar
+          </button>
 
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal">
-          cancelar
-        </button>
-
-        <button
-          [disabled]="forumForm.invalid"
-          (click)="onSaveForm()"
-          class="btn"
-          data-dismiss="modal"
-        >
-          continuar
-        </button>
+          <button
+            [disabled]="forumForm.invalid"
+            (click)="onSaveForm()"
+            class="btn"
+            data-dismiss="modal"
+          >
+            continuar
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</button>

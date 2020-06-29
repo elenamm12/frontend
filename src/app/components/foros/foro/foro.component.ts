@@ -26,6 +26,7 @@ export class ForoComponent implements OnInit {
   fecha: any;
   subcategoryId: any;
   subcategory: any;
+  colorIcon: number;
 
   constructor(
     private waveService: WaveServiceService,
@@ -46,7 +47,7 @@ export class ForoComponent implements OnInit {
         this.posts = response.items;
         this.currentPage = parseInt(response.meta.currentPage);
         this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
-        // console.log(this.posts);
+         console.log("posts", this.posts);
         //this.postId = this.posts[this.posts.length - 1].id;
         this.waveService
           .getFavoritesForums(this.Foro.subCategory.id)
@@ -112,6 +113,7 @@ export class ForoComponent implements OnInit {
     this.waveService.likePost(id).subscribe((res) => {
       if (res) {
         // console.log(res);
+        alert("¡Te gusta el comentario!")
       }
     });
   }
@@ -128,7 +130,8 @@ export class ForoComponent implements OnInit {
   putDislikePost(id: number) {
     this.waveService.dislikePost(id).subscribe((res) => {
       if (res) {
-        // console.log(res);
+        // console.log(res);   
+        alert("¡No te gusta el comentario!")
       }
     });
   }

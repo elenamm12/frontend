@@ -25,8 +25,10 @@ export class SubCategoriaComponent implements OnInit {
   favorite = true;
   CatWFavoriteSubcat: [];
   forums: any;
-  id: number;
   forumForm: FormGroup;
+  subcaregoryContent: any = {};
+  currentPage: number = 1;
+  nextPage: boolean = false;
 
   createFormGroup() {
     return new FormGroup({
@@ -62,88 +64,90 @@ export class SubCategoriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.waveService.getAllForums().subscribe((response) => {
-      this.forums = response.forums;
-      console.log(this.forums);
-      this.id = this.forums.length + 2;
-      console.log('NUMERO DE FOROS', this.id);
-    });
-
-    this.waveService.getFavoriteSubCategories().subscribe((response) => {
-      this.CatWFavoriteSubcat = response.categories;
-      console.log('hola', this.CatWFavoriteSubcat);
-      console.log(response);
-      let categoryId: number = this.route.snapshot.params['idCateg'];
-      //let aja: [] = response;
-      //let bool = this.CatWFavoriteSubcat.find(id => id == categoryId );
-      //console.log(bool);
-    });
-
-    this.categoryId = this.route.snapshot.params['idCateg'];
-    this.filteredForums = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value))
-    );
-    // Carga los Foros de una Subcategoria
-
+    this.subcategoryId = this.route.snapshot.params['id'];
     this.waveService
-      .getSubcategoryByCategory(this.categoryId)
+      .getSubCategoryById(this.subcategoryId)
       .subscribe((response) => {
-        this.subcategories = response.subCategories;
-        console.log('subcategorias', this.subcategories);
-        this.subcategoryId = this.route.snapshot.params['id'];
-        this.waveService
-          .getSubCategoryById(this.subcategoryId)
-          .subscribe((response) => {
-            this.subcategory = response;
-          });
+        this.subcategory = response;
+        console.log('content', this.subcategory);
 
-        this.subcategoryId = this.route.snapshot.params['id'];
+        this.categoryId = this.route.snapshot.params['idCateg'];
         this.waveService
-          .getSubCategoryById(this.subcategoryId)
+          .getSubcategoryByCategory(this.categoryId)
           .subscribe((response) => {
-            this.subcategory = response;
-            console.log('subcategoria', this.subcategory);
-          });
-        this.waveService
-          .getFavoritesForums(this.subcategoryId)
-          .subscribe((response) => {
-            console.log('suscribes', response.forums);
-            this.subscribedForums = response.forums;
+            this.subcategories = response.subCategories;
+            console.log('subcategorias', this.subcategories);
+            this.filteredForums = this.myControl.valueChanges.pipe(
+              startWith(''),
+              map((value) => this._filter(value))
+            );
 
             this.waveService
               .getForumsBySubcategory(this.subcategoryId)
               .subscribe((response) => {
-                this.favoriteForums = response.forums;
+                this.favoriteForums = response.items;
+                this.currentPage = parseInt(response.meta.currentPage);
+                this.nextPage =
+                  this.currentPage !== parseInt(response.meta.totalPages);
                 console.log('foro fav', this.favoriteForums);
+
+                this.waveService
+                  .getFavoritesForums(this.subcategoryId)
+                  .subscribe((response) => {
+                    console.log('suscribes', response.forums);
+                    this.subscribedForums = response.forums;
+                    this.waveService.getAllForums().subscribe((response) => {
+                      this.forums = response.forums;
+                      console.log(this.forums);
+
+                      this.waveService
+                        .getFavoriteSubCategories()
+                        .subscribe((response) => {
+                          this.CatWFavoriteSubcat = response.categories;
+                          console.log('hola', this.CatWFavoriteSubcat);
+                          console.log(response);
+                          //let aja: [] = response;
+                          //let bool = this.CatWFavoriteSubcat.find(
+                            //(id) => id.id == this.categoryId
+                          //);
+                          //console.log(bool);
+                        });
+                      //});
+                    });
+                  });
               });
           });
       });
   }
 
-  crearForo() {
+  traerMasForos() {
     this.waveService
-      .createForum(this.subcategoryId, this.forumForm.value.text)
+      .getForumsBySubcategory(this.subcategoryId, this.currentPage + 1)
+      .subscribe((response) => {
+        this.favoriteForums = this.favoriteForums.concat(response.items);
+        this.currentPage = parseInt(response.meta.currentPage);
+        this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
+      });
+  }
+
+  crearForo(idSubcategory: number, title: string) {
+    this.waveService
+      .createForum(idSubcategory, title)
       .subscribe((response: any) => {
         if (response) {
           console.log('foro creado');
           this.router.navigate([`/picture-foro/${response.forum.id}`]);
         }
-      }); 
+      });
   }
 
-  onSaveForm(){
-    this.waveService.createForum(this.subcategoryId, this.forumForm.value.text).subscribe((response)=>{   
-        console.log("foro creado")
-        this.router.navigate([`picture-foro/${this.id}`]);
-    })
+  onSaveForm() {
+    this.crearForo(this.subcategoryId, this.forumForm.value.text);
   }
 
-  get text(){
-    return this.forumForm.get('text')
-  };
-
-  
+  get text() {
+    return this.forumForm.get('text');
+  }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();

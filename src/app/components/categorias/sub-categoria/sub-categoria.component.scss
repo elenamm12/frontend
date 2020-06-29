@@ -33,6 +33,10 @@ img {
   max-height: 10.3;
 }
 
+img.mat-card-avatar{  
+  border: 2px solid #e5e7e8;
+}
+
 .container {
   margin-top: 3%;
   position: relative;
@@ -58,6 +62,14 @@ h4 {
   margin-right: auto;
   margin-top: 3%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.568);
+}
+
+.ordenar{
+  display: flex;  
+}
+p{
+  text-align: justify;
+  margin-bottom: 0;
 }
 
 input[type="file"] {
@@ -126,6 +138,14 @@ mat-label {
   letter-spacing: 0.5px;
 }
 
+hr {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.5);
+}
+
 @media (min-width: 600px) {
   .centered {
     font-size: 52%;
@@ -142,7 +162,6 @@ mat-label {
   width: 90%;
   margin: auto;
   margin-top: 1em;
-  padding-top: 10px;
   font-family: "Poiret One";
   letter-spacing: 0.5px;
 }
@@ -263,10 +282,8 @@ div.modal-footer{
 
 ::ng-deep .mat-card-avatar {
   margin-right: 15px !important;
-  margin-left: 5px !important;
-  margin-bottom: 6px !important;
-  height: 45px !important;
-  width: 45px !important;
+  height: 3.5em !important;
+  width: 3.5em !important;
 }
 
 ::ng-deep .mat-card-content {

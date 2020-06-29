@@ -20,7 +20,7 @@
 
 img.cat {
   height: 30%;
-  height: 12em;
+  height: 13.5em;
   max-height: 90%;
   width: 100%;
 }
@@ -118,11 +118,28 @@ div.container {
   padding: 0;
 }
 
-@media(min-width: 768px){
+@media(min-width: 680px){
   img.cat {
     height: 30%;
-    height: 26em;
+    height: 22em;
   }
+  .carousel{
+    width: 98%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    align-content: space-around;
+  }
+  .para-sobrevivir{
+    width: 350px;
+    margin-right: 10px;
+  }
+  mat-card{
+    height: 42em;
+  }
+
 }
 
 ::ng-deep .carousel-control-prev {

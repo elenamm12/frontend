@@ -8,8 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  categories: any[] = [];
-  favoriteCategories: any[] = [];
+  categories: any;
+  favoriteCategories: any;
 
   showNavigationArrows = true;
   showNavigationIndicators = false;
@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.waveService.getFavoriteSubCategories().subscribe((response) => {
+      console.log(response)
       this.favoriteCategories = response.categories;
       console.log('favorite', this.favoriteCategories);
     });

@@ -26,49 +26,51 @@
   </mat-form-field>
 </form>
 
-<mat-card class="example-card container head">
-  <mat-card-title class="top">{{ subcategory.name }}</mat-card-title>
-  <img
-    mat-card-image
-    src="{{ subcategory.contentSubcategories[0].imagen }}"
-    class="encabezado"
-  />
+<div *ngFor="let cont of subcategory.contentSubcategories">
+  <mat-card class="example-card container head">
+    <mat-card-title class="top">{{ subcategory.name }}</mat-card-title>
+    <img mat-card-image [src]="cont.imagen" class="encabezado" />
 
-  <strong>
-    <mat-card-content>
-      <mat-card-title style="justify-content: left;"
-        ><strong
-          >Recomendación Wave:
-          <br />
-          {{ subcategory.contentSubcategories[0].title }}</strong
-        ></mat-card-title
-      >
-      <p>
-        {{ subcategory.contentSubcategories[0].text }}
-      </p>
-      <br />
-      <p>
-        Consigue más en:
-        <a href="{{ subcategory.contentSubcategories[0].link }}"
-          >Contenido extra</a
+    <strong>
+      <mat-card-content>
+        <mat-card-title style="justify-content: left;"
+          ><strong
+            >Recomendación Wave:
+            <br />
+            {{ subcategory.contentSubcategories[0].title }}</strong
+          ></mat-card-title
         >
-      </p>
-    </mat-card-content>
-  </strong>
-</mat-card>
+        <p>
+          {{ subcategory.contentSubcategories[0].text }}
+        </p>
+        <br />
+        <p>
+          Consigue más en:
+          <a href="{{ subcategory.contentSubcategories[0].link }}"
+            >Contenido extra</a
+          >
+        </p>
+      </mat-card-content>
+    </strong>
+  </mat-card>
+</div>
 
-<div *ngIf="favorite">
-  <button
-    class="btn btn-primary abajo"
-    data-toggle="modal"
-    data-target="#exampleModal"
-  >
-    crear foro
-  </button>
+<div *ngFor="let cat of CatWFavoriteSubcat">
+  <div *ngFor="let sub of cat.subCategories">
+    <div *ngIf="sub.id == subcategoryId">
+      <button
+        class="btn btn-primary abajo"
+        data-toggle="modal"
+        data-target="#exampleModal"
+      >
+        crear foro
+      </button>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="subscribedForums.length > 0">
-  <br />
+  <hr />
   <h4>Ya estas suscrito en estos foros</h4>
   <br />
 
@@ -78,25 +80,28 @@
     <a routerLink="/foro/{{ foro.id }}"
       ><mat-card class="foros1">
         <div
-          *ngIf="foro.image != null && foro.image != undefined; else sinFoto"
+          *ngIf="foro.image != null && foro.image != undefined; else sinFoto" class="ordenar" 
         >
           <img mat-card-avatar [src]="foro.image" alt="User Avatar" />
-          {{ foro.title }}
+          <p style="align-self: center">
+            {{ foro.title }}
+          </p>
         </div>
-        <ng-template #sinFoto>
+        <ng-template #sinFoto >
+          <div class="ordenar">
           <img
             mat-card-avatar
             src="https://mustdonewzealand.co.nz/wp-content/uploads/2013/08/white-300x225.jpg"
             alt="User Avatar"
-          />
-          {{ foro.title }}
+          /> <p style="align-self: center">
+          {{ foro.title }}</p>
+        </div>
         </ng-template>
       </mat-card></a
     >
   </div>
 </div>
-
-<br />
+<hr />
 <h4>También puedes participar en estos foros</h4>
 <br />
 
@@ -105,71 +110,79 @@
 <div *ngFor="let foro of favoriteForums" class="foros">
   <a routerLink="/foro/{{ foro.id }}"
     ><mat-card class="foros1"
-      ><div *ngIf="foro.image != null && foro.image != undefined; else sinFoto">
-        <img mat-card-avatar [src]="foro.image" alt="User Avatar" />{{
+      ><div *ngIf="foro.image != null && foro.image != undefined; else sinFoto" class="ordenar">
+        <img mat-card-avatar [src]="foro.image" alt="User Avatar" /><p style="align-self: center">{{
           foro.title
-        }}
+        }}</p>
       </div>
-      <ng-template #sinFoto>
-        <img
+      <ng-template #sinFoto >
+        <div class="ordenar">
+          <img
           mat-card-avatar
           src="https://www.liberaldictionary.com/wp-content/uploads/2019/02/f-8273.jpg"
           alt="User Avatar"
-        />{{ foro.title }}
+        /><p style="align-self: center">{{ foro.title }}</p>
+
+        </div>
+        
       </ng-template>
     </mat-card></a
   >
 </div>
+<button *ngIf="nextPage" (click)="traerMasForos()" type="button">
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <strong>¡Crea un foro!</strong>
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          <strong>¡Crea un foro!</strong>
-        </h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+        <div class="modal-body">
+          <form [formGroup]="forumForm">
+            <mat-form-field>
+              <mat-label>Nombre del foro</mat-label>
+              <input
+                formControlName="text"
+                matInput
+                name="text"
+                placeholder="Nombre"
+              />
+            </mat-form-field>
+          </form>
+        </div>
 
-      <div class="modal-body">
-        <form [formGroup]="forumForm">
-          <mat-form-field>
-            <mat-label>Nombre del foro</mat-label>
-            <input
-              formControlName="text"
-              matInput
-              name="text"
-              placeholder="Nombre"  
-            />
-          </mat-form-field>
-        </form>
-      </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal">
+            cancelar
+          </button>
 
-      <div class="modal-footer">
-
-        <button class="btn" data-dismiss="modal">
-          cancelar
-        </button>
-        
-        <button [disabled]="forumForm.invalid" (click)="crearForo()" class="btn" data-dismiss="modal">
-          continuar
-        </button>
-        
+          <button
+            [disabled]="forumForm.invalid"
+            (click)="onSaveForm()"
+            class="btn"
+            data-dismiss="modal"
+          >
+            continuar
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</button>

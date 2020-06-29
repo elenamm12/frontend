@@ -14,13 +14,15 @@ export class ForoComponent implements OnInit {
   forosFav = [];
   posts: any[] = [];
   postId: number;
-  latestPosts: any[] = [];
   areThereNewPosts: boolean = false; // Cuando esta variable sea true tienes que mostrarle un pop-up al usuario para cargar los posts nuevos
   intervalControl: any;
   comment = '';
   postComment = [];
   user: any;
   suscrito = false;
+  currentPage: number = 1;
+  nextPage: boolean;
+  latestPosts: any;
 
   constructor(
     private waveService: WaveServiceService,
@@ -34,44 +36,70 @@ export class ForoComponent implements OnInit {
     console.log(this.user);
     this.foroId = this.route.snapshot.params['id'];
     this.postService.receivePosts(this.foroId).subscribe((message: any) => {
-      if (message.user.email === this.user.email) this.posts.push(message);
-      else {
+      if (message.user.email !== this.user.email) {
         this.areThereNewPosts = true;
-        this.latestPosts.push(message);
+      } else {
+        this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
+          this.posts = response.items;
+          this.currentPage = parseInt(response.meta.currentPage);
+          this.nextPage =
+            this.currentPage !== parseInt(response.meta.totalPages);
+          this.postId = this.posts[this.posts.length - 1].id;
+          window.scrollTo({ top: 0 });
+        });
       }
     });
     this.waveService.getForumsById(this.foroId).subscribe((response) => {
       // console.log(response);
       this.Foro = response.forum;
-      // console.log(this.Foro);
+      console.log(this.Foro);
       this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
-        this.posts = response.posts;
+        this.posts = response.items;
+        this.currentPage = parseInt(response.meta.currentPage);
+        this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
         // console.log(this.posts);
-        this.postId = this.posts[this.posts.length - 1].id;
-      });
+        //this.postId = this.posts[this.posts.length - 1].id;
+        this.waveService
+          .getFavoritesForums(this.Foro.subCategory.id)
+          .subscribe((res) => {
+            if (res) {
+              // console.log(res);
+              this.forosFav = res.forums;
+              // console.log(this.forosFav);
 
-      this.waveService
-        .getFavoritesForums(this.Foro.subCategory.id)
-        .subscribe((res) => {
-          if (res) {
-            // console.log(res);
-            this.forosFav = res.forums;
-            // console.log(this.forosFav);
-
-            let bool = this.forosFav.find((ob) => ob.id == this.foroId);
-            // console.log(bool);
-            if (bool != null) {
-              this.suscrito = true;
+              let bool = this.forosFav.find((ob) => ob.id == this.foroId);
+              console.log(bool);
+              if (bool != null) {
+                this.suscrito = true;
+              }else{
+                this.suscrito = false;
+              }
             }
-          }
-        });
+          });
+      });
     });
+
   }
 
   refreshPost() {
-    this.posts = this.posts.concat(this.latestPosts);
-    this.areThereNewPosts = false;
-    this.latestPosts = [];
+    this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
+      this.areThereNewPosts = false;
+      this.posts = response.items;
+      this.currentPage = parseInt(response.meta.currentPage);
+      this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
+      this.postId = this.posts[this.posts.length - 1].id;
+    });
+  }
+
+  traerMasComentarios() {
+    this.waveService
+      .getPostByForumId(this.foroId, this.currentPage + 1)
+      .subscribe((response) => {
+        this.posts = this.posts.concat(response.items);
+        this.currentPage = parseInt(response.meta.currentPage);
+        this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
+        this.postId = this.posts[this.posts.length - 1].id;
+      });
   }
 
   putLikePost(id: number) {
@@ -98,7 +126,15 @@ export class ForoComponent implements OnInit {
     });
   }
 
+  agregarFavorito(subcategoriaId) {
+    console.log(subcategoriaId)
+    this.waveService
+      .saveFavoriteSubCategoria(subcategoriaId)
+      .subscribe((response) => console.log(response));
+  }
+
   likeForo(id: number) {
+    this.agregarFavorito(this.Foro.subCategory.id);
     this.waveService.likeForum(id).subscribe((res) => {
       if (res) {
         this.suscrito = true;
@@ -107,12 +143,13 @@ export class ForoComponent implements OnInit {
     });
   }
 
+
   dislikeForo(id: number) {
     this.waveService.dislikeForum(id).subscribe((res) => {
       if (res) {
         this.suscrito = false;
         // console.log(res);
-        location.reload();
+
       }
     });
   }

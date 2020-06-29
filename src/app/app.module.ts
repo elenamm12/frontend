@@ -31,6 +31,7 @@ import { environment } from '../environments/environment';
 import { CrearForoComponent } from './components/foros/crear-foro/crear-foro.component';
 import { PictureForoComponent } from './components/picture-foro/picture-foro.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 const config: SocketIoConfig = {
   url: 'https://wave-service.herokuapp.com',
@@ -59,6 +60,7 @@ const config: SocketIoConfig = {
     UsuarioComponent,
     CrearForoComponent,
     PictureForoComponent,
+    DateAgoPipe,
   ],
   imports: [
     BrowserModule,

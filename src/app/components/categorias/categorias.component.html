@@ -13,7 +13,8 @@
       <mat-card-content>
         <mat-chip-list multiple aria-label="Fish selection">
           <div *ngFor="let sub of cat.subCategories">
-            <mat-chip color="accent" selected>
+            
+            <mat-chip color="accent" selected routerLink="/sub-categoria/{{ sub.id }}">
               {{ sub.name }}
 
               <mat-icon matChipRemove (click)="agregarFavorito(sub.id)"

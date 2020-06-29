@@ -42,6 +42,7 @@ class ImageSnippet {
 export class RegistrarUsuarioComponent implements OnInit {
   imageUrl: string = '../../../assets/icon/usuario.png';
   fileToUpload: File = null;
+  background: boolean = false;
 
   public payPalConfig?: IPayPalConfig;
   public total: number = 20;
@@ -160,6 +161,11 @@ export class RegistrarUsuarioComponent implements OnInit {
         console.log('onClick', data, actions);
       },
     };
+  }
+
+  cambiarBack(){
+    this.background = !this.background;
+    console.log(this.background)
   }
 
   agregarCategoria() {

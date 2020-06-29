@@ -60,6 +60,7 @@ export class ForosComponent implements OnInit {
     this.waveService.likeForum(id).subscribe((res) => {
       if (res) {
         console.log(res);
+        alert("¡Ahora estás suscrito en el foro!")
       }
     });
   }

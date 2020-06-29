@@ -23,6 +23,7 @@ export class ForoComponent implements OnInit {
   currentPage: number = 1;
   nextPage: boolean;
   latestPosts: any;
+  fecha: any;
 
   constructor(
     private waveService: WaveServiceService,
@@ -41,6 +42,7 @@ export class ForoComponent implements OnInit {
       } else {
         this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
           this.posts = response.items;
+          console.log("posts", this.posts);
           this.currentPage = parseInt(response.meta.currentPage);
           this.nextPage =
             this.currentPage !== parseInt(response.meta.totalPages);
@@ -48,13 +50,18 @@ export class ForoComponent implements OnInit {
           window.scrollTo({ top: 0 });
         });
       }
+      
     });
+
     this.waveService.getForumsById(this.foroId).subscribe((response) => {
       // console.log(response);
       this.Foro = response.forum;
       console.log(this.Foro);
       this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
         this.posts = response.items;
+        this.fecha = this.posts[0].date;
+        
+        console.log("posts", this.fecha);
         this.currentPage = parseInt(response.meta.currentPage);
         this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
         // console.log(this.posts);

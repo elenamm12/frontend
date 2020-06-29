@@ -109,32 +109,46 @@ button {
   width: 30rem;
 }
 
+.opciones{
+  margin-top: 5em;
+  margin-bottom: 1em;
+  width: 91%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: stretch;
+}
+
 button.suscribir {
   width: 40%;
-  margin-left: 55%;
+  margin-left: 0 !important;
   background-color: #ff4081;
   color: white;
   border-color: white;
   padding: 0;
   padding-top: 3.5px;
-  margin-top: 5em;
+  margin-top: 0 !important;
   border-radius: 4px;
   padding-bottom: 3.5px;
-  margin-bottom: 17px;
+  margin-bottom: 0 !important;
 }
 
 button.dislike {
   width: 74%;
-  margin-left: 21%;
+  margin-left: 0 !important;
   background-color: grey;
   color: white;
   border-color: white;
   padding: 0;
   padding-top: 3.5px;
-  margin-top: 5em;
+  margin-top: 0 !important;
   border-radius: 4px;
   padding-bottom: 3.5px;
-  margin-bottom: 17px;
+  margin-bottom: 0 !important;
 }
 
 button.primero {
@@ -187,7 +201,7 @@ button.btn-mas{
 }
 
 .comment-wrapper .media-list .media {
-  border-bottom: 1px dashed #efefef;
+  border-bottom: 1px solid #efefef;
   margin-bottom: 20px;
   padding-bottom: 15px;
 }

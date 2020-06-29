@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   dislikesubC(id: number){
     this.waveService.dislikeSubcategorie(id).subscribe((res)=>{
       if(res){
+        alert("Se cancelará su suscripción a los foros de la subcategoría")
         console.log(res);
       };
       location.reload();

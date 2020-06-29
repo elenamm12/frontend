@@ -68,6 +68,7 @@ export class SubCategoriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.subcategoryId = this.route.snapshot.params['id'];
     this.waveService
       .getSubCategoryById(this.subcategoryId)
@@ -75,12 +76,7 @@ export class SubCategoriaComponent implements OnInit {
         this.subcategory = response;
         console.log('content', this.subcategory);
 
-        this.categoryId = this.route.snapshot.params['idCateg'];
-        this.waveService
-          .getSubcategoryByCategory(this.categoryId)
-          .subscribe((response) => {
-            this.subcategories = response.subCategories;
-            console.log('subcategorias', this.subcategories);
+
             this.filteredForums = this.myControl.valueChanges.pipe(
               startWith(''),
               map((value) => this._filter(value))
@@ -102,7 +98,6 @@ export class SubCategoriaComponent implements OnInit {
                     this.subscribedForums = response.forums;
                     this.waveService.getAllForums().subscribe((response) => {
                       this.forums = response.forums;
-                      console.log(this.forums);
 
                       this.waveService
                         .getFavoriteSubCategories()
@@ -117,7 +112,7 @@ export class SubCategoriaComponent implements OnInit {
                           //console.log(bool);
                         });
                       //});
-                    });
+                    //});
                   });
               });
           });

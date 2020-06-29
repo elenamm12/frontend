@@ -24,6 +24,9 @@ export class ForoComponent implements OnInit {
   nextPage: boolean;
   latestPosts: any;
   fecha: any;
+  subcategoryId: any;
+  subcategory: any;
+  colorIcon: number;
 
   constructor(
     private waveService: WaveServiceService,
@@ -36,35 +39,15 @@ export class ForoComponent implements OnInit {
     this.user = JSON.parse(this.waveService.getCurrentUser());
     console.log(this.user);
     this.foroId = this.route.snapshot.params['id'];
-    this.postService.receivePosts(this.foroId).subscribe((message: any) => {
-      if (message.user.email !== this.user.email) {
-        this.areThereNewPosts = true;
-      } else {
-        this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
-          this.posts = response.items;
-          console.log("posts", this.posts);
-          this.currentPage = parseInt(response.meta.currentPage);
-          this.nextPage =
-            this.currentPage !== parseInt(response.meta.totalPages);
-          this.postId = this.posts[this.posts.length - 1].id;
-          window.scrollTo({ top: 0 });
-        });
-      }
-      
-    });
-
     this.waveService.getForumsById(this.foroId).subscribe((response) => {
       // console.log(response);
       this.Foro = response.forum;
       console.log(this.Foro);
       this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
         this.posts = response.items;
-        this.fecha = this.posts[0].date;
-        
-        console.log("posts", this.fecha);
         this.currentPage = parseInt(response.meta.currentPage);
         this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
-        // console.log(this.posts);
+         console.log("posts", this.posts);
         //this.postId = this.posts[this.posts.length - 1].id;
         this.waveService
           .getFavoritesForums(this.Foro.subCategory.id)
@@ -75,17 +58,34 @@ export class ForoComponent implements OnInit {
               // console.log(this.forosFav);
 
               let bool = this.forosFav.find((ob) => ob.id == this.foroId);
-              console.log(bool);
               if (bool != null) {
                 this.suscrito = true;
-              }else{
+              } else {
                 this.suscrito = false;
               }
             }
+            this.postService
+              .receivePosts(this.foroId)
+              .subscribe((message: any) => {
+                if (message.user.email !== this.user.email) {
+                  this.areThereNewPosts = true;
+                } else {
+                  this.waveService
+                    .getPostByForumId(this.foroId)
+                    .subscribe((response) => {
+                      this.posts = response.items;
+                      console.log('posts', this.posts);
+                      this.currentPage = parseInt(response.meta.currentPage);
+                      this.nextPage =
+                        this.currentPage !== parseInt(response.meta.totalPages);
+                      this.postId = this.posts[this.posts.length - 1].id;
+                      window.scrollTo({ top: 0 });
+                    });
+                }
+              });
           });
       });
     });
-
   }
 
   refreshPost() {
@@ -113,6 +113,7 @@ export class ForoComponent implements OnInit {
     this.waveService.likePost(id).subscribe((res) => {
       if (res) {
         // console.log(res);
+        alert("¡Te gusta el comentario!")
       }
     });
   }
@@ -123,18 +124,20 @@ export class ForoComponent implements OnInit {
       foroId: this.foroId,
       email: this.user.email,
     });
+    this.comment = '';
   }
 
   putDislikePost(id: number) {
     this.waveService.dislikePost(id).subscribe((res) => {
       if (res) {
-        // console.log(res);
+        // console.log(res);   
+        alert("¡No te gusta el comentario!")
       }
     });
   }
 
   agregarFavorito(subcategoriaId) {
-    console.log(subcategoriaId)
+    console.log(subcategoriaId);
     this.waveService
       .saveFavoriteSubCategoria(subcategoriaId)
       .subscribe((response) => console.log(response));
@@ -160,7 +163,6 @@ export class ForoComponent implements OnInit {
       if (res) {
         this.suscrito = false;
         // console.log(res);
-
       }
     });
   }

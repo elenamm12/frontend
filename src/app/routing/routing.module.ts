@@ -45,7 +45,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'sub-categoria/:id/categoria/:idCateg',
+    path: 'sub-categoria/:id',
     component: SubCategoriaComponent,
     canActivate: [AuthGuard],
   },

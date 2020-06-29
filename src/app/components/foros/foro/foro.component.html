@@ -2,7 +2,9 @@
 <div class="fondo">
   <div class="opciones">
     <div style="display: inline;">
-      <mat-icon>keyboard_backspace</mat-icon>
+      <a>
+        <mat-icon class="volver" >keyboard_backspace</mat-icon>
+      </a>
     </div>
 
     <div *ngIf="suscrito; else suscribete">
@@ -72,9 +74,9 @@
                             <strong class="text-success"
                               >{{ com.user.userName }}
                             </strong>
-                            <time class="ml-3" class="text-success"
-                              >{{ com.date | dateAgo }}</time
-                            >
+                            <time class="ml-3" class="text-success">{{
+                              com.date | dateAgo
+                            }}</time>
                           </div>
 
                           <div style="display: inline; margin-right: 7px;">
@@ -86,6 +88,7 @@
                               thumb_up </mat-icon
                             ><mat-icon
                               (click)="putDislikePost(com.id)"
+                              [attr.color]="this.colorIcon == com.id ? 'orange' : 'black'"
                               [inline]="true"
                               class="dislike"
                             >
@@ -94,7 +97,7 @@
                           </div>
                         </div>
 
-                        <p>
+                        <p class="p">
                           {{ com.text }}
                         </p>
                       </div>
@@ -145,6 +148,7 @@
         </div>
         <div class="modal-body">
           <textarea
+            id="input"
             [(ngModel)]="comment"
             placeholder="¡Escribe tu comentario aquí!"
             class="form-control"

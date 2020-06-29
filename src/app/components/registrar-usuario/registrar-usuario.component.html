@@ -113,7 +113,7 @@
         *ngIf="tipoCuenta.value == 'Premium'"
         data-toggle="modal"
         data-target="#exampleModal"
-        
+        (click)="cambiarBack()"
         >pagar premium</a
       >
       <div
@@ -149,6 +149,7 @@
                 class="btn btn-primary enviar"
                 type="submit>"
                 data-dismiss="modal"
+                (click)="cambiarBack()"
               >
                 continuar
               </button>

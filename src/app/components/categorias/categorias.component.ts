@@ -28,5 +28,6 @@ export class CategoriasComponent implements OnInit {
     this.waveService
       .saveFavoriteSubCategoria(subcategoriaId)
       .subscribe((response) => console.log(response));
+      alert("¡Ahora estás suscrito en la subcategoría!")
   }
 }

@@ -1,16 +1,31 @@
 <app-menu></app-menu>
 <div class="fondo">
-  <div *ngIf="suscrito; else suscribete">
-    <button (click)="dislikeForo(foroId)" class="btn btn-primary dislike">
-      Dejar de estar suscrito
-    </button>
-  </div>
+  <div class="opciones">
+    <div style="display: inline;">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </div>
 
-  <ng-template #suscribete>
-    <button (click)="likeForo(foroId)" class="btn btn-primary suscribir">
-      ¡Suscríbite!
-    </button>
-  </ng-template>
+    <div *ngIf="suscrito; else suscribete">
+      <button (click)="dislikeForo(foroId)" class="btn btn-primary dislike">
+        Dejar de estar suscrito
+      </button>
+    </div>
+
+    <ng-template #suscribete>
+      <button (click)="likeForo(foroId)" class="btn btn-primary suscribir">
+        ¡Suscríbite!
+      </button>
+    </ng-template>
+  </div>
+  <img
+    src="{{ Foro.image }}"
+    style="
+      width: 100%;
+      height: 20%;
+      margin-left: 0 !important;
+      margin-top: 0 !important;
+    "
+  />
 
   <h2>{{ Foro.title }}</h2>
 
@@ -91,7 +106,12 @@
           </div>
         </div>
       </div>
-      <button *ngIf="nextPage" (click)="traerMasComentarios()" type="button" class="btn btn-mas">
+      <button
+        *ngIf="nextPage"
+        (click)="traerMasComentarios()"
+        type="button"
+        class="btn btn-mas"
+      >
         Mas Comentarios
       </button>
     </div>

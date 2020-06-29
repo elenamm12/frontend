@@ -150,6 +150,10 @@ export class ForoComponent implements OnInit {
     });
   }
 
+  reset(){
+    this.comment = "";
+  }
+
 
   dislikeForo(id: number) {
     this.waveService.dislikeForum(id).subscribe((res) => {

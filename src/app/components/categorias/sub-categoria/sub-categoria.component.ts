@@ -29,6 +29,7 @@ export class SubCategoriaComponent implements OnInit {
   subcaregoryContent: any = {};
   currentPage: number = 1;
   nextPage: boolean = false;
+  comment;
 
   createFormGroup() {
     return new FormGroup({
@@ -47,6 +48,9 @@ export class SubCategoriaComponent implements OnInit {
     };
     reader.readAsDataURL(this.fileToUpload);
     console.log(reader.result);
+  }
+  reset(){
+    this.comment = "";
   }
 
   onUpload() {

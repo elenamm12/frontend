@@ -11,6 +11,7 @@ export class UsuarioComponent implements OnInit {
   user: any;
   forumsPosts:[];
   notSubscribedForumsPosts:[];
+  forumsCreated:[];
 
   constructor(
     private waveService: WaveServiceService,
@@ -28,6 +29,10 @@ export class UsuarioComponent implements OnInit {
     this.waveService.getNotSubscribedByUser().subscribe((res)=>{
       this.notSubscribedForumsPosts = res.forums;
     });
+    this.waveService.getForumCreated().subscribe((res)=>{
+      this.forumsCreated = res.forums;
+    });
+
   }
 
 onDelete(id:number){

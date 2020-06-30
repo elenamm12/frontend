@@ -275,5 +275,8 @@ export class WaveServiceService {
   getNotSubscribedByUser(): Observable<any> {
     return this.http.get(`${this.url}/forum/user/notSubscribe/posts`);
   }
+  getForumCreated(): Observable<any> {
+    return this.http.get(`${this.url}/forum/search`);
+  }
 
 }

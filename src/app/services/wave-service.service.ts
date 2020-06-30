@@ -251,6 +251,10 @@ export class WaveServiceService {
     });
   }
 
+  DeletePost(idPost: number) {
+    return this.http.delete(`${this.url}/post/delete/${idPost}`);
+  }
+
   // Servicios de los Forums
 
   likeForum(idForum: number): Observable<any> {

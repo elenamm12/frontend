@@ -28,9 +28,10 @@ export class UsuarioComponent implements OnInit {
     this.waveService.getNotSubscribedByUser().subscribe((res)=>{
       this.notSubscribedForumsPosts = res.forums;
     });
-
-
-
   }
+
+onDelete(id:number){
+  this.waveService.DeletePost(id);
+}
 
 }

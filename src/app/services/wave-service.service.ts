@@ -17,11 +17,6 @@ export class WaveServiceService {
   //url = 'http://localhost:3000';
   url = 'https://wave-service.herokuapp.com';
 
-  mockUser = {
-    username: 'aja@aja.com',
-    contraseña: '1234567',
-  };
-
   public token: string;
   public picture: string;
   public user: any;
@@ -144,6 +139,7 @@ export class WaveServiceService {
 
   logOutUser(): void {
     localStorage.removeItem('currentToken');
+    localStorage.removeItem('currentUser');
     this.token = null;
   }
 
@@ -164,18 +160,6 @@ export class WaveServiceService {
     return user;
   }
 
-  loginUserMock(email: String, password: String) {
-    console.log('servicio activo');
-    if (
-      email == this.mockUser.username &&
-      password == this.mockUser.contraseña
-    ) {
-      console.log('fake auth complete');
-      localStorage.setItem('currentToken', 'fake');
-    } else {
-      alert('usuario no registrado');
-    }
-  }
 
   logOut() {
     localStorage.removeItem('currentToken');
@@ -278,4 +262,6 @@ export class WaveServiceService {
   createForum(idSub: number, title: string) {
     return this.http.post(`${this.url}/forum/create/${idSub}`, { title });
   }
+  //Servicios User
+
 }

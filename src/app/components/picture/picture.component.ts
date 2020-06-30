@@ -24,10 +24,14 @@ export class PictureComponent implements OnInit {
     console.log(reader.result);
   }
 
-  onUpload(){
-   this.wave.uploadPicture(this.fileToUpload).subscribe(res=>{
-     console.log(res)
-   })
+  onUpload() {
+    if (this.fileToUpload != null) {
+      this.wave.uploadPicture(this.fileToUpload).subscribe(res => {
+        console.log(res)
+      })
+    } else {
+      alert('¡Primero debes cargar una imagen!, busca en la nube');
+    }
   }
 
   constructor(private wave:WaveServiceService) { }

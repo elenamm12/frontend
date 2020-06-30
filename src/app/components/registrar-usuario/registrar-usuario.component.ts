@@ -200,8 +200,12 @@ export class RegistrarUsuarioComponent implements OnInit {
               this.registerForm.value.tipoCuenta
             )
             .subscribe((data) => {
-              console.log(data);
-              this.router.navigate(['/picture']);
+              if (data) {
+                console.log(data);
+                this.router.navigate(['/picture']);
+              } else {
+                alert('¡El usuario ya existe!');
+              }
             });
         } else {
           alert('Debe pagar primero para obtener su cuenta Premium');

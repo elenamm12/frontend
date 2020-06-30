@@ -19,10 +19,10 @@
         </mat-form-field>   
       
       <div *ngIf="usuario.invalid && usuario.dirty">
-        <div *ngIf="usuario.errors.required">
+        <div *ngIf="usuario.errors.required" class="mat-error">
           Usuario es Requerido
         </div>
-        <div *ngIf="usuario.errors.pattern">
+        <div *ngIf="usuario.errors.pattern" class="mat-error">
           Debe ser un correo valido
         </div>    
       </div>
@@ -35,11 +35,11 @@
       </mat-form-field>
 
 
-      <div *ngIf="contra.invalid && contra.dirty">
+      <div *ngIf="contra.invalid && contra.dirty" class="mat-error">
         <div *ngIf="contra.errors.required">
           Contraseña es Requerida
         </div>
-        <div *ngIf="contra.errors.minlength">
+        <div *ngIf="contra.errors.minlength" class="mat-error">
           Debe tener al menos 7 caracteres
         </div>    
       </div>

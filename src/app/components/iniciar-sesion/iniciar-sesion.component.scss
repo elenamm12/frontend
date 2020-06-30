@@ -85,6 +85,16 @@ h1 {
   color: black;
 }
 
+.mat-error{
+  color:white !important;
+  font-family: "Roboto";
+  margin-bottom: 5px;
+}
+
+input{
+  text-align: left;
+}
+
 @media (max-width: 384px) {
   .btn {
     font-size: 95%;
@@ -129,13 +139,13 @@ select:-webkit-autofill {
 
 /* input color class */
 ::ng-deep input.mat-input-element {
-  color: #000000;
+  color: #484a4c;
   width: 80%;
 }
 
 /* Change label color on focused */
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-  color: #000000 !important;
+  color: #50d0fb !important;
 }
 
 /* underline border color on focused */
@@ -143,12 +153,12 @@ select:-webkit-autofill {
   background-color: #74b4bc !important;
 }
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #74b4bc !important;
+  color: #50d0fb !important;
   background: white;
   border-radius: 5px;
 }
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
-  color: #74b4bc !important;
+  color: #50d0fb !important;
   background: white;
   border-radius: 5px;
 }
@@ -178,7 +188,7 @@ select:-webkit-autofill {
 
 
 ::ng-deep .mat-input-wrapper {
-  background: blue !important;
+  background: white !important;
 }
 
 ::ng-deep .mat-form-field-wrapper {

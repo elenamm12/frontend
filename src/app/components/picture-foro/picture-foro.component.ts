@@ -37,15 +37,21 @@ export class PictureForoComponent implements OnInit {
   }
 
   onUpload() {
-    this.wave.uploadPictureForo(this.fileToUpload, this.id).subscribe((res) => {
-      console.log(res);
-      this.router.navigate([`/foro/${this.id}`]);
-      
-    })
-   }
+    if (this.fileToUpload != null) {
+      this.wave
+        .uploadPictureForo(this.fileToUpload, this.id)
+        .subscribe((res) => {
+          if (res) {
+            console.log(res);
+            this.router.navigate([`/foro/${this.id}`]);
+          }
+        });
+    } else {
+      alert('¡Primero debes cargar una imagen!, busca en la nube');
+    }
+  }
 
-   aja(){
+  aja() {
     this.router.navigate([`/foro/${this.id}`]);
-   }
-
+  }
 }

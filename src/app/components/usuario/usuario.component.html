@@ -1,1 +1,81 @@
 <app-menu></app-menu>
+
+<div class="fondo">
+    <div class="form">
+        <div class="logo">
+            <img class="img-profile" src="{{user.image}}">
+        </div>
+        <div class="datos">
+            <h4>{{user.firstName}} {{user.lastName}}</h4>
+            <h6>@{{user.userName}}</h6>
+        </div>
+        <mat-tab-group mat-stretch-tabs style="color: black !important">
+            <mat-tab label="Foros suscritos">     
+            <div >
+                <div >
+                  <div class="row flex-row-reverse bootstrap snippets">
+                    <div class="col-md-12 col-md-offset-2 col-sm-12">
+                      <div class="comment-wrapper">
+                        <div class="panel panel-info">
+                          <div class="panel-body">
+                            <div class="clearfix"></div>
+          
+                            <ul class="media-list">
+                              <li class="media">
+                                <div >
+                                  <img
+                                    
+                                    alt=""
+                                    class="img-circle"
+                                  />
+                                </div>
+          
+          
+                                <div class="media-body">
+                                  <div class="ordenar">
+                                    <div style="display: inline;">
+                                      <strong class="text-success"
+                                        >nombre de usuario
+                                      </strong>
+                                      <time class="ml-3" class="text-success">
+                                        tiempo</time>
+                                    </div>
+          
+                                    <div style="display: inline; margin-right: 7px;">
+                                      <mat-icon
+                                        
+                                        [inline]="true"
+                                        class="like"
+                                      >
+                                        thumb_up </mat-icon
+                                      ><mat-icon
+                                        [inline]="true"
+                                        class="dislike"
+                                      >
+                                        thumb_down
+                                      </mat-icon>
+                                    </div>
+                                  </div>
+          
+                                  <p class="p">
+                                    texto
+                                  </p>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div> 
+            </mat-tab>
+            <mat-tab label="Tus foros"> Content 2 </mat-tab>
+            <mat-tab label="Otros foros"> Content 3 </mat-tab>
+        </mat-tab-group>
+          
+        
+    </div>
+</div>

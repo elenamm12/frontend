@@ -3,28 +3,39 @@
   <div class="sepaador"></div>
 
   <div class="carousel">
-  <div *ngFor="let cat of categories" class="contenido">
-    <mat-card class="example-card container para-sobrevivir">
-      <a routerLink="/categoria/{{ cat.id }}">
-        <img mat-card-image src="{{ cat.contentCategories[0].imagen }}" />
-      </a>
-      <div class="centered">{{ cat.name }}</div>
-      <mat-divider></mat-divider>
-      <mat-card-content>
-        <mat-chip-list multiple aria-label="Fish selection">
-          <div *ngFor="let sub of cat.subCategories">
-            
-            <mat-chip color="accent" selected routerLink="/sub-categoria/{{ sub.id }}">
-              {{ sub.name }}
-
-              <mat-icon matChipRemove (click)="agregarFavorito(sub.id)"
-                >favorite</mat-icon
+    <div *ngFor="let cat of categories" class="contenido">
+      <mat-card class="example-card container para-sobrevivir">
+        <a routerLink="/categoria/{{ cat.id }}">
+          <img mat-card-image src="{{ cat.contentCategories[0].imagen }}" />
+        </a>
+        <div class="centered">{{ cat.name }}</div>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <mat-chip-list multiple aria-label="Fish selection">
+            <div *ngFor="let sub of cat.subCategories">
+              <mat-chip
+                color="accent"
+                selected
+                routerLink="/sub-categoria/{{ sub.id }}"
               >
-            </mat-chip>
-          </div>
-        </mat-chip-list></mat-card-content
-      >
-    </mat-card>
+                {{ sub.name }}
+
+                <mat-icon matChipRemove (click)="agregarFavorito(sub.id)"
+                  >favorite</mat-icon
+                >
+              </mat-chip>
+            </div>
+          </mat-chip-list></mat-card-content
+        >
+      </mat-card>
+    </div>
   </div>
-</div>
+  <button
+    *ngIf="nextPage"
+    (click)="traerMasCategorias()"
+    type="button"
+    class="btn btn-mas"
+  >
+    Mas Categorias
+  </button>
 </div>

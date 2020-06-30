@@ -245,19 +245,19 @@ select:-webkit-autofill {
 ::ng-deep
   .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
   .mat-form-field-outline-thick {
-  color: red !important;
+  color: white !important;
   opacity: 0.8 !important;
 }
 
 // mat-input carent color
 ::ng-deep .mat-input-element {
-  caret-color: red !important;
+  caret-color: white !important;
 }
 
 // mat-input error carent color
 ::ng-deep .mat-form-field-invalid .mat-input-element,
 .mat-warn .mat-input-element {
-  caret-color: red !important;
+  caret-color: white !important;
 }
 
 // mat-label normal state style
@@ -268,12 +268,12 @@ select:-webkit-autofill {
 
 // mat-label focused style
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-  color: red !important;
+  color: white !important;
 }
 
 // mat-label error style
 ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-  color: red !important;
+  color: white !important;
 }
 
 ::ng-deep .mat-input-wrapper {

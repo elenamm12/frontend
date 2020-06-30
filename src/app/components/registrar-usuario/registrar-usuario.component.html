@@ -79,8 +79,8 @@
           10 caracteres maximo
         </mat-error>
         <mat-error *ngIf="contra.errors.pattern">
-        Debe tener al menos una Mayuscula, una Minuscula y al menos un digito
-      </mat-error>
+          Debe tener al menos una Mayuscula, una Minuscula y al menos un digito
+        </mat-error>
       </div>
       <mat-form-field appearance="outline">
         <mat-label>Repetir Contraseña</mat-label>
@@ -116,47 +116,7 @@
         (click)="cambiarBack()"
         >pagar premium</a
       >
-      <div
-        data-backdrop="false"
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                <strong>Pago</strong>
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-primary enviar"
-                type="submit>"
-                data-dismiss="modal"
-                (click)="cambiarBack()"
-              >
-                continuar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <mat-error
         *ngIf="registerForm.hasError('notPay') && tipoCuenta.value == 'Premium'"
       >
@@ -181,4 +141,45 @@
       >
     </div>
   </form>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <strong>Pago</strong>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary enviar"
+          type="submit>"
+          data-dismiss="modal"
+          (click)="cambiarBack()"
+        >
+          continuar
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

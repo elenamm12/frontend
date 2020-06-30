@@ -13,7 +13,7 @@
         <mat-error
           *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)"
         >
-          Por favor introduzca sus nombres
+          Por favor introduzca su nombre
         </mat-error>
         <mat-form-field appearance="outline">
           <mat-label>Apellidos</mat-label>
@@ -22,10 +22,10 @@
         <mat-error
           *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)"
         >
-          Por favor introduzca sus apellidos
+          Por favor introduzca al menos un apellido
         </mat-error>
         <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Fecha de cumpleaños</mat-label>
+          <mat-label>Fecha de nacimiento</mat-label>
           <input matInput [matDatepicker]="picker" formControlName="fecha" />
           <mat-datepicker-toggle matSuffix [for]="picker" appearance="outline">
             <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -33,7 +33,7 @@
           <mat-datepicker #picker appearance="outline"></mat-datepicker>
         </mat-form-field>
         <mat-error *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
-          Por favor elige su fecha de nacimiento
+          Por favor seleccione su fecha de nacimiento
         </mat-error>
         <mat-form-field appearance="outline">
           <mat-label>Correo</mat-label>
@@ -46,7 +46,7 @@
             correo.errors.required
           "
         >
-          Por favor introduzca tu correo
+          Por favor introduzca su correo
         </mat-error>
         <mat-error
           *ngIf="
@@ -55,7 +55,7 @@
             correo.errors.pattern
           "
         >
-          correo no es valido
+          El correo no es valido
         </mat-error>
         <mat-form-field appearance="outline">
           <mat-label>Nombre de Usuario</mat-label>
@@ -80,14 +80,14 @@
             Introduzca su nueva contraseña
           </mat-error>
           <mat-error *ngIf="contra.errors.minlength">
-            7 caracteres minimo
+            7 caracteres mínimo
           </mat-error>
           <mat-error *ngIf="contra.errors.maxlength">
-            10 caracteres maximo
+            10 caracteres máximo
           </mat-error>
           <mat-error *ngIf="contra.errors.pattern">
-            Debe tener al menos una Mayuscula, una Minuscula y al menos un
-            digito
+            Debe tener al menos una Mayúscula, una Minúscula y  un
+            dígito
           </mat-error>
         </div>
         <mat-form-field appearance="outline">
@@ -187,7 +187,6 @@
             class="btn btn-primary enviar"
             type="submit>"
             data-dismiss="modal"
-            (click)="cambiarBack()"
           >
             continuar
           </button>

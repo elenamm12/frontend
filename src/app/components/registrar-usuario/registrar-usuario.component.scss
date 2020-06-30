@@ -87,16 +87,15 @@ input {
 }
 
 mat-form-field {
-  width: 95%;
+  width: 100%;
   margin-top: 1em;
   text-align: left;
 }
 
 mat-label {
-  font-family: "Poiret One";
+  font-family: "Roboto";
   text-align: center;
-  font-weight: bolder;
-  color: #34839c;
+  color: #484a4c;
   font-size: large;
   letter-spacing: 0.5px;
 }
@@ -140,11 +139,12 @@ button {
 }
 
 .cuenta {
-  max-width: 69%;
+  max-width: 98%;
   width: 30rem;
   margin-top: 1rem;
   margin-left: auto;
   margin-right: auto;
+  border: 1px solid #5cbcc4;
 }
 
 .cuentas {
@@ -175,8 +175,10 @@ button {
 
 .datos {
   font-size: large;
+  letter-spacing: 2.5px;
   margin-bottom: 2%;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: "Roboto", sans-serif;
+  color: white;
   font-weight: bold;
   line-height: 2em;
 }
@@ -198,7 +200,7 @@ button {
   }
 
   mat-label {
-    font-family: "Poiret One";
+    font-family: "Roboto";
     text-align: center;
     font-size: medium;
     letter-spacing: 0.5px;
@@ -244,24 +246,31 @@ select:-webkit-autofill {
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
   color: #50d0fb !important;
   background: white;
+  border-radius: 4px;
 }
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   color: #50d0fb !important;
   background: white;
+  border-radius: 4px;
+}
+
+::ng-deep .mat-error{
+  color:white !important;
+  font-family: "Roboto";
 }
 
 //mat-input focused color
 ::ng-deep
   .mat-form-field-appearance-outline.mat-focused
   .mat-form-field-outline-thick {
-  color: #50d0fb !important;
+  color: #5cbcc4 !important;
 }
 
 // mat-input error outline color
 ::ng-deep
   .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
   .mat-form-field-outline-thick {
-  color: red !important;
+  
   opacity: 0.8 !important;
 }
 
@@ -273,7 +282,7 @@ select:-webkit-autofill {
 // mat-input error carent color
 ::ng-deep .mat-form-field-invalid .mat-input-element,
 .mat-warn .mat-input-element {
-  caret-color: red !important;
+  caret-color: white !important;
 }
 
 // mat-label normal state style
@@ -284,14 +293,11 @@ select:-webkit-autofill {
 
 // mat-label focused style
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-  color: red !important;
+  color: white !important;
 }
 
-// mat-label error style
-::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-  color: red !important;
-}
+
 
 ::ng-deep .mat-input-wrapper {
-  background: blue !important;
+  background: #5cbcc4 !important;
 }

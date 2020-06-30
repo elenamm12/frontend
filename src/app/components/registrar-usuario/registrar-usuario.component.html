@@ -192,28 +192,6 @@
           </button>
         </div>
       </div>
-      <mat-error
-        *ngIf="registerForm.hasError('notPay') && tipoCuenta.value == 'Premium'"
-      >
-        Pague
-      </mat-error>
-    </div>
-
-    <div class="boton">
-      <a
-        ><button
-          class="btn btn-primary primero"
-          [disabled]="registerForm.invalid"
-          type="submit"
-        >
-          continuar
-        </button></a
-      >
-      <a routerLink="/inicio"
-        ><a class="btn btn-primary primero" >
-          regresar
-        </a></a
-      >
     </div>
   </div>
 </main>

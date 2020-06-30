@@ -265,5 +265,11 @@ export class WaveServiceService {
     return this.http.post(`${this.url}/forum/create/${idSub}`, { title });
   }
   //Servicios User
+  getForumsPostsByUser(): Observable<any> {
+    return this.http.get(`${this.url}/forum/user/posts`);
+  }
+  getNotSubscribeByUser(): Observable<any> {
+    return this.http.get(`${this.url}/forum/user/notSubscribe/posts`);
+  }
 
 }

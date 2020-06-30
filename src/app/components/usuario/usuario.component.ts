@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UsuarioComponent implements OnInit {
   user: any;
+  forumsPosts:[];
+  notSubscribedForumsPosts:[];
 
   constructor(
     private waveService: WaveServiceService,
@@ -18,7 +20,17 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(this.waveService.getCurrentUser());
-    console.log(this.user);
+    //console.log(this.user);
+    this.waveService.getForumsPostsByUser().subscribe((res)=>{
+      console.log(res);
+    });
+
+    this.waveService.getNotSubscribeByUser().subscribe((res)=>{
+      console.log(res);
+    });
+
+
+
   }
 
 }

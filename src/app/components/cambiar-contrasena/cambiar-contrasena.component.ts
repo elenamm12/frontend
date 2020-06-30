@@ -52,13 +52,13 @@ export class CambiarContrasenaComponent implements OnInit {
   }
 
   onSaveForm(){
-    if(this.loginForm.valid){
+   /* if(this.loginForm.valid){
     console.log(this.loginForm.value);
     this.waveService.loginUserMock(this.loginForm.value.usuario, this.loginForm.value.contra);
     this.onResetForm();
     }else{
       console.log('No Valido');
-    }
+    }*/
   }
 
   get usuario(){

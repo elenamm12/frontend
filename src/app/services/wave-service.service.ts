@@ -226,8 +226,10 @@ export class WaveServiceService {
     );
   }
 
-  getCategoriesWSubcategories(): Observable<any> {
-    return this.http.get(`${this.url}/category/all-with-subcategories`);
+  getCategoriesWSubcategories(currentPage: number = 1): Observable<any> {
+    return this.http.get(
+      `${this.url}/category/all/with/subcategories?page=${currentPage}`
+    );
   }
 
   saveFavoriteSubCategoria(subcategoryId: any) {

@@ -41,13 +41,13 @@
 
 .parent {
   margin-bottom: 4em;
-  padding-top:5em;
+  padding-top: 5em;
 }
 
-.ordenar{
-  display: flex;  
+.ordenar {
+  display: flex;
 }
-p{
+p {
   text-align: justify;
   margin-bottom: 0;
 }
@@ -58,6 +58,8 @@ img {
 .mat-card-avatar {
   height: 3.5em;
   width: 3.5em;
+
+  border: 2px solid #e5e7e8;
 }
 
 mat-form-field {
@@ -89,12 +91,11 @@ button {
   margin-bottom: 0.9rem;
 }
 
-button.btn-mas{
+button.btn-mas {
   width: 70%;
   margin-left: 15%;
   background: orange;
   font-weight: bold;
-
 }
 
 mat-card-actions {
@@ -168,10 +169,10 @@ mat-card-actions {
   border-radius: 4px;
 }
 
-::ng-deep mat-label{
-  color:white;
+::ng-deep mat-label {
+  color: white;
 }
 
-::ng-deep input[type="search"]{
-  color:white
+::ng-deep input[type="search"] {
+  color: white;
 }

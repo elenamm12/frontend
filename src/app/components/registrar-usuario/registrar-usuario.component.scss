@@ -249,6 +249,10 @@ select:-webkit-autofill {
   opacity: 0.8 !important;
 }
 
+::ng-deep .mat-error {
+  color:white;
+}
+
 // mat-input carent color
 ::ng-deep .mat-input-element {
   caret-color: white !important;

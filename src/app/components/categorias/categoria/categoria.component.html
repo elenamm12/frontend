@@ -29,43 +29,26 @@
 </div>
 <br />
 <h4>Podría interesarte</h4>
-
-<div class="row">
-  <div class="column">
-    <div *ngFor="let sub of subcategories">
+<div>
+  <div class="row card-list">
+    <div
+      class="col-md-3 col-6 card-container"
+      *ngFor="let sub of subcategories; index as i"
+    >
       <a routerLink="/sub-categoria/{{ sub.id }}">
         <mat-card>
           <img
             mat-card-image
             src="{{ sub.contentSubcategories[0].imagen }}"
-            style="width: 100%;"
+            class="mat-card-image"
           />
           <mat-card-content>
             <mat-card-footer
               ><p>{{ sub.name }}</p></mat-card-footer
             >
           </mat-card-content>
-        </mat-card></a
-      >
-    </div>
-  </div>
-
-  <div class="column reverse">
-    <div *ngFor="let sub of subcategories">
-      <a routerLink="/sub-categoria/{{ sub.id }}"
-        ><mat-card>
-          <img
-            mat-card-image
-            src="{{ sub.contentSubcategories[0].imagen }}"
-            style="width: 100%;"
-          />
-          <mat-card-content>
-            <mat-card-footer
-              ><p>{{ sub.name }}</p></mat-card-footer
-            >
-          </mat-card-content>
-        </mat-card></a
-      >
+        </mat-card>
+      </a>
     </div>
   </div>
 </div>

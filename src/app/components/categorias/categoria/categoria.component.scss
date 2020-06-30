@@ -9,7 +9,7 @@
   padding: 0;
 }
 
-.separador{
+.separador {
   height: 5em;
 }
 
@@ -75,24 +75,25 @@ mat-card-content {
   font-weight: bold;
   letter-spacing: 0.5px;
 }
-
-.row {
-  width: 98%;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 4px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 5%;
-  padding-bottom: 9%;
-}
-
 /* Create four equal columns that sits next to each other */
 .column {
   flex: 25%;
   padding: 0 4px;
 }
+mat-card {
+  height: 99%;
+}
+.card-list {
+  padding: 0 3%;
+}
+.card-container {
+  padding-bottom: 2.5%;
+}
 
+.mat-card-image {
+  height: 90%;
+  width: 100%;
+}
 .column img {
   vertical-align: middle;
 }

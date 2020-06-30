@@ -22,11 +22,11 @@ export class UsuarioComponent implements OnInit {
     this.user = JSON.parse(this.waveService.getCurrentUser());
     //console.log(this.user);
     this.waveService.getForumsPostsByUser().subscribe((res)=>{
-      console.log(res);
+      this.forumsPosts = res.forums;
     });
 
-    this.waveService.getNotSubscribeByUser().subscribe((res)=>{
-      console.log(res);
+    this.waveService.getNotSubscribedByUser().subscribe((res)=>{
+      this.notSubscribedForumsPosts = res.forums;
     });
 
 

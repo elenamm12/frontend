@@ -122,7 +122,18 @@
       <h6>Publica el primer comentario</h6>
     </ng-template>
   </div>
-  <div
+  
+  <div *ngIf="suscrito">
+    <button
+      class="btn btn-primary abajo"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      <mat-icon> create </mat-icon>
+    </button>
+  </div>
+</div>
+<div
     class="modal fade"
     id="exampleModal"
     tabindex="-1"
@@ -172,7 +183,7 @@
             (click)="postCom()"
             type="button"
             class="btn btn-primary enviar"
-            type="submit>"
+            type="submit"
             data-dismiss="modal"
           >
             publicar
@@ -181,13 +192,3 @@
       </div>
     </div>
   </div>
-  <div *ngIf="suscrito">
-    <button
-      class="btn btn-primary abajo"
-      data-toggle="modal"
-      data-target="#exampleModal"
-    >
-      <mat-icon> create </mat-icon>
-    </button>
-  </div>
-</div>

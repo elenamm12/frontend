@@ -6,7 +6,7 @@
     overflow: hidden;
     position: relative;
     width: 100%;
-    min-height: 103%;
+    min-height: 100%;
     background-image: url("/assets/img/back11.jpg");
     background-size: cover;
     background-position: center center;
@@ -125,6 +125,10 @@
   .snippets {
     font-family: Roboto, sans-serif;
   }
+
+  .text-success{
+    color:#3d3f41 !important;
+}
   
   time{
     color: grey !important;

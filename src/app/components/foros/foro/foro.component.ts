@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Postservice } from 'src/app/services/post.socket.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-foro',
@@ -27,13 +28,26 @@ export class ForoComponent implements OnInit {
   subcategoryId: any;
   subcategory: any;
   colorIcon: number;
+  postForm: FormGroup;
+
+  createFormGroup() {
+    return new FormGroup({
+      text: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(255)
+
+      ]),
+    });
+  }
 
   constructor(
     private waveService: WaveServiceService,
     private postService: Postservice,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.postForm = this.createFormGroup();
+  }
 
   ngOnInit(): void {
     this.user = JSON.parse(this.waveService.getCurrentUser());
@@ -165,5 +179,9 @@ export class ForoComponent implements OnInit {
         // console.log(res);
       }
     });
+  }
+
+  get text() {
+    return this.postForm.get('text');
   }
 }

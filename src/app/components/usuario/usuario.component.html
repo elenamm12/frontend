@@ -9,10 +9,25 @@
       <h4>{{ user.firstName }} {{ user.lastName }}</h4>
       <h6>@{{ user.userName }}</h6>
     </div>
-    <mat-tab-group mat-stretch-tabs animationDuration="1000ms" style="color: black !important;">
+    <mat-tab-group
+      mat-stretch-tabs
+      animationDuration="1000ms"
+      style="color: black !important;"
+    >
       <mat-tab label="Foros suscritos">
         <div *ngFor="let foro of forumsPosts">
-          <h6 class="titulo-foro">Foro: {{ foro.title }}</h6>
+          <h6 class="titulo-foro" style="display: inline;">
+            Foro: {{ foro.title }}
+          </h6>
+          <div style="display: inline; margin-right: 7px;">
+            <mat-icon
+              (click)="dislikeForo(foro.id)"
+              [inline]="true"
+              class="dislike"
+            >
+              thumb_down
+            </mat-icon>
+          </div>
           <div *ngIf="foro.posts.length > 0; else sinPost">
             <h6 class="titulo-foro">Comentarios:</h6>
             <div *ngFor="let com of foro.posts">
@@ -67,20 +82,19 @@
             </div>
           </div>
           <ng-template #sinPost>
-              <div style="width: 90%; margin:auto; display:flex;" class="sueno">
-                <p style="display: inline" class="tamano">¡No has comentado! </p>
-                <div style="display: inline;">
-                    <mat-icon
-                    (click)="dislikeForo(foro.id)"
-                    [inline]="true"
-                    class="dislike"
-                  >
-                    thumb_down
-                  </mat-icon></div>
-
-                
+            <div style="width: 90%; margin: auto; display: flex;" class="sueno">
+              <p style="display: inline;" class="tamano">¡No has comentado!</p>
+              <div style="display: inline;">
+                <mat-icon
+                  (click)="dislikeForo(foro.id)"
+                  [inline]="true"
+                  class="dislike"
+                >
+                  thumb_down
+                </mat-icon>
               </div>
-              <mat-divider></mat-divider>
+            </div>
+            <mat-divider></mat-divider>
           </ng-template>
         </div>
       </mat-tab>
@@ -88,11 +102,19 @@
         <div *ngFor="let foro of forumsCreated" class="contenedor">
           <mat-card>
             <div
-              *ngIf="foro.image != null && foro.image != undefined; else sinFoto"
+              *ngIf="
+                foro.image != null && foro.image != undefined;
+                else sinFoto
+              "
               style="display: flex;"
             >
               <a routerLink="/foro/{{ foro.id }}"
-                ><img mat-card-avatar [src]="foro.image" alt="User Avatar" style="align-self: center;"/>
+                ><img
+                  mat-card-avatar
+                  [src]="foro.image"
+                  alt="User Avatar"
+                  style="align-self: center;"
+                />
               </a>
               <p style="align-self: center;">{{ foro.title }}</p>
             </div>
@@ -105,90 +127,94 @@
                 /> </a
               >{{ foro.title }}
             </ng-template>
-      
+
             <mat-card-actions>
               ¡Cambiar imagen!
-              <mat-icon  class="agregar" style="color:orange" [inline]="true" routerLink="/picture-foro/{{foro.id}}"
+              <mat-icon
+                class="agregar"
+                style="color: orange;"
+                [inline]="true"
+                routerLink="/picture-foro/{{ foro.id }}"
                 >cloud_download</mat-icon
               >
             </mat-card-actions></mat-card
           >
         </div>
       </mat-tab>
-      <mat-tab label="Otros foros"> 
+      <mat-tab label="Otros foros">
         <div *ngFor="let foro of notSubscribedForumsPosts">
-            <h6 class="titulo-foro">Foro: {{ foro.title }}</h6>
-            <div *ngIf="foro.posts.length > 0; else sinPost">
-              <h6 class="titulo-foro">Comentarios:</h6>
-              <div *ngFor="let com of foro.posts">
-                <div class="row flex-row-reverse bootstrap snippets">
-                  <div class="col-md-12 col-md-offset-2 col-sm-12">
-                    <div class="comment-wrapper">
-                      <div class="panel panel-info">
-                        <div class="panel-body">
-                          <div class="clearfix"></div>
-  
-                          <ul class="media-list">
-                            <li class="media">
-                              <div>
-                                <img
-                                  alt=""
-                                  class="img-circle"
-                                  src="{{ foro.image }}"
-                                />
-                              </div>
-  
-                              <div class="media-body">
-                                <div class="ordenar">
-                                  <div
-                                    style="width: 75%; word-wrap: break-word;"
-                                    class="tamano"
+          <h6 class="titulo-foro" style="display: inline;">Foro: {{ foro.title }}</h6>
+          
+          <div *ngIf="foro.posts.length > 0; else sinPost">
+            <h6 class="titulo-foro">Comentarios:</h6>
+            <div *ngFor="let com of foro.posts">
+              <div class="row flex-row-reverse bootstrap snippets">
+                <div class="col-md-12 col-md-offset-2 col-sm-12">
+                  <div class="comment-wrapper">
+                    <div class="panel panel-info">
+                      <div class="panel-body">
+                        <div class="clearfix"></div>
+
+                        <ul class="media-list">
+                          <li class="media">
+                            <div>
+                              <img
+                                alt=""
+                                class="img-circle"
+                                src="{{ foro.image }}"
+                              />
+                            </div>
+
+                            <div class="media-body">
+                              <div class="ordenar">
+                                <div
+                                  style="width: 75%; word-wrap: break-word;"
+                                  class="tamano"
+                                >
+                                  <p class="p" style="display: inline;">
+                                    {{ com.text }}
+                                  </p>
+                                </div>
+
+                                <div
+                                  style="display: inline; margin-right: 7px;"
+                                >
+                                  <mat-icon
+                                    (click)="onDelete(com.id)"
+                                    [inline]="true"
+                                    class="like"
                                   >
-                                    <p class="p" style="display: inline;">
-                                      {{ com.text }}
-                                    </p>
-                                  </div>
-  
-                                  <div
-                                    style="display: inline; margin-right: 7px;"
-                                  >
-                                    <mat-icon
-                                      (click)="onDelete(com.id)"
-                                      [inline]="true"
-                                      class="like"
-                                    >
-                                      delete
-                                    </mat-icon>
-                                  </div>
+                                    delete
+                                  </mat-icon>
                                 </div>
                               </div>
-                            </li>
-                          </ul>
-                        </div>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <ng-template #sinPost>
-                <div style="width: 90%; margin:auto; display:flex;" class="sueno">
-                  <p style="display: inline" class="tamano">¡No has comentado! </p>
-                  <div style="display: inline;">
-                      <mat-icon
-                      (click)="dislikeForo(foro.id)"
-                      [inline]="true"
-                      class="dislike"
-                    >
-                      thumb_down
-                    </mat-icon></div>
-  
-                  
-                </div>
-                <mat-divider></mat-divider>
-            </ng-template>
-          </div>   
-    </mat-tab>
+          </div>
+          <ng-template #sinPost>
+            <div style="width: 90%; margin: auto; display: flex;" class="sueno">
+              <p style="display: inline;" class="tamano">¡No has comentado!</p>
+              <div style="display: inline;">
+                <mat-icon
+                  (click)="dislikeForo(foro.id)"
+                  [inline]="true"
+                  class="dislike"
+                >
+                  thumb_down
+                </mat-icon>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+          </ng-template>
+        </div>
+      </mat-tab>
     </mat-tab-group>
   </div>
 </div>

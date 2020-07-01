@@ -27,17 +27,23 @@
 
   <div *ngFor="let foro of forums | foroFilter: filterForum" class="contenedor">
     <mat-card>
-
-      <div *ngIf="foro.image != null && foro.image != undefined; else sinFoto" class="ordenar"  >
-        <a routerLink="/foro/{{ foro.id }}" 
+      <div
+        *ngIf="foro.image != null && foro.image != undefined; else sinFoto"
+        class="ordenar"
+      >
+        <a routerLink="/foro/{{ foro.id }}"
           ><img mat-card-avatar [src]="foro.image" alt="User Avatar" />
         </a>
-        <p style="align-self: center">{{ foro.title }}</p>
+        <p style="align-self: center;">{{ foro.title }}</p>
       </div>
       <ng-template #sinFoto>
         <a routerLink="/foro/{{ foro.id }}"
-        ><img mat-card-avatar src="https://www.liberaldictionary.com/wp-content/uploads/2019/02/f-8273.jpg" alt="User Avatar" />
-      </a>{{ foro.title }}
+          ><img
+            mat-card-avatar
+            src="https://www.liberaldictionary.com/wp-content/uploads/2019/02/f-8273.jpg"
+            alt="User Avatar"
+          /> </a
+        >{{ foro.title }}
       </ng-template>
 
       <mat-card-actions>
@@ -48,7 +54,12 @@
       </mat-card-actions></mat-card
     >
   </div>
-  <button *ngIf="nextPage" (click)="traerMasForos()" type="button" class="btn btn-mas">
+  <button
+    *ngIf="nextPage"
+    (click)="traerMasForos()"
+    type="button"
+    class="btn btn-mas"
+  >
     Mas Foros
   </button>
 </div>

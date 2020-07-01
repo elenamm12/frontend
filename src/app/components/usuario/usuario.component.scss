@@ -76,6 +76,11 @@
       align-content: stretch;
   }
 
+  h6.titulo-foro{
+    margin-bottom: 0.8em;
+    font-weight: lighter;
+  }
+
 
   
   .media-list {
@@ -98,14 +103,14 @@
   }
   
   .comment-wrapper .media-list .media {
-    border-bottom: 1px solid #efefef;
+    border-bottom: 1px solid #4f53573f;
     margin-bottom: 20px;
     padding-bottom: 15px;
   }
   
   mat-icon.like {
     margin-left: 13px;
-    color: #00acee;
+    color: orange;
   }
   
   mat-icon.dislike {
@@ -134,11 +139,16 @@
     color: grey !important;
     font-size: 0.7rem;
   }
+
+  .media{
+      display: flex;
+  }
   
   .ordenar{
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      align-self: center;
       justify-content: space-between;
       align-items: stretch;
     align-content: stretch;

@@ -122,7 +122,18 @@
       <h6>Publica el primer comentario</h6>
     </ng-template>
   </div>
-  <div
+  
+  <div *ngIf="suscrito">
+    <button
+      class="btn btn-primary abajo"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      <mat-icon> create </mat-icon>
+    </button>
+  </div>
+</div>
+<div
     class="modal fade"
     id="exampleModal"
     tabindex="-1"
@@ -147,20 +158,33 @@
           </button>
         </div>
         <div class="modal-body">
+          <form  [formGroup]="postForm">
           <textarea
+            formControlName="text"
             id="input"
-            [(ngModel)]="comment"
             placeholder="¡Escribe tu comentario aquí!"
             class="form-control"
+            validator="maxLength(15)"
           ></textarea>
+          <div *ngIf="text.invalid && text.dirty">
+          <mat-error *ngIf="text.errors.required">
+            Por favor, coloque el mensaje que desea mostrar
+          </mat-error>
+          <mat-error *ngIf="text.errors.maxlength">
+            255 caracteres máximo
+          </mat-error>
+        </div>
+        </form>
         </div>
         <div class="modal-footer">
           <button
+            [disabled]="postForm.invalid"
+            data-dismiss="modal"
             (click)="postCom()"
             type="button"
             class="btn btn-primary enviar"
-            type="submit>"
-            data-dismiss="modal"
+            type="submit"
+            
           >
             publicar
           </button>
@@ -168,13 +192,3 @@
       </div>
     </div>
   </div>
-  <div *ngIf="suscrito">
-    <button
-      class="btn btn-primary abajo"
-      data-toggle="modal"
-      data-target="#exampleModal"
-    >
-      <mat-icon> create </mat-icon>
-    </button>
-  </div>
-</div>

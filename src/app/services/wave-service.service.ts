@@ -252,6 +252,7 @@ export class WaveServiceService {
   }
 
   DeletePost(idPost: number) {
+    alert("Se eliminará el comentario del foro")
     return this.http.delete(`${this.url}/post/delete/${idPost}`);
   }
 

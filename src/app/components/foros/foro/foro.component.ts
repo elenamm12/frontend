@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Postservice } from 'src/app/services/post.socket.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-foro',
@@ -16,7 +17,6 @@ export class ForoComponent implements OnInit {
   postId: number;
   areThereNewPosts: boolean = false; // Cuando esta variable sea true tienes que mostrarle un pop-up al usuario para cargar los posts nuevos
   intervalControl: any;
-  comment = '';
   postComment = [];
   user: any;
   suscrito = false;
@@ -27,13 +27,26 @@ export class ForoComponent implements OnInit {
   subcategoryId: any;
   subcategory: any;
   colorIcon: number;
+  postForm: FormGroup;
+
+  createFormGroup() {
+    return new FormGroup({
+      text: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(255)
+
+      ]),
+    });
+  }
 
   constructor(
     private waveService: WaveServiceService,
     private postService: Postservice,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.postForm = this.createFormGroup();
+  }
 
   ngOnInit(): void {
     this.user = JSON.parse(this.waveService.getCurrentUser());
@@ -120,11 +133,11 @@ export class ForoComponent implements OnInit {
 
   postCom() {
     this.postService.sendPost({
-      text: this.comment,
+      text: this.postForm.value.text,
       foroId: this.foroId,
       email: this.user.email,
     });
-    this.comment = '';
+    this.postForm.reset();
   }
 
   putDislikePost(id: number) {
@@ -135,6 +148,7 @@ export class ForoComponent implements OnInit {
       }
     });
   }
+ 
 
   agregarFavorito(subcategoriaId) {
     console.log(subcategoriaId);
@@ -154,7 +168,7 @@ export class ForoComponent implements OnInit {
   }
 
   reset(){
-    this.comment = "";
+    this.postForm.reset();
   }
 
 
@@ -165,5 +179,9 @@ export class ForoComponent implements OnInit {
         // console.log(res);
       }
     });
+  }
+
+  get text() {
+    return this.postForm.get('text');
   }
 }

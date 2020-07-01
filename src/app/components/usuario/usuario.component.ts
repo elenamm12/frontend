@@ -36,8 +36,9 @@ export class UsuarioComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    this.waveService.DeletePost(id);
-    alert("Se eliminará el comentario del foro")
+    this.waveService.DeletePost(id).subscribe((res)=>{
+      console.log(res)
+    });
   }
 
   dislikeForo(id: number) {

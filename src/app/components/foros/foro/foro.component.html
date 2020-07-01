@@ -162,7 +162,6 @@
           <textarea
             formControlName="text"
             id="input"
-            [(ngModel)]="comment"
             placeholder="¡Escribe tu comentario aquí!"
             class="form-control"
             validator="maxLength(15)"
@@ -179,12 +178,13 @@
         </div>
         <div class="modal-footer">
           <button
-          [disabled]="postForm.invalid"
+            [disabled]="postForm.invalid"
+            data-dismiss="modal"
             (click)="postCom()"
             type="button"
             class="btn btn-primary enviar"
             type="submit"
-            data-dismiss="modal"
+            
           >
             publicar
           </button>

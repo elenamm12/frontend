@@ -17,7 +17,6 @@ export class ForoComponent implements OnInit {
   postId: number;
   areThereNewPosts: boolean = false; // Cuando esta variable sea true tienes que mostrarle un pop-up al usuario para cargar los posts nuevos
   intervalControl: any;
-  comment = '';
   postComment = [];
   user: any;
   suscrito = false;
@@ -134,11 +133,11 @@ export class ForoComponent implements OnInit {
 
   postCom() {
     this.postService.sendPost({
-      text: this.comment,
+      text: this.postForm.value.text,
       foroId: this.foroId,
       email: this.user.email,
     });
-    this.comment = '';
+    this.postForm.reset();
   }
 
   putDislikePost(id: number) {
@@ -149,6 +148,7 @@ export class ForoComponent implements OnInit {
       }
     });
   }
+ 
 
   agregarFavorito(subcategoriaId) {
     console.log(subcategoriaId);
@@ -168,7 +168,7 @@ export class ForoComponent implements OnInit {
   }
 
   reset(){
-    this.comment = "";
+    this.postForm.reset();
   }
 
 

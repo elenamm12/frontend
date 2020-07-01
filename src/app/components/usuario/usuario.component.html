@@ -85,7 +85,35 @@
         </div>
       </mat-tab>
       <mat-tab label="Tus foros">
-        
+        <div *ngFor="let foro of forumsCreated" class="contenedor">
+          <mat-card>
+            <div
+              *ngIf="foro.image != null && foro.image != undefined; else sinFoto"
+              style="display: flex;"
+            >
+              <a routerLink="/foro/{{ foro.id }}"
+                ><img mat-card-avatar [src]="foro.image" alt="User Avatar" style="align-self: center;"/>
+              </a>
+              <p style="align-self: center;">{{ foro.title }}</p>
+            </div>
+            <ng-template #sinFoto>
+              <a routerLink="/foro/{{ foro.id }}"
+                ><img
+                  mat-card-avatar
+                  src="https://www.liberaldictionary.com/wp-content/uploads/2019/02/f-8273.jpg"
+                  alt="User Avatar"
+                /> </a
+              >{{ foro.title }}
+            </ng-template>
+      
+            <mat-card-actions>
+              ¡Cambiar imagen!
+              <mat-icon  class="agregar" style="color:orange" [inline]="true" routerLink="/picture-foro/{{foro.id}}"
+                >cloud_download</mat-icon
+              >
+            </mat-card-actions></mat-card
+          >
+        </div>
       </mat-tab>
       <mat-tab label="Otros foros"> 
         <div *ngFor="let foro of notSubscribedForumsPosts">

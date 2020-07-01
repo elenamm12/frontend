@@ -58,7 +58,6 @@ img {
 .mat-card-avatar {
   height: 3.5em;
   width: 3.5em;
-
   border: 2px solid #e5e7e8;
 }
 
@@ -106,6 +105,7 @@ mat-card-actions {
 .agregar {
   color: orange;
 }
+
 
 ::ng-deep.mat-menu-content:not(:empty) {
   padding-top: 0 !important;
@@ -172,7 +172,6 @@ mat-card-actions {
 ::ng-deep mat-label {
   color: white;
 }
-
 ::ng-deep input[type="search"] {
   color: white;
 }

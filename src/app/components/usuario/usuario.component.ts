@@ -39,4 +39,14 @@ export class UsuarioComponent implements OnInit {
     this.waveService.DeletePost(id);
     alert("Se eliminará el comentario del foro")
   }
+
+  dislikeForo(id: number) {
+    this.waveService.dislikeForum(id).subscribe((res) => {
+      if (res) {
+        alert("Dejarás de estar suscrito al foro");
+        location.reload();
+        // console.log(res);
+      }
+    });
+  }
 }

@@ -40,4 +40,14 @@ export class UsuarioComponent implements OnInit {
       console.log(res)
     });
   }
+
+  dislikeForo(id: number) {
+    this.waveService.dislikeForum(id).subscribe((res) => {
+      if (res) {
+        alert("Dejarás de estar suscrito al foro");
+        location.reload();
+        // console.log(res);
+      }
+    });
+  }
 }

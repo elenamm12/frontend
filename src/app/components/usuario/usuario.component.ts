@@ -32,6 +32,7 @@ export class UsuarioComponent implements OnInit {
     });
     this.waveService.getForumCreated().subscribe((res) => {
       this.forumsCreated = res.forums;
+      console.log("foros creados", this.forumsCreated)
     });
   }
 

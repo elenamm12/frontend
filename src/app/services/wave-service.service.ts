@@ -277,7 +277,7 @@ export class WaveServiceService {
     return this.http.get(`${this.url}/forum/user/notSubscribe/posts`);
   }
   getForumCreated(): Observable<any> {
-    return this.http.get(`${this.url}/forum/search`);
+    return this.http.get(`${this.url}/forum/created/user`);
   }
 
 }

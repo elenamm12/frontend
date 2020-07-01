@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Postservice } from 'src/app/services/post.socket.service';
@@ -47,6 +47,7 @@ export class ForoComponent implements OnInit {
   ) {
     this.postForm = this.createFormGroup();
   }
+  @ViewChild('btnClose') btnClose: ElementRef;
 
   ngOnInit(): void {
     this.user = JSON.parse(this.waveService.getCurrentUser());
@@ -138,6 +139,8 @@ export class ForoComponent implements OnInit {
       email: this.user.email,
     });
     this.postForm.reset();
+    this.btnClose.nativeElement.click();
+    
   }
 
   putDislikePost(id: number) {

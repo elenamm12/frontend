@@ -4,7 +4,10 @@
     <mat-label class="datos">Seleccione una imagen para su foro</mat-label>
     <br />
     <span
-      ><input
+      >
+      <ngx-spinner bdColor = "rgba(10,57,158,0.8)" size = "large" color = "#6be7db" type = "ball-scale-multiple" [fullScreen] = "true"><p style="color: white" > Wave... </p>
+      </ngx-spinner>
+      <input
         appearance="outline"
         type="file"
         (ngModel)="(file)"
@@ -13,6 +16,7 @@
     <label for="mi-archivo"
       ><mat-icon class="cargar">cloud_download</mat-icon></label
     >
+    <mat-icon *ngIf="im" class="check">check</mat-icon>
     <br />
     <button type="button" (click)="onUpload()" class="btn">
       subir

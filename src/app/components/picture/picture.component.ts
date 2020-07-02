@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-picture',
@@ -26,15 +27,17 @@ export class PictureComponent implements OnInit {
 
   onUpload() {
     if (this.fileToUpload != null) {
+      this.spinner.show();
       this.wave.uploadPicture(this.fileToUpload).subscribe(res => {
-        console.log(res)
+        console.log(res);
+        this.spinner.hide();
       })
     } else {
       alert('¡Primero debes cargar una imagen!, busca en la nube');
     }
   }
 
-  constructor(private wave:WaveServiceService) { }
+  constructor(private spinner: NgxSpinnerService, private wave:WaveServiceService) { }
 
   ngOnInit(): void {
   }

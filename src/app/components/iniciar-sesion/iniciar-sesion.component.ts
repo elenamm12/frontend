@@ -53,12 +53,13 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
     setTimeout(() => {
         /** spinner ends after 5 seconds */
         this.spinner.hide();
-    }, 5000);
+    }, 10000);
       this.waveService.loginUser(this.loginForm.value.usuario, this.loginForm.value.contra)
       .subscribe(data=>{ 
         console.log(data);
         if((data.user.role=='normal'||data.user.role=='premium')){
         this.router.navigate(['/home']);
+        this.spinner.hide();
         }
       },
       error => console.log(error) 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-picture-foro',
@@ -12,12 +13,13 @@ export class PictureForoComponent implements OnInit {
   imageUrl = null;
   file: any;
   id: number;
+  im= false;
 
   handleFileInput(file: FileList) {
-    console.log(file);
+    
     this.fileToUpload = file.item(0);
     console.log(this.fileToUpload);
-
+    this.im = true;
     var reader = new FileReader();
     reader.onloadend = (event: any) => {
       this.imageUrl = event.target.result;
@@ -27,6 +29,7 @@ export class PictureForoComponent implements OnInit {
   }
 
   constructor(
+    private spinner: NgxSpinnerService,
     private wave: WaveServiceService,
     private route: ActivatedRoute,
     private router: Router
@@ -38,12 +41,14 @@ export class PictureForoComponent implements OnInit {
 
   onUpload() {
     if (this.fileToUpload != null) {
+      this.spinner.show();
       this.wave
         .uploadPictureForo(this.fileToUpload, this.id)
         .subscribe((res) => {
           if (res) {
             console.log(res);
             this.router.navigate([`/foro/${this.id}`]);
+            this.spinner.hide();
           }
         });
     } else {

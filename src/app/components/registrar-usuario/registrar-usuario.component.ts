@@ -191,7 +191,7 @@ export class RegistrarUsuarioComponent implements OnInit {
       setTimeout(() => {
           /** spinner ends after 5 seconds */
           this.spinner.hide();
-      }, 5000);
+      }, 10000);
       console.log(this.registerForm.value);
       if (this.registerForm.value.tipoCuenta == 'Premium') {
         if (this.token) {
@@ -210,6 +210,7 @@ export class RegistrarUsuarioComponent implements OnInit {
               if (data) {
                 console.log(data);
                 this.router.navigate(['/picture']);
+                this.spinner.hide();
               } else {
                 alert('¡El usuario ya existe!');
               }

@@ -77,7 +77,18 @@ mat-card-content {
   letter-spacing: 1.1px;
 }
 
-@media(min-width: 700px){
+
+@media(min-width:740px){
+  img.mat-card-image {
+      height: 8em;
+    }
+
+  .centered{
+      top: 150px;
+  }
+}
+
+@media(min-width: 650px){
   img.cat {
     height: 30%;
     height: 21em;
@@ -100,12 +111,3 @@ mat-card-content {
 
 }
 
-@media(min-width:740px){
-    img.mat-card-image {
-        height: 11em;
-      }
-
-    .centered{
-        top: 150px;
-    }
-}

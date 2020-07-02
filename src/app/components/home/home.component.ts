@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,6 +23,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     this.waveService.getFavoriteSubCategories().subscribe((response) => {
       console.log(response)
       this.favoriteCategories = response.categories;

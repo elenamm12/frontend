@@ -12,6 +12,7 @@ export class UsuarioComponent implements OnInit {
   forumsPosts: [];
   notSubscribedForumsPosts: [];
   forumsCreated: [];
+  profilePick:string;
 
   constructor(
     private waveService: WaveServiceService,
@@ -21,6 +22,10 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(this.waveService.getCurrentUser());
+    if(!this.user.image){
+      this.user.image= this.waveService.getPic()
+
+    }
     //console.log(this.user);
     this.waveService.getForumsPostsByUser().subscribe((res) => {
       this.forumsPosts = res.forums;

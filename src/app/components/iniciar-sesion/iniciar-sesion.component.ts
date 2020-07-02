@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { User } from 'src/app/model/user';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -32,7 +33,7 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
   loginForm: FormGroup;
 
 
-  constructor(private waveService: WaveServiceService, private router: Router) { 
+  constructor(private spinner: NgxSpinnerService, private waveService: WaveServiceService, private router: Router) { 
     this.loginForm = this.createFormGroup();
   }
 
@@ -48,6 +49,11 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
  //metodo del submit que llama al del servicio pasandole el usuario y la contraseña
   onSaveForm(){
     if(this.loginForm.valid){
+      this.spinner.show();
+    setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+    }, 5000);
       this.waveService.loginUser(this.loginForm.value.usuario, this.loginForm.value.contra)
       .subscribe(data=>{ 
         console.log(data);

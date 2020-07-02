@@ -140,6 +140,7 @@ export class WaveServiceService {
   logOutUser(): void {
     localStorage.removeItem('currentToken');
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('ProfilePick');
     this.token = null;
   }
 

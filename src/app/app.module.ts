@@ -32,6 +32,8 @@ import { CrearForoComponent } from './components/foros/crear-foro/crear-foro.com
 import { PictureForoComponent } from './components/picture-foro/picture-foro.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 const config: SocketIoConfig = {
   url: 'https://wave-service.herokuapp.com',
@@ -72,6 +74,7 @@ const config: SocketIoConfig = {
     HttpClientModule,
     NgxPayPalModule,
     NgbModule,
+    NgxSpinnerModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),

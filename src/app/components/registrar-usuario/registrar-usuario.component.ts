@@ -13,6 +13,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -58,6 +59,7 @@ export class RegistrarUsuarioComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(
+    private spinner: NgxSpinnerService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -185,6 +187,11 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   onSaveForm() {
     if (this.registerForm.valid) {
+      this.spinner.show();
+      setTimeout(() => {
+          /** spinner ends after 5 seconds */
+          this.spinner.hide();
+      }, 5000);
       console.log(this.registerForm.value);
       if (this.registerForm.value.tipoCuenta == 'Premium') {
         if (this.token) {

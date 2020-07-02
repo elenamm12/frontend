@@ -15,6 +15,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatChipsModule,
     MatDialogModule,
     MatTooltipModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
       ],
   exports: [ 
     MatFormFieldModule,
@@ -52,7 +54,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatChipsModule,
     MatDialogModule,
     MatTooltipModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ]
 })
 export class MaterialModule { }

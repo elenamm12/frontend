@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 
 @Component({
   selector: 'app-usuario',
@@ -13,6 +14,9 @@ export class UsuarioComponent implements OnInit {
   notSubscribedForumsPosts: [];
   forumsCreated: [];
   profilePick:string;
+  panelOpenState = false;
+  premium = false;
+  public payPalConfig?: IPayPalConfig;
 
   constructor(
     private waveService: WaveServiceService,
@@ -44,6 +48,16 @@ export class UsuarioComponent implements OnInit {
   onDelete(id: number) {
     this.waveService.DeletePost(id).subscribe((res)=>{
       console.log(res)
+    });
+  }
+
+  likeForo(id: number) {
+    this.waveService.likeForum(id).subscribe((res) => {
+      if (res) {
+        console.log(res);
+        alert("¡Ahora estás suscrito en el foro!")
+        location.reload();
+      }
     });
   }
 

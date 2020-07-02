@@ -46,6 +46,16 @@ export class UsuarioComponent implements OnInit {
     });
   }
 
+  likeForo(id: number) {
+    this.waveService.likeForum(id).subscribe((res) => {
+      if (res) {
+        console.log(res);
+        alert("¡Ahora estás suscrito en el foro!")
+        location.reload();
+      }
+    });
+  }
+
   dislikeForo(id: number) {
     this.waveService.dislikeForum(id).subscribe((res) => {
       if (res) {

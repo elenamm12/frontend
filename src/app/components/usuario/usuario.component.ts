@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 
 @Component({
   selector: 'app-usuario',
@@ -12,6 +13,9 @@ export class UsuarioComponent implements OnInit {
   forumsPosts: [];
   notSubscribedForumsPosts: [];
   forumsCreated: [];
+  panelOpenState = false;
+  premium = false;
+  public payPalConfig?: IPayPalConfig;
 
   constructor(
     private waveService: WaveServiceService,

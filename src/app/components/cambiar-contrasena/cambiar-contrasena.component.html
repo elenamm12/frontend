@@ -1,89 +1,91 @@
 <div class="fondo">
-  <h1>Cambiar contraseña</h1>
-  <label class="info"
-    >Introduce la dirección de correo con la que te registraste</label
-  >
+  <div class="form">
+    <h1>Cambiar contraseña</h1>
+    <label class="info"
+      >Introduce la dirección de correo electrónico con el que te
+      registraste</label
+    >
 
-  <form [formGroup]="loginForm" (ngSubmit)="onSaveForm()">
-    <div class="formulario">
-      <mat-form-field appearance="standard">
-        <mat-label>Introducir Correo</mat-label>
-        <input matInput formControlName="usuario" placeholder="Correo" />
-      </mat-form-field>
+    <form [formGroup]="loginForm" (ngSubmit)="onSaveForm()">
+      <div class="formulario">
+        <mat-form-field appearance="standard">
+          <mat-label style="padding-left: 10px;"
+            ><strong>Correo</strong></mat-label
+          >
+          <input matInput formControlName="usuario" placeholder="Correo" />
+        </mat-form-field>
 
-      <div *ngIf="usuario.invalid && usuario.dirty">
-        <div *ngIf="usuario.errors.required">
-          Usuario es Requerido
-        </div>
-        <div *ngIf="usuario.errors.pattern">
-          Debe ser un correo valido
-        </div>
-      </div>
-    </div>
-    <div class="boton">
-      <button
-        class="btn btn-primary primero"
-        data-toggle="modal"
-        data-target="#exampleModal"
-      >
-        enviar
-      </button>
-      <a routerLink="/inicio"
-        ><button
-          type="button"
-          class="btn btn-primary segundo"
-          type="submit>"
-          data-dismiss="modal"
-        >
-          regresar
-        </button></a
-      >
-
-      <!-- Modal -->
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                <strong>Importante</strong>
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <strong
-                >Se le enviará un correo a la dirección que ingresó con su nueva
-                contraseña</strong
-              >
-            </div>
-            <div class="modal-footer">
-              <a routerLink="/iniciar-sesion"
-                ><button
-                  type="button"
-                  class="btn btn-primary enviar"
-                  type="submit>"
-                  data-dismiss="modal"
-                >
-                  continuar
-                </button></a
-              >
-            </div>
+        <div *ngIf="usuario.invalid && usuario.dirty">
+          <div *ngIf="usuario.errors.required">
+            Correo es requerido
+          </div>
+          <div *ngIf="usuario.errors.pattern">
+            Debe ser un correo válido
           </div>
         </div>
       </div>
+      <div class="boton">
+        <button
+          class="btn btn-primary primero"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+          enviar
+        </button>
+        <a routerLink="/inicio"
+          ><button
+            type="button"
+            class="btn btn-primary segundo"
+            type="submit>"
+            data-dismiss="modal"
+          >
+            regresar
+          </button></a
+        >
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <strong>Importante</strong>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Se le enviará un correo a la dirección
+      </div>
+      <div class="modal-footer">
+        <a routerLink="/iniciar-sesion"
+          ><button
+            type="button"
+            class="btn btn-primary enviar"
+            type="submit>"
+            data-dismiss="modal"
+          >
+            continuar
+          </button></a
+        >
+      </div>
     </div>
-  </form>
+  </div>
 </div>

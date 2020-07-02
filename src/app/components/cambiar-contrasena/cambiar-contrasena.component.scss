@@ -1,24 +1,38 @@
-.fondo{
-    padding:0;
+.fondo {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
     margin: 0;
+    overflow: hidden;
+    position: relative;
     width: 100%;
-    height: 100%;
-    align-content:center;
+    min-height: 103%;
+    background-image: url("/assets/img/back13.jpg");
+    background-size: cover;
+    background-position: center center;
     text-align: center;
-    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #1f6976; 
-}
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding-bottom: 2rem;
+  
+    .form {
+      position: relative;
+      z-index: 2;
+    }
+  }
 
 h1{
-    font-family: 'Poiret One';
+    font-family: 'Roboto';
     text-align: center;
-    font-weight: bolder;
-    color: #1f6976;
+    color: black;
     font-size: 200%;
     letter-spacing: 1.9px;
     padding-top: 17%;
 }
 
 .formulario{
+    padding-top: 2em;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
@@ -27,49 +41,54 @@ h1{
 
 mat-form-field{
     width: 60%;
-    text-align: center;
+    text-align: left;
 }
 
 mat-label{
     font-family: 'Poiret One';
-    text-align: center;
-    font-weight: bolder;
-    color: #34839c;
+    text-align: left;
+    color: white;
     font-size: large;
     letter-spacing: 0.5px;
 }
 
 
+
+
+label.info{
+    width: 60%;
+    color: white;
+    font-size: 100%;
+    letter-spacing: 2px;
+    padding-top: 5%;
+}
+
+.modal{
+    font-family: 'Roboto';
+}
+
 .btn{ 
-    width: 70%;      
+    width: 60%;      
     font-style: normal;
-    font-weight: bold;
     letter-spacing: 3.3px;
-    border: 0.8px solid #1a5f6c;
-    background: #5CBCC4;
+    border: 0.8px solid white;
+    font-family: 'Poiret One';
+    background: #74b4bc;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
 .enviar{
-    width: 98%;
+    width: 100%;
 }
 
 .boton{
-    padding-top: 3% ;
+    padding-top: 3em;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
     text-align: center;
     font-family: Poiret One;
-    width: 60%;
-}
-
-label.info{
-    width: 70%;
-    color: #34839c;
-    font-size: 100%;
-    letter-spacing: 2px;
-    padding-top: 5%;
+    width: 100%;
 }
 
 .segundo{

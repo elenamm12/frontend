@@ -22,7 +22,7 @@
 img.mat-card-image {
   margin: 0;
   opacity: 0.9;
-  height: 252px;
+  height: 232px;
 }
 
 .container {
@@ -114,6 +114,9 @@ mat-card-content {
 @media (min-width: 768px) {
   .centered {
     top: 180px;
+  }
+  img.mat-card-image.encabezado{
+    height: 370px;
   }
 }
 

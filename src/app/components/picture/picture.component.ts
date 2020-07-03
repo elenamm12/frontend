@@ -11,11 +11,13 @@ export class PictureComponent implements OnInit {
   fileToUpload = null;
   imageUrl=null;
   file:any;
+  im= false;
 
   handleFileInput(file: FileList) {
     console.log(file);
     this.fileToUpload = file.item(0);
     console.log(this.fileToUpload)
+    this.im = true;
 
     var reader = new FileReader();
     reader.onloadend = (event: any) => {

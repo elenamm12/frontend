@@ -14,8 +14,8 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root',
 })
 export class WaveServiceService {
-  //url = 'http://localhost:3000';
-  url = 'https://wave-service.herokuapp.com';
+  url = 'http://localhost:3000';
+  //url = 'https://wave-service.herokuapp.com';
 
   public token: string;
   public picture: string;
@@ -280,5 +280,15 @@ export class WaveServiceService {
   getForumCreated(): Observable<any> {
     return this.http.get(`${this.url}/forum/created/user`);
   }
+  //Servicios content category
+
+  getAllContentCategory(): Observable<any> {
+    return this.http.get(`${this.url}/content-category/all`);
+  }
+
+  getContentCategory(id: number): Observable<any> {
+    return this.http.get(`${this.url}/content-category/category/${id}`);
+  }
+
 
 }

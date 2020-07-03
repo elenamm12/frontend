@@ -50,10 +50,6 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
   onSaveForm(){
     if(this.loginForm.valid){
       this.spinner.show();
-    setTimeout(() => {
-        /** spinner ends after 5 seconds */
-        this.spinner.hide();
-    }, 10000);
       this.waveService.loginUser(this.loginForm.value.usuario, this.loginForm.value.contra)
       .subscribe(data=>{ 
         console.log(data);

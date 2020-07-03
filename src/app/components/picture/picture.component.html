@@ -12,6 +12,7 @@
       (change)="handleFileInput($event.target.files)"
     /></span>
     <label for="mi-archivo"><mat-icon  class="cargar">cloud_download</mat-icon></label>
+    <mat-icon *ngIf="im" class="check">check</mat-icon>
     <br />
     <button
       routerLink="/categorias"

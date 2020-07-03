@@ -14,6 +14,7 @@ export class CategoriaComponent implements OnInit {
   categoria: any;
   subcategories: any[] = [];
   categoryId: number;
+  contentCategory = [];
 
   constructor(
     private waveService: WaveServiceService,
@@ -36,6 +37,13 @@ export class CategoriaComponent implements OnInit {
           console.log(this.subcategories);
         });
     });
+    this.waveService
+        .getAllContentCategory()
+        .subscribe((response) => {
+          console.log(response);
+          this.contentCategory = response.Contents;
+          
+        });
   }
 }
 

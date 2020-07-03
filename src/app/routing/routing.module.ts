@@ -1,3 +1,4 @@
+import { AdminComponent } from './../components/admin/admin.component';
 import { CrearForoComponent } from './../components/foros/crear-foro/crear-foro.component';
 
 import { CategoriaComponent } from './../components/categorias/categoria/categoria.component';
@@ -51,6 +52,7 @@ const routes: Routes = [
   },
   { path: 'foros', component: ForosComponent, canActivate: [AuthGuard] },
   { path: 'foro/:id', component: ForoComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];

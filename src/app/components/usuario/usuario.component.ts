@@ -17,6 +17,8 @@ export class UsuarioComponent implements OnInit {
   panelOpenState = false;
   premium = false;
   public payPalConfig?: IPayPalConfig;
+  public total: number = 20;
+  public token: string;
 
   constructor(
     private waveService: WaveServiceService,
@@ -25,6 +27,76 @@ export class UsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.payPalConfig = {
+      currency: 'USD',
+      clientId: 'sb',
+      createOrderOnClient: (data) =>
+        <ICreateOrderRequest>{
+          intent: 'CAPTURE',
+          purchase_units: [
+            {
+              amount: {
+                currency_code: 'USD',
+                value: `${this.total}`,
+                breakdown: {
+                  item_total: {
+                    currency_code: 'USD',
+                    value: `${this.total}`,
+                  },
+                },
+              },
+              items: [
+                {
+                  name: 'Premium',
+                  quantity: '1',
+                  category: 'DIGITAL_GOODS',
+                  unit_amount: {
+                    currency_code: 'USD',
+                    value: '20',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      advanced: {
+        commit: 'true',
+      },
+      style: {
+        label: 'paypal',
+        layout: 'vertical',
+      },
+      onApprove: (data, actions) => {
+        console.log(
+          'onApprove - transaction was approved, but not authorized',
+          data,
+          actions
+        );
+        actions.order.get().then((details) => {
+          console.log(
+            'onApprove - you can get full order details inside onApprove: ',
+            details
+          );
+        });
+      },
+      onClientAuthorization: (data) => {
+        console.log(
+          'onClientAuthorization - you should probably inform your server about completed transaction at this point',
+          data
+        );
+        this.token = data.id;
+        alert('Reservacion realizada con exito, su localizador es: ' + data.id);
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel', data, actions);
+      },
+      onError: (err) => {
+        console.log('OnError', err);
+      },
+      onClick: (data, actions) => {
+        console.log('onClick', data, actions);
+      },
+    };
     this.user = JSON.parse(this.waveService.getCurrentUser());
     if(!this.user.image){
       this.user.image= this.waveService.getPic()
@@ -70,5 +142,12 @@ export class UsuarioComponent implements OnInit {
       }
     });
   }
+  premiumTrue(){
+    if (this.token) {
+    this.premium=true;
+  }else{
+    alert("No Pagado")
+  }
 
+  }
 }

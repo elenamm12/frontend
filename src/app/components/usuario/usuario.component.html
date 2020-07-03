@@ -7,7 +7,10 @@
       color: yellow; font-size: 2.3em;">star</mat-icon>
     </div>
     <ng-template #noPremium>
-      <button style="width: 46%" class="btn premium">¡Hazte Premium!<mat-icon [inline]="true" style="margin-left: 4.5%;
+      <button *ngIf="premium==false"
+      data-toggle="modal"
+      data-target="#exampleModal"
+      style="width: 46%" class="btn premium">¡Hazte Premium!<mat-icon [inline]="true" style="margin-left: 4.5%;
         color: yellow; width: 15px;">star</mat-icon></button>
       
     </ng-template>
@@ -264,4 +267,44 @@
     </mat-tab-group>
   </div>
 </div>
+<div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <strong>Pago</strong>
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary enviar"
+            type="submit>"
+            (click)="premiumTrue()"
+            data-dismiss="modal"
+          >
+            continuar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 

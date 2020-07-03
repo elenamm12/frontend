@@ -85,7 +85,6 @@ export class UsuarioComponent implements OnInit {
           data
         );
         this.token = data.id;
-        this.premium=true;
         alert('Reservacion realizada con exito, su localizador es: ' + data.id);
       },
       onCancel: (data, actions) => {
@@ -145,7 +144,7 @@ export class UsuarioComponent implements OnInit {
   }
   premiumTrue(){
     if (this.token) {
-    this.premium=true;
+   this.user.role="premium";
   }else{
     alert("No Pagado")
   }

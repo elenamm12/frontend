@@ -7,7 +7,7 @@
       color: yellow; font-size: 2.3em;">star</mat-icon>
     </div>
     <ng-template #noPremium>
-      <button *ngIf="premium==false"
+      <button *ngIf="user.role == 'normal'"
       data-toggle="modal"
       data-target="#exampleModal"
       style="width: 46%" class="btn premium">¡Hazte Premium!<mat-icon [inline]="true" style="margin-left: 4.5%;

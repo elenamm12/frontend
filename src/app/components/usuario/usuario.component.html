@@ -3,16 +3,20 @@
 <div class="fondo">
   <div class="form">
     <div *ngIf="premium; else noPremium">
-      <mat-icon style="margin-left: 4.5%;
-      color: yellow; font-size: 2.3em;">star</mat-icon>
+      <mat-icon style="margin-left: 4.5%; color: yellow; font-size: 2.3em;"
+        >star</mat-icon
+      >
     </div>
     <ng-template #noPremium>
       <button *ngIf="user.role == 'normal'"
       data-toggle="modal"
-      data-target="#exampleModal"
-      style="width: 46%" class="btn premium">¡Hazte Premium!<mat-icon [inline]="true" style="margin-left: 4.5%;
-        color: yellow; width: 15px;">star</mat-icon></button>
-      
+      data-target="#exampleModal" style="width: 46%;" class="btn premium">
+        ¡Hazte Premium!<mat-icon
+          [inline]="true"
+          style="margin-left: 4.5%; color: yellow; width: 15px;"
+          >star</mat-icon
+        >
+      </button>
     </ng-template>
     <div class="logo">
       <img class="img-profile" src="{{ user.image}}" />
@@ -27,32 +31,63 @@
       style="color: black !important;"
     >
       <mat-tab label="Foros suscritos">
+        <div class="example-action-buttons" style="text-align: center;">
+          <button
+            mat-button
+            (click)="accordion.openAll()"
+            type="button"
+            class="btn btn1 btn-primary enviar"
+          >
+            Expand All
+          </button>
+          <button
+            mat-button
+            (click)="accordion.closeAll()"
+            type="button"
+            class="btn btn1 btn-primary enviar"
+          >
+            Collapse All
+          </button>
+        </div>
         <div
           *ngFor="let foro of forumsPosts"
           style="margin-bottom: 1em; margin-top: 5px;"
           class="expantion"
         >
-          <mat-accordion>
+          <mat-accordion multi>
             <mat-expansion-panel hideToggle>
               <mat-expansion-panel-header>
-                
                 <mat-panel-title>
-                  <a routerLink="/foro/{{foro.id}}" style="display:flex; width: 100%;">
-                  <img
-                    mat-card-avatar
-                    src="{{ foro.image }}"
-                    class="example-header-image"
+                  <a
+                    routerLink="/foro/{{ foro.id }}"
+                    style="display: flex; width: 100%;"
+                  >
+                    <img
+                      mat-card-avatar
+                      src="{{ foro.image }}"
+                      class="example-header-image"
                   /></a>
                 </mat-panel-title>
                 <mat-panel-description
-                  style="display: flex; align-items: center; width: 100%;" class="ordenar"
+                  style="display: flex; align-items: center; width: 100%;"
+                  class="ordenar"
                 >
-                  <div style="color: rgb(61, 63, 65);"><a routerLink="/foro/{{foro.id}}" style="display:flex; width: 100%; color:black;">{{ foro.title }}</a></div>
-                  <div><mat-icon [inline]="true" style="color: #5cbcc4;" (click)="dislikeForo(foro.id)"
-                    >thumb_down</mat-icon
-                  ></div>
+                  <div style="color: rgb(61, 63, 65);">
+                    <a
+                      routerLink="/foro/{{ foro.id }}"
+                      style="display: flex; width: 100%; color: black;"
+                      >{{ foro.title }}</a
+                    >
+                  </div>
+                  <div>
+                    <mat-icon
+                      [inline]="true"
+                      style="color: #5cbcc4;"
+                      (click)="dislikeForo(foro.id)"
+                      >thumb_down</mat-icon
+                    >
+                  </div>
                 </mat-panel-description>
-              
               </mat-expansion-panel-header>
             </mat-expansion-panel>
             <mat-expansion-panel
@@ -141,18 +176,22 @@
               "
               style="display: flex;"
             >
-              <a routerLink="/foro/{{ foro.id }}" style="display: flex; color: black;"
+              <a
+                routerLink="/foro/{{ foro.id }}"
+                style="display: flex; color: black;"
                 ><img
                   mat-card-avatar
                   [src]="foro.image"
                   alt="User Avatar"
                   style="align-self: center;"
                 />
-              
-              <p style="display: flex; align-items: center; margin-bottom: 0;">
-                {{ foro.title }}
-              </p>
-            </a>
+
+                <p
+                  style="display: flex; align-items: center; margin-bottom: 0;"
+                >
+                  {{ foro.title }}
+                </p>
+              </a>
             </div>
             <ng-template #sinFoto>
               <a routerLink="/foro/{{ foro.id }}"
@@ -188,34 +227,64 @@
         </div>
       </mat-tab>
       <mat-tab label="Foros sin suscripción">
+        <div class="example-action-buttons" style="text-align: center;">
+          <button
+            mat-button
+            (click)="accordion.openAll()"
+            type="button"
+            class="btn btn1 btn-primary enviar"
+          >
+            Expand All
+          </button>
+          <button
+            mat-button
+            (click)="accordion.closeAll()"
+            type="button"
+            class="btn btn1 btn-primary enviar"
+          >
+            Collapse All
+          </button>
+        </div>
         <div
           *ngFor="let foro of notSubscribedForumsPosts"
           style="margin-bottom: 1em; margin-top: 5px;"
           class="expantion"
         >
-          <mat-accordion>
+          <mat-accordion multi>
             <mat-expansion-panel hideToggle>
               <mat-expansion-panel-header>
-                
                 <mat-panel-title>
-                  <a routerLink="/foro/{{foro.id}}" style="display:flex; width: 100%;">
-                  <img
-                    mat-card-avatar
-                    src="{{ foro.image }}"
-                    class="example-header-image"
-                  />
-                </a>
+                  <a
+                    routerLink="/foro/{{ foro.id }}"
+                    style="display: flex; width: 100%;"
+                  >
+                    <img
+                      mat-card-avatar
+                      src="{{ foro.image }}"
+                      class="example-header-image"
+                    />
+                  </a>
                 </mat-panel-title>
                 <mat-panel-description
-                  style="display: flex; align-items: center; width: 100%;" class="ordenar"
+                  style="display: flex; align-items: center; width: 100%;"
+                  class="ordenar"
                 >
-                  <div style="color: rgb(61, 63, 65);"><a routerLink="/foro/{{foro.id}}" style="display:flex; width: 100%; color:black;">{{ foro.title }}</a></div>
-                  <div><mat-icon [inline]="true" style="color: #5cbcc4;"
-                    (click)="likeForo(foro.id)"
-                    >thumb_up</mat-icon
-                  ></div>
+                  <div style="color: rgb(61, 63, 65);">
+                    <a
+                      routerLink="/foro/{{ foro.id }}"
+                      style="display: flex; width: 100%; color: black;"
+                      >{{ foro.title }}</a
+                    >
+                  </div>
+                  <div>
+                    <mat-icon
+                      [inline]="true"
+                      style="color: #5cbcc4;"
+                      (click)="likeForo(foro.id)"
+                      >thumb_up</mat-icon
+                    >
+                  </div>
                 </mat-panel-description>
-              
               </mat-expansion-panel-header>
               <p>This is the primary content of the panel.</p>
             </mat-expansion-panel>

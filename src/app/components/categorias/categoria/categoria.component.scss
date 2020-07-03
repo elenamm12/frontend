@@ -22,6 +22,7 @@
 img.mat-card-image {
   margin: 0;
   opacity: 0.9;
+  height: 232px;
 }
 
 .container {
@@ -80,14 +81,15 @@ mat-card-content {
   flex: 25%;
   padding: 0 4px;
 }
-mat-card {
-  height: 99%;
-}
-.card-list {
-  padding: 0 3%;
-}
 .card-container {
   padding-bottom: 2.5%;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mat-card-image {
@@ -109,9 +111,24 @@ mat-card {
   height: 5%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 758px) {
   .centered {
     top: 180px;
+  }
+  img.mat-card-image.encabezado{
+    height: 370px;
+  }
+  img.mat-card-image{
+    height: 370px;
+  }
+}
+
+@media (min-width: 1100px){
+  img.mat-card-image.encabezado{
+    height: 380px;
+  }
+  img.mat-card-image{
+    height: 370px;
   }
 }
 

@@ -48,14 +48,13 @@ mat-form-field {
 
 mat-label {
   text-align: center;
-  color: #34839c;
+  color: #484a4c;
   letter-spacing: 0.5px;
 }
 
 .btn {
   width: 100%;
   font-style: normal;
-  font-weight: bold;
   letter-spacing: 3px;
   border: 0.8px solid white;
   background: #74b4bc;
@@ -86,7 +85,7 @@ h1 {
 }
 
 .mat-error{
-  color:white !important;
+  color:#484a4c !important;
   font-family: "Roboto";
   margin-bottom: 5px;
 }
@@ -190,8 +189,10 @@ select:-webkit-autofill {
 
 ::ng-deep .mat-form-field-wrapper {
   padding-bottom: 0.9em !important;
+  
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-  padding: 0.5em 0;
+  display: flex; 
+  align-items: center;
 }

@@ -13,9 +13,11 @@
     <div class="formulario">
       
         <mat-form-field appearance="outline">
-          <mat-label>Introducir Correo</mat-label>
-          <input matInput formControlName="usuario" placeholder="Correo">
-          <mat-icon> mail_outline</mat-icon>
+          
+            <mat-label style="padding-top:3px ;">Introducir Correo</mat-label>
+            <input matInput formControlName="usuario" placeholder="Correo">
+            
+          
         </mat-form-field>   
       
       <div *ngIf="usuario.invalid && usuario.dirty">
@@ -23,7 +25,7 @@
           Usuario es Requerido
         </div>
         <div *ngIf="usuario.errors.pattern" class="mat-error">
-          Debe ser un correo valido
+          Debe ser un correo válido
         </div>    
       </div>
 
@@ -31,7 +33,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Introducir Contraseña</mat-label>
         <input type="password" matInput formControlName="contra" placeholder="Contraseña">
-        <mat-icon> vpn_key</mat-icon>
+        
       </mat-form-field>
 
 

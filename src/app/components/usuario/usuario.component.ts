@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import {MatAccordion} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-usuario',
@@ -16,6 +17,8 @@ export class UsuarioComponent implements OnInit {
   panelOpenState = false;
   premium = false;
   public payPalConfig?: IPayPalConfig;
+
+  @ViewChild(MatAccordion) accordion: MatAccordion;
 
   constructor(
     private waveService: WaveServiceService,

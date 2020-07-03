@@ -11,6 +11,7 @@ export class CambiarContrasenaComponent implements OnInit {
   private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   //
   user: any; 
+  solicitud = false;
 
   createFormGroup (){
     return new FormGroup({
@@ -49,6 +50,10 @@ export class CambiarContrasenaComponent implements OnInit {
     },
     error => console.log(error) 
     )
+  }
+
+  cambio(){
+    this.solicitud = false;
   }
 
   onSaveForm(){

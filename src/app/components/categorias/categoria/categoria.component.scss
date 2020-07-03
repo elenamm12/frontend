@@ -111,11 +111,14 @@ mat-card-content {
   height: 5%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 758px) {
   .centered {
     top: 180px;
   }
   img.mat-card-image.encabezado{
+    height: 370px;
+  }
+  img.mat-card-image{
     height: 370px;
   }
 }

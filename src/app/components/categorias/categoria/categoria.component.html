@@ -1,8 +1,8 @@
 <app-menu></app-menu>
-<div class="separador"></div>
-<div *ngFor="let cont of categoryById.contentCategories">
+<div class="separador" style="color:transparent">cargando contenid extra</div>
+<div *ngIf="categoryById.contentCategories.length > 0">
   <mat-card class="example-card container head">
-    <img mat-card-image [src]="cont.imagen" class="encabezado" />
+    <img mat-card-image [src]="content0.imagen" class="encabezado" />
     <div class="centered">
       {{ categoryById.name }}
     </div>
@@ -17,15 +17,75 @@
       <p>
         {{ categoryById.contentCategories[0].text }}
       </p>
-      <br />
-      <p>
-        Consigue más en:
-        <a href="{{ categoryById.contentCategories[0].link }}"
-          >Contenido extra</a
-        >
-      </p>
+
     </mat-card-content>
   </mat-card>
+</div>
+<br />
+<h4 style="margin-bottom: 0.7em;">Contenido recomendado</h4>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div *ngFor="let cont of categoryById.contentCategories">
+        <mat-card class="example-card container head" style="margin-top: 0 !important">
+          <img mat-card-image [src]="cont.imagen" class="encabezado" />
+          <div class="centered">
+            
+          </div>
+      
+          <mat-card-content>
+            <mat-card-title style="justify-content: left;"
+              ><strong
+                >{{ categoryById.name }}
+                </strong
+              ></mat-card-title
+            >
+            <mat-card-subtitle>{{ categoryById.contentCategories[0].title }}</mat-card-subtitle>
+            <p>
+              {{ categoryById.contentCategories[0].text }}
+            </p>
+            <br />
+            <p>
+              Consigue más en:
+              <a href="{{ categoryById.contentCategories[0].link }}"
+                >Contenido extra</a
+              >
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div *ngFor="let cont of categoryById.contentCategories">
+        <mat-card class="example-card container head" style="margin-top: 0 !important">
+          <img mat-card-image [src]="cont.imagen" class="encabezado" />
+          <div class="centered">
+            {{ categoryById.name }}
+          </div>
+      
+          <mat-card-content>
+            <mat-card-title style="justify-content: left;"
+              ><strong
+                >
+                {{ categoryById.contentCategories[0].title }}</strong
+              ></mat-card-title
+            >
+            <p>
+              {{ categoryById.contentCategories[0].text }}
+            </p>
+            <br />
+            <p>
+              Consigue más en:
+              <a href="{{ categoryById.contentCategories[0].link }}"
+                >Contenido extra</a
+              >
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
 </div>
 <br />
 <h4>Podría interesarte</h4>

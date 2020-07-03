@@ -10,7 +10,7 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
 export class CategoriaComponent implements OnInit {
   categories: any[] = [];
   categoryById: any = [];
-
+  content0: any;
   categoria: any;
   subcategories: any[] = [];
   categoryId: number;
@@ -27,7 +27,10 @@ export class CategoriaComponent implements OnInit {
     this.waveService.getCategoryById(this.categoryId).subscribe((response) => {
       console.log(response);
       this.categoryById = response;
-      console.log("categoria", this.categoryById);
+      if(this.categoryById.contentCategories.length > 0 ){
+        this.content0 = this.categoryById.contentCategories[0];
+      }
+      console.log("categoria", this.content0);
 
       this.waveService
         .getSubcategoryByCategory(this.categoryId)

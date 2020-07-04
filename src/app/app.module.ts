@@ -37,6 +37,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { NavbarComponent } from './components/admin/navbar/navbar.component';
 import { ContenidoRecomendadoComponent } from './components/admin/categorias/contenido-recomendado/contenido-recomendado.component';
 import { CategoriasAdminComponent } from './components/admin/categorias-admin/categorias-admin.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 const config: SocketIoConfig = {
   url: 'https://wave-service.herokuapp.com',
@@ -82,6 +83,7 @@ const config: SocketIoConfig = {
     NgxPayPalModule,
     NgbModule,
     NgxSpinnerModule,
+    NgxDropzoneModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),

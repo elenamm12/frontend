@@ -1,91 +1,76 @@
 <app-menu></app-menu>
-<div class="separador" style="color:transparent">cargando contenid extra</div>
-<div *ngIf="categoryById.contentCategories.length > 0">
-  <mat-card class="example-card container head">
-    <img mat-card-image [src]="content0.imagen" class="encabezado" />
-    <div class="centered">
-      {{ categoryById.name }}
-    </div>
+<div class="separador" style="color: transparent;">cargando contenid extra</div>
 
-    <mat-card-content>
-      <mat-card-title style="justify-content: left;"
-        ><strong
-          >
-          {{ categoryById.contentCategories[0].title }}</strong
-        ></mat-card-title
-      >
-      <p>
-        {{ categoryById.contentCategories[0].text }}
-      </p>
-
-    </mat-card-content>
-  </mat-card>
-</div>
-<br />
-<h4 style="margin-bottom: 0.7em;">Contenido recomendado</h4>
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div *ngFor="let cont of categoryById.contentCategories">
-        <mat-card class="example-card container head" style="margin-top: 0 !important">
-          <img mat-card-image [src]="cont.imagen" class="encabezado" />
-          <div class="centered">
-            
-          </div>
-      
-          <mat-card-content>
-            <mat-card-title style="justify-content: left;"
-              ><strong
-                >{{ categoryById.name }}
-                </strong
-              ></mat-card-title
-            >
-            <mat-card-subtitle>{{ categoryById.contentCategories[0].title }}</mat-card-subtitle>
-            <p>
-              {{ categoryById.contentCategories[0].text }}
-            </p>
-            <br />
-            <p>
-              Consigue más en:
-              <a href="{{ categoryById.contentCategories[0].link }}"
-                >Contenido extra</a
-              >
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div *ngFor="let cont of categoryById.contentCategories">
-        <mat-card class="example-card container head" style="margin-top: 0 !important">
-          <img mat-card-image [src]="cont.imagen" class="encabezado" />
-          <div class="centered">
-            {{ categoryById.name }}
-          </div>
-      
-          <mat-card-content>
-            <mat-card-title style="justify-content: left;"
-              ><strong
-                >
-                {{ categoryById.contentCategories[0].title }}</strong
-              ></mat-card-title
-            >
-            <p>
-              {{ categoryById.contentCategories[0].text }}
-            </p>
-            <br />
-            <p>
-              Consigue más en:
-              <a href="{{ categoryById.contentCategories[0].link }}"
-                >Contenido extra</a
-              >
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </div>
-
+<mat-card class="example-card container head">
+  <img mat-card-image [src]="categoryById.image" class="encabezado" />
+  <div class="centered">
+    {{ categoryById.name }}
   </div>
+
+  <mat-card-content>
+    <mat-card-title style="text-align: justify;"
+      ><strong>{{ categoryById.text }}</strong></mat-card-title
+    >
+  </mat-card-content>
+</mat-card>
+
+<br />
+
+<div
+  *ngIf="categoryById.contentCategories"
+  style="width: 95% !important; margin-left: auto; margin-right: auto;"
+>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header style="height: auto !important;">
+        <mat-panel-title>
+          ¡Contenido recomendado!
+        </mat-panel-title>
+        <mat-panel-description style="text-align: justify;">
+          Aquí podrás conseguir todas las recomendaciones Wave que tenemos para
+          ti
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Contenido
+        </mat-panel-title>
+        <mat-panel-description>
+          {{
+            panelOpenState
+              ? "Ocultar contenido"
+              : "Despliega todo lo que tenemos para ti"
+          }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngFor="let com of categoryById.contentCategories">
+        <div *ngIf="com.isActive">
+        <mat-card class="example-card container head">
+          <img mat-card-image [src]="com.image" class="encabezado" />
+
+          <mat-card-content>
+            <mat-card-title style="justify-content: left;"
+              ><strong> {{ com.title }}</strong></mat-card-title
+            >
+            <p>
+              {{ com.text }}
+            </p>
+            <br />
+            <p>
+              Consigue más en:
+              <a href="{{ com.link }}">Contenido extra</a>
+            </p>
+          </mat-card-content>
+        </mat-card>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
 <br />
 <h4>Podría interesarte</h4>
@@ -97,11 +82,7 @@
     >
       <a routerLink="/sub-categoria/{{ sub.id }}">
         <mat-card>
-          <img
-            mat-card-image
-            src="{{ sub.contentSubcategories[0].imagen }}"
-            class="mat-card-image"
-          />
+          <img mat-card-image src="{{ sub.image }}" class="mat-card-image" />
           <mat-card-content>
             <mat-card-footer
               ><p>{{ sub.name }}</p></mat-card-footer

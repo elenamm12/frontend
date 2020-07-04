@@ -9,7 +9,7 @@
         <a routerLink="/categoria/{{ cat.id }}"
           ><img
             mat-card-image
-            [src]="cat.contentCategories[0].imagen"
+            [src]="cat.image"
             alt="5 Terre"
             style="width: 100%;"
             class="cat"
@@ -22,7 +22,8 @@
             <mat-card-subtitle
               >Recomendación Wave:
               {{ cat.contentCategories[0].title }}</mat-card-subtitle
-            >
+            ><br />
+            <mat-card-subtitle style="font-style: italic;">Para más recomendaciones, ve a {{cat.name}}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
             <p>

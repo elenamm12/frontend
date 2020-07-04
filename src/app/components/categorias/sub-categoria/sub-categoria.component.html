@@ -29,7 +29,7 @@
 <div *ngFor="let cont of subcategory.contentSubcategories">
   <mat-card class="example-card container head">
     <mat-card-title class="top">{{ subcategory.name }}</mat-card-title>
-    <img mat-card-image [src]="cont.imagen" class="encabezado" />
+    <img mat-card-image [src]="subcategory.image" class="encabezado" />
 
     <strong>
       <mat-card-content>

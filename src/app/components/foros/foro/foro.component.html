@@ -84,15 +84,14 @@
                               (click)="putLikePost(com.id)"
                               [inline]="true"
                               class="like"
+                              style="cursor: pointer;"
                             >
                               thumb_up </mat-icon
                             ><mat-icon
                               (click)="putDislikePost(com.id)"
-                              [attr.color]="
-                                this.colorIcon == com.id ? 'orange' : 'black'
-                              "
                               [inline]="true"
                               class="dislike"
+                              style="cursor: pointer;"
                             >
                               thumb_down
                             </mat-icon>

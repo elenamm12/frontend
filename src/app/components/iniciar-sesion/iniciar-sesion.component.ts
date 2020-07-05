@@ -56,6 +56,9 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
         if((data.user.role=='normal'||data.user.role=='premium')){
         this.router.navigate(['/home']);
         this.spinner.hide();
+        }if(data.user.role=='admin'){
+          this.router.navigate(['/admin']);
+          this.spinner.hide();
         }
       },
       error => console.log(error) 

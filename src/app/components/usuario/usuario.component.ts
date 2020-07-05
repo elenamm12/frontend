@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-import {MatAccordion} from '@angular/material/expansion';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-usuario',
@@ -14,7 +14,7 @@ export class UsuarioComponent implements OnInit {
   forumsPosts: [];
   notSubscribedForumsPosts: [];
   forumsCreated: [];
-  profilePick:string;
+  profilePick: string;
   panelOpenState = false;
   premium = false;
   public payPalConfig?: IPayPalConfig;
@@ -101,38 +101,64 @@ export class UsuarioComponent implements OnInit {
         console.log('onClick', data, actions);
       },
     };
-    this.user = JSON.parse(this.waveService.getCurrentUser());
-    if(!this.user.image){
-      this.user.image= this.waveService.getPic()
 
+    this.user = JSON.parse(this.waveService.getCurrentUser());
+    if (!this.user.image) {
+      this.user.image = this.waveService.getPic();
     }
     //console.log(this.user);
     this.waveService.getForumsPostsByUser().subscribe((res) => {
       this.forumsPosts = res.forums;
-      console.log(this.forumsPosts)
+      console.log(this.forumsPosts);
+
+      this.waveService.getNotSubscribedByUser().subscribe((res) => {
+        this.notSubscribedForumsPosts = res.forums;
+
+        this.waveService.getForumCreated().subscribe((res) => {
+          this.forumsCreated = res.forums;
+          console.log('foros creados', this.forumsCreated);
+        });
+
+      });
+
     });
 
-    this.waveService.getNotSubscribedByUser().subscribe((res) => {
-      this.notSubscribedForumsPosts = res.forums;
-    });
-    this.waveService.getForumCreated().subscribe((res) => {
-      this.forumsCreated = res.forums;
-      console.log("foros creados", this.forumsCreated)
-    });
+
+
   }
 
   onDelete(id: number) {
-    this.waveService.DeletePost(id).subscribe((res)=>{
-      console.log(res)
+    this.waveService.DeletePost(id).subscribe((res) => {
+      if(res){
+        this.waveService.getForumsPostsByUser().subscribe((res) => {
+          this.forumsPosts = res.forums;
+          console.log(this.forumsPosts);
+    
+          this.waveService.getNotSubscribedByUser().subscribe((res) => {
+            this.notSubscribedForumsPosts = res.forums;
+          });
+
+        });
+
+        console.log(res);
+      }
     });
   }
 
   likeForo(id: number) {
     this.waveService.likeForum(id).subscribe((res) => {
       if (res) {
+        this.waveService.getForumsPostsByUser().subscribe((res) => {
+          this.forumsPosts = res.forums;
+          console.log(this.forumsPosts);
+    
+          this.waveService.getNotSubscribedByUser().subscribe((res) => {
+            this.notSubscribedForumsPosts = res.forums;
+          });
+
+        });
         console.log(res);
-        alert("¡Ahora estás suscrito en el foro!")
-        location.reload();
+        alert('¡Ahora estás suscrito en el foro!');
       }
     });
   }
@@ -140,18 +166,25 @@ export class UsuarioComponent implements OnInit {
   dislikeForo(id: number) {
     this.waveService.dislikeForum(id).subscribe((res) => {
       if (res) {
-        alert("Dejarás de estar suscrito al foro");
-        location.reload();
+        this.waveService.getForumsPostsByUser().subscribe((res) => {
+          this.forumsPosts = res.forums;
+          console.log(this.forumsPosts);
+    
+          this.waveService.getNotSubscribedByUser().subscribe((res) => {
+            this.notSubscribedForumsPosts = res.forums;
+          });
+
+        });
+        alert('Dejarás de estar suscrito al foro');
         // console.log(res);
       }
     });
   }
-  premiumTrue(){
+  premiumTrue() {
     if (this.token) {
-   this.user.role="premium";
-  }else{
-    alert("No Pagado")
-  }
-
+      this.user.role = 'premium';
+    } else {
+      alert('No Pagado');
+    }
   }
 }

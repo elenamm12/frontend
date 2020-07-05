@@ -40,9 +40,10 @@ import { CategoriasAdminComponent } from './components/admin/categorias-admin/ca
 import { NgxDropzoneModule } from 'ngx-dropzone';
 
 const config: SocketIoConfig = {
-  url: 'https://wave-service.herokuapp.com',
+  url: 'http://localhost:3000',
   options: {},
 };
+//https://wave-service.herokuapp.com
 @NgModule({
   declarations: [
     AppComponent,

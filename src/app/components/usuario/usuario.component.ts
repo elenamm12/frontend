@@ -11,7 +11,7 @@ import { MatAccordion } from '@angular/material/expansion';
 })
 export class UsuarioComponent implements OnInit {
   user: any;
-  forumsPosts: [];
+  forumsPosts: any[];
   notSubscribedForumsPosts: [];
   forumsCreated: [];
   profilePick: string;
@@ -107,36 +107,56 @@ export class UsuarioComponent implements OnInit {
     }
     //console.log(this.user);
     this.waveService.getForumsPostsByUser().subscribe((res) => {
-      this.forumsPosts = res.forums;
+      this.forumsPosts = res.forums.map((forum) => ({
+        ...forum,
+        withComments: true,
+      }));
       console.log(this.forumsPosts);
-
-      this.waveService.getNotSubscribedByUser().subscribe((res) => {
-        this.notSubscribedForumsPosts = res.forums;
-
-        this.waveService.getForumCreated().subscribe((res) => {
-          this.forumsCreated = res.forums;
-          console.log('foros creados', this.forumsCreated);
-        });
-
-      });
-
     });
 
+    this.waveService.getNotSubscribedByUser().subscribe((res) => {
+      this.notSubscribedForumsPosts = res.forums.map((forum) => ({
+        ...forum,
+        withComments: true,
+      }));
+    });
 
+    this.waveService.getForumCreated().subscribe((res) => {
+      this.forumsCreated = res.forums;
+      console.log('foros creados', this.forumsCreated);
+    });
+  }
 
+  getPosts(idForum: number) {
+    console.log('getPosts', idForum);
+    this.waveService
+      .getPostsByUserInSubscribedForum(idForum)
+      .subscribe((res) => {
+        console.log(res);
+        if (res.items.length > 0) {
+          this.forumsPosts = this.forumsPosts.map((forum: any) =>
+            forum.id === idForum ? { ...forum, posts: res.items } : forum
+          );
+          console.log('forumsPosts', this.forumsPosts);
+        } else {
+          this.forumsPosts = this.forumsPosts.map((forum: any) =>
+            forum.id === idForum ? { ...forum, withComments: false } : forum
+          );
+        }
+        this.panelOpenState = true;
+      });
   }
 
   onDelete(id: number) {
     this.waveService.DeletePost(id).subscribe((res) => {
-      if(res){
+      if (res) {
         this.waveService.getForumsPostsByUser().subscribe((res) => {
           this.forumsPosts = res.forums;
           console.log(this.forumsPosts);
-    
+
           this.waveService.getNotSubscribedByUser().subscribe((res) => {
             this.notSubscribedForumsPosts = res.forums;
           });
-
         });
 
         console.log(res);
@@ -150,11 +170,10 @@ export class UsuarioComponent implements OnInit {
         this.waveService.getForumsPostsByUser().subscribe((res) => {
           this.forumsPosts = res.forums;
           console.log(this.forumsPosts);
-    
+
           this.waveService.getNotSubscribedByUser().subscribe((res) => {
             this.notSubscribedForumsPosts = res.forums;
           });
-
         });
         console.log(res);
         alert('¡Ahora estás suscrito en el foro!');
@@ -168,11 +187,10 @@ export class UsuarioComponent implements OnInit {
         this.waveService.getForumsPostsByUser().subscribe((res) => {
           this.forumsPosts = res.forums;
           console.log(this.forumsPosts);
-    
+
           this.waveService.getNotSubscribedByUser().subscribe((res) => {
             this.notSubscribedForumsPosts = res.forums;
           });
-
         });
         alert('Dejarás de estar suscrito al foro');
         // console.log(res);

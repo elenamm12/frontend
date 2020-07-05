@@ -161,7 +161,6 @@ export class WaveServiceService {
     return user;
   }
 
-
   logOut() {
     localStorage.removeItem('currentToken');
     localStorage.removeItem('currentUser');
@@ -253,7 +252,7 @@ export class WaveServiceService {
   }
 
   DeletePost(idPost: number) {
-    alert("Se eliminará el comentario del foro")
+    alert('Se eliminará el comentario del foro');
     return this.http.delete(`${this.url}/post/delete/${idPost}`);
   }
 
@@ -270,10 +269,14 @@ export class WaveServiceService {
   createForum(idSub: number, title: string) {
     return this.http.post(`${this.url}/forum/create/${idSub}`, { title });
   }
-  //Servicios User
+  //Servicios User Profile
   getForumsPostsByUser(): Observable<any> {
     return this.http.get(`${this.url}/forum/user/posts`);
   }
+  getPostsByUserInSubscribedForum(idForum: number): Observable<any> {
+    return this.http.get(`${this.url}/post/all/forum/${idForum}/user`);
+  }
+
   getNotSubscribedByUser(): Observable<any> {
     return this.http.get(`${this.url}/forum/user/notSubscribe/posts`);
   }
@@ -289,6 +292,4 @@ export class WaveServiceService {
   getContentCategory(id: number): Observable<any> {
     return this.http.get(`${this.url}/content-category/category/${id}`);
   }
-
-
 }

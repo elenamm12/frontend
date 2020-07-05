@@ -1,8 +1,8 @@
 <app-menu></app-menu>
 <div class="fondo">
   <div class="opciones">
-    <div style="display: inline;">
-      <a>
+    <div *ngIf="Foro.subCategory" style="display: inline;">
+      <a routerLink="/sub-categoria/{{Foro.subCategory.id}}">
         <mat-icon class="volver">keyboard_backspace</mat-icon>
       </a>
     </div>

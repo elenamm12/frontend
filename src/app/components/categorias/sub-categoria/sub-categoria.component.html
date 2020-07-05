@@ -69,6 +69,20 @@
   </div>
 </div>
 
+<div *ngFor="let cat of CatWFavoriteSubcat">
+  <div *ngFor="let sub of cat.subCategories">
+    <div *ngIf="sub.id == subcategoryId">
+      <a
+        class="btn btn-primary abajo"
+        data-toggle="modal"
+        data-target="#exampleModal"
+      >
+        crear foro
+    </a>
+    </div>
+  </div>
+</div>
+
 <div *ngIf="subscribedForums.length > 0">
   <hr />
   <h4>Ya estas suscrito en estos foros</h4>

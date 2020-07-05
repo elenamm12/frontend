@@ -103,6 +103,7 @@ export class SubCategoriaComponent implements OnInit {
                       this.CatWFavoriteSubcat = response.categories;
                       console.log('hola', this.CatWFavoriteSubcat);
                       console.log(response);
+
                       //let aja: [] = response;
                       //let bool = this.CatWFavoriteSubcat.find(
                       //(id) => id.id == this.categoryId

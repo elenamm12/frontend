@@ -69,7 +69,7 @@ export class ForoComponent implements OnInit {
             if (res) {
               // console.log(res);
               this.forosFav = res.forums;
-              // console.log(this.forosFav);
+              console.log("foros fav", this.forosFav);
 
               let bool = this.forosFav.find((ob) => ob.id == this.foroId);
               if (bool != null) {

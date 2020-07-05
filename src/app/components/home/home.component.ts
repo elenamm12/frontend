@@ -22,8 +22,7 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {    
     this.waveService.getFavoriteSubCategories().subscribe((response) => {
       console.log(response)
       this.favoriteCategories = response.categories;
@@ -35,9 +34,13 @@ export class HomeComponent implements OnInit {
     this.waveService.dislikeSubcategorie(id).subscribe((res)=>{
       if(res){
         alert("Se cancelará su suscripción a los foros de la subcategoría")
+        this.waveService.getFavoriteSubCategories().subscribe((response) => {
+          console.log(response)
+          this.favoriteCategories = response.categories;
+          console.log('favorite', this.favoriteCategories);
+        });
         console.log(res);
       };
-      location.reload();
     });
   }
     

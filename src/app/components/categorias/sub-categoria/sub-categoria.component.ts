@@ -49,8 +49,8 @@ export class SubCategoriaComponent implements OnInit {
     reader.readAsDataURL(this.fileToUpload);
     console.log(reader.result);
   }
-  reset(){
-    this.comment = "";
+  reset() {
+    this.comment = '';
   }
 
   onUpload() {
@@ -68,7 +68,6 @@ export class SubCategoriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.subcategoryId = this.route.snapshot.params['id'];
     this.waveService
       .getSubCategoryById(this.subcategoryId)
@@ -76,44 +75,43 @@ export class SubCategoriaComponent implements OnInit {
         this.subcategory = response;
         console.log('content', this.subcategory);
 
+        this.filteredForums = this.myControl.valueChanges.pipe(
+          startWith(''),
+          map((value) => this._filter(value))
+        );
 
-            this.filteredForums = this.myControl.valueChanges.pipe(
-              startWith(''),
-              map((value) => this._filter(value))
-            );
+        this.waveService
+          .getForumsBySubcategory(this.subcategoryId)
+          .subscribe((response) => {
+            this.favoriteForums = response.items;
+            this.currentPage = parseInt(response.meta.currentPage);
+            this.nextPage =
+              this.currentPage !== parseInt(response.meta.totalPages);
+            console.log('foro fav', this.favoriteForums);
 
             this.waveService
-              .getForumsBySubcategory(this.subcategoryId)
+              .getFavoritesForums(this.subcategoryId)
               .subscribe((response) => {
-                this.favoriteForums = response.items;
-                this.currentPage = parseInt(response.meta.currentPage);
-                this.nextPage =
-                  this.currentPage !== parseInt(response.meta.totalPages);
-                console.log('foro fav', this.favoriteForums);
+                console.log('suscribes', response.forums);
+                this.subscribedForums = response.forums;
+                this.waveService.getAllForums().subscribe((response) => {
+                  this.forums = response.forums;
 
-                this.waveService
-                  .getFavoritesForums(this.subcategoryId)
-                  .subscribe((response) => {
-                    console.log('suscribes', response.forums);
-                    this.subscribedForums = response.forums;
-                    this.waveService.getAllForums().subscribe((response) => {
-                      this.forums = response.forums;
-
-                      this.waveService
-                        .getFavoriteSubCategories()
-                        .subscribe((response) => {
-                          this.CatWFavoriteSubcat = response.categories;
-                          console.log('hola', this.CatWFavoriteSubcat);
-                          console.log(response);
-                          //let aja: [] = response;
-                          //let bool = this.CatWFavoriteSubcat.find(
-                            //(id) => id.id == this.categoryId
-                          //);
-                          //console.log(bool);
-                        });
-                      //});
-                    //});
-                  });
+                  this.waveService
+                    .getFavoriteSubCategories()
+                    .subscribe((response) => {
+                      this.CatWFavoriteSubcat = response.categories;
+                      console.log('hola', this.CatWFavoriteSubcat);
+                      console.log(response);
+                      //let aja: [] = response;
+                      //let bool = this.CatWFavoriteSubcat.find(
+                      //(id) => id.id == this.categoryId
+                      //);
+                      //console.log(bool);
+                    });
+                  //});
+                  //});
+                });
               });
           });
       });
@@ -135,7 +133,12 @@ export class SubCategoriaComponent implements OnInit {
       .subscribe((response: any) => {
         if (response) {
           console.log('foro creado');
-          this.router.navigate([`/picture-foro/${response.forum.id}`]);
+          this.waveService.likeForum(response.forum.id).subscribe((res) => {
+            if (res) {
+              console.log(res);
+              this.router.navigate([`/picture-foro/${response.forum.id}`]);
+            }
+          });
         }
       });
   }

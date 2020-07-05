@@ -6,7 +6,7 @@
     <div *ngFor="let cat of categories" class="contenido">
       <mat-card class="example-card container para-sobrevivir">
         <a routerLink="/categoria/{{ cat.id }}">
-          <img mat-card-image src="{{ cat.contentCategories[0].imagen }}" />
+          <img mat-card-image src="{{ cat.image }}" />
         </a>
         <div class="centered">{{ cat.name }}</div>
         <mat-divider></mat-divider>

@@ -23,6 +23,7 @@ export class UsuarioComponent implements OnInit {
 
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
+
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,

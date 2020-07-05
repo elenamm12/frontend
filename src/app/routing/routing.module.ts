@@ -1,6 +1,6 @@
+import { ContenidoRecomendadoComponent } from './../components/admin/categorias/contenido-recomendado/contenido-recomendado.component';
 import { AdminComponent } from './../components/admin/admin.component';
 import { CrearForoComponent } from './../components/foros/crear-foro/crear-foro.component';
-
 import { CategoriaComponent } from './../components/categorias/categoria/categoria.component';
 import { InicioComponent } from './../components/inicio/inicio.component';
 import { RegistrarUsuarioComponent } from './../components/registrar-usuario/registrar-usuario.component';
@@ -19,6 +19,7 @@ import { FavoritasComponent } from '../components/favoritas/favoritas.component'
 import { PictureComponent } from '../components/picture/picture.component';
 import { UsuarioComponent } from '../components/usuario/usuario.component';
 import { PictureForoComponent } from '../components/picture-foro/picture-foro.component';
+import { CategoriasAdminComponent } from '../components/admin/categorias-admin/categorias-admin.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -53,6 +54,9 @@ const routes: Routes = [
   { path: 'foros', component: ForosComponent, canActivate: [AuthGuard] },
   { path: 'foro/:id', component: ForoComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent },
+  { path: 'admin/categorias', component: CategoriasAdminComponent},
+
+  { path: 'admin/contenido-recomendado', component: ContenidoRecomendadoComponent},
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];

@@ -2,10 +2,11 @@
   <app-menu></app-menu>
 
   <div class="parent">
-
     <div style="margin-left: 5%;">
-      <a routerLink="{{previousUrl}}" style="color: darkslategray;">
-        <mat-icon class="volver" style="font-size:2em ;">keyboard_backspace</mat-icon>
+      <a routerLink="{{ previousUrl }}" style="color: #484a4c;">
+        <mat-icon class="volver" style="font-size: 2em;"
+          >keyboard_backspace</mat-icon
+        >
       </a>
     </div>
 
@@ -20,11 +21,11 @@
         (ngModelChange)="searchTextModelChanged.next($event)"
       />
 
-      <mat-icon matSuffix style="color: white;">search</mat-icon>
+      <mat-icon matSuffix style="color: #484a4c;">search</mat-icon>
     </mat-form-field>
   </div>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>Category</mat-label>
     <mat-select (selectionChange)="onChangeCategory($event)">
       <mat-option *ngFor="let category of categories" [value]="category.id">
@@ -33,7 +34,7 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline" style="margin-bottom: 4em;">
     <mat-label>Subcategory</mat-label>
     <mat-select (selectionChange)="onChangeSubcategory($event)">
       <mat-option
@@ -47,6 +48,28 @@
 
   <div *ngFor="let foro of forums | foroFilter: filterForum" class="contenedor">
     <mat-card>
+      <div *ngIf="!isFav(foro.id); else notSuscribed">
+        <mat-card-actions>
+          <mat-icon
+            (click)="likeForo(foro.id)"
+            class="agregar"
+            [inline]="true"
+            style="cursor: pointer; color: red;"
+            >favorite_border</mat-icon
+          >
+        </mat-card-actions>
+      </div>
+      <ng-template #notSuscribed>
+        <mat-card-actions>
+          <mat-icon
+            (click)="dislikeForo(foro.id)"
+            class="agregar"
+            [inline]="true"
+            style="cursor: pointer; color: red;"
+            >favorite</mat-icon
+          >
+        </mat-card-actions>
+      </ng-template>
       <div
         *ngIf="foro.image != null && foro.image != undefined; else sinFoto"
         class="ordenar"
@@ -65,24 +88,7 @@
           /> </a
         >{{ foro.title }}
       </ng-template>
-
-      
-      <div *ngIf="!isFav(foro.id)">
-      <mat-card-actions>
-        ¡Suscríbete!
-        <mat-icon
-          (click)="likeForo(foro.id)"
-          class="agregar"
-          [inline]="true"
-          style="cursor: pointer;"
-          >thumb_up</mat-icon
-        >
-      </mat-card-actions>
-      </div>
-    
-    
-    </mat-card
-    >
+    </mat-card>
   </div>
   <button
     *ngIf="nextPage"

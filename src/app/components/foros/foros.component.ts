@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
-import { Router, ActivatedRoute,  NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
@@ -33,8 +33,7 @@ export class ForosComponent implements OnInit {
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.searchTextModelChangeSubscription = this.searchTextModelChanged
@@ -74,7 +73,6 @@ export class ForosComponent implements OnInit {
         }
       });
     });
-
 
     this.previousUrl = this.waveService.getPreviousUrl();
 
@@ -151,6 +149,11 @@ export class ForosComponent implements OnInit {
     this.waveService.dislikeForum(id).subscribe((res) => {
       if (res) {
         console.log(res);
+        this.waveService.getForumsPostsByUser().subscribe((res) => {
+          this.myforums = res.forums;
+          console.log(this.myforums);
+        });
+        alert('¡Ya no estás suscrito en el foro!');
       }
     });
   }
@@ -165,5 +168,4 @@ export class ForosComponent implements OnInit {
       return true;
     }
   }
-
 }

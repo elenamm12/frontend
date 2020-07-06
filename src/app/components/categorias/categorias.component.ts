@@ -11,6 +11,8 @@ export class CategoriasComponent implements OnInit {
   categories: any[] = [];
   currentPage: number = 1;
   nextPage: boolean = false;
+  previousUrl: string;
+  favoriteCategories: any;
 
   constructor(
     private waveService: WaveServiceService,
@@ -24,7 +26,16 @@ export class CategoriasComponent implements OnInit {
       this.currentPage = parseInt(response.meta.currentPage);
       this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
       console.log('categorias', this.categories);
+
+      this.waveService.getFavoriteSubCategories().subscribe((response) => {
+        console.log(response)
+        this.favoriteCategories = response.categories;
+        console.log('favorite', this.favoriteCategories);
+      });
+
     });
+
+    this.previousUrl = this.waveService.getPreviousUrl();
   }
 
   traerMasCategorias() {
@@ -42,6 +53,25 @@ export class CategoriasComponent implements OnInit {
     this.waveService
       .saveFavoriteSubCategoria(subcategoriaId)
       .subscribe((response) => console.log(response));
+      this.waveService.getFavoriteSubCategories().subscribe((response) => {
+        console.log(response)
+        this.favoriteCategories = response.categories;
+        console.log('favorite', this.favoriteCategories);
+      });
     alert('¡Ahora estás suscrito en la subcategoría!');
+  }
+
+  isFav(idCat: number, idSub: number){
+    if(this.favoriteCategories){
+      for(let entry of this.favoriteCategories){
+        if(entry.id == idCat){
+          for(let sub of entry.subCategories){
+            if(sub.id == idSub){
+              return true;
+            }
+          }
+        }
+      }
+    }return false;
   }
 }

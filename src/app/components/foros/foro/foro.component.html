@@ -2,8 +2,10 @@
 <div class="fondo">
   <div class="opciones">
     <div *ngIf="Foro.subCategory" style="display: inline;">
-      <a routerLink="/sub-categoria/{{Foro.subCategory.id}}">
-        <mat-icon class="volver">keyboard_backspace</mat-icon>
+      <a routerLink="/sub-categoria/{{ Foro.subCategory.id }}">
+        <mat-icon class="volver" style="font-size: 2em;"
+          >keyboard_backspace</mat-icon
+        >
       </a>
     </div>
 
@@ -68,7 +70,7 @@
                         />
                       </ng-template>
 
-                      <div class="media-body">
+                      <div class="media-body" style="text-align: right;">
                         <div class="ordenar">
                           <div style="display: inline;">
                             <strong class="text-success"
@@ -78,38 +80,45 @@
                               com.date | dateAgo
                             }}</time>
                           </div>
-                          
 
-                          <div style="display: inline; margin-right: 7px;">
-                            <mat-icon *ngIf="user.email==com.user.email"
-                        (click)="onDelete(com.id)"
-                        [inline]="true"
-                        class="like"
-                        style="cursor: pointer;"
-                      >
-                        delete
-                      </mat-icon>
+                          <div style="display: inline;">
+                            <div *ngIf="!com.isLiked; else notLike" style="display: inline;">
                             <mat-icon
                               (click)="putLikePost(com.id)"
                               [inline]="true"
                               class="like"
-                              style="cursor: pointer;"
+                              style="cursor: pointer; color:red"
                             >
-                              thumb_up </mat-icon
-                            ><mat-icon
-                              (click)="putDislikePost(com.id)"
-                              [inline]="true"
-                              class="dislike"
-                              style="cursor: pointer;"
+                            favorite_border </mat-icon
                             >
-                              thumb_down
-                            </mat-icon>
+                            
+                          </div>
+                          <ng-template #notLike style="display: inline; font-size: 1.em;">
+                            <mat-icon
+                            (click)="putDislikePost(com.id)"
+                            [inline]="true"
+                            class="dislike"
+                            style="cursor: pointer; color: red;"
+                          >
+                            favorite
+                          </mat-icon>
+                          </ng-template>
+                            <time class="text-success">{{com.likes}}</time>
                           </div>
                         </div>
 
                         <p class="p">
                           {{ com.text }}
                         </p>
+                        <mat-icon
+                              *ngIf="user.email == com.user.email"
+                              (click)="onDelete(com.id)"
+                              [inline]="true"
+                              class="like"
+                              style="cursor: pointer; color: orange;"
+                            >
+                              delete
+                            </mat-icon>
                       </div>
                     </li>
                   </ul>
@@ -185,22 +194,20 @@
             </mat-error>
           </div>
         </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            [disabled]="postForm.invalid"
-            data-dismiss="modal"
-            (click)="postCom()"
-            #btnClose
-            type="button"
-            class="btn btn-primary enviar"
-            type="submit"
-            
-          >
-            publicar
-          </button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          [disabled]="postForm.invalid"
+          data-dismiss="modal"
+          (click)="postCom()"
+          #btnClose
+          type="button"
+          class="btn btn-primary enviar"
+          type="submit"
+        >
+          publicar
+        </button>
       </div>
     </div>
+  </div>
 </div>
-

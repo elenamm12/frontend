@@ -16,6 +16,7 @@ export class ContenidoRecomendadoComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
   categories: any;
   panelOpenState = false;
+  contenido: any;
 
   constructor(
     private waveService: WaveServiceService,
@@ -25,11 +26,18 @@ export class ContenidoRecomendadoComponent implements OnInit {
 
   ngOnInit(): void {
 
-      this.waveService.getAllCategories().subscribe((response) => {
+      this.waveService.getAllCategoriesContent().subscribe((response) => {
         this.categories = response;
         console.log('categorias', this.categories);
       });
     
+  }
+
+  getContenido(id: number){
+    this.waveService.getContentCategory(id).subscribe((response) => {
+      console.log(response);
+      
+    });
   }
 
 

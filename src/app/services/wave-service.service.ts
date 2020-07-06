@@ -5,6 +5,7 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
+import { Router, NavigationEnd } from '@angular/router'
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map, tap, catchError, retry } from 'rxjs/operators';
 import { isNullOrUndefined } from 'util';
@@ -20,6 +21,8 @@ export class WaveServiceService {
   public token: string;
   public picture: string;
   public user: any;
+  private previousUrl: string;
+  private currentUrl: string;
   private authSubject = new BehaviorSubject(false);
   //
   private handleError(error: HttpErrorResponse) {
@@ -38,7 +41,19 @@ export class WaveServiceService {
   }
   //
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {
+    this.currentUrl = this.router.url;
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.previousUrl = this.currentUrl;
+        this.currentUrl = event.url;
+      }
+    });
+  }
+  
+  public getPreviousUrl() {
+    return this.previousUrl;
+  }
 
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'aplication/json',
@@ -161,7 +176,6 @@ export class WaveServiceService {
     return user;
   }
 
-
   logOut() {
     localStorage.removeItem('currentToken');
     localStorage.removeItem('currentUser');
@@ -169,6 +183,10 @@ export class WaveServiceService {
 
   getAllCategories(): Observable<any> {
     return this.http.get(`${this.url}/category/all`);
+  }
+
+  getAllCategoriesContent(): Observable<any> {
+    return this.http.get(`${this.url}/category/all/content`);
   }
 
   getSubcategoryByCategory(idCategory: number): Observable<any> {
@@ -253,7 +271,7 @@ export class WaveServiceService {
   }
 
   DeletePost(idPost: number) {
-    alert("Se eliminará el comentario del foro")
+    alert('Se eliminará el comentario del foro');
     return this.http.delete(`${this.url}/post/delete/${idPost}`);
   }
 
@@ -289,6 +307,4 @@ export class WaveServiceService {
   getContentCategory(id: number): Observable<any> {
     return this.http.get(`${this.url}/content-category/category/${id}`);
   }
-
-
 }

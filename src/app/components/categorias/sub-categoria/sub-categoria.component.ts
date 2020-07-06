@@ -102,7 +102,7 @@ export class SubCategoriaComponent implements OnInit {
                     .subscribe((response) => {
                       this.CatWFavoriteSubcat = response.categories;
                       console.log('hola', this.CatWFavoriteSubcat);
-                      console.log(response);
+                      
 
                       //let aja: [] = response;
                       //let bool = this.CatWFavoriteSubcat.find(
@@ -147,6 +147,17 @@ export class SubCategoriaComponent implements OnInit {
   onSaveForm() {
     this.crearForo(this.subcategoryId, this.forumForm.value.text);
   }
+
+  //isFav(id: number) {
+    //let vart;
+    //if (this.CatWFavoriteSubcat) {
+      //vart = this.myforums.find((ob) => ob.id == id);
+      //if (vart == null) {
+        //return false;
+      //}
+      //return true;
+    //}
+  //}
 
   get text() {
     return this.forumForm.get('text');

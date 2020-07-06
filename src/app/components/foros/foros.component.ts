@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
@@ -19,12 +19,15 @@ export class ForosComponent implements OnInit {
   nextPage: boolean = false;
   myforums: any;
   notMyforums: any[] = [];
+  currentUrl: string;
+  previousUrl: string;
 
   constructor(
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     // Carga todos los Foros
@@ -49,6 +52,9 @@ export class ForosComponent implements OnInit {
       startWith(''),
       map((value) => this._filter(value))
     );
+
+    this.previousUrl = this.waveService.getPreviousUrl();
+
   }
 
   traerMasForos() {
@@ -100,4 +106,5 @@ export class ForosComponent implements OnInit {
       return true;
     }
   }
+
 }

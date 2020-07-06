@@ -23,7 +23,7 @@ export class SubCategoriaComponent implements OnInit {
   imageUrl = null;
   file: any;
   favorite = true;
-  CatWFavoriteSubcat: [];
+  CatWFavoriteSubcat: any[] = [];
   forums: any;
   forumForm: FormGroup;
   subcaregoryContent: any = {};
@@ -102,7 +102,6 @@ export class SubCategoriaComponent implements OnInit {
                     .subscribe((response) => {
                       this.CatWFavoriteSubcat = response.categories;
                       console.log('hola', this.CatWFavoriteSubcat);
-                      
 
                       //let aja: [] = response;
                       //let bool = this.CatWFavoriteSubcat.find(
@@ -148,16 +147,44 @@ export class SubCategoriaComponent implements OnInit {
     this.crearForo(this.subcategoryId, this.forumForm.value.text);
   }
 
-  //isFav(id: number) {
-    //let vart;
-    //if (this.CatWFavoriteSubcat) {
-      //vart = this.myforums.find((ob) => ob.id == id);
-      //if (vart == null) {
-        //return false;
-      //}
-      //return true;
-    //}
-  //}
+  agregarFavorito() {
+    console.log(this.subcategoryId);
+    this.waveService
+      .saveFavoriteSubCategoria(this.subcategoryId)
+      .subscribe((response) => console.log(response));
+    this.waveService.getFavoriteSubCategories().subscribe((response) => {
+      this.CatWFavoriteSubcat = response.categories;
+      console.log('hola', this.CatWFavoriteSubcat);
+      this.isFav(this.subcategoryId);
+    });
+    alert('¡Ahora estás suscrito en la subcategoría!');
+  }
+
+  isFav(id: number) {
+    
+    if (this.CatWFavoriteSubcat) {
+      for (let entry of this.CatWFavoriteSubcat) {
+        if (entry.id == this.subcategory.category.id) {
+          for (let sub of entry.subCategories) {
+            if (sub.id == id) {
+              return true;
+            }
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  isSuscribed(id: number){
+    if(this.subscribedForums){
+      for(let entry of this.subscribedForums){
+        if(entry.id == id){
+          return true;
+        }
+      }
+    }return false;
+  }
 
   get text() {
     return this.forumForm.get('text');

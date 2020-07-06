@@ -57,8 +57,8 @@ const routes: Routes = [
   { path: 'admin/categorias', component: CategoriasAdminComponent},
 
   { path: 'admin/contenido-recomendado', component: ContenidoRecomendadoComponent},
-  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
-  { path: '**', component: NotFoundComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: InicioComponent },
 ];
 
 @NgModule({

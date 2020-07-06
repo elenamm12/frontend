@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
-
+<ngx-spinner bdColor = "rgba(10,57,158,0.8)" size = "large" color = "#6be7db" type = "ball-scale-multiple" [fullScreen] = "true"><p style="color: white" > Wave... </p>
+</ngx-spinner>
 <div
   *ngFor="let cat of categories"
   style=" margin-left: auto; margin-right: auto; margin-top:2em;"
@@ -16,7 +17,8 @@
         />
         </mat-panel-title>
         <mat-panel-description  class="ordenar" style="text-align: justify; display: flex; align-items: center; width: 100%; color:black">
-          {{cat.name}}<mat-icon> add </mat-icon>
+          {{cat.name}}<mat-icon data-toggle="modal"
+          data-target="#exampleModal" (click)="catchId(cat.id)"> add </mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
     </mat-expansion-panel>
@@ -37,7 +39,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div *ngFor="let com of cat.contentCategories">
-        <div *ngIf="com.isActive">
+        <div>
         <mat-card class="example-card container head" style="margin-bottom: 1em;">
           <img mat-card-image [src]="com.image" class="encabezado" />
 
@@ -56,18 +58,19 @@
           </mat-card-content>
           <mat-card-actions>
             <button type="button"
+            (click)="preUpdate(com)"
             data-toggle="modal"
             data-target="#exampleModal"
             class="btn btn-primary"><mat-icon> create </mat-icon></button>
             
             <div *ngIf="com.isActive; else activo" style="display: inline;">
-            <button type="button"
+            <a (click)="disableContent(com.id)"
             
-            class="btn btn-primary"><mat-icon> close </mat-icon></button>
+            class="btn btn-primary"><mat-icon > close </mat-icon></a>
             </div>
-            <ng-template #activo><button type="button"
+            <ng-template #activo><button type="button" (click)="activateContent(com.id)"
             
-                class="btn btn-primary"><mat-icon> check </mat-icon></button>
+                class="btn btn-primary"><mat-icon > check </mat-icon></button>
                 </ng-template>
         </mat-card-actions>
         </mat-card>
@@ -90,9 +93,9 @@ aria-hidden="true"
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">
-        <strong> Contenido Categorías</strong>
+        <strong> {{ !this.selected.id ? 'Crear' : 'Modificar'}}</strong>
       </h5>
-      <button
+      <button (click)="reset()"
         type="button"
         class="close"
         data-dismiss="modal"
@@ -110,38 +113,66 @@ aria-hidden="true"
                     
                   </div>
                   <div class="card-body" style="width: 100%;">
-                    <form class="form-signin">
+                    <form class="form-signin" [formGroup]="contentForm" (ngSubmit)="onSaveForm()">
                       <div class="form-label-group">
-                        <input type="text" id="inputUserame" class="form-control" placeholder="Títutlo" required autofocus>
                         <label for="inputUserame">Título</label>
+                        <input [(ngModel)]= "this.selected.title" type="text" id="inputUserame" formControlName="titulo" class="form-control" placeholder="Títutlo" required autofocus>
+                        
+                      </div>
+                      <div *ngIf="titulo.invalid && titulo.dirty">
+                        <div *ngIf="titulo.errors.required" class="mat-error">
+                          Titulo es Requerido
+                        </div>
+                        <div *ngIf="titulo.errors.minlength" class="mat-error">
+                          Debe tener al menos 4 caracteres
+                        </div>    
                       </div>
         
                       <div class="form-label-group">
-                        <input type="text" class="form-control" placeholder="Descripción del contenido" required>
                         <label for="inputEmail">Descripción</label>
+                        <input [(ngModel)]= "this.selected.text" formControlName="descripcion" type="text" class="form-control" placeholder="Descripción del contenido" required>
+                        
+                      </div>
+                      <div *ngIf="descripcion.invalid && descripcion.dirty">
+                        <div *ngIf="descripcion.errors.required" class="mat-error">
+                          Descripcion es Requerida
+                        </div>
+                        <div *ngIf="descripcion.errors.minlength" class="mat-error">
+                          Debe tener al menos 4 caracteres
+                        </div>    
                       </div>
         
                       <div class="form-label-group">
-                        <input type="text" class="form-control" placeholder="Link" required>
-                        <label for="inputPassword">Dirreción al contenido recomendado</label>
+                        <label for="inputPassword">Dirección al contenido recomendado</label>
+                        <input [(ngModel)]= "this.selected.link" formControlName="link" type="text" class="form-control" placeholder="Link" required>
+                        
+                      </div>
+                      <div *ngIf="link.invalid && link.dirty">
+                        <div *ngIf="link.errors.required" class="mat-error">
+                          link es Requerida
+                        </div>
+                        <div *ngIf="link.errors.pattern" class="mat-error">
+                          Debe ser una URL valida
+                        </div>    
                       </div>
 
-                      <div class="form-label-group">
+                      <div class="form-label-group" *ngIf="!this.selected.id">
+                        <label for="inputPassword">Imagen</label>
                         <ngx-dropzone (change)="onSelect($event)">
                             <ngx-dropzone-label>Drop it</ngx-dropzone-label>
                             <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                                 <ngx-dropzone-label>archivo</ngx-dropzone-label>
                             </ngx-dropzone-preview>
                         </ngx-dropzone>
-                        <label for="inputPassword">Imagen</label>
+                        
 
                     </div>
                       
                       <br />
-                      <button class="btn btn1 btn-primary" type="submit" data-dismiss="modal" style="margin-left: 27,5%;">terminar</button>
+                      <button class="btn btn1 btn-primary" [disabled]="contentForm.invalid" type="submit" data-dismiss="modal" style="margin-left: 27,5%;" (click)="onSaveForm()">continuar</button>
                       
                       <hr class="my-4">
-                      <button class="btn btn1 btn-primary" type="submit" data-dismiss="modal" style="margin-left: 27,5%;">cancelar</button>
+                      <button class="btn btn1 btn-primary" #btnClose (click)="reset()" data-dismiss="modal" style="margin-left: 27,5%;">cancelar</button>
                     </form>
                   </div>
                 </div>

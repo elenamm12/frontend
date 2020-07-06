@@ -184,6 +184,19 @@ export class ForoComponent implements OnInit {
     });
   }
 
+  onDelete(id: number) {
+    this.waveService.DeletePost(id).subscribe((res) => {
+      if(res){
+        this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
+          this.posts = response.items;
+          this.currentPage = parseInt(response.meta.currentPage);
+          this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
+           console.log("posts", this.posts);
+           });
+        
+      }
+    });
+  }
   
 
   get text() {

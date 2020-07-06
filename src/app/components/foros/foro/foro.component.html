@@ -78,8 +78,17 @@
                               com.date | dateAgo
                             }}</time>
                           </div>
+                          
 
                           <div style="display: inline; margin-right: 7px;">
+                            <mat-icon *ngIf="user.email==com.user.email"
+                        (click)="onDelete(com.id)"
+                        [inline]="true"
+                        class="like"
+                        style="cursor: pointer;"
+                      >
+                        delete
+                      </mat-icon>
                             <mat-icon
                               (click)="putLikePost(com.id)"
                               [inline]="true"

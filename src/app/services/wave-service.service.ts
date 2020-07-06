@@ -15,8 +15,8 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root',
 })
 export class WaveServiceService {
-  //url = 'http://localhost:3000';
-  url = 'https://wave-service.herokuapp.com';
+  url = 'http://localhost:3000';
+  //url = 'https://wave-service.herokuapp.com';
 
   public token: string;
   public picture: string;
@@ -24,6 +24,7 @@ export class WaveServiceService {
   private previousUrl: string;
   private currentUrl: string;
   private authSubject = new BehaviorSubject(false);
+  
   //
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -307,4 +308,35 @@ export class WaveServiceService {
   getContentCategory(id: number): Observable<any> {
     return this.http.get(`${this.url}/content-category/category/${id}`);
   }
+
+  CreateContent(id: number, title: string, text: string, link: string): Observable<any>  {
+    return this.http.post(`${this.url}/content-category/create/category/${id}`, { text, title, link });
+  }
+
+  SavePicContent(id:number, files: File[]){
+    console.log(files[0]);
+    let file = files[0];
+    const fd = new FormData();
+    fd.append('file', file, file.name);
+    return this.http.post(`${this.url}/content-category/photo/upload/${id}`, {fd});
+  }
+
+  disableContent(id: number): Observable<any>{
+    return this.http.patch(`${this.url}/content-category/disable/${id}`, []);  
+
+  }
+
+  enableContent(id: number): Observable<any>{
+    return this.http.patch(`${this.url}/content-category/activate/${id}`, []);  
+
+  }
+
+  updateContent(id: number,  title: string, text: string, link: string): Observable<any>  {
+    console.log(id, title, text, link);
+    return this.http.post(`${this.url}/content-category/update/${id}`, { text, title, link });
+  } 
+
+
+
+
 }

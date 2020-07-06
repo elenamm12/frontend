@@ -14,8 +14,8 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root',
 })
 export class WaveServiceService {
-  //url = 'http://localhost:3000';
-  url = 'https://wave-service.herokuapp.com';
+  url = 'http://localhost:3000';
+  //url = 'https://wave-service.herokuapp.com';
 
   public token: string;
   public picture: string;
@@ -171,6 +171,12 @@ export class WaveServiceService {
     return this.http.get(`${this.url}/category/all`);
   }
 
+  AllCategories(): Observable<any> {
+    return this.http.get(`${this.url}/category/all/content`);
+  }
+
+
+
   getSubcategoryByCategory(idCategory: number): Observable<any> {
     return this.http.get(`${this.url}/sub-category/category/${idCategory}`);
   }
@@ -288,6 +294,18 @@ export class WaveServiceService {
 
   getContentCategory(id: number): Observable<any> {
     return this.http.get(`${this.url}/content-category/category/${id}`);
+  }
+
+  CreateContent(id: number, title: string, text: string, link: string): Observable<any>  {
+    return this.http.post(`${this.url}/content-category/create/category/${id}`, { title, text, link });
+  }
+
+  SavePicContent(id:number, files: File[]){
+    console.log(files[0]);
+    let file = files[0];
+    const fd = new FormData();
+    fd.append('file', file, file.name);
+    return this.http.post(`${this.url}/content-category/photo/upload/${id}`, {fd});
   }
 
 

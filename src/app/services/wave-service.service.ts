@@ -161,7 +161,6 @@ export class WaveServiceService {
     return user;
   }
 
-
   logOut() {
     localStorage.removeItem('currentToken');
     localStorage.removeItem('currentUser');
@@ -175,9 +174,20 @@ export class WaveServiceService {
     return this.http.get(`${this.url}/sub-category/category/${idCategory}`);
   }
 
-  getAllForums(currentPage: number = 1): Observable<any> {
+  getAllForums({
+    selectedIdCategory = null,
+    selectedIdSubcategory = null,
+    searchTerm = '',
+    currentPage = 1,
+  }): Observable<any> {
     //let token = localStorage.getItem('currentToken');
-    return this.http.get(`${this.url}/forum/all?page=${currentPage}`);
+    return this.http.get(
+      `${this.url}/forum/all?page=${currentPage}${
+        searchTerm ? `&searchTerm=${searchTerm}` : ''
+      }${selectedIdCategory ? `&idCategory=${selectedIdCategory}` : ''}${
+        selectedIdSubcategory ? `&idSubcategory=${selectedIdSubcategory}` : ''
+      }`
+    );
   }
 
   getForumsBySubcategory(
@@ -253,7 +263,7 @@ export class WaveServiceService {
   }
 
   DeletePost(idPost: number) {
-    alert("Se eliminará el comentario del foro")
+    alert('Se eliminará el comentario del foro');
     return this.http.delete(`${this.url}/post/delete/${idPost}`);
   }
 
@@ -289,6 +299,4 @@ export class WaveServiceService {
   getContentCategory(id: number): Observable<any> {
     return this.http.get(`${this.url}/content-category/category/${id}`);
   }
-
-
 }

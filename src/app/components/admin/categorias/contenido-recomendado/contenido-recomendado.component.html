@@ -93,7 +93,7 @@ aria-hidden="true"
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">
-        <strong> Contenido Categorías</strong>
+        <strong> {{ !this.selected.id ? 'Crear' : 'Modificar'}}</strong>
       </h5>
       <button (click)="reset()"
         type="button"

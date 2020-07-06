@@ -130,6 +130,7 @@ export class ContenidoRecomendadoComponent implements OnInit {
                                     this.selected.text, 
                                     this.selected.link ).subscribe((res)=>{
                                       if(res){
+                                        console.log(res);
                                       this.waveService.getAllCategoriesContent().subscribe((response) => {
                                         this.categories = response;
                                         console.log('categorias', this.categories);

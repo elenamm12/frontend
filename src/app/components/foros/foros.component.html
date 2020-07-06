@@ -16,21 +16,34 @@
         aria-label="Number"
         matInput
         placeholder="Busca un foro"
-        [formControl]="myControl"
-        [matAutocomplete]="auto"
-        [(ngModel)]="filterForum"
+        [ngModel]="searchText"
+        (ngModelChange)="searchTextModelChanged.next($event)"
       />
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option
-          *ngFor="let option of filteredForums | async"
-          [value]="option.title"
-        >
-          {{ option.title }}
-        </mat-option>
-      </mat-autocomplete>
+
       <mat-icon matSuffix style="color: white;">search</mat-icon>
     </mat-form-field>
   </div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select (selectionChange)="onChangeCategory($event)">
+      <mat-option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Subcategory</mat-label>
+    <mat-select (selectionChange)="onChangeSubcategory($event)">
+      <mat-option
+        *ngFor="let subcategory of subcategories"
+        [value]="subcategory.id"
+      >
+        {{ subcategory.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <div *ngFor="let foro of forums | foroFilter: filterForum" class="contenedor">
     <mat-card>
@@ -57,7 +70,11 @@
       <div *ngIf="!isFav(foro.id)">
       <mat-card-actions>
         ¡Suscríbete!
-        <mat-icon (click)="likeForo(foro.id)" class="agregar" [inline]="true" style="cursor: pointer;"
+        <mat-icon
+          (click)="likeForo(foro.id)"
+          class="agregar"
+          [inline]="true"
+          style="cursor: pointer;"
           >thumb_up</mat-icon
         >
       </mat-card-actions>

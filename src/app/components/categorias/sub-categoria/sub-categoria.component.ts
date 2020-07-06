@@ -94,7 +94,7 @@ export class SubCategoriaComponent implements OnInit {
               .subscribe((response) => {
                 console.log('suscribes', response.forums);
                 this.subscribedForums = response.forums;
-                this.waveService.getAllForums().subscribe((response) => {
+                this.waveService.getAllForums({}).subscribe((response) => {
                   this.forums = response.forums;
 
                   this.waveService

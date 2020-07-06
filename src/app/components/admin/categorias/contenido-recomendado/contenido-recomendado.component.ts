@@ -33,14 +33,6 @@ export class ContenidoRecomendadoComponent implements OnInit {
     
   }
 
-  getContenido(id: number){
-    this.waveService.getContentCategory(id).subscribe((response) => {
-      console.log(response);
-      
-    });
-  }
-
-
 	onSelect(event) {
 		console.log(event);
 		this.files.push(...event.addedFiles);

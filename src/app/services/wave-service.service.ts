@@ -336,6 +336,15 @@ export class WaveServiceService {
     return this.http.post(`${this.url}/content-category/update/${id}`, { text, title, link });
   } 
 
+  //recuperar password
+
+  generateLink(email:string):Observable<any>{
+    return this.http.post(`${this.url}/user/generate/passwordURL`, { email });
+  }
+
+ resetPassword(token, password):Observable<any>{
+  return this.http.post(`${this.url}/user/reset/password?token=${token}`, {password });
+}
 
 
 

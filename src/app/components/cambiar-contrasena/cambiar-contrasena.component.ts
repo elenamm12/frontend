@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms'
+import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms'
 import { WaveServiceService } from 'src/app/services/wave-service.service';
 
 @Component({
@@ -8,70 +8,60 @@ import { WaveServiceService } from 'src/app/services/wave-service.service';
   styleUrls: ['./cambiar-contrasena.component.scss']
 })
 export class CambiarContrasenaComponent implements OnInit {
-  private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  private   Pattern: any = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])/;
   //
   user: any; 
-  solicitud = false;
-
-  createFormGroup (){
-    return new FormGroup({
-    usuario: new FormControl('', [
-      Validators.required,
-      Validators.pattern(this.emailPattern)  
-    ]),
-    contra: new FormControl('', [
-      Validators.required,
-      Validators.minLength(7)
-    ])
-    })
-  }
+  
 
   loginForm: FormGroup;
 
+  checkPasswords(group: FormGroup) {
+    let pass = group.controls.contra.value;
+    let confirmPass = group.controls.contraconf.value;
 
-  constructor(private waveService: WaveServiceService) { 
-    this.loginForm = this.createFormGroup();
+    return pass === confirmPass ? null : { notSame: true };
+  }
+
+
+  constructor(private waveService: WaveServiceService, private formBuilder: FormBuilder,) { 
+    this.loginForm = this.formBuilder.group(
+      {
+       
+        contra: new FormControl('', [
+          Validators.required,
+          Validators.minLength(7),
+          Validators.maxLength(10),
+          Validators.pattern(this.Pattern)
+        ]),
+        contraconf: new FormControl(''),
+        categorias: this.formBuilder.array([]),
+        tipoCuenta: new FormControl('', Validators.required),
+      },
+      { validator: [this.checkPasswords] }
+    );
   }
 
 
   ngOnInit() {
-   //this.waveService.getAll()
-   //.subscribe(users => this.users = users); 
+  
   }
 
   onResetForm() {
     this.loginForm.reset();
   }
 
-  onLogIn(){
-    this.waveService.loginUser(this.loginForm.value.usuario, this.loginForm.value.contra)
-    .subscribe(data=>{ 
-      console.log(data);
-    },
-    error => console.log(error) 
-    )
-  }
-
-  cambio(){
-    this.solicitud = false;
-  }
+  
 
   onSaveForm(){
-   /* if(this.loginForm.valid){
-    console.log(this.loginForm.value);
-    this.waveService.loginUserMock(this.loginForm.value.usuario, this.loginForm.value.contra);
-    this.onResetForm();
-    }else{
-      console.log('No Valido');
-    }*/
+  
   }
-
-  get usuario(){
-    return this.loginForm.get('usuario')
-  };
 
   get contra(){
     return this.loginForm.get('contra')
+  };
+
+  get contraconf(){
+    return this.loginForm.get('contraconf')
   };
 
 }

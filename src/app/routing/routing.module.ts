@@ -20,17 +20,19 @@ import { PictureComponent } from '../components/picture/picture.component';
 import { UsuarioComponent } from '../components/usuario/usuario.component';
 import { PictureForoComponent } from '../components/picture-foro/picture-foro.component';
 import { CategoriasAdminComponent } from '../components/admin/categorias-admin/categorias-admin.component';
+import { LostPasswordComponent } from '../components/lost-password/lost-password.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
-  { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
+  { path: 'reset/password', component: CambiarContrasenaComponent },
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
   { path: 'favoritas', component: FavoritasComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'picture', component: PictureComponent, canActivate: [AuthGuard] },
   { path: 'crear-foro', component: CrearForoComponent, canActivate: [AuthGuard] },
   { path: 'picture-foro/:id', component: PictureForoComponent, canActivate: [AuthGuard] },
+  { path: 'cambiar-contrasena', component:LostPasswordComponent},
   {
     path: 'perfil-usuario',
     component: UsuarioComponent,

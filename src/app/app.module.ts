@@ -38,6 +38,7 @@ import { NavbarComponent } from './components/admin/navbar/navbar.component';
 import { ContenidoRecomendadoComponent } from './components/admin/categorias/contenido-recomendado/contenido-recomendado.component';
 import { CategoriasAdminComponent } from './components/admin/categorias-admin/categorias-admin.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { LostPasswordComponent } from './components/lost-password/lost-password.component';
 
 const config: SocketIoConfig = {
   url: 'https://wave-service.herokuapp.com',
@@ -71,6 +72,7 @@ const config: SocketIoConfig = {
     NavbarComponent,
     ContenidoRecomendadoComponent,
     CategoriasAdminComponent,
+    LostPasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,12 @@
 
 <div class="separador"></div>
 
+<div style="padding-top: 5.5em; margin-left:5%; color:grey">
+  <a>
+    <mat-icon class="volver">keyboard_backspace</mat-icon>
+  </a>
+</div>
+
 <form class="example-form">
   <mat-form-field class="example-full-width" appearance="outline">
     <mat-label>Encuentra el foro que buscas</mat-label>
@@ -53,20 +59,6 @@
       </mat-card-content>
     </strong>
   </mat-card>
-</div>
-
-<div *ngFor="let cat of CatWFavoriteSubcat">
-  <div *ngFor="let sub of cat.subCategories">
-    <div *ngIf="sub.id == subcategoryId">
-      <a
-        class="btn btn-primary abajo"
-        data-toggle="modal"
-        data-target="#exampleModal"
-      >
-        crear foro
-    </a>
-    </div>
-  </div>
 </div>
 
 <div *ngFor="let cat of CatWFavoriteSubcat">

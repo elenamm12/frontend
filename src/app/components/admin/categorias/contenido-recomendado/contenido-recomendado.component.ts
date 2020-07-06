@@ -20,6 +20,7 @@ export class ContenidoRecomendadoComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
   categories: any;
   panelOpenState = false;
+  contenido: any;
 
   createFormGroup (){
     return new FormGroup({
@@ -49,7 +50,7 @@ export class ContenidoRecomendadoComponent implements OnInit {
 
   ngOnInit(): void {
 
-      this.waveService.getAllCategories().subscribe((response) => {
+      this.waveService.getAllCategoriesContent().subscribe((response) => {
         this.categories = response;
         console.log('categorias', this.categories);
       });
@@ -59,6 +60,13 @@ export class ContenidoRecomendadoComponent implements OnInit {
   catchId(id){
     this.categoryId=id;
   }
+  getContenido(id: number){
+    this.waveService.getContentCategory(id).subscribe((response) => {
+      console.log(response);
+      
+    });
+  }
+
 
 	onSelect(event) {
 		console.log(event);

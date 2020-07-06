@@ -197,6 +197,7 @@ export class ForoComponent implements OnInit {
       }
     });
   }
+  
 
   get text() {
     return this.postForm.get('text');

@@ -17,6 +17,8 @@ export class ForosComponent implements OnInit {
   myControl = new FormControl();
   currentPage: number = 1;
   nextPage: boolean = false;
+  myforums: any;
+  notMyforums: any[] = [];
 
   constructor(
     private waveService: WaveServiceService,
@@ -30,6 +32,17 @@ export class ForosComponent implements OnInit {
       this.forums = response.items;
       this.currentPage = parseInt(response.meta.currentPage);
       this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
+      this.waveService.getForumsPostsByUser().subscribe((res) => {
+        this.myforums = res.forums;
+        console.log(this.myforums);
+        let vart;
+        for (let entry of this.forums) {
+          vart = this.myforums.find((ob) => ob.id == entry.id);
+          if (vart == null) {
+            this.notMyforums.push(entry);
+          }
+        }
+      });
     });
 
     this.filteredForums = this.myControl.valueChanges.pipe(
@@ -60,7 +73,11 @@ export class ForosComponent implements OnInit {
     this.waveService.likeForum(id).subscribe((res) => {
       if (res) {
         console.log(res);
-        alert("¡Ahora estás suscrito en el foro!")
+        this.waveService.getForumsPostsByUser().subscribe((res) => {
+          this.myforums = res.forums;
+          console.log(this.myforums);
+        });
+        alert('¡Ahora estás suscrito en el foro!');
       }
     });
   }
@@ -71,5 +88,16 @@ export class ForosComponent implements OnInit {
         console.log(res);
       }
     });
+  }
+
+  isFav(id: number) {
+    let vart;
+    if (this.myforums) {
+      vart = this.myforums.find((ob) => ob.id == id);
+      if (vart == null) {
+        return false;
+      }
+      return true;
+    }
   }
 }

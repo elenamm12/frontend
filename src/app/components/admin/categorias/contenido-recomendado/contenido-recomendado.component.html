@@ -39,7 +39,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div *ngFor="let com of cat.contentCategories">
-        <div *ngIf="com.isActive">
+        <div>
         <mat-card class="example-card container head" style="margin-bottom: 1em;">
           <img mat-card-image [src]="com.image" class="encabezado" />
 
@@ -58,18 +58,19 @@
           </mat-card-content>
           <mat-card-actions>
             <button type="button"
+            (click)="preUpdate(com)"
             data-toggle="modal"
             data-target="#exampleModal"
             class="btn btn-primary"><mat-icon> create </mat-icon></button>
             
             <div *ngIf="com.isActive; else activo" style="display: inline;">
-            <button type="button"
+            <a (click)="disableContent(com.id)"
             
-            class="btn btn-primary"><mat-icon> close </mat-icon></button>
+            class="btn btn-primary"><mat-icon > close </mat-icon></a>
             </div>
-            <ng-template #activo><button type="button"
+            <ng-template #activo><button type="button" (click)="activateContent(com.id)"
             
-                class="btn btn-primary"><mat-icon> check </mat-icon></button>
+                class="btn btn-primary"><mat-icon > check </mat-icon></button>
                 </ng-template>
         </mat-card-actions>
         </mat-card>
@@ -94,7 +95,7 @@ aria-hidden="true"
       <h5 class="modal-title" id="exampleModalLabel">
         <strong> Contenido Categorías</strong>
       </h5>
-      <button
+      <button (click)="reset()"
         type="button"
         class="close"
         data-dismiss="modal"
@@ -115,7 +116,7 @@ aria-hidden="true"
                     <form class="form-signin" [formGroup]="contentForm" (ngSubmit)="onSaveForm()">
                       <div class="form-label-group">
                         <label for="inputUserame">Título</label>
-                        <input type="text" id="inputUserame" formControlName="titulo" class="form-control" placeholder="Títutlo" required autofocus>
+                        <input [(ngModel)]= "this.selected.title" type="text" id="inputUserame" formControlName="titulo" class="form-control" placeholder="Títutlo" required autofocus>
                         
                       </div>
                       <div *ngIf="titulo.invalid && titulo.dirty">
@@ -129,7 +130,7 @@ aria-hidden="true"
         
                       <div class="form-label-group">
                         <label for="inputEmail">Descripción</label>
-                        <input formControlName="descripcion" type="text" class="form-control" placeholder="Descripción del contenido" required>
+                        <input [(ngModel)]= "this.selected.text" formControlName="descripcion" type="text" class="form-control" placeholder="Descripción del contenido" required>
                         
                       </div>
                       <div *ngIf="descripcion.invalid && descripcion.dirty">
@@ -142,8 +143,8 @@ aria-hidden="true"
                       </div>
         
                       <div class="form-label-group">
-                        <label for="inputPassword">Dirreción al contenido recomendado</label>
-                        <input formControlName="link" type="text" class="form-control" placeholder="Link" required>
+                        <label for="inputPassword">Dirección al contenido recomendado</label>
+                        <input [(ngModel)]= "this.selected.link" formControlName="link" type="text" class="form-control" placeholder="Link" required>
                         
                       </div>
                       <div *ngIf="link.invalid && link.dirty">
@@ -155,7 +156,7 @@ aria-hidden="true"
                         </div>    
                       </div>
 
-                      <div class="form-label-group">
+                      <div class="form-label-group" *ngIf="!this.selected.id">
                         <label for="inputPassword">Imagen</label>
                         <ngx-dropzone (change)="onSelect($event)">
                             <ngx-dropzone-label>Drop it</ngx-dropzone-label>
@@ -171,7 +172,7 @@ aria-hidden="true"
                       <button class="btn btn1 btn-primary" [disabled]="contentForm.invalid" type="submit" data-dismiss="modal" style="margin-left: 27,5%;" (click)="onSaveForm()">continuar</button>
                       
                       <hr class="my-4">
-                      <button class="btn btn1 btn-primary" data-dismiss="modal" style="margin-left: 27,5%;">cancelar</button>
+                      <button class="btn btn1 btn-primary" #btnClose (click)="reset()" data-dismiss="modal" style="margin-left: 27,5%;">cancelar</button>
                     </form>
                   </div>
                 </div>

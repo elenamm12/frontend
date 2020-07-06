@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { WaveServiceService } from 'src/app/services/wave-service.service';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Router, ActivatedRoute,  NavigationEnd } from '@angular/router';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
-import { map, startWith } from 'rxjs/operators';
-
 @Component({
   selector: 'app-foros',
   templateUrl: './foros.component.html',
@@ -21,6 +20,14 @@ export class ForosComponent implements OnInit {
   notMyforums: any[] = [];
   currentUrl: string;
   previousUrl: string;
+  categories: any[];
+  subcategories: any[];
+  selectedIdCategory: number;
+  selectedIdSubcategory: number;
+  searchTermText: string;
+  searchText: string;
+  searchTextModelChanged: Subject<string> = new Subject<string>();
+  searchTextModelChangeSubscription: Subscription;
 
   constructor(
     private waveService: WaveServiceService,
@@ -30,8 +37,28 @@ export class ForosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.searchTextModelChangeSubscription = this.searchTextModelChanged
+      .pipe(debounceTime(350), distinctUntilChanged())
+      .subscribe((newText) => {
+        this.searchTermText = newText;
+        this.waveService
+          .getAllForums({
+            selectedIdCategory: this.selectedIdCategory,
+            selectedIdSubcategory: this.selectedIdSubcategory,
+            searchTerm: this.searchTermText,
+          })
+          .subscribe(
+            (response) => {
+              this.forums = response.items;
+              this.currentPage = parseInt(response.meta.currentPage);
+              this.nextPage =
+                this.currentPage !== parseInt(response.meta.totalPages);
+            },
+            (err) => console.log(err)
+          );
+      });
     // Carga todos los Foros
-    this.waveService.getAllForums().subscribe((response) => {
+    this.waveService.getAllForums({}).subscribe((response) => {
       this.forums = response.items;
       this.currentPage = parseInt(response.meta.currentPage);
       this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
@@ -48,31 +75,63 @@ export class ForosComponent implements OnInit {
       });
     });
 
-    this.filteredForums = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value))
-    );
 
     this.previousUrl = this.waveService.getPreviousUrl();
 
+    this.waveService.getAllCategories().subscribe((response) => {
+      this.categories = response;
+    });
   }
 
-  traerMasForos() {
+  onChangeCategory(target) {
+    this.selectedIdCategory = target.value;
     this.waveService
-      .getAllForums(this.currentPage + 1)
+      .getAllForums({
+        selectedIdCategory: this.selectedIdCategory,
+        searchTerm: this.searchTermText,
+      })
       .subscribe((response) => {
-        this.forums = this.forums.concat(response.items);
+        console.log(response);
+        this.forums = response.items;
+        this.currentPage = parseInt(response.meta.currentPage);
+        this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
+      });
+    this.waveService
+      .getSubcategoryByCategory(this.selectedIdCategory)
+      .subscribe((response) => {
+        this.subcategories = response.subCategories;
+      });
+  }
+
+  onChangeSubcategory(target) {
+    this.selectedIdSubcategory = target.value;
+    this.waveService
+      .getAllForums({
+        selectedIdCategory: this.selectedIdCategory,
+        selectedIdSubcategory: this.selectedIdSubcategory,
+        searchTerm: this.searchTermText,
+      })
+      .subscribe((response) => {
+        console.log(response);
+        this.forums = response.items;
         this.currentPage = parseInt(response.meta.currentPage);
         this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
       });
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.forums.filter((option) =>
-      option.title.toLowerCase().includes(filterValue)
-    );
+  traerMasForos() {
+    this.waveService
+      .getAllForums({
+        selectedIdCategory: this.selectedIdCategory,
+        selectedIdSubcategory: this.selectedIdSubcategory,
+        searchTerm: this.filterForum,
+        currentPage: this.currentPage + 1,
+      })
+      .subscribe((response) => {
+        this.forums = this.forums.concat(response.items);
+        this.currentPage = parseInt(response.meta.currentPage);
+        this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
+      });
   }
 
   likeForo(id: number) {

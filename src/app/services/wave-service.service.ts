@@ -15,8 +15,8 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root',
 })
 export class WaveServiceService {
-  url = 'http://localhost:3000';
-  //url = 'https://wave-service.herokuapp.com';
+  //url = 'http://localhost:3000';
+  url = 'https://wave-service.herokuapp.com';
 
   public token: string;
   public picture: string;
@@ -194,9 +194,20 @@ export class WaveServiceService {
     return this.http.get(`${this.url}/sub-category/category/${idCategory}`);
   }
 
-  getAllForums(currentPage: number = 1): Observable<any> {
+  getAllForums({
+    selectedIdCategory = null,
+    selectedIdSubcategory = null,
+    searchTerm = '',
+    currentPage = 1,
+  }): Observable<any> {
     //let token = localStorage.getItem('currentToken');
-    return this.http.get(`${this.url}/forum/all?page=${currentPage}`);
+    return this.http.get(
+      `${this.url}/forum/all?page=${currentPage}${
+        searchTerm ? `&searchTerm=${searchTerm}` : ''
+      }${selectedIdCategory ? `&idCategory=${selectedIdCategory}` : ''}${
+        selectedIdSubcategory ? `&idSubcategory=${selectedIdSubcategory}` : ''
+      }`
+    );
   }
 
   getForumsBySubcategory(

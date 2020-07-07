@@ -147,6 +147,36 @@ export class SubCategoriaComponent implements OnInit {
     this.crearForo(this.subcategoryId, this.forumForm.value.text);
   }
 
+  likeForo(id: number) {
+    this.waveService.likeForum(id).subscribe((res) => {
+      if (res) {
+        console.log(res);
+        this.waveService
+              .getFavoritesForums(this.subcategoryId)
+              .subscribe((response) => {
+                console.log('suscribes', response.forums);
+                this.subscribedForums = response.forums;
+        });
+        alert('¡Ahora estás suscrito en el foro!');
+      }
+    });
+  }
+
+  dislikeForo(id: number) {
+    this.waveService.dislikeForum(id).subscribe((res) => {
+      if (res) {
+        console.log(res);
+        this.waveService
+              .getFavoritesForums(this.subcategoryId)
+              .subscribe((response) => {
+                console.log('suscribes', response.forums);
+                this.subscribedForums = response.forums;
+        });
+        alert('¡Ya no estás suscrito en el foro!');
+      }
+    });
+  }
+
   agregarFavorito() {
     console.log(this.subcategoryId);
     this.waveService

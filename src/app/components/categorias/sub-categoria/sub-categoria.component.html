@@ -85,8 +85,21 @@
   <div></div>
 
   <div *ngFor="let foro of subscribedForums" class="foros">
-    <a routerLink="/foro/{{ foro.id }}"
-      ><mat-card class="foros1">
+    
+    
+      
+      <mat-card class="foros1" style="text-align: right; padding-top: 4px !important">
+        <mat-card-actions style="padding:0 !important; margin:0 !important">
+          <mat-icon
+            (click)="dislikeForo(foro.id)"
+            class="agregar"
+            [inline]="true"
+            style="cursor: pointer; color: red;"
+            >favorite</mat-icon
+          >
+        </mat-card-actions>
+        <a routerLink="/foro/{{ foro.id }}"
+      >
         <div
           *ngIf="foro.image != null && foro.image != undefined; else sinFoto"
           class="ordenar"
@@ -107,9 +120,9 @@
               {{ foro.title }}
             </p>
           </div>
-        </ng-template>
-      </mat-card></a
-    >
+        </ng-template></a
+        >
+      </mat-card>
   </div>
 </div>
 <hr />
@@ -120,9 +133,20 @@
 
 <div *ngFor="let foro of favoriteForums" class="foros">
   <div *ngIf="!isSuscribed(foro.id)">
-  <a routerLink="/foro/{{ foro.id }}"
-    ><mat-card class="foros1"
-      ><div
+  <mat-card class="foros1" style="text-align: right; padding-top: 4px !important"
+      >       
+     <mat-card-actions  style="padding:0 !important; margin:0 !important">
+        <mat-icon
+          (click)="likeForo(foro.id)"
+          class="agregar"
+          [inline]="true"
+          style="cursor: pointer; color: red;"
+          >favorite_border</mat-icon
+        >
+      </mat-card-actions>
+      <a routerLink="/foro/{{ foro.id }}"
+    >
+      <div
         *ngIf="foro.image != null && foro.image != undefined; else sinFoto"
         class="ordenar"
       >
@@ -139,8 +163,9 @@
           <p style="align-self: center;">{{ foro.title }}</p>
         </div>
       </ng-template>
-    </mat-card></a
-  ></div>
+      </a
+  >
+    </mat-card></div>
 </div>
 
 <button

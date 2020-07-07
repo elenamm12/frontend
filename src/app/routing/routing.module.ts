@@ -21,17 +21,20 @@ import { UsuarioComponent } from '../components/usuario/usuario.component';
 import { PictureForoComponent } from '../components/picture-foro/picture-foro.component';
 import { CategoriasAdminComponent } from '../components/admin/categorias-admin/categorias-admin.component';
 import { RegistrarAdminComponent } from '../components/admin/registrar-admin/registrar-admin.component';
+import { LostPasswordComponent } from '../components/lost-password/lost-password.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'iniciar-sesion', component: IniciarSesionComponent },
-  { path: 'cambiar-contrasena', component: CambiarContrasenaComponent },
+  { path: 'reset/password', component: CambiarContrasenaComponent },
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
   { path: 'favoritas', component: FavoritasComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'picture', component: PictureComponent, canActivate: [AuthGuard] },
   { path: 'crear-foro', component: CrearForoComponent, canActivate: [AuthGuard] },
   { path: 'picture-foro/:id', component: PictureForoComponent, canActivate: [AuthGuard] },
+  { path: 'cambiar-contrasena', component:LostPasswordComponent},
   {
     path: 'perfil-usuario',
     component: UsuarioComponent,
@@ -54,12 +57,19 @@ const routes: Routes = [
   },
   { path: 'foros', component: ForosComponent, canActivate: [AuthGuard] },
   { path: 'foro/:id', component: ForoComponent, canActivate: [AuthGuard] },
-  { path: 'admin', component: AdminComponent },
-  { path: 'admin/categorias', component: CategoriasAdminComponent},
+  { path: 'admin', component: AdminComponent
+  //, canActivate: [AdminGuard] 
+},
+  { path: 'admin/categorias', component: CategoriasAdminComponent
+ // ,  canActivate: [AdminGuard]
+},
 
   { path: 'admin/contenido-recomendado', component: ContenidoRecomendadoComponent},
   { path: 'admin/registrar-admin', component: RegistrarAdminComponent},
 
+  { path: 'admin/contenido-recomendado', component: ContenidoRecomendadoComponent
+//  ,  canActivate: [AdminGuard]
+},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: InicioComponent },
 ];

@@ -187,10 +187,10 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   onSaveForm() {
     if (this.registerForm.valid) {
-      this.spinner.show();
-      console.log(this.registerForm.value);
+      
       if (this.registerForm.value.tipoCuenta == 'Premium') {
         if (this.token) {
+          this.spinner.show();
           console.log(this.registerForm.value)
           this.waveService
             .registerUser(
@@ -203,18 +203,19 @@ export class RegistrarUsuarioComponent implements OnInit {
               this.registerForm.value.tipoCuenta
             )
             .subscribe((data) => {
-              if (data) {
-                console.log(data);
-                this.router.navigate(['/picture']);
-                this.spinner.hide();
-              } else {
-                alert('¡El usuario ya existe!');
-              }
+              console.log(data);
+              this.router.navigate(['/picture']);
+              this.spinner.hide();
+            },
+            (error)=>{
+              alert("El usuario ya se encuentra registrado");
+              this.spinner.hide();
             });
         } else {
           alert('Debe pagar primero para obtener su cuenta Premium');
         }
       } else {
+        this.spinner.show();
         console.log(this.registerForm.value)
         this.waveService
           .registerUser(
@@ -229,6 +230,11 @@ export class RegistrarUsuarioComponent implements OnInit {
           .subscribe((data) => {
             console.log(data);
             this.router.navigate(['/picture']);
+            this.spinner.hide();
+          },
+          (error)=>{
+            alert("El usuario ya se encuentra registrado");
+            this.spinner.hide();
           });
       }
     } else {

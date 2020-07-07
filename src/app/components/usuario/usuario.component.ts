@@ -181,7 +181,11 @@ export class UsuarioComponent implements OnInit {
   }
   premiumTrue() {
     if (this.token) {
-      this.user.role = 'premium';
+      this.user.role = 'Premium';
+      this.waveService.becomePremium(this.user.email).subscribe((res)=>{
+        console.log(res);
+      });
+
     } else {
       alert('No Pagado');
     }

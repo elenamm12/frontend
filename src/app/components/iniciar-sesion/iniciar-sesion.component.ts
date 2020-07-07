@@ -49,30 +49,25 @@ export class IniciarSesionComponent implements OnInit {
   onSaveForm() {
     if (this.loginForm.valid) {
       this.spinner.show();
-      this.waveService
-        .loginUser(this.loginForm.value.usuario, this.loginForm.value.contra)
-        .subscribe(
-          (data) => {
-            if (data) {
-              console.log(data);
-              if (data.user.role == 'normal' || data.user.role == 'premium') {
-                this.router.navigate(['/home']);
-                this.spinner.hide();
-              }
-              if (data.user.role == 'admin') {
-                this.router.navigate(['/admin']);
-                this.spinner.hide();
-              }
-            } else {
-              alert('Usuario no válido, volver a intentar');
-            }
-          },
-
-          (error) => console.log(error)
-        );
-      this.onResetForm();
-    } else {
-      alert('Usuario no válido, volver a intentar');
+      this.waveService.loginUser(this.loginForm.value.usuario, this.loginForm.value.contra)
+      .subscribe(data=>{ 
+        console.log(data);
+        if((data.user.role=='normal'||data.user.role=='premium')){
+        this.router.navigate(['/home']);
+        this.spinner.hide();
+        }if(data.user.role=='admin'){
+          this.router.navigate(['/admin']);
+          this.spinner.hide();
+        }
+      },
+      
+      error => {
+        this.spinner.hide();
+        alert("Usuario o Contraseña incorrectos")} 
+      )  
+    this.onResetForm();
+    }else{
+      alert('Usuario no válido, vuela a intentar');
     }
   }
 

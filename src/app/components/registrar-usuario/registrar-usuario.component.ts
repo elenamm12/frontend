@@ -229,6 +229,7 @@ export class RegistrarUsuarioComponent implements OnInit {
           .subscribe((data) => {
             console.log(data);
             this.router.navigate(['/picture']);
+            this.spinner.hide();
           });
       }
     } else {

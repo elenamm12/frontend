@@ -6,7 +6,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ContentCategory } from 'src/app/model/content';
 
-
 @Component({
   selector: 'app-contenido-recomendado',
   templateUrl: './contenido-recomendado.component.html',
@@ -17,13 +16,13 @@ export class ContenidoRecomendadoComponent implements OnInit {
   categoryById: any;
   files: File[] = [];
   contentForm: FormGroup;
-  pattern = /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/
-  public selected: ContentCategory={
-    id:null,
-    title:null,
-    text:null,
-    link:null,
-    image:null
+  pattern = /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/;
+  public selected: ContentCategory = {
+    id: null,
+    title: null,
+    text: null,
+    link: null,
+    image: null,
   };
 
   @ViewChild('btnClose') btnClose: ElementRef;
@@ -32,25 +31,25 @@ export class ContenidoRecomendadoComponent implements OnInit {
   panelOpenState = false;
   contenido: any;
 
-  createFormGroup (){
+  createFormGroup() {
     return new FormGroup({
-
-    titulo: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4)
-    ]),
-    descripcion: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4)
-    ]),
-    link: new FormControl('', [
-      Validators.required,
-      Validators.pattern(this.pattern)
-    ])
-    })
+      titulo: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      descripcion: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      link: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this.pattern),
+      ]),
+    });
   }
 
-  constructor(private spinner: NgxSpinnerService,
+  constructor(
+    private spinner: NgxSpinnerService,
     private waveService: WaveServiceService,
     private route: ActivatedRoute,
     private router: Router
@@ -59,146 +58,141 @@ export class ContenidoRecomendadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-      this.waveService.getAllCategoriesContent().subscribe((response) => {
-        this.categories = response;
-        console.log('categorias', this.categories);
-      });
-    
-  }
-
-  catchId(id){
-    this.categoryId=id;
-  }
-  getContenido(id: number){
-    this.waveService.getContentCategory(id).subscribe((response) => {
-      console.log(response);
-      
+    this.waveService.getAllCategoriesContent().subscribe((response) => {
+      this.categories = response;
+      console.log('categorias', this.categories);
     });
   }
 
-
-	onSelect(event) {
-		console.log(event);
-		this.files.push(...event.addedFiles);
-	}
-
-	onRemove(event) {
-		console.log(event);
-		this.files.splice(this.files.indexOf(event), 1);
+  catchId(id) {
+    this.categoryId = id;
   }
-  
-  onSaveForm(){
-  if(!this.selected.id){
-    if(this.contentForm.valid){
-      
-      this.spinner.show();
-      this.waveService.CreateContent(this.categoryId, 
-                                    this.contentForm.value.titulo, 
-                                    this.contentForm.value.descripcion, 
-                                    this.contentForm.value.link ).subscribe((res)=>{
-                                    if(res){
-                                      //this.waveService.SavePicContent(res.content.id, this.files).subscribe
-                                     // ((res)=>{
-                                      //  if(res){
-                                      //  console.log(res)
-                                      this.waveService.getAllCategoriesContent().subscribe((response) => {
-                                        this.categories = response;
-                                        console.log('categorias', this.categories);
-                                        this.spinner.hide();
-                                        this.btnClose.nativeElement.click();
-                                       
-                                      });
-                                       
-                                      // }
-                                       // else{ this.spinner.hide();}
-                                     // })
-                                      
-                                    }
+  getContenido(id: number) {
+    this.waveService.getContentCategory(id).subscribe((response) => {
+      console.log(response);
+    });
+  }
 
-                                    })
-                                    ;
-                                    
-      
-    }
-  }else{
-    if(this.contentForm.valid){
-      
-      this.spinner.show();
-      this.waveService.updateContent(this.selected.id, 
-                                    this.selected.title, 
-                                    this.selected.text, 
-                                    this.selected.link ).subscribe((res)=>{
-                                      if(res){
-                                        console.log(res);
-                                      this.waveService.getAllCategoriesContent().subscribe((response) => {
-                                        this.categories = response;
-                                        console.log('categorias', this.categories);
-                                        this.spinner.hide();
-                                        this.btnClose.nativeElement.click();
-                                      });}
+  onSelect(event) {
+    console.log(event);
+    this.files.push(...event.addedFiles);
+  }
 
-                                    })
-                                    ;
-                                    
+  onRemove(event) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  onSaveForm() {
+    if (!this.selected.id) {
+      if (this.contentForm.valid) {
+        this.spinner.show();
+        this.waveService
+          .CreateContent(
+            this.categoryId,
+            this.contentForm.value.titulo,
+            this.contentForm.value.descripcion,
+            this.contentForm.value.link
+          )
+          .subscribe((res) => {
+            if (res) {
+              //this.waveService.SavePicContent(res.content.id, this.files).subscribe
+              // ((res)=>{
+              //  if(res){
+              //  console.log(res)
+              this.waveService
+                .getAllCategoriesContent()
+                .subscribe((response) => {
+                  this.categories = response;
+                  console.log('categorias', this.categories);
+                  this.spinner.hide();
+                  this.btnClose.nativeElement.click();
+                });
+
+              // }
+              // else{ this.spinner.hide();}
+              // })
+            }
+          });
+      }
+    } else {
+      if (this.contentForm.valid) {
+        this.spinner.show();
+        this.waveService
+          .updateContent(
+            this.selected.id,
+            this.selected.title,
+            this.selected.text,
+            this.selected.link
+          )
+          .subscribe((res) => {
+            if (res) {
+              console.log(res);
+              this.waveService
+                .getAllCategoriesContent()
+                .subscribe((response) => {
+                  this.categories = response;
+                  console.log('categorias', this.categories);
+                  this.spinner.hide();
+                  this.btnClose.nativeElement.click();
+                });
+            }
+          });
+
+        this.contentForm.reset();
+        this.btnClose.nativeElement.click();
+      }
       this.contentForm.reset();
-      this.btnClose.nativeElement.click();
     }
-    this.contentForm.reset();
   }
 
-  }
-
-  disableContent(id: number){
+  disableContent(id: number) {
     this.spinner.show();
-    this.waveService.disableContent(id).subscribe((data)=>{
+    this.waveService.disableContent(id).subscribe((data) => {
       console.log(data);
       this.waveService.getAllCategoriesContent().subscribe((response) => {
         this.categories = response;
         console.log('categorias', this.categories);
         this.spinner.hide();
       });
-    })
+    });
   }
 
-  activateContent(id: number){
+  activateContent(id: number) {
     this.spinner.show();
-    this.waveService.enableContent(id).subscribe((data)=>{
+    this.waveService.enableContent(id).subscribe((data) => {
       console.log(data);
       this.waveService.getAllCategoriesContent().subscribe((response) => {
         this.categories = response;
         console.log('categorias', this.categories);
         this.spinner.hide();
       });
-    })
+    });
   }
 
-  preUpdate(content: any){
-      this.selected = Object.assign({},content);
-      console.log(this.selected);
-      
-      
+  preUpdate(content: any) {
+    this.selected = Object.assign({}, content);
+    console.log(this.selected);
   }
 
-  reset(){
+  reset() {
     this.contentForm.reset();
-    this.selected={
-      id:null,
-      title:null,
-      text:null,
-      link:null,
-      image:null
-    }; 
+    this.selected = {
+      id: null,
+      title: null,
+      text: null,
+      link: null,
+      image: null,
+    };
   }
 
-  get titulo(){
-    return this.contentForm.get('titulo')
-  };
-  get descripcion(){
-    return this.contentForm.get('descripcion')
-  };
-  get link(){
-    return this.contentForm.get('link')
-  };
-  
+  get titulo() {
+    return this.contentForm.get('titulo');
+  }
+  get descripcion() {
+    return this.contentForm.get('descripcion');
+  }
+  get link() {
+    return this.contentForm.get('link');
+  }
 }

@@ -20,6 +20,7 @@ import { PictureComponent } from '../components/picture/picture.component';
 import { UsuarioComponent } from '../components/usuario/usuario.component';
 import { PictureForoComponent } from '../components/picture-foro/picture-foro.component';
 import { CategoriasAdminComponent } from '../components/admin/categorias-admin/categorias-admin.component';
+import { RegistrarAdminComponent } from '../components/admin/registrar-admin/registrar-admin.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -57,6 +58,8 @@ const routes: Routes = [
   { path: 'admin/categorias', component: CategoriasAdminComponent},
 
   { path: 'admin/contenido-recomendado', component: ContenidoRecomendadoComponent},
+  { path: 'admin/registrar-admin', component: RegistrarAdminComponent},
+
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: InicioComponent },
 ];

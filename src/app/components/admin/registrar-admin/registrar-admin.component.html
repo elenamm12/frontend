@@ -1,0 +1,108 @@
+<app-navbar></app-navbar>
+
+<h5 class="modal-title" id="exampleModalLabel" style="margin-left: 4%; margin-top:3%">
+    <strong> Registrar Administrador </strong>
+  </h5>
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card card-signin flex-row my-5" style="margin-top: 1rem !important">
+          <div class="card-img-left d-none d-md-flex"></div>
+          <div class="card-body" style="width: 100%;">
+            <form
+              class="form-signin"
+            >
+            <div class="form-label-group">
+                <label for="inputNombre">Nombres</label>
+                <input
+                  type="text"
+                  id="inputNombre"
+                  class="form-control"
+                  placeholder="Nombres"
+                  required
+                  autofocus
+                />
+              </div>
+              <div class="form-label-group">
+                <label for="inputApellido">Apellidos</label>
+                <input
+                  type="text"
+                  id="inputApellido"
+                  class="form-control"
+                  placeholder="Apellidos"
+                  required
+                  autofocus
+                />
+              </div>
+              <div class="form-label-group">
+                <label for="inputCorreo">Correo</label>
+                <input
+                  type="text"
+                  id="inputCorreo"
+                  class="form-control"
+                  placeholder="Correo"
+                  required
+                  autofocus
+                />
+              </div>
+              <div class="form-label-group">
+                <label for="inputUserame">Usuario</label>
+                <input
+                  type="text"
+                  id="inputUserame"
+                  class="form-control"
+                  placeholder="Usuario"
+                  required
+                  autofocus
+                />
+              </div>
+
+              <div class="form-label-group">
+                <label for="inputContrasena">Contraseña</label>
+                <input
+                  type="text"
+                  id="inputContrasena"
+                  class="form-control"
+                  placeholder="Contraseña"
+                  required
+                  autofocus
+                />
+              </div>
+              <div class="form-label-group">
+                <label for="inputContrasena2">Repetir contraseña</label>
+                <input
+                  type="text"
+                  id="inputContrasena2"
+                  class="form-control"
+                  placeholder="Repetir contraseña"
+                  required
+                  autofocus
+                />
+              </div>              
+
+              <br />
+              <button
+                class="btn btn1 btn-primary"
+                type="submit"
+                style="margin-left: 27, 5%;"
+                
+              >
+                continuar
+              </button>
+
+              <hr class="my-4" />
+              <button
+                class="btn btn1 btn-primary"
+               
+                routerLink="/admin"
+                style="margin-left: 27, 5%;"
+              >
+                cancelar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

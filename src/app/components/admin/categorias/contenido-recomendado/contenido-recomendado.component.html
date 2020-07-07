@@ -104,6 +104,7 @@
               <button
               type="button"
               data-toggle="modal"
+              (click)="preUpdate(com)"
               data-target="#exampleModal2"
               class="btn btn-primary"
             >
@@ -305,7 +306,6 @@
                 <div class="card-body" style="width: 100%;">
                   <form
                     class="form-signin"
-                    [formGroup]="contentForm"
                     (ngSubmit)="onSaveForm()"
                   >
 
@@ -330,7 +330,7 @@
                       type="submit"
                       data-dismiss="modal"
                       style="margin-left: 27, 5%;"
-                      (click)="onSaveForm()"
+                      (click)="updatePic()"
                     >
                       continuar
                     </button>

@@ -361,6 +361,17 @@ export class WaveServiceService {
     return this.http.post(`${this.url}/content-category/update/${id}`, { text, title, link });
   } 
 
+  updatePicContent(id: number, files: File[]) {
+    console.log(files[0]);
+    let file = files[0];
+    const fd = new FormData();
+    fd.append('file', file, file.name);
+    return this.http.post(
+      `${this.url}/content-category/photo/upload/${id}`,
+      fd
+    );
+  }
+
   //recuperar password
 
   generateLink(email:string):Observable<any>{

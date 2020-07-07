@@ -175,10 +175,17 @@ export class ContenidoRecomendadoComponent implements OnInit {
 
   preUpdate(content: any){
       this.selected = Object.assign({},content);
-      console.log(this.selected);
       
       
   }
+
+  updatePic(){
+    this.waveService.SavePicContent(this.selected.id, this.files).subscribe
+    ((res)=>{
+     if(res){
+     console.log(res)
+  }}
+  )};
 
   reset(){
     this.contentForm.reset();

@@ -21,6 +21,7 @@ import { UsuarioComponent } from '../components/usuario/usuario.component';
 import { PictureForoComponent } from '../components/picture-foro/picture-foro.component';
 import { CategoriasAdminComponent } from '../components/admin/categorias-admin/categorias-admin.component';
 import { LostPasswordComponent } from '../components/lost-password/lost-password.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -55,10 +56,16 @@ const routes: Routes = [
   },
   { path: 'foros', component: ForosComponent, canActivate: [AuthGuard] },
   { path: 'foro/:id', component: ForoComponent, canActivate: [AuthGuard] },
-  { path: 'admin', component: AdminComponent },
-  { path: 'admin/categorias', component: CategoriasAdminComponent},
+  { path: 'admin', component: AdminComponent
+  //, canActivate: [AdminGuard] 
+},
+  { path: 'admin/categorias', component: CategoriasAdminComponent
+ // ,  canActivate: [AdminGuard]
+},
 
-  { path: 'admin/contenido-recomendado', component: ContenidoRecomendadoComponent},
+  { path: 'admin/contenido-recomendado', component: ContenidoRecomendadoComponent
+//  ,  canActivate: [AdminGuard]
+},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: InicioComponent },
 ];

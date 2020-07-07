@@ -61,7 +61,10 @@ private   emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]
           this.spinner.hide();
         }
       },
-      error => console.log(error) 
+      
+      error => {
+        this.spinner.hide();
+        alert("Usuario o Contraseña incorrectos")} 
       )  
     this.onResetForm();
     }else{

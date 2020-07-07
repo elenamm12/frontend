@@ -187,9 +187,10 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   onSaveForm() {
     if (this.registerForm.valid) {
-      this.spinner.show();
+      
       if (this.registerForm.value.tipoCuenta == 'Premium') {
         if (this.token) {
+          this.spinner.show();
           console.log(this.registerForm.value)
           this.waveService
             .registerUser(
@@ -211,10 +212,10 @@ export class RegistrarUsuarioComponent implements OnInit {
               this.spinner.hide();
             });
         } else {
-          this.spinner.hide();
           alert('Debe pagar primero para obtener su cuenta Premium');
         }
       } else {
+        this.spinner.show();
         console.log(this.registerForm.value)
         this.waveService
           .registerUser(

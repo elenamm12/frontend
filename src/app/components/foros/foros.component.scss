@@ -37,10 +37,10 @@
   justify-content: center;
   border-radius: 6px;
   text-align: left;
+  padding-top: 4px;
 }
 
 .parent {
-  margin-bottom: 4em;
   padding-top: 5em;
 }
 
@@ -99,7 +99,7 @@ button.btn-mas {
 
 mat-card-actions {
   text-align: right;
-  padding-right: 1em;
+  padding-right: 0.3em;
 }
 
 .agregar {
@@ -156,6 +156,7 @@ mat-card-actions {
 
 ::ng-deep .mat-card-actions{
   margin-bottom: 0 !important;
+  padding: 0 !important;
 }
 
 ::ng-deep .mat-card:not([class*="mat-elevation-z"]) {
@@ -174,8 +175,8 @@ mat-card-actions {
 }
 
 ::ng-deep mat-label {
-  color: white;
+  color:#484a4c;
 }
 ::ng-deep input[type="search"] {
-  color: white;
+  color: #484a4c;
 }

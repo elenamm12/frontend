@@ -33,8 +33,7 @@ export class ForoComponent implements OnInit {
     return new FormGroup({
       text: new FormControl('', [
         Validators.required,
-        Validators.maxLength(255)
-
+        Validators.maxLength(255),
       ]),
     });
   }
@@ -61,7 +60,7 @@ export class ForoComponent implements OnInit {
         this.posts = response.items;
         this.currentPage = parseInt(response.meta.currentPage);
         this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
-         console.log("posts", this.posts);
+        console.log('posts', this.posts);
         //this.postId = this.posts[this.posts.length - 1].id;
         this.waveService
           .getFavoritesForums(this.Foro.subCategory.id)
@@ -69,7 +68,7 @@ export class ForoComponent implements OnInit {
             if (res) {
               // console.log(res);
               this.forosFav = res.forums;
-              console.log("foros fav", this.forosFav);
+              console.log('foros fav', this.forosFav);
 
               let bool = this.forosFav.find((ob) => ob.id == this.foroId);
               if (bool != null) {
@@ -127,7 +126,9 @@ export class ForoComponent implements OnInit {
     this.waveService.likePost(id).subscribe((res) => {
       if (res) {
         // console.log(res);
-        alert("¡Te gusta el comentario!")
+        this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
+          this.posts = response.items;
+        });
       }
     });
   }
@@ -140,18 +141,18 @@ export class ForoComponent implements OnInit {
     });
     this.postForm.reset();
     this.btnClose.nativeElement.click();
-    
   }
 
   putDislikePost(id: number) {
     this.waveService.dislikePost(id).subscribe((res) => {
       if (res) {
-        // console.log(res);   
-        alert("¡No te gusta el comentario!")
+        // console.log(res);
+        this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
+          this.posts = response.items;
+        });
       }
     });
   }
- 
 
   agregarFavorito(subcategoriaId) {
     console.log(subcategoriaId);
@@ -170,10 +171,9 @@ export class ForoComponent implements OnInit {
     });
   }
 
-  reset(){
+  reset() {
     this.postForm.reset();
   }
-
 
   dislikeForo(id: number) {
     this.waveService.dislikeForum(id).subscribe((res) => {
@@ -186,18 +186,18 @@ export class ForoComponent implements OnInit {
 
   onDelete(id: number) {
     this.waveService.DeletePost(id).subscribe((res) => {
-      if(res){
+      if (res) {
         this.waveService.getPostByForumId(this.foroId).subscribe((response) => {
           this.posts = response.items;
           this.currentPage = parseInt(response.meta.currentPage);
-          this.nextPage = this.currentPage !== parseInt(response.meta.totalPages);
-           console.log("posts", this.posts);
-           });
-        
+          this.nextPage =
+            this.currentPage !== parseInt(response.meta.totalPages);
+          console.log('posts', this.posts);
+        });
+        alert('¡Se eliminará el comentario!');
       }
     });
   }
-  
 
   get text() {
     return this.postForm.get('text');

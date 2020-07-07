@@ -1,6 +1,11 @@
 <app-menu></app-menu>
 <div class="fondo">
   <div class="sepaador"></div>
+  <div style="margin-left: 5%;">
+    <a routerLink="/home" style="color: grey;">
+      <mat-icon class="volver" style="font-size:2em ;">keyboard_backspace</mat-icon>
+    </a>
+  </div>
 
   <div class="carousel">
     <div *ngFor="let cat of categories" class="contenido">
@@ -14,15 +19,15 @@
           <mat-chip-list multiple aria-label="Fish selection">
             <div *ngFor="let sub of cat.subCategories">
               <mat-chip
-                color="accent"
+                style="background-color: #e98167;"
                 selected
                 routerLink="/sub-categoria/{{ sub.id }}"
               >
                 {{ sub.name }}
-
+              <div *ngIf="!isFav(cat.id, sub.id)">
                 <mat-icon matChipRemove (click)="agregarFavorito(sub.id)"
                   >favorite</mat-icon
-                >
+                ></div>
               </mat-chip>
             </div>
           </mat-chip-list></mat-card-content

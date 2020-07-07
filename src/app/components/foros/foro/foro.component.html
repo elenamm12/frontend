@@ -31,8 +31,14 @@
     "
   />
 
-  <h2>{{ Foro.title }}</h2>
-
+  <div *ngIf="Foro.users">
+    <h2>
+      {{ Foro.title
+      }}<small style="color: grey !important; font-size: 0.7rem;">
+        {{ Foro.users.length }} suscriptores</small
+      >
+    </h2>
+  </div>
   <h6>¡Comentarios!</h6>
 
   <div class="comentario">
@@ -82,28 +88,33 @@
                           </div>
 
                           <div style="display: inline;">
-                            <div *ngIf="!com.isLiked; else notLike" style="display: inline;">
-                            <mat-icon
-                              (click)="putLikePost(com.id)"
-                              [inline]="true"
-                              class="like"
-                              style="cursor: pointer; color:red"
+                            <div
+                              *ngIf="!com.isLiked; else notLike"
+                              style="display: inline;"
                             >
-                            favorite_border </mat-icon
+                              <mat-icon
+                                (click)="putLikePost(com.id)"
+                                [inline]="true"
+                                class="like"
+                                style="cursor: pointer; color: red;"
+                              >
+                                favorite_border
+                              </mat-icon>
+                            </div>
+                            <ng-template
+                              #notLike
+                              style="display: inline; font-size: 1em;"
                             >
-                            
-                          </div>
-                          <ng-template #notLike style="display: inline; font-size: 1.em;">
-                            <mat-icon
-                            (click)="putDislikePost(com.id)"
-                            [inline]="true"
-                            class="dislike"
-                            style="cursor: pointer; color: red;"
-                          >
-                            favorite
-                          </mat-icon>
-                          </ng-template>
-                            <time class="text-success">{{com.likes}}</time>
+                              <mat-icon
+                                (click)="putDislikePost(com.id)"
+                                [inline]="true"
+                                class="dislike"
+                                style="cursor: pointer; color: red;"
+                              >
+                                favorite
+                              </mat-icon>
+                            </ng-template>
+                            <time class="text-success">{{ com.likes }}</time>
                           </div>
                         </div>
 
@@ -111,14 +122,14 @@
                           {{ com.text }}
                         </p>
                         <mat-icon
-                              *ngIf="user.email == com.user.email"
-                              (click)="onDelete(com.id)"
-                              [inline]="true"
-                              class="like"
-                              style="cursor: pointer; color: orange;"
-                            >
-                              delete
-                            </mat-icon>
+                          *ngIf="user.email == com.user.email"
+                          (click)="onDelete(com.id)"
+                          [inline]="true"
+                          class="like"
+                          style="cursor: pointer; color: orange;"
+                        >
+                          delete
+                        </mat-icon>
                       </div>
                     </li>
                   </ul>

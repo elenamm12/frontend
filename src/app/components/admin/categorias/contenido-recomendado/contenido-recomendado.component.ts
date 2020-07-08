@@ -86,6 +86,7 @@ export class ContenidoRecomendadoComponent implements OnInit {
   onSaveForm() {
     if (!this.selected.id) {
       if (this.contentForm.valid) {
+        if(this.files.length>0){
         this.spinner.show();
         this.waveService
           .CreateContent(
@@ -96,10 +97,10 @@ export class ContenidoRecomendadoComponent implements OnInit {
           )
           .subscribe((res) => {
             if (res) {
-              //this.waveService.SavePicContent(res.content.id, this.files).subscribe
-              // ((res)=>{
-              //  if(res){
-              //  console.log(res)
+              this.waveService.SavePicContent(res.content.id, this.files).subscribe
+               ((res)=>{
+               if(res){
+                console.log(res)
               this.waveService
                 .getAllCategoriesContent()
                 .subscribe((response) => {
@@ -109,12 +110,16 @@ export class ContenidoRecomendadoComponent implements OnInit {
                   this.btnClose.nativeElement.click();
                 });
 
-              // }
-              // else{ this.spinner.hide();}
-              // })
+               }
+              else{ this.spinner.hide();}
+              })
             }
           });
+      }else{
+        alert("Debe cargar una imagen primero");
+        this.btnClose.nativeElement.click();
       }
+    }
     } else {
       if (this.contentForm.valid) {
         this.spinner.show();
@@ -177,12 +182,18 @@ export class ContenidoRecomendadoComponent implements OnInit {
   }
 
   updatePic(){
+    if(this.files.length>0){
     this.waveService.SavePicContent(this.selected.id, this.files).subscribe
     ((res)=>{
      if(res){
      console.log(res)
   }}
-  )};
+  )}else{
+    alert("Debe seleccionar una imagen");
+    this.reset();
+  }
+}
+  ;
 
   reset(){
     this.contentForm.reset();

@@ -40,17 +40,19 @@
             mat-button
             (click)="accordion.openAll()"
             type="button"
-            class="btn btn1 btn-primary enviar"
+            class="btn btn1 btn-primary btn-sm enviar"
+            style="background-color:#fec2a3;"
           >
-            Expand All
+            mostrar todo
           </button>
           <button
             mat-button
             (click)="accordion.closeAll()"
             type="button"
-            class="btn btn1 btn-primary enviar"
+            class="btn btn1 btn-primary btn-sm enviar"
+            style="background-color:#fec2a3;"
           >
-            Collapse All
+            ocultar todo
           </button>
         </div>
         <div
@@ -233,25 +235,6 @@
         </div>
       </mat-tab>
       <mat-tab label="Foros sin suscripción">
-        <div class="example-action-buttons" style="text-align: center;">
-          <button
-            mat-button
-            (click)="accordion.openAll()"
-            type="button"
-            class="btn btn1 btn-primary enviar"
-            style="background-color: #fec2a3;"
-          >
-            <mat-icon>open</mat-icon>
-          </button>
-          <button
-            mat-button
-            (click)="accordion.closeAll()"
-            type="button"
-            class="btn btn1 btn-primary enviar"
-          >
-            Collapse All
-          </button>
-        </div>
         <div
           *ngFor="let foro of notSubscribedForumsPosts"
           style="margin-bottom: 1em; margin-top: 5px;"
@@ -344,6 +327,7 @@
     </mat-tab-group>
   </div>
 </div>
+
 <div
   class="modal fade"
   id="exampleModal"

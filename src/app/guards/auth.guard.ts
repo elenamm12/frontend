@@ -11,12 +11,19 @@ export class AuthGuard implements CanActivate {
     
   }
  canActivate(){
-   if(this.service.getToken()){
-     return true
-   }else{
-     this.rout.navigate(['/iniciar-sesion'])
-     return false
-   }
+  let user = JSON.parse(this.service.getCurrentUser());
+  if(user){
+  if(user.role=='normal' || user.role=='premium' ){
+    return true
+  }else{
+    this.rout.navigate(['/admin'])
+    return false
+  }
+ 
+}else{
+  this.rout.navigate(['/iniciar-sesion'])
+  return false
+}
  }
   
 }

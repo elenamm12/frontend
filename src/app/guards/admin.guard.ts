@@ -13,7 +13,7 @@ export class AdminGuard implements CanActivate {
   canActivate(){
     let user = JSON.parse(this.service.getCurrentUser());
     if(user){
-    if(user.role=='Admin'){
+    if(user.role=='admin'){
       return true
     }else{
       this.rout.navigate(['/home'])
@@ -21,7 +21,7 @@ export class AdminGuard implements CanActivate {
     }
    
   }else{
-    this.rout.navigate(['/inicio'])
+    this.rout.navigate(['/iniciar-sesion'])
     return false
 }
 }

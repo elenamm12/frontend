@@ -180,10 +180,10 @@ export class UsuarioComponent implements OnInit {
     });
   }
   premiumTrue() {
-    if (this.token) {
-      this.user.role = 'Premium';
-      this.waveService.becomePremium(this.user.email).subscribe((res)=>{
-        console.log(res);
+    if (this.token) {   
+      this.waveService.becomePremium().subscribe((data)=>{
+        this.user = data.user;
+        console.log;
       });
 
     } else {

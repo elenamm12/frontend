@@ -15,8 +15,8 @@ import { RespI } from '../model/resp-i';
   providedIn: 'root',
 })
 export class WaveServiceService {
-  url = 'http://localhost:3000';
-  //url = 'https://wave-service.herokuapp.com';
+  //url = 'http://localhost:3000';
+  url = 'https://wave-service.herokuapp.com';
 
   public token: string;
   public picture: string;
@@ -96,6 +96,36 @@ export class WaveServiceService {
         birthday,
         password,
         role,
+      })
+      .pipe(
+        tap((res: any) => {
+          if (res) {
+            console.log(res);
+            this.saveToken(res.accessToken);
+            this.saveUser(res.userCreated);
+          } else {
+            console.log('no hay respuesta');
+          }
+        })
+      );
+  }
+
+  registerAdmin(
+    firstName: string,
+    lastName: string,
+    userName: string,
+    email: string,
+    birthday: Date,
+    password: string,
+  ): Observable<any> {
+    return this.http
+      .post<any>(`${this.url}/user/register/admin`, {
+        firstName,
+        lastName,
+        userName,
+        email,
+        birthday,
+        password
       })
       .pipe(
         tap((res: any) => {
@@ -311,8 +341,17 @@ export class WaveServiceService {
     return this.http.get(`${this.url}/forum/created/user`);
   }
 
-  becomePremium(email:string){
-    return this.http.patch(`${this.url}/user/premium/activate/${email}`, []);
+  becomePremium(): Observable<any>{
+    return this.http.patch(`${this.url}/user/premium/activate`, []).pipe(
+      tap((res: any) => {
+        if (res) {
+          console.log(res);
+          this.saveUser(res.user);
+        } else {
+          console.log('no hay respuesta');
+        }
+      })
+    );;
   }
   //Servicios content category
 

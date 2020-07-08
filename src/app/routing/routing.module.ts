@@ -58,17 +58,17 @@ const routes: Routes = [
   { path: 'foros', component: ForosComponent, canActivate: [AuthGuard] },
   { path: 'foro/:id', component: ForoComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent
-  //, canActivate: [AdminGuard] 
+  , canActivate: [AdminGuard] 
 },
   { path: 'admin/categorias', component: CategoriasAdminComponent
- // ,  canActivate: [AdminGuard]
+  ,  canActivate: [AdminGuard]
 },
 
   { path: 'admin/contenido-recomendado', component: ContenidoRecomendadoComponent},
   { path: 'admin/registrar-admin', component: RegistrarAdminComponent},
 
   { path: 'admin/contenido-recomendado', component: ContenidoRecomendadoComponent
-//  ,  canActivate: [AdminGuard]
+ ,  canActivate: [AdminGuard]
 },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: InicioComponent },

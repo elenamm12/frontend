@@ -93,6 +93,7 @@ export class RegistrarAdminComponent implements OnInit {
           )
           .subscribe((data) => {
             console.log(data);
+            alert("Registrado con  exito")
            
             this.spinner.hide();
           },

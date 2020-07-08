@@ -13,7 +13,7 @@
             <mat-label
               >Nueva Contraseña</mat-label
             >
-            <input matInput placeholder="Contraseña" formControlName="contra" />
+            <input type="password" matInput placeholder="Contraseña" formControlName="contra" />
           </mat-form-field>
           <div *ngIf="contra.invalid && (contra.dirty || contra.touched)">
             <mat-error *ngIf="contra.errors.required">
@@ -34,7 +34,7 @@
             <mat-label
               >Repetir contraseña</mat-label
             >
-            <input  formControlName="contraconf" matInput placeholder="Repetir Contraseña" />
+            <input type="password" formControlName="contraconf" matInput placeholder="Repetir Contraseña" />
           </mat-form-field>
           <mat-error
           *ngIf="loginForm.hasError('notSame') && contraconf.dirty"

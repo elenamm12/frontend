@@ -131,8 +131,6 @@ export class WaveServiceService {
         tap((res: any) => {
           if (res) {
             console.log(res);
-            this.saveToken(res.accessToken);
-            this.saveUser(res.userCreated);
           } else {
             console.log('no hay respuesta');
           }

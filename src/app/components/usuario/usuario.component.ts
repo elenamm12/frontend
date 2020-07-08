@@ -16,7 +16,6 @@ export class UsuarioComponent implements OnInit {
   forumsCreated: [];
   profilePick: string;
   panelOpenState = false;
-  premium = false;
   public payPalConfig?: IPayPalConfig;
   public total: number = 20;
   public token: string;
@@ -111,13 +110,13 @@ export class UsuarioComponent implements OnInit {
       console.log(this.forumsPosts);
     });
 
-    this.waveService.getNotSubscribedByUser().subscribe((res) => {
-      this.notSubscribedForumsPosts = res.forums;
-    });
-
     this.waveService.getForumCreated().subscribe((res) => {
       this.forumsCreated = res.forums;
       console.log('foros creados', this.forumsCreated);
+    });
+
+    this.waveService.getNotSubscribedByUser().subscribe((res) => {
+      this.notSubscribedForumsPosts = res.forums;
     });
   }
 
@@ -175,10 +174,11 @@ export class UsuarioComponent implements OnInit {
     if (this.token) {
       this.waveService.becomePremium().subscribe((data) => {
         this.user = data.user;
+        alert('Ahora eres usuario Premium');
         console.log;
       });
     } else {
-      alert('No Pagado');
+      alert('No se proceso el pago pagado');
     }
   }
 }

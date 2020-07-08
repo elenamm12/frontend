@@ -16,7 +16,6 @@ export class UsuarioComponent implements OnInit {
   forumsCreated: [];
   profilePick: string;
   panelOpenState = false;
-  premium = false;
   public payPalConfig?: IPayPalConfig;
   public total: number = 20;
   public token: string;
@@ -109,34 +108,28 @@ export class UsuarioComponent implements OnInit {
     this.waveService.getForumsPostsByUser().subscribe((res) => {
       this.forumsPosts = res.forums;
       console.log(this.forumsPosts);
-
-      this.waveService.getNotSubscribedByUser().subscribe((res) => {
-        this.notSubscribedForumsPosts = res.forums;
-
-        this.waveService.getForumCreated().subscribe((res) => {
-          this.forumsCreated = res.forums;
-          console.log('foros creados', this.forumsCreated);
-        });
-
-      });
-
     });
 
+    this.waveService.getForumCreated().subscribe((res) => {
+      this.forumsCreated = res.forums;
+      console.log('foros creados', this.forumsCreated);
+    });
 
-
+    this.waveService.getNotSubscribedByUser().subscribe((res) => {
+      this.notSubscribedForumsPosts = res.forums;
+    });
   }
 
   onDelete(id: number) {
     this.waveService.DeletePost(id).subscribe((res) => {
-      if(res){
+      if (res) {
         this.waveService.getForumsPostsByUser().subscribe((res) => {
           this.forumsPosts = res.forums;
           console.log(this.forumsPosts);
-    
+
           this.waveService.getNotSubscribedByUser().subscribe((res) => {
             this.notSubscribedForumsPosts = res.forums;
           });
-
         });
 
         console.log(res);
@@ -150,11 +143,10 @@ export class UsuarioComponent implements OnInit {
         this.waveService.getForumsPostsByUser().subscribe((res) => {
           this.forumsPosts = res.forums;
           console.log(this.forumsPosts);
-    
+
           this.waveService.getNotSubscribedByUser().subscribe((res) => {
             this.notSubscribedForumsPosts = res.forums;
           });
-
         });
         console.log(res);
         alert('¡Ahora estás suscrito en el foro!');
@@ -168,11 +160,10 @@ export class UsuarioComponent implements OnInit {
         this.waveService.getForumsPostsByUser().subscribe((res) => {
           this.forumsPosts = res.forums;
           console.log(this.forumsPosts);
-    
+
           this.waveService.getNotSubscribedByUser().subscribe((res) => {
             this.notSubscribedForumsPosts = res.forums;
           });
-
         });
         alert('Dejarás de estar suscrito al foro');
         // console.log(res);
@@ -180,14 +171,14 @@ export class UsuarioComponent implements OnInit {
     });
   }
   premiumTrue() {
-    if (this.token) {   
-      this.waveService.becomePremium().subscribe((data)=>{
+    if (this.token) {
+      this.waveService.becomePremium().subscribe((data) => {
         this.user = data.user;
+        alert('Ahora eres usuario Premium');
         console.log;
       });
-
     } else {
-      alert('No Pagado');
+      alert('No se proceso el pago pagado');
     }
   }
 }

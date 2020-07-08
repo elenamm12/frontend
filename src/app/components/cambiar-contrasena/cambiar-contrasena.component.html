@@ -45,11 +45,12 @@
         </div>
         <div class="boton">
           
-          <a routerLink="/iniciar-sesion"
+          <a 
             ><button
               type="button"
               class="btn btn-primary segundo"
-              type="submit>"
+              (click)="onSaveForm()"
+              [disabled]="loginForm.invalid"
             >
               continuar
             </button></a

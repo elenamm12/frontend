@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms'
 import { WaveServiceService } from 'src/app/services/wave-service.service';
+import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-cambiar-contrasena',
@@ -11,7 +13,7 @@ export class CambiarContrasenaComponent implements OnInit {
   private   Pattern: any = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])/;
   //
   user: any; 
-  
+  token: string;
 
   loginForm: FormGroup;
 
@@ -23,7 +25,7 @@ export class CambiarContrasenaComponent implements OnInit {
   }
 
 
-  constructor(private waveService: WaveServiceService, private formBuilder: FormBuilder,) { 
+  constructor(private route: ActivatedRoute ,private waveService: WaveServiceService, private formBuilder: FormBuilder,) { 
     this.loginForm = this.formBuilder.group(
       {
        
@@ -34,8 +36,6 @@ export class CambiarContrasenaComponent implements OnInit {
           Validators.pattern(this.Pattern)
         ]),
         contraconf: new FormControl(''),
-        categorias: this.formBuilder.array([]),
-        tipoCuenta: new FormControl('', Validators.required),
       },
       { validator: [this.checkPasswords] }
     );
@@ -43,6 +43,7 @@ export class CambiarContrasenaComponent implements OnInit {
 
 
   ngOnInit() {
+    this.token= this.route.snapshot.queryParamMap.get('token');
   
   }
 
@@ -53,7 +54,14 @@ export class CambiarContrasenaComponent implements OnInit {
   
 
   onSaveForm(){
-  
+   if(this.loginForm.valid){
+     this.waveService.resetPassword(this.token , this.loginForm.value.contra).subscribe((res)=>{
+       alert("Cambiado con exito");
+       this.loginForm.reset();
+     }
+     
+     )
+   }
   }
 
   get contra(){

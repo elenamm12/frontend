@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms'
 import { WaveServiceService } from 'src/app/services/wave-service.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class CambiarContrasenaComponent implements OnInit {
   }
 
 
-  constructor(private route: ActivatedRoute ,private waveService: WaveServiceService, private formBuilder: FormBuilder,) { 
+  constructor(private router: Router, private route: ActivatedRoute ,private waveService: WaveServiceService, private formBuilder: FormBuilder,) { 
     this.loginForm = this.formBuilder.group(
       {
        
@@ -58,6 +58,7 @@ export class CambiarContrasenaComponent implements OnInit {
      this.waveService.resetPassword(this.token , this.loginForm.value.contra).subscribe((res)=>{
        alert("Cambiado con exito");
        this.loginForm.reset();
+       this.router.navigate(['/iniciar-sesion']);
      }
      
      )

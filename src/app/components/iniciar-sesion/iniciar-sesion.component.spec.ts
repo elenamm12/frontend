@@ -135,13 +135,16 @@ fdescribe('IniciarSesionComponent', () => {
     // Validar que entre cuando el form sea válido.
     expect(component.onSaveForm()).toBe('inválido');
 
+
+    // NO SÉ CÓMO VALIDAR ESTO
     let user=component.loginForm.controls['usuario'];
     let password=component.loginForm.controls['contra'];
     user.setValue('victoriaiac11@gmail.com');
     password.setValue('Ab12345');
 
     // Validar que no deje entrar a un usuario cuya contraseña no coincida.
-    expect(component.onSaveForm()).toBeUndefined;
+    expect(component.onSaveForm()).toBe('no coinciden');
+
 
     user.setValue('victoria.acuna@correo.unimet.edu.ve');
     password.setValue('Ac12345');

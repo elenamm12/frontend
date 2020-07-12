@@ -69,6 +69,7 @@ export class IniciarSesionComponent implements OnInit {
       }, error => {
         // this.spinner.hide();
         alert("Usuario o Contraseña incorrectos")
+        return 'no coinciden'
       })  
     this.onResetForm();
 

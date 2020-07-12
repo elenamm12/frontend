@@ -48,28 +48,38 @@ export class IniciarSesionComponent implements OnInit {
   //metodo del submit que llama al del servicio pasandole el usuario y la contraseña
   onSaveForm() {
     if (this.loginForm.valid) {
-      this.spinner.show();
+
+      // this.spinner.show();
       this.waveService.loginUser(this.loginForm.value.usuario, this.loginForm.value.contra)
       .subscribe(data=>{ 
+
         console.log(data);
         if((data.user.role=='normal'||data.user.role=='premium')){
-        this.router.navigate(['/home']);
-        this.spinner.hide();
+          alert("Usuario y contraseña coinciden. No es admin")
+          return 'entro sin ser admin'
+        // this.router.navigate(['/home']);
+        // this.spinner.hide();
         }if(data.user.role=='admin'){
-          this.router.navigate(['/admin']);
-          this.spinner.hide();
+          alert("Usuario y contraseña coinciden. Es admin")
+          return 'entro siendo admin'
+          // this.router.navigate(['/admin']);
+          // this.spinner.hide();
         }
-      },
-      
-      error => {
-        this.spinner.hide();
-        alert("Usuario o Contraseña incorrectos")} 
-      )  
+
+      }, error => {
+        // this.spinner.hide();
+        alert("Usuario o Contraseña incorrectos")
+      })  
     this.onResetForm();
-    }else{
-      alert('Usuario no válido, vuela a intentar');
-    }
+
+  } else {
+    alert("Form inválido")
+    return 'inválido'
+    // alert('Usuario no válido, vuela a intentar');
   }
+    
+  
+}
 
   get usuario() {
     return this.loginForm.get('usuario');
